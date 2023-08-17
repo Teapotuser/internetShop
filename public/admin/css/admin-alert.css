@@ -1,0 +1,317 @@
+/* @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+html,body{
+  height: 100%;
+}
+body{
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+} 
+button{
+  padding: 8px 16px;
+  font-size: 25px;
+  font-weight: 500;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  background: #e69100;
+  color: white;
+  letter-spacing: 1px;
+  cursor: pointer;
+} */
+
+.alert-container{
+    position: relative;
+    height: 120px; /*60px; */
+    overflow-x: hidden;
+}
+
+.alert{
+  /* background: #c2f3d6; */
+  padding: 15px 40px;
+  min-width: 520px;
+  position: absolute;
+  right: 0;
+  top: 0px;
+  border-radius: 4px;
+  /* border-left: 8px solid #30D473; */
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.alert.alert-success {
+    background: #c2f3d6;
+    border-left: 8px solid #30D473;
+}
+
+.alert.alert-danger {
+    background: #ffe1e3;
+    border-left: 8px solid #ff4658;
+}
+
+.alert.showAlert{
+  opacity: 1;
+  pointer-events: auto;
+}
+.alert.show{
+  animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide {
+  0%{
+    transform: translateX(100%);
+  }
+  40%{
+    transform: translateX(-10%);
+  }
+  80%{
+    transform: translateX(0%);
+  }
+  100%{
+    transform: translateX(-10px);
+  }
+}
+.alert.hide{
+  animation: hide_slide 1s ease forwards;
+}
+@keyframes hide_slide {
+  0%{
+    transform: translateX(-10px);
+  }
+  40%{
+    transform: translateX(0%);
+  }
+  80%{
+    transform: translateX(-10%);
+  }
+  100%{
+    transform: translateX(100%);
+  }
+}
+.alert .fa-exclamation-circle{
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ce8500;
+  font-size: 30px;
+}
+.alert .msg{
+  padding: 0 20px;
+  font-size: 18px;
+  /* color: #68ae6f;  */
+}
+.alert.alert-success .msg {
+    color: #68ae6f; /* #24b05a; */
+}
+
+.alert.alert-danger .msg {
+    color: #c56571; /* #24b05a; */
+}
+
+.alert .close-btn{
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  /* background: #95eab8; */
+  padding: 31px 24px;
+  cursor: pointer;
+
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.alert.alert-success .close-btn{
+    background: #95eab8;
+}
+
+.alert.alert-danger .close-btn{
+    background: #ff99a4;
+}
+
+/* .alert .close-btn:hover{
+  background: #ffc766;
+} */
+
+.alert.alert-success .close-btn:hover{
+    background: #8fdeb0;
+}
+
+.alert.alert-danger .close-btn:hover{
+    background: #f0919a;
+}
+
+/* .alert .close-btn .fas{
+  color: #ce8500;
+  font-size: 22px;
+  line-height: 40px;
+} */
+
+/* Кнопка закрытия alert-а */
+.alert.alert-success button#close-alert-button {
+    display: block;
+    position: absolute;
+    top: 50%;
+    /* right: 0;   */
+    background-image: url(../images/noun-cancel-1890830-green.svg);    
+    /* background-size: auto, auto;    */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    height: 16px;
+    width: 16px;
+    /* max-height: 10px; */
+    /* max-width: ; */
+    min-width: 16px;
+    transition: var(--tran-05);
+    /* border-radius: 6px; */
+    border: none;
+    /* background-color: var(--primary-color); */
+    background-color: transparent;
+    cursor: pointer;
+
+    transform: translateY(-50%) translateX(-50%);
+    /* padding: 20px 18px; */
+    
+  }
+  
+  button#close-alert-button.hidden, body.dark button#close-alert-button.hidden {
+    display: none;
+  }
+  
+  body.dark button#close-alert-button {
+    background-image: url(../images/noun-cancel-1890830-light-grey.svg);    
+    /* background-size: auto, auto;    */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    transition: var(--tran-05);
+  }
+
+  .alert.alert-danger button#close-alert-button {
+    display: block;
+    position: absolute;
+    top: 50%;
+    /* right: 0;   */
+    background-image: url(../images/noun-cancel-1890830-red.svg);    
+    /* background-size: auto, auto;    */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    height: 16px;
+    width: 16px;
+    /* max-height: 10px; */
+    /* max-width: ; */
+    min-width: 16px;
+    transition: var(--tran-05);
+    /* border-radius: 6px; */
+    border: none;
+    /* background-color: var(--primary-color); */
+    background-color: transparent;
+    cursor: pointer;
+
+    transform: translateY(-50%) translateX(-50%);
+    /* padding: 20px 18px; */
+    
+  }
+
+  /* Icons для alert-ов */
+.alert .alert-success-icon {
+    background-image: url(../images/noun-tick-mark-2920191-green.svg);    
+    background-size: contain;   
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;	    
+    height: 27px;
+    width: 27px;
+    /* max-height: 10px; */
+    /* max-width: ; */
+    min-width: 27px;
+    /* cursor: pointer; */
+    padding: 0;
+    margin: auto;
+    position: absolute;
+    top: 25%;
+    left: 14px;
+    transition: background-color 200ms ease-out;
+}
+
+body.dark .title .title-rectangle-icon .title-add-icon,
+body.dark .title .title-rectangle-icon .title-add-icon:hover {
+    background-image: url(../images/noun-add-1886814-light-grey.svg);    
+    /* background-size: auto, auto;    */
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    height: 25px;
+    width: 25px;
+    /* max-height: 10px; */
+    /* max-width: ; */
+    min-width: 25px;
+    transition: var(--tran-05);
+}
+
+.alert .alert-danger-icon {
+    background-image: url(../images/noun-damaged-2009254-red.svg);    
+    background-size: contain;   
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;	    
+    height: 25px;
+    width: 25px;
+    /* max-height: 10px; */
+    /* max-width: ; */
+    min-width: 25px;
+    /* cursor: pointer; */
+    padding: 0;
+    margin: auto;
+    position: absolute;
+    /* top: 25%; */
+    left: 14px;
+    transition: background-color 200ms ease-out;
+}
+
+@media (min-width: 560px) and (max-width: 660px) {
+    .alert{
+        min-width: 420px;
+        max-width: 420px;
+        width: 420px;
+    } 
+    .alert .msg{
+        white-space: normal;
+        /* inline-size: min-content; */
+    }
+}
+
+@media (min-width: 480px) and (max-width: 559px) {
+    .alert-container{
+        height: 90px;
+    }
+    .alert{
+        min-width: 360px;
+        max-width: 360px;
+        width: 360px;
+    } 
+    .alert .msg{
+        white-space: normal;
+        /* inline-size: min-content; */
+    }
+    .alert .close-btn{
+       padding: 62px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .alert{
+        min-width: 360px;
+    }     
+}
+  

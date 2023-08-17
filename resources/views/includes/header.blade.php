@@ -64,29 +64,49 @@
                         <ul class="menu__sublist">
                             <li>
                                 <div class="menu__wrapper">
-                                    <p class="menu__sublink">Категории</p>
+                                    <!-- <p class="menu__sublink">Категории</p> -->
+                                    <p class="menu__sublink @if(Route::is('category.show')) active @endif">Категории</p>
                                     <span class="menu__arrow"></span>
                                 </div>
                                 <!-- 3 уровень меню -->
                                 <ul class="menu__sublist">
-                                    <li><a href="#" class="menu__sublink">Мягкие игрушки</a></li>
+                                    @foreach ($categories as $item)
+                                        <li>
+                                            <a class="menu__sublink
+                                                @if(url()->current() == route('category.show', $item->code) )
+                                                   active
+                                               @endif"
+                                               href="{{ route('category.show', $item->code) }}">{{ $item->name }} </a>
+                                        </li>
+                                    @endforeach
+                                   <!--  <li><a href="#" class="menu__sublink">Мягкие игрушки</a></li>
                                     <li><a href="#" class="menu__sublink">Брелки</a></li>
                                     <li><a href="#" class="menu__sublink">Магниты</a></li>
-                                    <li><a href="#" class="menu__sublink">Подушки</a></li>
+                                    <li><a href="#" class="menu__sublink">Подушки</a></li> -->
                                 </ul>
                             </li>
                             <li>
                                 <div class="menu__wrapper">
-                                    <p class="menu__sublink">Коллекции</p>
+                                    <!-- <p class="menu__sublink">Коллекции</p> -->
+                                    <p class="menu__sublink @if(Route::is('collection.show')) active @endif">Коллекции</p>
                                     <span class="menu__arrow"></span>
                                 </div>    
                                 <!-- 3 уровень меню -->
                                 <ul class="menu__sublist">
-                                    <li><a href="#" class="menu__sublink">Овечки Jolly Mäh</a></li>
+                                    @foreach ($collections as $item)
+                                        <li>
+                                            <a class="menu__sublink
+                                                @if(url()->current() == route('collection.show', $item->code) )
+                                                   active
+                                               @endif"
+                                               href="{{ route('collection.show', $item->code) }}">{{ $item->name }} </a>
+                                        </li>
+                                    @endforeach
+                                    <!-- <li><a href="#" class="menu__sublink">Овечки Jolly Mäh</a></li>
                                     <li><a href="#" class="menu__sublink">Единорог Theodor и его друзья</a></li>
                                     <li><a href="#" class="menu__sublink">Лесные жители</a></li>
                                     <li><a href="#" class="menu__sublink">Дикие обитатели</a></li>
-                                    <li><a href="#" class="menu__sublink">Веселая ферма</a></li>                                        
+                                    <li><a href="#" class="menu__sublink">Веселая ферма</a></li>       -->                                  
                                 </ul>
                             </li>                               
                         </ul>
@@ -94,6 +114,29 @@
                     <li><a href="#" class="menu__link">Акции</a></li>
                     <li><a href="#" class="menu__link">Доставка и оплата</a></li>
                     <li><a href="#" class="menu__link">Контакты</a></li>
+                    <li>
+                        <div class="menu__wrapper">
+                            <p class="menu__link">Контакты</p>
+                            <span class="menu__arrow"></span>
+                        </div>
+                        <ul class="menu__sublist">
+                            <li>
+                                <a class="menu__sublink
+                                    @if(url()->current() == route('feedback.form') )
+                                        active
+                                    @endif"
+                                    href="{{ route('feedback.form') }}">Обратная связь</a>
+                            </li>
+                            <!-- <li><a href="#" class="menu__sublink">Овечки Jolly Mäh</a></li>
+                            <li><a href="#" class="menu__sublink">Единорог Theodor и его друзья</a></li>
+                            <li><a href="#" class="menu__sublink">Лесные жители</a></li>
+                            <li><a href="#" class="menu__sublink">Дикие обитатели</a></li>
+                            <li><a href="#" class="menu__sublink">Веселая ферма</a></li>       -->                                  
+                        </ul>
+                    </li>      
+
+
+
                     <li class="profile-hidden">
                         <div class="menu__wrapper">
                             <a href="#" class="menu__link">Мой профиль</a>
@@ -111,15 +154,16 @@
             </nav> 
             <!-- Header: Горизонтальное меню: Поиск -->
             <div class="header-menu-search">
-                    <form action="/search" method="get" class="search-form">
-                            <input type="search" name="sSearch" aria-label="Найти..." class="search-field" autocomplete="off" autocapitalize="off" placeholder="Найти..."/>
-                            <button type="submit" name="" value="" class="search-submit">
-                                <img class="search-image" src="{{ asset('images/search-icon.svg') }}" alt="Go">
-                            </button>
-                            <div class="form--ajax-loader">&nbsp;</div>
+                    <form action="{{ URL::to('find') }}" method="GET" class="search-form">
+                        {{csrf_field()}}
+                        <input type="search" name="sSearch" id="sSearch" aria-label="Найти..." class="search-field" autocomplete="off" autocapitalize="off" placeholder="Найти..."/>
+                        <button type="submit" name="" value="" class="search-submit">
+                            <img class="search-image" src="{{ asset('images/search-icon.svg') }}" alt="Go">
+                        </button>
+                        <div class="form--ajax-loader">&nbsp;</div>
                     </form>
                     <!-- <div class="main-search--results"> -->
-                    <ul class="search-results-list hide-search-results">
+                    <ul class="search-results-list hide-search-results" id="search-results-list">
                         <li>
                             <a href="#" class="one-search-result">
                                 <span class="one-search-result-img-container">
@@ -216,7 +260,8 @@
             </div>
             <!-- Buy button-->                
             <button type="button" class="btn-clear-cart">Очистить корзину</button>
-            <button type="button" class="btn-buy">Оформить заказ</button>
+            <!-- <button type="button" class="btn-buy">Перейти в корзину</button> -->
+            <a href="#" class="btn-buy">Перейти в корзину</a>
             
             <!-- Cart Close-->
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="20" height="20" viewBox="0 0 256 256" xml:space="preserve" class="cart-close">

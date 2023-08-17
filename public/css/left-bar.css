@@ -72,7 +72,7 @@
     display: none; 
 } */
 
-.list-link a:active::before, .list-link a:focus::before{
+.list-link a:active::before, .list-link a:focus::before,  .list-link a.active::before {
     /* content: ">";
     color: #e20049;
     display: inline-block;
@@ -93,7 +93,7 @@
     margin-right: 4px;
 }
 
-.list-link a:active, .list-link a:focus {
+.list-link a:active, .list-link a:focus, .list-link a.active {
     color: #e20049;
     font-weight: 600; 
     position: relative;   

@@ -1,0 +1,1019 @@
+* {
+   box-sizing: border-box;
+}
+/*  body {
+   background: #f69a73;
+} */
+.section-header {
+  font-family: 'Bellota';
+  font-weight: bold;
+  font-size: 26px;
+  letter-spacing: 2px;
+  color: #484848;
+  text-align: center;
+  margin: 20px 10px auto;
+}
+
+.form-order {
+  margin-bottom: 30px;
+}
+
+.form-order-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.form-order-panel {
+  width: 33%;
+  min-width: 300px;
+}
+
+.form-order-middle-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .decor {
+   position: relative;
+   max-width: 380px;
+   margin: 20px auto 0;
+   background: white;
+   border-radius: 30px;
+   width: 100%;
+}  */
+
+.form-inner {
+   /* background-color: #f8f4ee; */
+  background-color: transparent; /* #dddddd; */ /* var(--primary-color-trasparent); */ /* var(--box1-color); */
+  padding: 30px;
+  /*  display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center; */
+  width: 100%;
+  border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
+  transition: var(--tran-05);
+} 
+
+.accounts-list .list:hover {
+  background-color: var(--primary-color-trasparent); /* var(--box1-color); */
+  transition: var(--tran-05);
+}
+
+body.dark .accounts-list .list,
+body.dark .accounts-list .list:hover {
+  background-color: var(--sidebar-color); /* var(--box1-color); */
+  transition: var(--tran-05);
+}
+
+.form-inner input[type="text"], .form-inner input[type="email"], .form-inner input[type="number"], .form-inner input[type="password"], .form-inner textarea {
+  display: block;
+  width: 100%;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  /* background: #fff; */
+  background-color: var(--input-color); /* background-color: var(--primary-color-light); */
+  color: var(--text-color);
+  /* color: #333; */
+  font-size: 17px;
+  font-weight: 500;
+  /* line-height: 40px; */
+   /* border-width: 0; */
+  /* border: 1px solid #e1e1e1; */
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  /* font-family: 'Roboto', sans-serif; */
+  transition: var(--tran-05);
+}
+
+.form-inner input[type="text"], .form-inner input[type="email"], .form-inner input[type="number"], .form-inner input[type="password"], .form-inner select {
+  height: 50px;
+  line-height: 40px;
+}
+
+.form-inner input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.form-inner input:active, .form-inner input:hover, .form-inner input:focus,
+.form-inner textarea:active, .form-inner textarea:hover, .form-inner textarea:focus,
+.form-inner select:active, .form-inner select:hover, .form-inner select:focus {
+   outline: 1px;
+   outline-color: var(--primary-color); /* #695CFE; */
+   border-width: 1px;
+   border-color: var(--primary-color); /* #695CFE; */
+   /* outline-offset: 0; */
+   transition: var(--tran-05);
+}
+
+body.dark .form-inner input[type="text"], body.dark .form-inner input[type="email"], body.dark .form-inner input[type="number"], body.dark .form-inner input[type="password"], body.dark .form-inner textarea 
+/* .form-inner input:hover, .form-inner input:focus, 
+.form-inner textarea:active, .form-inner textarea:hover, .form-inner textarea:focus  */{
+  outline: none;
+  border: none;
+  background-color: var(--input-color); /* background-color: var(--primary-color-light); */
+  color: var(--text-color);
+  /* border-radius: 6px; */
+  font-size: 17px;
+  font-weight: 500; 
+  transition: var(--tran-05);
+}
+
+/* --- Checkbox customized --- */
+
+.form-inner .form-inner-checkbox {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: left;
+}
+
+.form-inner input[type="checkbox"] {
+   width: 17px;
+   height: 17px;
+}
+
+/*===== Checkbox стили =====*/
+.form-inner input[type="checkbox"] + label {
+  /* padding: 0 0 0 12px; */
+  /* position: relative; */
+
+  cursor: pointer;
+  display: flex;
+}
+
+/* прячем input checkbox */
+input[type="checkbox"]#create-account, input[type="checkbox"].checkbox-customized {
+  /* display: none; */
+
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+input[type="checkbox"]#create-account:not(:checked) + label path, input[type="checkbox"].checkbox-customized:not(:checked) + label path {
+  display: none;
+}
+
+input[type="checkbox"]#create-account:checked + label path, input[type="checkbox"].checkbox-customized:checked + label path {
+  /* fill: #e20049; */
+  fill: var(--checkbox-color);
+  transition: var(--tran-05);
+}
+
+/* Квадрат checkbox-а */
+.svg-checkbox {
+  /* border: 1px solid #333; */
+  border: 1px solid var(--border-color);
+  color: #333;
+  /* background-color: #fff; */
+  background-color: var(--input-color);
+  padding: 2px;
+  width: 25px;
+  height: 25px;
+  border-radius: 3px;
+  margin-right: 12px;
+  transition: var(--tran-05);
+}
+
+/* input[type="checkbox"]#create-account:checked + label .svg-checkbox, */
+input[type="checkbox"]#create-account:focus + label .svg-checkbox,
+input[type="checkbox"]#create-account:hover + label .svg-checkbox,
+input[type="checkbox"].checkbox-customized:focus + label .svg-checkbox,
+input[type="checkbox"].checkbox-customized:hover + label .svg-checkbox
+ {
+  outline: 1px;
+  outline-color: var(--primary-color); /* #695CFE; */
+  border-width: 1px;
+  border-color: var(--primary-color); /* #695CFE; */
+  transition: var(--tran-05);
+}
+
+body.dark .form-inner .svg-checkbox {
+  outline: none;
+  border: none;
+  transition: var(--tran-05);
+}
+  
+.svg-checkbox  path {
+    fill: currentColor;
+}
+
+/* --- --- End of Checkbox Customized --- */
+
+.form-inner label, .form-inner .label {
+   /* margin-left: 10px; */
+   /* color:#333;   */
+  color: var(--text-color-darker);
+  font-size: 17px;
+  transition: var(--tran-05);
+}
+
+/* --- Combobox (drop-down) --- */
+select.admin-combobox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+
+/* отключаем бордюры у инпутов */
+  /* border: none; */
+  /* border-radius: 8px; */
+  /* color: #484848; */
+  /* font-size: 14px; */
+  font-style: italic;
+  /* width: 200px; */
+  /* height: 30px; */
+  /* line-height: 30px; */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0px 20px 0px 20px;
+
+  /* чтобы ширина поля ввода (100%) включала в себя внутренние отступы */
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /* outline: none; */
+
+  display: block;
+  width: 100%;
+  /* padding: 0 20px; */
+  margin-bottom: 10px;
+  /* background: #fff; */
+  background-color: var(--input-color); /* background-color: var(--primary-color-light); */
+  color: var(--text-color);
+  /* color: #333; */
+  font-size: 17px;
+  font-weight: 500;
+  /* line-height: 40px; */
+   /* border-width: 0; */
+  /* border: 1px solid #e1e1e1; */
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  /* font-family: 'Roboto', sans-serif; */
+  transition: var(--tran-05);
+
+  background-image: url('../images/noun-down-3610303-grey707070.svg');
+  background-repeat: no-repeat;
+  background-size: 22px 22px;
+  background-position: right;
+  background-origin: content-box;
+}
+
+body.dark select.admin-combobox {
+  background-image: url('../images/noun-down-3610303-light-grey.svg');
+  background-repeat: no-repeat;
+  background-size: 22px 22px;
+  background-position: right;
+  background-origin: content-box;
+}
+
+select.admin-combobox option {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  outline: none;
+
+  color: var(--text-color);
+  font-size: 17px;
+  /* font-style: italic; */
+  border-radius: 10px;
+}
+
+@media (min-width: 300px) and (max-width: 768px) {
+  .sort-form label {
+      display: none;
+  }
+  }
+
+/* --- End of Combobox (drop-down) --- */
+/* Форма Товара (контейнеры для полей) */
+.two-fields-product-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 3%;
+}
+
+.two-fields-product-container > div {
+  width: 50%;
+}
+
+/* End of Форма Товара (контейнеры для полей) */
+
+.form-inner .is-registered-question {
+  font-family: 'Roboto', sans-serif;
+  color: #e20049;
+  font-size: 15px;
+  text-decoration: underline;
+  margin-top: 15px;
+}
+
+.form-inner .is-registered-question:hover {
+  color: #9b9b9b;
+  /* color: #fff; */
+  transition: all 0.2s linear;
+}
+
+.btn-buy:hover{
+  background-color: #9b9b9b;
+  /* color: #fff; */
+  transition: all 0.2s linear;
+}
+
+.form-inner .info-text {
+  color:#333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.form-inner > input:last-child,  .form-inner > label:last-child {
+  margin-bottom: 0px;
+}
+
+.form-inner input[type="submit"] {
+   margin-top: 30px;
+   background: #f69a73;
+   border-bottom: 4px solid #d87d56;
+   color: white;
+   font-size: 14px;
+}
+.form-inner textarea {
+   resize: vertical;
+   line-height: 25px;
+   padding: 10px 20px;
+}
+
+.form-inner h3 {
+   margin-top: 0;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 500;
+   font-size: 22px;
+   color: #e20049;
+   text-align: center;
+}
+
+/* radiobuttons */
+.form-inner ul {
+  /* Свойство убравшее отступ в ul списке*/
+  padding-inline-start: 0;   
+}
+
+.form-inner ul.ul-margin-bottom-zero {
+  margin-block-end: 0px;
+}
+
+.form-inner ul li {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.form-inner li {
+   list-style: none;
+}
+
+input[type=radio] + label {
+   padding: 0 0 0 2rem;
+   position: relative;
+ }
+ 
+ input[type=radio] {
+   position: absolute;
+   opacity: 0;
+ }
+ 
+ input[type=radio] + label::before,
+ input[type=radio] + label::after {
+   content: '';
+   position: absolute;
+   border-radius: 50%;
+ }
+ 
+ input[type=radio] + label::before {
+   left: 0.5rem;
+   top: 0.2rem;
+   display: inline-block;
+   width: 0.8rem;
+   height: 0.8rem;
+   border: 0.05rem solid #333;
+   background: white;
+ }
+
+ /*выбранная опция*/
+ input[type=radio]:checked + label::after {
+   left: 0.7rem;
+   top: 0.4rem;
+   border: 0.25rem solid #e20049;
+ }
+ 
+ input[type=radio]:focus + label::before {
+   outline: 0.05rem dotted;
+ }
+
+ .form-inner /* input[type="text"]  */.delivery-address.hidden, .form-inner .password.hidden {
+  display: none;
+  transition: all 0.5s ease;
+ }
+
+ .form-inner .input-margin-top {
+  margin-top: 15px;
+}
+
+ /* Логин и регистрация*/
+ .form-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  /* gap: 30px; */
+ }
+
+ .login-form-decor {
+  position: relative;
+  max-width: 50%;
+  width: 50%;
+  /* margin: 50px auto 0; */
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  /* background: white; */
+  border-radius: 20px;
+}
+
+.center-button {
+  margin: 20px auto;
+ } 
+
+ .center-button > div {
+  display: flex;
+  justify-content: center;
+} 
+
+
+/*Таблица содержимого корзины*/
+.orderform-cart-table-container {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color: rgb(248, 244, 238);
+  /* padding-bottom: 20px; */
+  padding: 0px 0px;
+}
+
+.orderform-cart-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  position: relative;
+  width: 100%;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  gap: 0px 5px;
+}
+
+/*2 столбца таблицы с товарами в корзине*/
+.orderform-cart-item-container {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+}
+
+.orderform-cart-qtysum-container {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  border-bottom: 1px solid #333;
+}
+
+.orderform-cart-row:first-child .orderform-cart-qtysum-container, .orderform-cart-row:last-child .orderform-cart-qtysum-container {
+  border: none;
+}
+
+.orderform-cart-row:last-child .orderform-cart-qtysum-container {
+  border: none;   
+}
+
+.orderform-cart-row:last-child {
+  border-bottom: 2px solid #333;
+}
+
+.orderform-cart-header {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #e20049;
+}
+
+.orderform-cart-column {
+  display: flex;
+  align-items: center;
+  /* border-bottom: 1px solid black; */
+  margin-right: 7px;
+ /*  padding-bottom: 10px;
+  margin-top: 10px; */
+  /* height: 100px; */
+}
+
+.orderform-cart-column:last-child {
+  margin-right: 0;
+}
+
+.orderform-cart-row:first-child {
+  border-bottom: 2px solid #333;
+  /* background-color: #f69a73; */
+}
+
+.orderform-cart-row:last-child {
+  border-bottom: 2px solid #333;   
+}
+
+.orderform-cart-item {
+  width: 100%; 
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  justify-content: center;
+  border-bottom: none;
+}
+
+.orderform-cart-quantity {
+  width: 50%;
+  display: flex;
+  /* font-size: 14px; */   
+}
+
+.orderform-cart-quantity span {
+  color: #333;
+}
+
+.orderform-cart-sum {
+  width: 50%;
+  display: flex;
+  /* font-size: 14px; */   
+}
+
+.orderform-cart-sum span {
+  color: #333;
+}
+
+/*Название товара*/
+.orderform-cart-title {
+  /* font-family: 'Bellota'; */
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.2em;
+  height: 2.4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.orderform-cart-article, .orderform-cart-size {
+  font-size: 14px;
+  color: #333;
+  margin-top: 2px;
+}
+
+/*Итого*/
+.orderform-cart-total {
+  display: flex;
+  justify-content: end;
+  padding-top: 7px;
+  margin-bottom: 25px;
+}
+
+.orderform-cart-total-title{
+  margin-right: 20px;
+
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: #e20049;
+}
+
+.orderform-cart-total-price{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  /* letter-spacing: 2px; */
+  color: #e20049;
+}
+
+.orderform-center-button {
+  margin: 5px auto;
+  text-align: center;
+ }
+
+ /* === File Upload controls === */
+ .form-inner h3.file-upload-pairs-title {
+    margin-top: 10px;  
+    margin-bottom: 24px; 
+   font-weight: 600;
+   font-size: 20px;   
+   text-align: center;
+
+   color: var(--text-color-darker);  
+    transition: var(--tran-05);
+ }
+
+ .file-upload-pair-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 10px;
+ }
+
+ /* Пара аплоудов: с <p label> */
+ .file-upload-control {
+  width: 50%;
+ }
+
+ .file-upload-container{
+  /* background-color: #ffffff; */
+  background-color: var(--input-color);
+  width: 100%; /* 60%; */
+  /* min-width: 450px; */
+  /* position: absolute;
+  transform: translate(-50%,-50%); 
+  top: 50%;
+  left: 50%;*/
+  padding: 25px 30px;
+  box-shadow: 0 20px 35px rgba(0,0,0,0.05);
+  border-radius: 7px;
+  margin: auto;
+  position: relative;
+}
+
+.file-upload-preview-image-container{
+  width: 90%;
+  margin: 0 auto 10px auto; /* 0 auto 30px auto; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.file-upload-preview-image-container img{
+  display: block;
+  /* position: relative; */
+  max-width: 100%;
+  max-height: 100px;
+  height: 100px;
+  width: auto;
+  margin: auto;
+}
+
+figcaption {
+  margin: 20px 0 0 0;
+  text-align: center;
+  /* color: #2a292a; */
+  color: var(--text-color-darker);
+  max-width: 350px;
+  white-space: break-spaces;
+  text-overflow: ellipsis;
+  /* margin: auto; */
+  font-size: 0.8em;
+  /* font-style: italic; */
+
+  /* padding: 1em; */
+  display: table-caption;
+  caption-side: bottom;
+  /* border:2px solid green;   */
+
+  overflow: hidden;
+  display: inline-block;
+  
+}
+input[type="file"]{
+  display: none;
+}
+/* === End of File Upload controls === */
+
+/* ==== Кнопки ==== */
+
+ label.upload-file-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0px 12px;
+  text-decoration: none;
+  font-size: 16px; 
+  font-weight: 500;   
+  background-color: var(--primary-color);
+  color: var(--title-icon-color);
+  height: 35px;
+  width: 200px;
+  min-width: 122px;    
+  border-radius: 6px;    
+  transition: var(--tran-05);
+  cursor: pointer;
+  
+  /* text-align: center;
+  padding: 18px 0;*/  
+  margin: auto;  
+}
+
+label.upload-file-label.upload-file-label-in-pair {
+  height: 35px;
+  width: 90%;
+  min-width: 100px;
+}
+
+body.dark label.upload-file-label {
+  border: 1px solid var(--border-color);
+  background-color: var(--panel-color);
+}
+
+.upload-file-label .file-upload-icon {
+  background-image: url(../images/noun-upload-1272141-white.svg);    
+  /* background-size: auto, auto;    */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: center;
+  height: 24px;
+  width: 24px;
+  /* max-height: 10px; */
+  /* max-width: ; */
+  min-width: 24px;
+  transition: var(--tran-05);
+}
+
+body.dark .upload-file-label .file-upload-icon {
+  background-image: url(../images/noun-upload-1272141-light-grey.svg);    
+  /* background-size: auto, auto;    */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: center;
+  transition: var(--tran-05);
+}
+
+/* Кнопка удаления файла */
+button.clear-file-button {
+  display: block;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+
+  background-image: url(../images/noun-cancel-1890830-blue.svg);    
+  /* background-size: auto, auto;    */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: center;
+  height: 20px;
+  width: 20px;
+  /* max-height: 10px; */
+  /* max-width: ; */
+  min-width: 20px;
+  transition: var(--tran-05);
+  border-radius: 6px;
+  border: none;
+  /* background-color: var(--primary-color); */
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button.clear-file-button.clear-file-button-in-pair {
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  background-image: url(../images/noun-cancel-1890830-blue.svg);    
+  /* background-size: auto, auto;    */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: center;
+  height: 15px;
+  width: 15px;
+  /* max-height: 10px; */
+  /* max-width: ; */
+  min-width: 15px;
+  transition: var(--tran-05);
+  border-radius: 6px;
+  border: none;
+  /* background-color: var(--primary-color); */
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button.clear-file-button.hidden, body.dark button.clear-file-button.hidden {
+  display: none;
+}
+
+body.dark button.clear-file-button, body.dark button.clear-file-button.clear-file-button-in-pair {
+  background-image: url(../images/noun-cancel-1890830-light-grey.svg);    
+  /* background-size: auto, auto;    */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: center;
+  transition: var(--tran-05);
+}
+
+/* Кнопка Добавить больше полей аплоуда файла */
+button.more-file-upload-fields-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0px 12px;
+  text-decoration: none;
+  font-size: 16px; 
+  font-weight: 500;   
+  background-color: var(--primary-color);
+  color: var(--title-icon-color);
+  height: 35px;
+  width: 200px;
+  min-width: 122px;    
+  border-radius: 6px;  
+  border: none;  
+  transition: var(--tran-05);
+  cursor: pointer;
+  /* text-align: center;
+  padding: 18px 0;*/  
+  margin: auto;    
+}
+
+.more-file-upload-fields-button .more-file-upload-fields-icon {
+  background-image: url(../images/noun-add-image-5504410-white.svg);    
+  /* background-size: auto, auto;    */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: center;
+  height: 22px;
+  width: 22px;
+  /* max-height: 10px; */
+  /* max-width: ; */
+  min-width: 22px;
+  transition: var(--tran-05);
+}
+
+body.dark .more-file-upload-fields-button .more-file-upload-fields-icon {
+  background-image: url(../images/noun-add-image-5504410-light-grey.svg);    
+  /* background-size: auto, auto;    */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: center;
+  transition: var(--tran-05);
+}
+
+.more-file-upload-fields-button.hidden {
+  display: none;
+}
+
+
+/* Кнопка Сохранить */
+.admin-save-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0px 5%;
+  text-decoration: none;
+  font-size: 17px; 
+  font-weight: 500;   
+  background-color: var(--primary-color);
+  color: var(--title-icon-color);
+  /* height: 35px; */
+  height: 50px;
+  /* width: 200px; */
+  width: 100%;
+  min-width: 122px;    
+  border-radius: 6px; 
+  border: none;   
+  transition: var(--tran-05);
+  cursor: pointer;
+  
+  /* text-align: center;
+  padding: 18px 0;*/  
+  margin: 20px auto;  
+}
+
+.admin-save-button .admin-save-icon {
+  background-image: url(../images/noun-save-1360334-white.svg);    
+  /* background-size: auto, auto;    */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: center;
+  height: 24px;
+  width: 24px;
+  /* max-height: 10px; */
+  /* max-width: ; */
+  min-width: 24px;
+  transition: var(--tran-05);
+}
+
+body.dark .admin-save-button .admin-save-icon {
+  background-image: url(../images/noun-save-1360334-light-grey.svg);    
+  /* background-size: auto, auto;    */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: center;
+  transition: var(--tran-05);
+}
+
+.form-field-validation-error {
+   color: #ff4658;
+   font-size: 14px;
+   padding-bottom: 6px;
+}
+
+/* === End of Кнопки ==== */
+@media (min-width: 769px) and (max-width: 1000px) {
+.login-form-decor {   
+  max-width: 70%;
+  width: 70%;   
+  margin-left: 5%;
+  margin-right: 5%;
+}
+}
+
+@media (min-width: 901px) and (max-width: 1000px) {
+  .login-form-decor {   
+     max-width: 85%;
+     width: 85%;   
+     margin-left: 5%;
+     margin-right: 5%;
+  }
+  }
+
+@media (max-width: 900px) {
+.dash-content .title.title-with-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px 0px;
+}
+}
+
+@media (min-width: 651px) and (max-width: 768px) {
+  .form-order-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .form-order-panel {
+     width: 70%;
+     min-width: 360px;
+   }
+
+  .login-form-decor {
+     max-width: 100%;
+     width: 100%;
+     margin-left: 0px;
+     margin-right: 0px;
+}
+}
+
+ @media (min-width: 300px) and (max-width: 650px) {
+  .form-order-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .form-order-panel {
+     width: 70%;
+     min-width: 360px;
+   }
+
+  .dash-content .title.title-with-button .title-left {
+     align-items: flex-start;
+        }
+
+  .form-inner {
+     padding: 0px;
+  }
+
+  .login-form-decor {
+     max-width: 100%;
+     width: 100%;
+     margin-left: 0px;
+     margin-right: 0px;
+}
+
+.two-fields-product-container{
+  display: flex;
+  flex-direction: column;
+  /* gap: 10px 0px; */
+  /* width: 100%; */
+}
+
+.two-fields-product-container > div{
+  width: 100%;
+}
+}
+
+
+

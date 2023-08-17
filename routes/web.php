@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers;
+use App\Http\Controllers;
 use App\Http\Controllers\CollectionController;
 
 /*
@@ -19,23 +19,30 @@ use App\Http\Controllers\CollectionController;
 Route::namespace('App\Http\Controllers\Main')->group(function () {
     Route::get('/', 'IndexController@index')->name('index');
     Route::get('/indexFilter', 'IndexController@indexFilter')->name('indexFilter');
+    
     });
 
-Route::get('category/{code}', 'App\Http\Controllers\CategoryController@show')->name('category.show');     
-Route::get('collection/{code}', 'App\Http\Controllers\CollectionController@show')->name('collection.show');    
+// Страница результатов поиска (нажатие кнопки Search)
+Route::get('/find', 'App\Http\Controllers\SearchController@find')->name('search.find');
+// Результаты поиска (ajax)
+Route::get('/search', 'App\Http\Controllers\SearchController@search')->name('search.search');
+    
+Route::get('category/{category:code}', 'App\Http\Controllers\CategoryController@show')->name('category.show');     
+Route::get('collection/{collection:code}', 'App\Http\Controllers\CollectionController@show')->name('collection.show');    
 
 Route::get('product/{article}', 'App\Http\Controllers\ProductController@show')->name('product.show');
 /* Route::get('/', function () {
     return view('welcome');
 }); */
+Route::get('/feedback', function () {return view('feedback');})->name('feedback.form');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })/* ->middleware(['auth', 'verified']) */->name('dashboard');
 
-Route::get('/search', function () {
+/*Route::get('/search', function () {
     return view('search');
-})/* ->middleware(['auth', 'verified']) */->name('search.results');
+})/* ->middleware(['auth', 'verified']) ->name('search.results');
 
 /* Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -46,5 +53,14 @@ Route::get('/search', function () {
 require __DIR__.'/auth.php'; */
 
 Auth::routes();
+
+Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+    Route::get('/', function () {
+        return view('admin.index');
+    });
+    Route::resource('category', 'App\Http\Controllers\Admin\CategoryController');
+    Route::resource('collection', 'App\Http\Controllers\Admin\CollectionController');
+    Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

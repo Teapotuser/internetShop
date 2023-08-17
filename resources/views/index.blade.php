@@ -106,13 +106,13 @@
                                             <div class="field">
                                                 <span>Мин.</span>
                                                 <!-- <input type="number" class="input-min" value="2500"> -->
-                                                <input type="number" class="input-min" value="0">
+                                                <input type="number" class="input-min" value="{{Request::get('minPrice') ?? 0}}">
                                             </div>
                                             <div class="separator">-</div>
                                             <div class="field">
                                                 <span>Макс.</span>
                                                 <!-- <input type="number" class="input-max" value="7500"> -->
-                                                <input type="number" class="input-max" value="200">
+                                                <input type="number" class="input-max" value="{{Request::get('maxPrice') ?? 200}}">
                                             </div>
                                         </div>
                                         <div class="slider">
@@ -121,8 +121,8 @@
                                         <div class="range-input">
                                             <!-- <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
                                             <input type="range" class="range-max" min="0" max="10000" value="7500" step="100"> -->
-                                            <input type="range" class="range-min" min="0" max="250" value="0" step="10">
-                                            <input type="range" class="range-max" min="0" max="250" value="200" step="10">
+                                            <input type="range" class="range-min" name="minPrice" min="0" max="250" value="{{Request::get('minPrice')?? 0}}" step="10">
+                                            <input type="range" class="range-max" name="maxPrice" min="0" max="250" value="{{Request::get('maxPrice')?? 200}}" step="10">
                                         </div>
                                     </div>
                                     <div  class="filter-buttons-container">
@@ -167,4 +167,7 @@
             </div> 
         </div>
     </main>
+@endsection 
+@section('custom_js')
+<script src="{{ asset('js/price-control.js') }}" type="text/javascript"></script>
 @endsection        

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
     <title>Toys shop</title>
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
@@ -38,15 +39,17 @@
 
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>     -->
 <script src="{{ asset('js/jquery.min.js') }}" type='text/javascript'></script>
+ <!-- <script src="/js/jquery-3.6.1.js" type="text/javascript"></script> -->
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
 <script src="{{ asset('js/menu.js') }}"></script> 
 
 <script src="{{ asset('js/control.js') }}" type="text/javascript"></script>   
-<script src="{{ asset('js/price-control.js') }}" type='text/javascript'></script> 
+<!-- <script src="{{ asset('js/price-control.js') }}" type='text/javascript'></script>  -->
 <script src="{{ asset('js/slick.min.js') }}" type="text/javascript"></script> 
 <script src="{{ asset('js/cart-right.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/search-control.js') }}" type="text/javascript"></script>
+<!-- <script src="{{ asset('js/search-control.js') }}" type="text/javascript"></script> -->
+<script src="{{ asset('js/search-control-daniil.js') }}" type="text/javascript"></script>
 @yield('custom_js')
 </body>
 </html>

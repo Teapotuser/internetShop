@@ -1,0 +1,201 @@
+/* ==== Boxes === */
+
+.dash-content .boxes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px 0px;
+}
+.dash-content .boxes .box{
+    display: flex;
+    flex-direction: row; /* column; */
+    align-items: center;
+    justify-content: space-around;
+    gap: 0px 20%;
+    border-radius: 12px;
+    width: calc(100% / 3 - 15px);
+    min-width: 280px;
+    padding: 15px 20px;
+    background-color: var(--box1-color);
+    transition: var(--tran-05);
+    text-decoration: none;
+}
+
+.boxes .box .box-text {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    /* width: 65%; */
+}
+
+/* .box-icon-container {
+ display: flex;
+ flex-direction: column;
+ align-items: flex-end;
+ justify-content: center;
+ padding-top: 20px;
+} */
+
+.boxes .box1 .box-icon {   
+    appearance: none;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    justify-content: center;
+    /* border-radius: 50%; */
+    border: 0;
+    /* background-color: red; transparent; */
+    background-image: url(../images/noun-shopping-bag-5309704-dark-grey.svg);    
+    background-size: auto, auto;   
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    /* display: inline; */
+    height: 70px;
+    width: 70px;
+    /* max-height: 10px; */
+    /* max-width: 60px; */
+    min-width: 70px;
+
+    /* cursor: pointer; */
+    padding: 0;
+    /* padding-top: 10px; */
+    /* position: absolute;
+    top: 40%;
+    left: 0%; */
+    transition: background-color 200ms ease-out;
+    /* display: block; */
+}
+
+body.dark .boxes .box1 .box-icon,
+body.dark .boxes .box1 .box-icon:hover {
+    background-image: url(../images/noun-shopping-bag-5309704-light-grey.svg);    
+    background-size: auto, auto;   
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+}
+
+.boxes .box2 .box-icon {   
+    appearance: none;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    justify-content: center;
+    /* border-radius: 50%; */
+    border: 0;
+    background-color: transparent;
+    background-image: url(../images/noun-teddy-bear-3500508-grey444746.svg);    
+    background-size: contain;   
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;	
+    /* display: inline; */
+    height: 75px;
+    width: 60px;
+    /* max-height: 10px; */
+    /* max-width: ; */
+    min-width: 60px;
+
+    /* cursor: pointer; */
+    padding: 0;
+    /* position: absolute;
+    top: 40%;
+    left: 0%; */
+    transition: background-color 200ms ease-out;
+    /* display: inline-block; */
+}
+
+body.dark .boxes .box2 .box-icon,
+body.dark .boxes .box2 .box-icon:hover {
+    background-color: transparent;
+    background-image: url(../images/noun-teddy-bear-3500508-light-grey.svg);    
+    background-size: contain;   
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+}
+
+.boxes .box3 .box-icon {   
+    appearance: none;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    justify-content: center;
+    /* border-radius: 50%; */
+    border: 0;
+    background-color: transparent;
+    background-image: url(../images/noun-folder-1272002-dark-grey.svg);    
+    background-size: cover;   
+	background-repeat: no-repeat;
+    background-position: center;	
+    background-position-y: center;	
+    /* display: inline; */
+    height: 70px;
+    width: 70px;
+    /* max-height: 10px; */
+    max-width: 70px;
+    min-width: 70px;
+
+    /* cursor: pointer; */
+    padding: 0;
+    /* position: absolute;
+    top: 40%;
+    left: 0%; */
+    transition: background-color 200ms ease-out;
+    /* display: inline-block; */
+}
+
+body.dark .boxes .box3 .box-icon,
+body.dark .boxes .box3 .box-icon:hover {
+    background-image: url(../images/noun-folder-1272002-light-grey.svg);    
+    background-size: auto, auto;   
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+}
+
+/* .box-icon {
+    width: 30%;
+} */
+
+.boxes .box i{
+    font-size: 35px;
+    color: var(--text-color);
+}
+.boxes .box .text{
+    white-space: nowrap;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-color-darker);
+    text-decoration: none;
+}
+.boxes .box .number{
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--text-color-darker);
+    text-decoration: none;
+
+}
+.boxes .box.box2{
+    background-color: var(--box2-color);
+}
+.boxes .box.box3{
+    background-color: var(--box3-color);
+}
+
+@media (min-width: 690px) and (max-width: 1140px) {
+    .dash-content .boxes .box{
+        width: calc(100% / 2 - 15px);
+        gap: 0px 10%;
+    } 
+}
+
+@media (max-width: 689px) {
+    .dash-content .boxes .box{
+        width: 100%;
+        gap: 0px 5%;
+    }     
+}
+

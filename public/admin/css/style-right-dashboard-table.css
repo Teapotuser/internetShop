@@ -1,0 +1,431 @@
+/* ===== Таблица Вадим ===== */
+.accounts-list {
+    width: 100%;
+    
+}
+
+.accounts-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    font-size: 20px;
+    font-weight: 550;
+    color: var(--text-color-darker);
+}
+
+.accounts-head > :nth-child(n) {
+    flex: 1;
+    text-align: center;
+}
+
+.account-rows {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    white-space: nowrap;
+    gap: 10px 0px;
+}
+
+.account-card {
+    padding: 20px 30px 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 38px rgba(143, 39, 199, 0.05);
+    background-color: #fff;
+    width: 300px;
+}
+
+.list {
+    width: 100%;
+    padding: 16px 0 16px 0; /* 20px 0 20px 0; */
+    display: flex;
+    align-items: center;
+    box-shadow: none;
+    background-color: transparent;
+    border-radius: 0;
+    /* border-bottom:  1px solid #333; */
+    /* color: rgb(226,0,73); */
+
+    background-color: #fff;
+    border-radius: 8px;
+    
+}
+
+.accounts-list .list:hover {
+    background-color: var(--primary-color-trasparent); /* var(--box1-color); */
+    transition: var(--tran-05);
+}
+
+body.dark .accounts-list .list,
+body.dark .accounts-list .list:hover {
+    background-color: var(--sidebar-color); /* var(--box1-color); */
+    transition: var(--tran-05);
+}
+
+.account-card-item {
+    /* display: flex; */
+    flex: 1 1;
+    align-items: flex-start;
+
+    font-size: 18px;
+    font-weight: 400;
+    /* margin-top: 20px; */
+    white-space: nowrap;
+    color: var(--text-color-darker);
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.account-card-item.align-column-right {
+    justify-content: flex-end;
+}
+
+.card-mobile-text {
+    display: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color-darker);
+}
+
+.account-card-item .account {
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    text-overflow: ellipsis;
+}
+
+.account-card-item .account.account-right-align {
+    text-align: right;
+}
+
+.wrapper-icon {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 15px;
+    justify-content: space-around;
+    margin-bottom: 0;
+    max-width: 150px;
+}
+
+.wrapper-icon .admin-action-ahref {
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 100%;
+    min-height: 27px;
+}
+
+.wrapper-icon .admin-action-ahref:hover {
+    background-color: var(--primary-color);
+    transition: var(--tran-03);
+}
+
+.btn-view{
+    width: 30px;
+    height: 26px;
+    appearance: none;
+    /* border-radius: 50%; */
+    border: 0;
+    background-color: transparent;
+    /* background-color: rgb(226,0,73); */
+    /* background-color: hsla(4, 0%, 0%, 1); */
+    background-image: url("../images/noun-view-4373531-grey444746.svg"); /* url("../images/noun-view-4644120.svg"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    background-size: contain;
+    cursor: pointer;
+    padding: 0;
+    /* position: absolute;
+    top: 40%;
+    left: 0%; */
+    transition: background-color 200ms ease-out;
+    display: inline-block;
+}
+
+.wrapper-icon .admin-action-ahref:hover .btn-view {
+    width: 30px;
+    height: 23px;
+    background-image: url("../images/noun-view-4373531-white.svg"); /* url("../images/noun-view-4644120.svg"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    background-size: contain;
+    transition: var(--tran-02);
+}
+
+body.dark .wrapper-icon .btn-view,
+body.dark .wrapper-icon .btn-view:hover {
+    background-image: url("../images/noun-view-4373531-light-grey.svg"); /* url("../images/noun-view-4644120.svg"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    background-size: contain;
+}
+
+.btn-edit{
+    width: 26px;
+    height: 25px;
+    appearance: none;
+    /* border-radius: 50%; */
+    border: 0;
+    background-color: transparent;
+    /* background-color: rgb(226,0,73); */
+    /* background-color: hsla(4, 0%, 0%, 1); */
+    background-image: url("../images/noun-edit-1156173-grey444746.svg"); /* url("../images/noun-view-4644120.svg"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    background-size: contain;
+    cursor: pointer;
+    padding: 0;
+    /* position: absolute;
+    top: 40%;
+    left: 0%; */
+    transition: background-color 200ms ease-out;
+    display: inline-block;
+}
+
+.wrapper-icon .admin-action-ahref:hover .btn-edit {
+    width: 30px;
+    height: 23px;
+    background-image: url("../images/noun-edit-1156173-white.svg"); /* url("../images/noun-view-4644120.svg"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    background-size: contain;
+    transition: var(--tran-02);
+}
+
+body.dark .wrapper-icon .btn-edit,
+body.dark .wrapper-icon .btn-edit:hover {
+    background-image: url("../images/noun-edit-1156173-light-grey.svg"); /* url("../images/noun-view-4644120.svg"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    background-size: contain;
+}
+
+.admin-form-delete {
+    display: inline;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-delete{
+    width: 26px;
+    height: 26px;
+    appearance: none;
+    /* border-radius: 50%; */
+    border: 0;
+    background-color: transparent;
+    /* background-color: rgb(226,0,73); */
+    /* background-color: hsla(4, 0%, 0%, 1); */
+    background-image: url("../images/noun-delete-1234808-grey444746.svg"); /* url("../images/noun-view-4644120.svg"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    background-size:contain;
+    cursor: pointer;
+    padding: 0;
+    /* position: absolute;
+    top: 40%;
+    left: 0%; */
+    transition: background-color 200ms ease-out;
+    display: inline-block;
+}
+
+.wrapper-icon .admin-action-ahref:hover .btn-delete {
+    width: 30px;
+    height: 23px;
+    background-image: url("../images/noun-delete-1234808-white.svg"); /* url("../images/noun-view-4644120.svg"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    background-size: contain;
+    transition: var(--tran-02);
+}
+
+body.dark .wrapper-icon .btn-delete,
+body.dark .wrapper-icon .btn-delete:hover {
+    background-image: url("../images/noun-delete-1234808-light-grey.svg"); /* url("../images/noun-view-4644120.svg"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    background-size:contain;
+}
+
+/* На мобильном экране */
+@media (max-width: 780px) {
+    .accounts-head {
+        display: none;
+    }
+    .accounts-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .list {
+        flex-direction: column;
+        background-color: #fff;
+        box-shadow: 0 4px 38px rgba(143, 39, 199, 0.05);
+        border-radius: 6px;
+        border-bottom: none;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .account-card {
+        width: 100%;
+        padding: 0;
+    }
+
+    .account-card-item {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .card-mobile-text {
+        display: inline;
+        /* font-size: 18px;
+        font-weight: 500;
+        color: var(--text-color); */
+    }
+}
+
+/* ===== End Таблица Вадим ===== */
+
+/* === Popup подтверждения удаления === */
+.white-popup-block {
+    position: relative;
+    background-color: var(--input-color);
+    color: var(--text-color-darker);
+    padding: 20px;
+    width: auto;
+    max-width: 500px;
+    margin: 20px auto;
+  }
+
+  .white-popup-block .confirm-delete-buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0px 20px;
+  }
+
+  .white-popup-block button.mfp-close {
+    color: var(--text-color-darker);
+}
+
+  /* Кнопка Отменить */
+  .white-popup-block .admin-delete-cancel-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0px 12px;
+    text-decoration: none;
+    font-size: 16px; 
+    font-weight: 500;   
+    /* background-color: var(--primary-color); */
+    /* color: var(--title-icon-color); */
+    height: 35px;
+    width: 125px;
+    min-width: 122px;    
+    border-radius: 6px;    
+    transition: var(--tran-05);
+    cursor: pointer;
+
+    border: 1px solid var(--border-color);
+    background-color: var(--panel-color);
+    color: var(--text-color-darker);
+    outline: none;
+  }
+
+  body.dark .admin-delete-cancel-button {
+    background-color: var(--primary-color);
+  }
+
+  
+  .admin-delete-cancel-button .admin-delete-cancel-icon {
+    background-image: url(../images/noun-no-3938525-grey444746.svg);    
+    /* background-size: auto, auto;    */
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    height: 16px;
+    width: 16px;
+    /* max-height: 10px; */
+    /* max-width: ; */
+    min-width: 16px;
+    transition: var(--tran-05);
+}
+
+body.dark .admin-delete-cancel-button .admin-delete-cancel-icon {
+    background-image: url(../images/noun-no-3938525-light-grey.svg);    
+    /* background-size: auto, auto;    */
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    transition: var(--tran-05);
+}
+
+/* Кнопка ДА удалить Категорию */
+.white-popup-block .admin-delete-yes-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0px 10%;
+    text-decoration: none;
+    font-size: 16px; 
+    font-weight: 500;   
+    background-color: var(--primary-color);
+    color: var(--title-icon-color);
+    height: 35px;   
+    width: 125px;
+    min-width: 122px;    
+    border-radius: 6px;     
+    border: none;   
+    transition: var(--tran-05);
+    cursor: pointer;
+    
+    /* text-align: center;
+    padding: 18px 0;*/    
+ }
+
+ body.dark .admin-delete-yes-button {
+    border: 1px solid var(--border-color);
+    background-color: var(--panel-color);
+ }
+ 
+ .admin-delete-yes-button .admin-delete-yes-icon {
+    background-image: url(../images/noun-ok-5506550-white.svg);    
+    /* background-size: auto, auto;    */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    height: 21px;
+    width: 21px;
+    /* max-height: 10px; */
+    /* max-width: ; */
+    min-width: 21px;
+    transition: var(--tran-05);
+ }
+ 
+ body.dark .admin-delete-yes-button .admin-delete-yes-icon {
+    background-image: url(../images/noun-ok-5506550-light-grey.svg);    
+    /* background-size: auto, auto;    */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    transition: var(--tran-05);
+ }

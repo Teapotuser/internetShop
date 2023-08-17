@@ -9,6 +9,54 @@ let priceGap = 10;
     console.log(input1)
     });
  */
+// Даниил добавил
+document.addEventListener('DOMContentLoaded', function () {
+    let input_min = document.querySelector('.input-min');
+    let input_max = document.querySelector('.input-max');
+    // console.log("in price-control.js file");
+    range.style.left = ((input_min.value / rangeInput[0].max) * 100) + "%";
+    range.style.right = 100 - (input_max.value / rangeInput[1].max) * 100 + "%";
+}, false);
+
+//Даниил добавил: сортировка
+document.addEventListener('input', function (event) {
+    if (event.target.id !== 'sort') return;
+
+        let params =  window.location.search; // query подстрока в строке URL
+    // let query = new URLSearchParams(window.location.search);
+    let query = new URLSearchParams(params);
+    if (query.get('page') != null){
+        query.delete('page');
+    }
+    
+    query.set('sort', event.target.value)
+    // console.log(query.toString());
+    // console.log(event.target, event.target.value);
+    // window.location.search = encodeURI(query);
+    window.location.search = query.toString();
+}, false);
+
+//Даниил добавил: сортировка и фильтр
+document.addEventListener('submit', function (event) {
+    if (event.target.className !== 'left-form-filter') return;
+    let sort = document.getElementById('sort').value;
+    if (sort && !event.target.querySelector("input[name='sort']")){
+        event.preventDefault();
+        var FN = document.createElement("input");
+        FN.setAttribute("type", "hidden");
+        FN.setAttribute("value", sort);
+        FN.setAttribute("name", 'sort');
+        event.target.appendChild(FN);
+        event.target.submit()
+    }
+}, false);
+
+//Даниил добавил: кнопка сброса фильтра
+document.addEventListener('click', function (event) {
+    if (event.target.className !== 'reset-filter') return;
+    window.location.href = window.location.pathname;
+}, false);
+
 priceInput.forEach(input =>{
     input.addEventListener("input", e =>{
         let minPrice = parseInt(priceInput[0].value),

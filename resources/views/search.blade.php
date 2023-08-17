@@ -9,7 +9,8 @@
            
             <div class="shop-wrapper">               
                 <!-- левая панель -->
-                <aside class="left-side">                    
+                <aside class="left-side"> 
+                    @if ($products->total() > 0)                 
                     <div class="filters">
                         <!-- левая панель: Фильтр -->
                         <div class="list-box">
@@ -80,18 +81,29 @@
                             </div>                            
                         </div>                        
                     </div>
+                    @endif
                 </aside>
                 <section class="right-side"> <!-- Правая галерея товаров -->
                     <div class="right-side-wrapper">
-                        <h1 class="right-side-title"><span>15</span> товаров найдены для <span>"jol"</span></h1>
-                    
-                    <!--Здесь была Сортировка галереи товаров-->             
+                        @if ($products->total() > 0)
+                            <h1 class="right-side-title"><span>{{ $products->total() }}</span> товаров найдены для <span>"{{ request()->query('sSearch') }}"</span></h1>
+                        
+                            <!--Здесь была Сортировка галереи товаров-->             
 
-                   <!--  <ul class="shop_gallery"> здесь была Галерея товаров-->
-                   @include('includes.product_gallery')
+                            <!--  <ul class="shop_gallery"> здесь была Галерея товаров-->
+                            @include('includes.product_gallery')
+                        @else
+                            <h1 class="right-side-title">Товары для <span>"{{ request()->query('sSearch') }}"</span> не найдены </h1>
+                            </br>
+                            </br>
+                            </br>
+                        @endif
                     </div> 
                 </section> 
             </div> 
         </div>
     </main>
 @endsection        
+@section('custom_js')
+<script src="{{ asset('js/price-control.js') }}" type="text/javascript"></script>
+@endsection 
