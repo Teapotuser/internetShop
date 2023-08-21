@@ -113,7 +113,7 @@
                     </li>
                     <li><a href="#" class="menu__link">Акции</a></li>
                     <li><a href="#" class="menu__link">Доставка и оплата</a></li>
-                    <li><a href="#" class="menu__link">Контакты</a></li>
+                    <!-- <li><a href="#" class="menu__link">Контакты</a></li> -->
                     <li>
                         <div class="menu__wrapper">
                             <p class="menu__link">Контакты</p>

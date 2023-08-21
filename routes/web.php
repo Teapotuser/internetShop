@@ -35,6 +35,7 @@ Route::get('product/{article}', 'App\Http\Controllers\ProductController@show')->
     return view('welcome');
 }); */
 Route::get('/feedback', function () {return view('feedback');})->name('feedback.form');
+Route::get('/profile', function () {return view('profile');})->name('profile.personal');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -61,6 +62,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::resource('category', 'App\Http\Controllers\Admin\CategoryController');
     Route::resource('collection', 'App\Http\Controllers\Admin\CollectionController');
     Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
+    Route::resource('user', 'App\Http\Controllers\Admin\UserController');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

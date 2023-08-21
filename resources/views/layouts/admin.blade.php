@@ -24,7 +24,7 @@
                     <img src="images/logo.png" alt="">
                 </span> -->
                 <div class="image">
-                    <a href="{{ route('index') }}"><img src="{{ asset('admin/images/logo.png') }}" alt="NICI logo"></a>
+                    <a href="{{route('index')}}"><img src="{{ asset('admin/images/logo.png') }}" alt="NICI logo"></a>
                 </div>
                 <div class="text logo-text">
                     <span class="name">Codinglab</span>
@@ -85,7 +85,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{{route('dashboard.user.index')}}">
                             <!-- <i class='bx bx-pie-chart-alt icon' ></i> -->
 							<span class='icon'><div class='icon-user'></div></span>
                             <span class="text nav-text">Пользователи</span>

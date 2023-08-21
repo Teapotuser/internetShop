@@ -1,0 +1,354 @@
+/* Правая панель: квадраты и таблица*/
+
+.dash-content .title .title-rectangle-icon .title-user-icon {
+    background-image: url(../images/noun-users-4747587-white.svg);    
+    background-size: contain;   
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;	    
+    height: 25px;
+    width: 25px;
+    /* max-height: 10px; */
+    /* max-width: ; */
+    min-width: 25px;
+    /* cursor: pointer; */
+    padding: 0;
+    /* position: absolute;
+    top: 40%;
+    left: 0%; */
+    transition: background-color 200ms ease-out;
+}
+
+body.dark .title .title-rectangle-icon .title-user-icon,
+body.dark .title .title-rectangle-icon .title-user-icon:hover {
+    background-image: url(../images/noun-users-4747587-light-grey.svg);    
+    /* background-size: auto, auto;    */
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    height: 25px;
+    width: 25px;
+    /* max-height: 10px; */
+    /* max-width: ; */
+    min-width: 25px;
+    transition: var(--tran-05);
+}
+
+.admin-add-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0px 12px;
+    text-decoration: none;
+    font-size: 16px; 
+    font-weight: 500;   
+    background-color: var(--primary-color);
+    color: var(--title-icon-color);
+    height: 35px;
+    width: 125px;
+    min-width: 122px;    
+    border-radius: 6px;    
+    transition: var(--tran-05);
+}
+
+.admin-add-button .title-add-icon {
+    background-image: url(../images/noun-add-1886814-white.svg);    
+    /* background-size: auto, auto;    */
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    height: 18px;
+    width: 18px;
+    /* max-height: 10px; */
+    /* max-width: ; */
+    min-width: 18px;
+    transition: var(--tran-05);
+}
+
+body.dark .admin-add-button .title-add-icon {
+    background-image: url(../images/noun-add-1886814-light-grey.svg);    
+    /* background-size: auto, auto;    */
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    transition: var(--tran-05);
+}
+
+/* ===== Таблица Вадим ===== */
+/* .accounts-list {
+    width: 100%;
+    
+} 
+
+.accounts-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    font-size: 20px;
+    font-weight: 550;
+    color: var(--text-color-darker);
+}
+
+.accounts-head > :nth-child(n) {
+    flex: 1;
+    text-align: center;
+} */
+
+.accounts-head .head-product-id {
+    max-width: 5%;
+    min-width: 80px;
+}
+
+.account-rows .product-id-column {
+    max-width: 5%;
+    min-width: 80px;
+    text-align: center;
+}
+
+.accounts-head .head-product-title {
+    text-align: left;
+    padding-left: 15px;
+    max-width: 30%;
+    min-width: 30%;
+}
+
+.account-rows .product-title-column {
+    max-width: 30%;
+    min-width: 30%;
+}
+
+.accounts-head .head-product-article {
+    text-align: left;
+    padding-left: 15px;
+    max-width: 20%;
+}
+
+.product-article-column {
+    max-width: 20%;
+}
+
+.accounts-head .head-product-price {
+    text-align: left;
+    padding-left: 15px;
+    max-width: 10%;
+}
+
+.product-price-column {
+    max-width: 10%;
+}
+
+.accounts-head .head-product-image {
+    text-align: center;
+    padding-left: 15px;
+    max-width: 15%;
+}
+
+.product-image-column {
+    max-width: 15%;
+}
+
+.accounts-head .head-product-actions {
+    text-align: center;
+    padding-left: 15px;
+    max-width: 20%;
+}
+
+.product-actions-column {
+    max-width: 20%;
+}
+
+
+
+/* .account-rows {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    white-space: nowrap;
+    gap: 10px 0px;
+} 
+
+.account-card {
+    padding: 20px 30px 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 38px rgba(143, 39, 199, 0.05);
+    background-color: #fff;
+    width: 300px;
+} 
+
+.list {
+   
+    display: flex;
+    align-items: center;
+    box-shadow: none;
+    background-color: transparent;
+    border-radius: 0;   
+
+    background-color: #fff;
+    border-radius: 8px;
+    
+}
+
+.accounts-list .list:hover {
+    background-color: var(--primary-color-trasparent); 
+    transition: var(--tran-05);
+}
+
+body.dark .accounts-list .list,
+body.dark .accounts-list .list:hover {
+    background-color: var(--sidebar-color);
+    transition: var(--tran-05);
+} 
+
+.account-card-item {
+    flex: 1 1;
+    align-items: flex-start;
+
+    font-size: 18px;
+    font-weight: 400;
+    
+    white-space: nowrap;
+    color: var(--text-color-darker);
+    padding-left: 15px;
+    padding-right: 15px;
+} 
+
+.card-mobile-text {
+    display: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color-darker);
+} */
+
+/* Картинка в строке таблицы */
+.admin-table-img-container {
+	height: 27px; /* 1.875rem; */
+	/* width: 10%; */
+    width: auto;
+	min-width: 10%;		
+	text-align: center;
+}
+
+.admin-table-img {
+    width: 100%; /* auto; */
+    height: 100%;
+    object-fit: contain;
+    /* padding: 10px; */
+	display: inline-block;
+}
+
+/* .wrapper-icon {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 15px;
+    justify-content: space-around;
+    margin-bottom: 0;
+    max-width: 150px;
+} 
+
+.wrapper-icon .admin-action-ahref {
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 100%;
+    min-height: 27px;
+}
+
+.wrapper-icon .admin-action-ahref:hover {
+    background-color: var(--primary-color);
+    transition: var(--tran-03);
+}
+
+.admin-form-delete {
+    display: inline;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}*/
+
+
+/* На мобильном экране */
+/* @media (max-width: 780px) { */
+@media (max-width: 1070px) {
+    .accounts-head {
+        display: none;
+    }
+    .accounts-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .list {
+        flex-direction: column;
+        background-color: #fff;
+        box-shadow: 0 4px 38px rgba(143, 39, 199, 0.05);
+        border-radius: 6px;
+        border-bottom: none;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .account-card {
+        width: 100%;
+        padding: 0;
+    }
+
+    .account-card-item {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .card-mobile-text {
+        display: inline;
+        /* font-size: 18px;
+        font-weight: 500;
+        color: var(--text-color); */
+    }
+}
+
+/* ===== End Таблица Вадим ===== */
+
+
+
+/* @media (max-width: 1000px) {
+    
+}
+
+@media (max-width: 780px) {
+    
+}
+
+@media (max-width: 729px) {
+  
+}
+
+@media (max-width: 650px) {
+    
+} */
+
+@media (max-width: 620px) {
+    .dash-content .title.title-with-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px 0px;
+    }
+}
+
+/* @media (max-width: 560px) {
+   
+}
+@media (max-width: 400px) {
+   
+} */

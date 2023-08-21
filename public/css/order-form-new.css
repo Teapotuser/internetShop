@@ -49,6 +49,13 @@
    min-width: 300px;
    max-width: 100%;
  }
+ 
+  /* Контейнер для Формы Личные данные (Личный кабинет) */
+ .decor.form-profile-personaldata-panel, .form-profile-subscribtions-panel, .form-profile-changepassword-panel {
+   width: 100%;
+   min-width: 300px;
+   max-width: 100%;
+ }
 
  .form-inner {
     background-color: #f8f4ee;
@@ -176,7 +183,15 @@ input[type="checkbox"]#create-account {
     display: inline-block;
     height: 34px;
     width: 250px;
-    margin: 0px 0px 0px 0px;
+    margin: 0px auto 0px auto;	
+}
+
+/* Кнопка на Форме Личные данные (Личный кабинет) */
+.form-profile-personaldata-panel .btn-buy, .form-profile-subscribtions-panel .btn-buy, .form-profile-changepassword-panel .btn-buy {
+    display: inline-block;
+    height: 34px;
+    width: 250px;
+    margin: 0px auto 0px auto;
 }
 
 .btn-buy:hover{

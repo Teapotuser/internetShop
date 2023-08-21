@@ -1,0 +1,206 @@
+@font-face {
+    font-family: "Bellota";
+    src: url(../fonts/Bellota/Bellota-Regular.ttf) format("truetype"),
+    url(../fonts/Bellota/Bellota-Bold.ttf) format("truetype"),
+    url(../fonts/Bellota/Bellota-Italic.ttf) format("truetype");
+  }
+  
+  
+  .layout_four_column {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-block-start: 0px;
+    /* РОМАН: влияло на выравнивание gallery по ширине*/
+    gap: 25px 17px;
+    padding: 0 0px;
+    max-width: 1000px;
+  }
+  
+  .img_block {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    text-align: center;
+    flex: 1 0 25%;
+    min-width:  140px; /*150px;*/
+    max-width: 32%;
+    padding: 10px; 
+    /* padding-bottom: 40px;    */
+    /* background-color: #d1e4f3; */
+    background-color: #50bcca;    
+    position: relative;
+    border-radius: 20px;
+    /* margin-top: 10px;
+    margin-bottom: 10px; */
+  }
+  
+  /*Вадим*/
+  .img_block::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 52%;
+    background-color: transparent;
+    z-index: -1;
+  }
+  
+  /* .img_block::after{
+    content: "";
+    height: 1px;
+    width: 100%;
+    background-color: red;
+  } */
+  
+  /*Вадим: заменили для линии после 1-2-3 карточек товара*/
+  /* .layout_four_column > .img_block {
+    position: relative;
+  }
+  
+  .img_block:nth-child(3n):after {
+    content: "";
+    position: absolute;
+    left: -206%;
+    bottom: -12px; 
+    height: 1px;
+    width: 300%;
+    background-color: #e1e1e1;
+  }
+  
+  @media(max-width: 1000px) {
+  .img_block:nth-child(3n):after {
+    opacity: 0;
+  }
+  .img_block:nth-child(2n):after {
+    opacity: 1;
+    content: "";
+    position: absolute;
+    left: -104%;
+    bottom: -8px;
+    height: 1px;
+    width: 200%;
+    background-color: #e1e1e1; 
+  }
+  }
+  
+  @media(max-width: 503px) {
+  .img_block:nth-child(n):after {
+    opacity: 1;
+    content: "";
+    position: absolute;
+    left: 0%;
+    bottom: -8px;
+    height: 1px;
+    width: 100%;
+    background-color: #e1e1e1;
+  }
+  }
+   */
+  
+  .img_block a {
+    /* display:inline; */
+  
+    /* margin: 5px auto; */
+    /* margin-bottom: 5px; */
+    display: block;
+    text-align: center;
+    align-content: center;
+    /* color: #484848; */     
+  }
+  
+  .img_block a:first-child{
+    flex: 1;
+  }
+  
+  .img-product{
+    /* max-width: 128px; иначе не центрируется картинка*/ 
+    height: 185px;
+    max-height: 185px;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    display: inline-block;    
+  }
+  
+ /*  .img-product .img {
+    width: auto;
+    height: 100%;
+  } */
+  
+  .name-product {
+    /* margin-bottom: 2px; */
+    margin-block-start: 0px;
+    /* margin-block-end: 0px; */
+    padding: 0 10px;
+    line-height: 1.2em;
+    /* height: 2.4em; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff; /* !important; */
+    font-family: Bellota;
+    font-size: 17px;
+  }  
+  
+ .img_block:hover {
+    -webkit-transform: scale(101%);
+    -ms-transform: scale(101%);
+    transform: scale(101%);
+
+    border: 1px solid #e20049;
+    transition: 0.3s ease-in-out;
+  }
+
+  .img_block:hover .name-product {
+    color: #e20049;
+    transition: 0.3s ease-in-out;
+
+  }
+  
+  /* .img_block:hover { */
+    /* transition: 0.3s ease-in-out; */
+    /* box-shadow:
+      1px 1px #e20049,
+      2px 2px #e20049,
+      3px 3px #e20049,
+      4px 4px #e20049,
+      5px 5px #e20049,
+      6px 6px #e20049,
+      7px 7px #e20049;
+    -webkit-transform: translateX(-7px);
+    transform: translateX(-7px); */    
+  /* } */
+  
+  /* .img_block:hover::before {
+    animation: overlay-animation 0.3s ease-in-out;
+    background-color: rgba(226, 0, 73, 0.1);
+  }
+  
+  @keyframes overlay-animation {
+    0% {
+        height: 0%;
+    }
+    100% {
+        height: 50%;
+    }
+  }   */
+
+  @media (min-width: 300px) and (max-width: 501px) {
+ 
+    .img_block {
+        flex: 1 0 50%;
+        max-width: 100%;
+    }
+}
+@media (min-width: 502px) and (max-width: 1000px) {
+ 
+    .img_block {
+        flex: 1 0 35%;
+        max-width: 49%;
+    }
+}
