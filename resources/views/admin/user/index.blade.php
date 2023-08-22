@@ -90,11 +90,12 @@
                         <div class="wrapper-icon">
                             <a href="{{route('dashboard.user.show', $product)}}" class="admin-action-ahref"><div class="btn-view"></div></a>
                             <a href="{{route('dashboard.user.edit', $product)}}" class="admin-action-ahref"><div class="btn-edit"></div></a>
+                            <a href="{{route('dashboard.user.edit', $product)}}" class="admin-action-ahref"><div class="btn-password"></div></a>
                             <!-- link that opens popup -->
                             <!-- <a class="popup-with-delete-form admin-action-ahref" href="#delete-form"><div class="btn-delete"></div></a> -->
-                            <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.user.destroy', $user)}}">
+                            <!-- <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.user.destroy', $user)}}">
                                 <div class="btn-delete"></div>
-                            </a>                            
+                            </a>  -->                           
                         </div>                               
                     </div>
                 </div>
@@ -103,31 +104,25 @@
         </div>        
     </div>
 
-    <!-- Popup удаления категории -->
-    <div id="delete-form" class="mfp-hide white-popup-block">
+    <!-- Popup удаления пользователя -->
+    <!-- <div id="delete-form" class="mfp-hide white-popup-block">
         <form method="post" class="admin-form-delete">
             @csrf
             @method('DELETE')    
             <p>Вы действительно хотите удалить Пользователя?<p>
-            <br>
-            <!-- <p><a class="popup-modal-dismiss" href="#">Нет</a></p> -->
-            <!-- <button class="btn-delete" data-id="${id}"></button> -->
+            <br>            
             <div class="confirm-delete-buttons-container">
                 <a href="#" class="admin-delete-cancel-button popup-modal-dismiss">
                     <div class="admin-delete-cancel-icon"></div>
                     <span>Отмена</span>
-                </a> 
-                <!-- <button class="admin-delete-cancel-button">
-                    <div class="admin-delete-cancel-icon"></div>
-                    <span>Отменить</span>                                    
-                </button>  -->
+                </a>                 
                 <button type="submit" class="admin-delete-yes-button">
                     <div class="admin-delete-yes-icon"></div>
                     <span>Удалить</span>                                    
                 </button>
             </div> 
         </form> 
-    </div>
+    </div> -->
 
     <!--Пагинация списка товаров (по 6 товаров на странице) -->
     {{ $users->withQueryString()->links('admin.pagination') }}
@@ -137,7 +132,7 @@
 @endsection
 @section('custom_js')
 <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/jquery.magnific-popup.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('admin/js/admin-popup.js') }}" type="text/javascript"></script>
+<!-- <script src="{{ asset('js/jquery.magnific-popup.min.js') }}" type="text/javascript"></script> -->
+<!-- <script src="{{ asset('admin/js/admin-popup.js') }}" type="text/javascript"></script> -->
 <script src="{{ asset('admin/js/admin-alert.js') }}" type="text/javascript"></script>
 @endsection  

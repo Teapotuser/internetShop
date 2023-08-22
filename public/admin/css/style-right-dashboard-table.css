@@ -260,6 +260,49 @@ body.dark .wrapper-icon .btn-delete:hover {
     background-size:contain;
 }
 
+.btn-password{
+    width: 30px;
+    height: 26px;
+    appearance: none;
+    /* border-radius: 50%; */
+    border: 0;
+    background-color: transparent;
+    /* background-color: rgb(226,0,73); */
+    /* background-color: hsla(4, 0%, 0%, 1); */
+    background-image: url("../images/noun-password-4491883-grey444746.svg"); /* url("../images/noun-view-4644120.svg"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    background-size: contain;
+    cursor: pointer;
+    padding: 0;
+    /* position: absolute;
+    top: 40%;
+    left: 0%; */
+    transition: background-color 200ms ease-out;
+    display: inline-block;
+}
+
+.wrapper-icon .admin-action-ahref:hover .btn-password {
+    width: 30px;
+    height: 23px;
+    background-image: url("../images/noun-password-4491883-white.svg"); /* url("../images/noun-view-4644120.svg"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    background-size: contain;
+    transition: var(--tran-02);
+}
+
+body.dark .wrapper-icon .btn-password,
+body.dark .wrapper-icon .btn-password:hover {
+    background-image: url("../images/noun-password-4491883-light-grey.svg"); /* url("../images/noun-view-4644120.svg"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    background-size: contain;
+}
+
 /* На мобильном экране */
 @media (max-width: 780px) {
     .accounts-head {

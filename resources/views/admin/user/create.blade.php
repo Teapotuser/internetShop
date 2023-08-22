@@ -51,165 +51,34 @@
         </div>  
     </div>      
 @endif -->
-<!-- Форма добавления Категории -->
+<!-- Форма добавления Пользователя -->
 <div class="form-wrapper"> 
     <!--Форма логина--> 
-    <form method="POST" action="{{ route('dashboard.product.store') }}" enctype="multipart/form-data" class="login-form-decor">
+    <form method="POST" action="{{ route('dashboard.user.store') }}" enctype="multipart/form-data" class="login-form-decor">
         @csrf
         <div class="form-inner">
-            <label for="article">Артикул *</label>
-            <input type="text" name="article" id="article" minLength="1" maxLength="150" required autocomplete="off" value="{{ old('article') }}">
-            @error('article')
+            <label for="name">Имя *</label>
+            <input type="text" name="name" id="name" minLength="1" maxLength="150" required autocomplete="off" value="{{ old('name') }}">
+            @error('name')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
-            <label for="title">Название *</label>
-            <input type="text" name="title" id="title" minLength="1" maxLength="200" required autocomplete="off" value="{{ old('title') }}">
-            @error('title')
+            <label for="last_name">Фамилия *</label>
+            <input type="text" name="last_name" id="last_name" minLength="1" maxLength="200" required autocomplete="off" value="{{ old('last_name') }}">
+            @error('last_name')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
-            <!--Комбобокс Категории товара--> 
-            <label for="category_id">Категория *</label>
-            <br>
-            <div class="form-group">
-                <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">Выберите категорию ...</div></button>
-                    <ul class="dropdown__list">
-                        @foreach($categories as $category)
-                        <li class="dropdown__list-item" data-value="{{$category->id}}" >{{$category->name}}</li>
-                        <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
-                        <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
-                        <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
-                        @endforeach
-                    </ul>
-                    <input type="hidden" name="category_id" id="category_id" value="" class="dropdown__input-hidden" >
-                </div>
-            </div>
-            <!--End of Комбобокс Категории товара--> 
-            <!--Комбобокс Коллекции товара--> 
-            <label for="collection_id">Коллекция *</label>
-            <br>
-            <div class="form-group">
-                <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">Выберите коллекцию ...</div></button>
-                    <ul class="dropdown__list">
-                        @foreach($collections as $collection)
-                        <li class="dropdown__list-item" data-value="{{$collection->id}}" >{{$collection->name}}</li>
-                        <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
-                        <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
-                        <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
-                        @endforeach
-                    </ul>
-                    <input type="hidden" name="collection_id" id="collection_id" value="" class="dropdown__input-hidden" >
-                </div>
-            </div>
-            <!--End of Комбобокс Коллекции товара--> 
-            <label for="description">Описание</label>
-            <br>
-            <textarea name="description" id="description" cols="40" rows="3" maxLength="1000" autocomplete="off">{{ old('description') }}</textarea>
-            @error('description')
+            <label for="email">E-mail *</label>
+            <input type="email" name="email" id="email" minLength="1" maxLength="150" required autocomplete="off" value="{{ old('email') }}">
+            @error('email')
                 <div class="form-field-validation-error">{{ $message }}</div>
-            @enderror
-            <label for="product_info">Информация</label>
-            <br>
-            <textarea name="product_info" id="product_info" cols="40" rows="3" maxLength="1000" autocomplete="off">{{ old('product_info') }}</textarea>
-            @error('product_info')
+            @enderror             
+            <label for="phone_number">Телефон *</label>
+            <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone_number" id="phone_number" minLength="1" maxLength="20" required autocomplete="off" value="{{ old('phone_number') }}">
+            @error('phone_number')
                 <div class="form-field-validation-error">{{ $message }}</div>
-            @enderror           
-            <div class="two-fields-product-container">
-                <div>
-                    <label for="price">Цена *</label>
-                    <input type="number" name="price" id="price" value="0.00" min="0.01" max="100 000" required autocomplete="off" value="{{ old('price') }}">
-                    @error('price')
-                        <div class="form-field-validation-error">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div>
-                    <label for="discount">Скидка (%)</label>
-                    <input type="number" name="discount" id="discount" value="0" min="0" max="100" required autocomplete="off" value="{{ old('discount') }}">
-                    @error('discount')
-                        <div class="form-field-validation-error">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-            <div class="two-fields-product-container">
-                <div class="form-inner-checkbox">
-                    <input type="checkbox" id="is_new" name="is_new" class="checkbox-customized">
-                    <label for="is_new">
-                        <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
-                            <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
-                        </svg>
-                        Новинка
-                    </label>                                       
-                </div> 
-                <div class="form-inner-checkbox">
-                    <input type="checkbox" id="is_best_selling" name="is_best_selling" class="checkbox-customized">
-                    <label for="is_best_selling">
-                        <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
-                            <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
-                        </svg>
-                        Хит продаж
-                    </label>                                       
-                </div>
-            </div> 
-            <br>
+            @enderror                      
 
-            <!--Комбобокс Коллекции товара-->           
-            <!-- <label for="collection_id">Коллекция</label>
-            <br>
-            <select name="collection_id" id="collection_id" class="admin-combobox">
-                <option @selected(Request::get('sort') =='date' || is_null(Request::get('sort'))) value="date">Новизне</option>
-                <option @selected(Request::get('sort')=='jolly_maeh') value="jolly_maeh">Овечки Jolly Mäh</option>
-                <option @selected(Request::get('sort')=='unicorn_theodor') value="unicorn_theodor">Единорог Theodor и его друзья</option>
-                <option @selected(Request::get('sort')=='price-low') value="price-low">Уменьшению цены</option>
-                <option @selected(Request::get('sort')=='price-high') value="price-high">Увеличению цены</option>                                
-            </select> -->            
-                        
-            <!-- <br> -->
-            <div class="two-fields-product-container">
-                <div>
-                    <label for="size">Размер (см) *</label>
-                    <input type="number" name="size" id="size" value="0" min="1" max="1000" required autocomplete="off" value="{{ old('size') }}">
-                    @error('size')
-                        <div class="form-field-validation-error">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div>
-                    <label for="height">Высота (см)</label>
-                    <input type="number" name="height" id="height" value="0" min="0" max="1000" required autocomplete="off" value="{{ old('height') }}">
-                    @error('height')
-                        <div class="form-field-validation-error">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-            <div class="two-fields-product-container">
-                <div>
-                    <label for="width">Ширина (см)</label>
-                    <input type="number" name="width" id="width" value="0" min="0" max="1000" required autocomplete="off" value="{{ old('width') }}">
-                    @error('width')
-                        <div class="form-field-validation-error">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div>    
-                    <label for="depth">Глубина (см)</label>
-                    <input type="number" name="depth" id="depth" value="0" min="0" max="1000" required autocomplete="off" value="{{ old('depth') }}">
-                    @error('depth')
-                        <div class="form-field-validation-error">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-            <!-- <label for="pcture">Изображение:</label>
-            <br><br>
-            <input type="file" accept="image/*" name="picture">
-            <br> -->
-            <!-- <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" required autocomplete="name" autofocus placeholder="Имя *"> value="{{ old('name') }}" -->
-            <!-- <br> -->
-
-            <!-- <img src="http://placehold.it/180" id="blah" alt="Img"><br><br>
-            <input type="file" id="inputFile" onchange="readUrl(this)">
-            <button type="button" onclick="removeImg()">Close</button> -->
-            <!-- <br> -->
-
-            <p class="label">Изображение *</p>
+            <p class="label">Изображение</p>
             <div class="file-upload-container">
                 <figure class="file-upload-preview-image-container">
                     <img id="chosen-image" class="chosen-image" src="{{ asset('/admin/images/Untitled.png')}}">
@@ -223,212 +92,110 @@
                 </label>
                 <button type="button" id="clear-file-button" class="clear-file-button hidden"></button>                            
             </div>
-            <br>
+            <br>  
 
-            <!--Комбобокс Материал товара--> 
-            <label for="material">Материал</label>
+            <label for="address">Адрес</label>
+            <input type="text" name="address" id="address" minLength="1" maxLength="500" autocomplete="off" value="{{ old('address') }}">
+            @error('address')
+                <div class="form-field-validation-error">{{ $message }}</div>
+            @enderror
+            <div class="two-fields-product-container">
+                <div>
+                    <label for="city">Город</label>
+                    <input type="text" name="city" id="city" minLength="1" maxLength="200" autocomplete="off" value="{{ old('city') }}">
+                    @error('city')
+                        <div class="form-field-validation-error">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div>
+                    <label for="zip_code">Индекс</label>
+                    <input type="text" name="zip_code" id="zip_code" minLength="1" maxLength="20" autocomplete="off" value="{{ old('zip_code') }}">
+                    @error('zip_code')
+                        <div class="form-field-validation-error">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <!--Комбобокс Категории товара--> 
+            <label for="role_id">Роль *</label>
             <br>
             <div class="form-group">
                 <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">Выберите материал ...</div></button>
+                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">Выберите роль ...</div></button>
                     <ul class="dropdown__list">                        
-                        <li class="dropdown__list-item" data-value="плюш/полиэстер" >плюш/полиэстер</li>
+                        <li class="dropdown__list-item" data-value="2" >Пользователь</li>
+                        <li class="dropdown__list-item" data-value="1" >Админ</li>
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
-                        <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
+                        <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->                        
                     </ul>
-                    <input type="hidden" name="material" id="material" value="" class="dropdown__input-hidden" >
+                    <input type="hidden" name="role_id" id="role_id" value="" class="dropdown__input-hidden" >
                 </div>
             </div>
-            <!--End of Комбобокс Материал товара--> 
-             <!--Комбобокс Материал наполнителя товара--> 
-             <label for="material_filling">Материал наполнителя</label>
+            <!--End of Комбобокс Категории товара-->                            
+                           
+            <!--Комбобокс Коллекции товара-->           
+            <!-- <label for="collection_id">Коллекция</label>
             <br>
-            <div class="form-group">
-                <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">Выберите материал наполнителя ...</div></button>
-                    <ul class="dropdown__list">                        
-                        <li class="dropdown__list-item" data-value="полиэфирное волокно (полиэстер)" >полиэфирное волокно (полиэстер)</li>
-                        <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
-                        <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
-                        <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
-                    </ul>
-                    <input type="hidden" name="material_filling" id="material_filling" value="" class="dropdown__input-hidden" >
-                </div>
-            </div>
-            <!--End of Комбобокс Материал наполнителя товара-->
-             <!--Комбобокс Рекомендуемый возраст товара--> 
-             <label for="age_from">Рекомендуемый возраст</label>
+            <select name="collection_id" id="collection_id" class="admin-combobox">
+                <option @selected(Request::get('sort') =='date' || is_null(Request::get('sort'))) value="date">Новизне</option>
+                <option @selected(Request::get('sort')=='jolly_maeh') value="jolly_maeh">Овечки Jolly Mäh</option>
+                <option @selected(Request::get('sort')=='unicorn_theodor') value="unicorn_theodor">Единорог Theodor и его друзья</option>
+                <option @selected(Request::get('sort')=='price-low') value="price-low">Уменьшению цены</option>
+                <option @selected(Request::get('sort')=='price-high') value="price-high">Увеличению цены</option>                                
+            </select> --> 
+            
+            <div class="form-inner-checkbox">
+                <input type="checkbox" id="is_subscribe" name="is_subscribe" class="checkbox-customized">
+                <label for="is_subscribe">
+                    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
+                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
+                    </svg>
+                    Подписаться на рассылку новостей
+                </label>                                       
+            </div>              
             <br>
-            <div class="form-group">
-                <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">Выберите рекомендуемый возраст ...</div></button>
-                    <ul class="dropdown__list">                        
-                        <li class="dropdown__list-item" data-value="от 0 месяцев" >от 0 месяцев</li>
-                        <li class="dropdown__list-item" data-value="от 12 месяцев">от 12 месяцев</li>
-                        <li class="dropdown__list-item" data-value="от 3 лет">от 3 лет</li>
-                        <!-- <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li>--> 
-                    </ul>
-                    <input type="hidden" name="age_from" id="age_from" value="" class="dropdown__input-hidden" >
-                </div>
-            </div>
-            <!--End of Комбобокс Рекомендуемый возраст товара--> 
-            <!--Комбобокс Рекомендации по уходу товара--> 
-             <label for="care_recommend">Рекомендации по уходу</label>
-            <br>
-            <div class="form-group">
-                <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">Выберите рекомендацию ...</div></button>
-                    <ul class="dropdown__list">                        
-                        <li class="dropdown__list-item" data-value="рекомендуется ручная стирка" >рекомендуется ручная стирка</li>
-                        <li class="dropdown__list-item" data-value="можно стирать на деликатном режиме при температуре 30 градусов">можно стирать на деликатном режиме при температуре 30 градусов</li>
-                        <!-- <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
-                        <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
-                    </ul>
-                    <input type="hidden" name="care_recommend" id="care_recommend" value="" class="dropdown__input-hidden" >
-                </div>
-            </div>
-            <!--End of Комбобокс Рекомендации по уходу товара--> 
 
-            <br>
             <div class="form-inner-checkbox">
                 <input type="checkbox" id="create-account" name="create-account">
                 <label for="create-account">
                     <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
                         <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
                     </svg>
-                    Активна
+                    Активен
                 </label>                                       
             </div>  
             <br>
 
-            <h3 class="file-upload-pairs-title">Загрузка фото для карточки товара</h3>
-            <!-- Загрузка картинок для карусели на странице товара -->
-            <div class="file-upload-pair-wrapper">
-                <div class="file-upload-control">
-                    <p class="label">Иконка 1 *</p>
-                    <div class="file-upload-container">
-                        <figure class="file-upload-preview-image-container">
-                            <img id="chosen-image" class="chosen-image" src="{{ asset('/admin/images/Untitled.png')}}">
-                            <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
-                        </figure>
-                
-                        <input type="file" id="upload-button-11" class="upload-button" accept="image/*" name="preview_path[]">
-                        <label for="upload-button-11" class="upload-file-label upload-file-label-in-pair">
-                            <div class="file-upload-icon"></div>
-                            <!-- <span>Загрузить файл</span> -->
-                        </label>
-                        <button type="button" id="clear-file-button" class="clear-file-button clear-file-button-in-pair hidden"></button>                            
-                    </div>
-                </div>
-                <div class="file-upload-control">
-                    <p class="label">Изображение 1 *</p>
-                    <div class="file-upload-container">
-                        <figure class="file-upload-preview-image-container">
-                            <img id="chosen-image" class="chosen-image" src="{{ asset('/admin/images/Untitled.png')}}">
-                            <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
-                        </figure>
-                
-                        <input type="file" id="upload-button-12" class="upload-button" accept="image/*" name="path[]">
-                        <label for="upload-button-12" class="upload-file-label upload-file-label-in-pair">
-                            <div class="file-upload-icon"></div>
-                            <!-- <span>Загрузить файл</span> -->
-                        </label>
-                        <button type="button" id="clear-file-button" class="clear-file-button clear-file-button-in-pair hidden"></button>                            
-                    </div>
-                </div>
-            </div>
-
-            <div class="file-upload-pair-wrapper">
-                <div class="file-upload-control">
-                    <p class="label">Иконка 2 *</p>
-                    <div class="file-upload-container">
-                        <figure class="file-upload-preview-image-container">
-                            <img id="chosen-image" class="chosen-image" src="{{ asset('/admin/images/Untitled.png')}}">
-                            <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
-                        </figure>
-                
-                        <input type="file" id="upload-button-11" class="upload-button" accept="image/*" name="preview_path[]">
-                        <label for="upload-button-11" class="upload-file-label upload-file-label-in-pair">
-                            <div class="file-upload-icon"></div>
-                            <!-- <span>Загрузить файл</span> -->
-                        </label>
-                        <button type="button" id="clear-file-button" class="clear-file-button clear-file-button-in-pair hidden"></button>                            
-                    </div>
-                </div>
-                <div class="file-upload-control">
-                    <p class="label">Изображение 2 *</p>
-                    <div class="file-upload-container">
-                        <figure class="file-upload-preview-image-container">
-                            <img id="chosen-image" class="chosen-image" src="{{ asset('/admin/images/Untitled.png')}}">
-                            <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
-                        </figure>
-                
-                        <input type="file" id="upload-button-12" class="upload-button" accept="image/*" name="path[]">
-                        <label for="upload-button-12" class="upload-file-label upload-file-label-in-pair">
-                            <div class="file-upload-icon"></div>
-                            <!-- <span>Загрузить файл</span> -->
-                        </label>
-                        <button type="button" id="clear-file-button" class="clear-file-button clear-file-button-in-pair hidden"></button>                            
-                    </div>
-                </div>
-            </div>
-
-            <div class="file-upload-pair-wrapper">
-                <div class="file-upload-control">
-                    <p class="label">Иконка 3 *</p>
-                    <div class="file-upload-container">
-                        <figure class="file-upload-preview-image-container">
-                            <img id="chosen-image" class="chosen-image" src="{{ asset('/admin/images/Untitled.png')}}">
-                            <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
-                        </figure>
-                
-                        <input type="file" id="upload-button-11" class="upload-button" accept="image/*" name="preview_path[]">
-                        <label for="upload-button-11" class="upload-file-label upload-file-label-in-pair">
-                            <div class="file-upload-icon"></div>
-                            <!-- <span>Загрузить файл</span> -->
-                        </label>
-                        <button type="button" id="clear-file-button" class="clear-file-button clear-file-button-in-pair hidden"></button>                            
-                    </div>
-                </div>
-                <div class="file-upload-control">
-                    <p class="label">Изображение 3 *</p>
-                    <div class="file-upload-container">
-                        <figure class="file-upload-preview-image-container">
-                            <img id="chosen-image" class="chosen-image" src="{{ asset('/admin/images/Untitled.png')}}">
-                            <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
-                        </figure>
-                
-                        <input type="file" id="upload-button-12" class="upload-button" accept="image/*" name="path[]">
-                        <label for="upload-button-12" class="upload-file-label upload-file-label-in-pair">
-                            <div class="file-upload-icon"></div>
-                            <!-- <span>Загрузить файл</span> -->
-                        </label>
-                        <button type="button" id="clear-file-button" class="clear-file-button clear-file-button-in-pair hidden"></button>                            
-                    </div>
-                </div>
-            </div>
-            <!-- End of Загрузка картинок для карусели на странице товара -->
-            <div class="more-file-upload-pairs-container"></div>
-            <div class="center-button">
-                <div class="">                                
-                    <button type="button" class="more-file-upload-fields-button">
-                        <div class="more-file-upload-fields-icon"></div>
-                        <span>Добавить фото</span>                                    
-                    </button> 
-                    <div></div>                           
-                </div>                            
-            </div>
-
-           <!--  <div class="center-button">
-                <div class="">
-                    <button type="submit" class="img_block__button">
-                        Сохранить
-                    </button> -->
-                    <!-- Кнопка Close для View формы категории -->
-                    <!-- <a href="{{route('dashboard.category.index')}}"></a>                
-                </div>
-            </div> -->
+            <label for="password">Текущий пароль *</label>
+            <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" minLength="1" maxLength="150" required autocomplete="off" value="{{ old('password') }}">
+            @error('password')
+                <div class="form-field-validation-error">{{ $message }}</div>
+            @enderror
+            <!-- @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror -->   
+            <label for="password">Новый пароль *</label>
+            <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" minLength="1" maxLength="150" required autocomplete="off" value="{{ old('password') }}">
+            @error('password')
+                <div class="form-field-validation-error">{{ $message }}</div>
+            @enderror
+            <!-- @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror -->   
+            <label for="password-confirm">Повторите пароль *</label>
+            <input type="password" id="password-confirm" name="password-confirm" class="form-control @error('password-confirm') is-invalid @enderror" minLength="1" maxLength="150" required autocomplete="off" value="{{ old('password-confirm') }}">
+            @error('password-confirm')
+                <div class="form-field-validation-error">{{ $message }}</div>
+            @enderror
+            <!-- @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror -->             
 
             <div class="center-button">
                 <div class="">                                
