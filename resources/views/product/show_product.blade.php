@@ -221,21 +221,19 @@
                                         <span> см</span>
                                     </div>
                                 </div>
-                                <form name="add-to-basket-form" method="post" action="">                                        
-                                        
-                                        <div class="add-to-basket-form-quantity-wrapper">
-                                            <span>Количество: </span>                                          
-                                            <div class="cart-quantity-controls">
-                                                <button class="cart-minus-quantity" data-id="${id}">-</button>
-                                                <input type="number" value="1" class="cart-quantity" data-id="${id}">
-                                                <button class="cart-plus-quantity" data-id="${id}">+</button>                                
-                                            </div> 
-                                        </div>                                              
-                                    
+                                <form name="add-to-basket-form" method="post" action="">                                         
+                                    <div class="add-to-basket-form-quantity-wrapper">
+                                        <span>Количество: </span>                                          
+                                        <div class="cart-quantity-controls">
+                                            <button class="cart-minus-quantity" data-actionType="minus" data-id="{{ $product->id }}">-</button>
+                                            <input type="number" value="1" class="cart-quantity" data-id="{{ $product->id }}">
+                                            <button class="cart-plus-quantity" data-actionType="plus" data-id="{{ $product->id }}">+</button>                                
+                                        </div> 
+                                    </div>                                     
                                     <div class="add-to-basket-form-wrapper"> 
-                                        <button type="submit" class="img_block__button add-cart">В корзину</button>    
+                                        <button type="submit" class="img_block__button add-cart" data-id="{{ $product->article }}">В корзину</button>    
                                     </div>
-                                </form>
+                                </form>                                
                             </div>
                         </div>
                     </div>  

@@ -22,11 +22,22 @@
                         <p>Мой профиль</p>                            
                     </a>
                     <ul class="menu__sublist">
-                        <li><a href="#" class="menu__sublink">Логин</a></li>
-                        <li><a href="#" class="menu__sublink">Регистрация</a></li>
-                        <li><a href="#" class="menu__sublink">Личные данные</a></li>
-                        <li><a href="#" class="menu__sublink">История заказов</a></li>
-                        <li><a href="#" class="menu__sublink">Выход</a></li>
+                        @auth()
+                            
+                            <li><a href="#" class="menu__sublink">Личные данные</a></li>
+                            <li><a href="#" class="menu__sublink">История заказов</a></li>
+                            <!-- <li><a href="#" class="menu__sublink">Выход</a></li> -->
+                            <li>
+                                <form action="{{route('logout')}}" method="post">
+                                    @method('POST')
+                                    @csrf
+                                    <a href="#" onclick="$(this).parent().submit()" class="menu__sublink">Выход</a>
+                                </form>
+                            </li>
+                        @else
+                            <li><a href="{{route('login')}}" class="menu__sublink">Логин</a></li>
+                            <li><a href="{{route('login')}}" class="menu__sublink">Регистрация</a></li>
+                        @endauth
                     </ul>
                 </div>
 
@@ -133,9 +144,7 @@
                             <li><a href="#" class="menu__sublink">Дикие обитатели</a></li>
                             <li><a href="#" class="menu__sublink">Веселая ферма</a></li>       -->                                  
                         </ul>
-                    </li>      
-
-
+                    </li>    
 
                     <li class="profile-hidden">
                         <div class="menu__wrapper">
@@ -143,11 +152,21 @@
                             <span class="menu__arrow"></span>
                         </div>    
                         <ul class="menu__sublist">
-                            <li><a href="#" class="menu__sublink">Логин</a></li>
-                            <li><a href="#" class="menu__sublink">Регистрация</a></li>
-                            <li><a href="#" class="menu__sublink">Личные данные</a></li>
-                            <li><a href="#" class="menu__sublink">История заказов</a></li>
-                            <li><a href="#" class="menu__sublink">Выход</a></li>
+                            @auth()                                
+                                <li><a href="#" class="menu__sublink">Личные данные</a></li>
+                                <li><a href="#" class="menu__sublink">История заказов</a></li>
+                                <!-- <li><a href="#" class="menu__sublink">Выход</a></li> -->
+                                <li>
+                                    <form action="{{route('logout')}}" method="post">
+                                        @method('POST')
+                                        @csrf
+                                        <a href="#" onclick="$(this).parent().submit()" class="menu__sublink">Выход</a>
+                                    </form>
+                                </li>
+                            @else
+                                <li><a href="{{route('login')}}" class="menu__sublink">Логин</a></li>
+                                <li><a href="{{route('login')}}" class="menu__sublink">Регистрация</a></li>
+                            @endauth                            
                         </ul>
                     </li>
                 </ul>
@@ -261,7 +280,7 @@
             <!-- Buy button-->                
             <button type="button" class="btn-clear-cart">Очистить корзину</button>
             <!-- <button type="button" class="btn-buy">Перейти в корзину</button> -->
-            <a href="#" class="btn-buy">Перейти в корзину</a>
+            <a href="{{route('cart')}}" class="btn-buy">Перейти в корзину</a>
             
             <!-- Cart Close-->
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="20" height="20" viewBox="0 0 256 256" xml:space="preserve" class="cart-close">

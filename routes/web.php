@@ -1,9 +1,23 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+// use App\Http\Controllers\CollectionController;
+
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\CollectionController as AdminCollectionController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Main\IndexController;
+use App\Http\Controllers\ProductController;
+use \App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\SearchController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +30,15 @@ use App\Http\Controllers\CollectionController;
 |
 */
 
-Route::namespace('App\Http\Controllers\Main')->group(function () {
+Auth::routes();
+
+Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/indexFilter', [IndexController::class, 'indexFilter'])->name('indexFilter');
+
+/* Route::namespace('App\Http\Controllers\Main')->group(function () {
     Route::get('/', 'IndexController@index')->name('index');
-    Route::get('/indexFilter', 'IndexController@indexFilter')->name('indexFilter');
-    
-    });
+    Route::get('/indexFilter', 'IndexController@indexFilter')->name('indexFilter');    
+    }); */
 
 // Страница результатов поиска (нажатие кнопки Search)
 Route::get('/find', 'App\Http\Controllers\SearchController@find')->name('search.find');
@@ -34,6 +52,18 @@ Route::get('product/{article}', 'App\Http\Controllers\ProductController@show')->
 /* Route::get('/', function () {
     return view('welcome');
 }); */
+
+//работа с корзиной
+Route::get('cart', [CartController::class, 'index'])->name('cart');
+Route::post('checkout', [CartController::class, 'storeOrder'])->name('saveOrder');
+Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
+
+Route::get('addToCart/{id}/{quantity}', [CartController::class, 'addToCart']);
+Route::get('updateProductInCart/{id}/{quantity}', [CartController::class, 'update']);
+Route::get('getCart', [CartController::class, 'getCart']);
+Route::get('removeFromCart/{id}', [CartController::class, 'remove']);
+Route::get('clearCart', [CartController::class, 'clear']);
+
 Route::get('/feedback', function () {return view('feedback');})->name('feedback.form');
 Route::get('/profile', function () {return view('profile');})->name('profile.personal');
 
@@ -53,9 +83,10 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php'; */
 
-Auth::routes();
 
-Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+//админ панель
+// Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['auth', 'role:admin']], function () {    
     Route::get('/', function () {
         return view('admin.index');
     });

@@ -1,0 +1,217 @@
+/* === Video styles === */
+.order-placed-container {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.order-placed-card {
+    /* width: 25rem; */
+    width: 520px;
+    border-radius: 0.2rem;
+    background-color: #ffffff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    box-shadow: 0px 19px 38px 0px rgba(0,0,0,0.3), 0px 15px 12px 0px rgba(0,0,0,0.22);
+    text-align: center;
+}
+
+.order-placed-card .icon-circle {
+    width: 5rem;
+    height: 5rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #35c1a6;
+    z-index: 5;
+}
+
+.order-placed-card .icon {
+    /* width: 2.8rem;
+    height: 2.8rem; */
+    width: 2.8rem;
+    height: 2.8rem;
+
+}
+
+.order-placed-card .icon-container {
+    width: 5rem;
+    height: 5rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+    position: relative;
+}
+
+.order-placed-card .circle {
+    width: 6rem;
+    height: 6rem;
+    background-color: #35c1a6;
+    border-radius: 50%;
+    position: absolute;
+    animation: wave-anim 1.5s infinite ease-in-out;
+}
+
+@keyframes wave-anim {
+    0% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.25);
+        opacity: 0;
+    }
+}
+
+.order-placed-card .title {
+    font-size: 1.1rem;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #35c1a6;
+    letter-spacing: 1px;
+}
+
+.order-placed-card .message {
+    /* width: 15rem; */
+    width: 400px;
+    /* font-size: 0.725rem; */
+    font-size: 16px;
+    color: #484848; /* #696969; */
+    font-weight: 500;
+    text-align: center;
+    line-height: 20px;
+    margin: 0.5rem auto;
+}
+
+/* .message.bottom-margin::after {
+    content: '';
+    width: 20rem;
+    height: 0.05rem;
+    background-color: #e8e8e8;
+    display: block;
+    margin: 2rem auto;
+} */
+
+.order-placed-card .details-container {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    /* margin: 0 1.5rem 1rem 1.5rem; */
+    margin: 5px 10% 20px 10%;
+}
+
+.order-placed-card .order-detail {
+    /* flex: 1; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 7px;
+}
+
+.order-placed-card .label {
+    /* width: 40%; */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #484848;
+}
+
+.order-placed-card .data {
+    /* width: 60%; */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #484848;
+}
+
+/* End of === Video styles === */
+
+.order-placed-card .order-placed-table-title {
+    background-color: #35c1a6;
+    height: 32px;
+    margin: 25px 9% 0px 9%;
+    text-align: center;
+    line-height: 30px;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.order-placed-card .btn-buy {
+    display: inline-block;
+    height: 34px;
+    width: 250px;
+    margin: 0px 10% 30px 10%;
+}
+
+
+.order-confirm-container-my {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-confirm-container h3 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+}
+
+.order-confirm-table-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.order-confirm-table-left-column {
+    width: 65%;
+}
+
+.order-confirm-table-right-column {
+    width: 30%;
+}
+
+.order-confirm-img-container {
+    width: 320px;
+    height: auto;
+    margin: 20px auto;
+}
+
+.order-confirm-img-container img {
+    width: 100%;
+    height: 100%;
+}
+
+.order-confirm-table-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.order-confirm-table-container table {
+    width: 100%;
+}
+
+.order-confirm-table-container table tr {
+    height: 26px;
+}
+
+.order-confirm-details-bold {
+    font-weight: 600;
+}
+
+@media (max-width:520px){
+    .order-placed-card {
+        width: 360px;
+    }
+    .order-placed-card .message {
+        /* width: 15rem; */
+        width: 300px;
+    }
+    .order-confirm-img-container {
+        width: 300px;
+    }
+}
