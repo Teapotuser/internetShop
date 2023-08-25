@@ -96,50 +96,54 @@ body.dark .admin-add-button .title-add-icon {
     text-align: center;
 } */
 
-.accounts-head .head-product-id {
+.accounts-head .head-user-id {
     max-width: 5%;
     min-width: 80px;
 }
 
-.account-rows .product-id-column {
+.account-rows .user-id-column {
     max-width: 5%;
     min-width: 80px;
     text-align: center;
 }
 
-.accounts-head .head-product-title {
+.accounts-head .head-user-title {
     text-align: left;
     padding-left: 15px;
-    max-width: 30%;
-    min-width: 30%;
+    max-width: 25%;
+    min-width: 25%;
 }
 
-.account-rows .product-title-column {
-    max-width: 30%;
-    min-width: 30%;
+.account-rows .user-title-column {
+    max-width: 25%;
+    min-width: 25%;
 }
 
-.accounts-head .head-product-article {
+.accounts-head .head-user-email {
+    text-align: left;
+    padding-left: 15px;
+    max-width: 25%;
+    min-width: 25%;
+}
+
+.user-email-column {
+    max-width: 25%;
+    min-width: 25%;
+}
+
+.accounts-head .head-user-role {
     text-align: left;
     padding-left: 15px;
     max-width: 20%;
+    min-width: 20%;
 }
 
-.product-article-column {
+.user-role-column {
     max-width: 20%;
+    min-width: 20%;
 }
 
-.accounts-head .head-product-price {
-    text-align: left;
-    padding-left: 15px;
-    max-width: 10%;
-}
-
-.product-price-column {
-    max-width: 10%;
-}
-
-.accounts-head .head-product-image {
+/* .accounts-head .head-product-image {
     text-align: center;
     padding-left: 15px;
     max-width: 15%;
@@ -147,16 +151,18 @@ body.dark .admin-add-button .title-add-icon {
 
 .product-image-column {
     max-width: 15%;
-}
+} */
 
-.accounts-head .head-product-actions {
-    text-align: center;
+.accounts-head .head-user-actions {
+    text-align: left;
     padding-left: 15px;
     max-width: 20%;
+    min-width: 20%;
 }
 
-.product-actions-column {
+.user-actions-column {
     max-width: 20%;
+    min-width: 20%;
 }
 
 

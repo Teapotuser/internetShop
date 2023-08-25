@@ -12,6 +12,9 @@ class NewRegistration extends Notification
 {
     use Queueable;
 
+    private string $password;
+    private User $user;
+
     /**
      * Create a new notification instance.
      *
@@ -42,10 +45,27 @@ class NewRegistration extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        /* return (new MailMessage)
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('Thank you for using our application!'); */
+
+        $client_name = $this->user->name;
+        $client_last_name = $this->user->last_name;
+        $client_phone = $this->user->phone_number;
+        $client_email = $this->user->email;
+
+        return (new MailMessage)
+
+            ->subject('Вы успешно зарегистрированы')
+            ->greeting('Вы успешно зарегистрированы')
+            ->salutation('')
+            ->line('Данные вашей учетной записи')
+            ->line('Имя: ' . $client_name)
+            ->line('Фамилия: ' . $client_last_name)
+            ->line('Телефон: ' . $client_phone)
+            ->line('Email: ' . $client_email)
+            ->line('Пароль: ' . $this->password);
     }
 
     /**

@@ -182,7 +182,7 @@ class CartController extends Controller
 
         Session::forget('cart');
 
-        /* if (isset($user) && $user != null) {
+       /*  if (isset($user) && $user != null) {
             $user->notify(new NewOrder($order));
         } else {
             Notification::route('mail', [

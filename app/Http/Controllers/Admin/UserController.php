@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\Category\StoreRequest;
+use App\Http\Requests\Admin\User\StoreRequest;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -49,9 +49,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
+    //  Отображение (форма) View пользователя
     public function show(User $user)
     {
-        //
+        return view('admin.user.show', compact('user')); 
     }
 
     /**
@@ -60,9 +61,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
+    // Станица (форма) редактирования пользователя
     public function edit(User $user)
     {
-        //
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
@@ -72,9 +74,23 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(StoreRequest $request, User $user)
     {
-        //
+        $validated = $request->validated();
+        if ($request->file('picture')||$request->validated('removeImage')) {
+            if ($user->picture) {
+                // Storage::delete($category->picture);
+                Storage::deleteDirectory('/public/users/' . $validated['email']);
+                $user->picture=null;
+            }
+        }
+        if ($request->file('picture')) {
+            $file = $request->file('picture');
+            $picture = Storage::putFile('/public/users/' . $validated['email'], $file);
+            $validated['picture'] = $picture;
+        }
+        $user->update($validated);
+        return redirect(route('dashboard.user.index'))->with('success', 'Пользователь "' . $user->name . ' ' . $user->last_name . '" успешно сохранен');
     }
 
     /**

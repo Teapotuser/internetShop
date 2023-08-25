@@ -41,10 +41,57 @@ class NewOrder extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+       /*  return (new MailMessage)
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('Thank you for using our application!'); */
+        $delivery = match ($this->order->delivery_method) {
+            "post" => "Адресная доставка",
+            "pickup" => "Самовывоз",
+            default => $this->order->delivery_method
+        };
+
+        $payment_method = match ($this->order->payment_method) {
+            "cash" => "Наличными",
+            "card" => "Кредитной картой",
+            default => $this->order->payment_method
+        };
+        $mailMessage = (new MailMessage)
+            ->subject('Сформирован новый заказ ' . $this->order->id)
+            ->salutation('')
+            ->greeting('')
+            ->line('Сумма заказа : ' . $this->order->orderPrice())
+            ->line('Товары в заказе :');
+
+        foreach ($this->order->order_products as $order_product) {
+            $mailMessage->line('Товар: ' . $order_product->product->title . ' кол-во' . $order_product->quantity . ' шт.');
+        }
+
+        if ($this->order->user_id) {
+            $client_name = $this->order->user->name;
+            $client_last_name = $this->order->user->last_name;
+            $client_phone = $this->order->user->phone_number;
+            $client_email = $this->order->user->email;
+        } else {
+            $client_name = $this->order->name;
+            $client_last_name = $this->order->surname;
+            $client_phone = $this->order->tel;
+            $client_email = $this->order->email;
+        }
+        $mailMessage
+            ->line('Имя: ' . $client_name)
+            ->line('Фамилия: ' . $client_last_name)
+            ->line('Телефон: ' . $client_phone)
+            ->line('Email: ' . $client_email)
+            ->line('Способ оплаты:  ' . $payment_method)
+            ->line('Доставка: ' . $delivery);
+        if ($this->order->delivery_method == 'post') {
+            $mailMessage
+                ->line('Город: ' . $this->order->city)
+                ->line('Адрес: ' . $this->order->address);
+        }
+
+        return $mailMessage;            
     }
 
     /**

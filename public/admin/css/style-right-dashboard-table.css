@@ -269,7 +269,7 @@ body.dark .wrapper-icon .btn-delete:hover {
     background-color: transparent;
     /* background-color: rgb(226,0,73); */
     /* background-color: hsla(4, 0%, 0%, 1); */
-    background-image: url("../images/noun-password-4491883-grey444746.svg"); /* url("../images/noun-view-4644120.svg"); */
+    background-image: url("../images/noun-password-5978458-grey444746.svg"); /* url("../images/noun-view-4644120.svg"); */
     background-repeat: no-repeat;
     background-position: center;
     background-position-y: center;
@@ -285,8 +285,8 @@ body.dark .wrapper-icon .btn-delete:hover {
 
 .wrapper-icon .admin-action-ahref:hover .btn-password {
     width: 30px;
-    height: 23px;
-    background-image: url("../images/noun-password-4491883-white.svg"); /* url("../images/noun-view-4644120.svg"); */
+    height: 24px;
+    background-image: url("../images/noun-password-5978458-white.svg"); /* url("../images/noun-view-4644120.svg"); */
     background-repeat: no-repeat;
     background-position: center;
     background-position-y: center;
@@ -296,7 +296,7 @@ body.dark .wrapper-icon .btn-delete:hover {
 
 body.dark .wrapper-icon .btn-password,
 body.dark .wrapper-icon .btn-password:hover {
-    background-image: url("../images/noun-password-4491883-light-grey.svg"); /* url("../images/noun-view-4644120.svg"); */
+    background-image: url("../images/noun-password-5978458-light-grey.svg"); /* url("../images/noun-view-4644120.svg"); */
     background-repeat: no-repeat;
     background-position: center;
     background-position-y: center;

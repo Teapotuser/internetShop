@@ -51,46 +51,46 @@
     <!-- Строка заголовков таблицы-->
     <div class="accounts-list">
         <div class="accounts-head">
-            <p class="head-product-id">Номер</p>
-            <p class="head-product-title">Имя</p>
-            <p class="head-product-article">E-mail</p>
-            <p class="head-product-price">Роль</p>
-            <p class="head-product-actions">Действие</p>
+            <p class="head-user-id">Номер</p>
+            <p class="head-user-title">Имя</p>
+            <p class="head-user-email">E-mail</p>
+            <p class="head-user-role">Роль</p>
+            <p class="head-user-actions">Действие</p>
         </div>
         <div class="account-rows">
             <!-- Строки таблицы-->
             @foreach($users as $user)
             <div class="account-card list"> <!--  list -->
-                <div class="account-card-item product-id-column">
+                <div class="account-card-item user-id-column">
                     <p class="card-mobile-text">Номер</p>
                     <p class="account">{{$user->id}}</p>
                 </div>
-                <div class="account-card-item product-title-column">
+                <div class="account-card-item user-title-column">
                     <p class="card-mobile-text">Имя</p>
                     <p class="account">{{$user->name}}<span> </span>{{$user->last_name}}</p>
                 </div>
-                <div class="account-card-item product-article-column">
+                <div class="account-card-item user-email-column">
                     <p class="card-mobile-text">E-mail</p>
                     <p class="account">{{$user->email}}</p>
                 </div>
-                <div class="account-card-item product-price-column">
+                <div class="account-card-item user-role-column">
                     <p class="card-mobile-text">Роль</p>
-                    <p class="account">{{$user->phone_number}}</p>
-                </div>
-                <!-- <div class="account-card-item product-image-column">
-                    <p class="card-mobile-text">Изображение</p>                    
-                    <div class="account admin-table-img-container">
-                        <img class="admin-table-img" src="{{Storage::url($product->picture)}}" alt=""> 
-                    </div>
-                </div> -->
-                <div class="account-card-item product-actions-column">
+                    <p class="account">
+                        @if ( $user->role) 
+                        <span>Админ</span> 
+                        @else 
+                        <span>Пользователь</span> 
+                        @endif
+                    </p>                    
+                </div>                
+                <div class="account-card-item user-actions-column">
                     <p class="card-mobile-text">Действие</p>                            
                     <!-- <p class="account">HJGHG7</p> -->
                     <div class="account">
                         <div class="wrapper-icon">
-                            <a href="{{route('dashboard.user.show', $product)}}" class="admin-action-ahref"><div class="btn-view"></div></a>
-                            <a href="{{route('dashboard.user.edit', $product)}}" class="admin-action-ahref"><div class="btn-edit"></div></a>
-                            <a href="{{route('dashboard.user.edit', $product)}}" class="admin-action-ahref"><div class="btn-password"></div></a>
+                            <a href="{{route('dashboard.user.show', $user)}}" class="admin-action-ahref"><div class="btn-view"></div></a>
+                            <a href="{{route('dashboard.user.edit', $user)}}" class="admin-action-ahref"><div class="btn-edit"></div></a>
+                            <a href="{{route('dashboard.user.edit', $user)}}" class="admin-action-ahref"><div class="btn-password"></div></a>
                             <!-- link that opens popup -->
                             <!-- <a class="popup-with-delete-form admin-action-ahref" href="#delete-form"><div class="btn-delete"></div></a> -->
                             <!-- <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.user.destroy', $user)}}">
