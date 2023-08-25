@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('custom_css')
     <link rel="stylesheet" href="{{asset('css/order-form-new.css')}}">
+    <link rel="stylesheet" href="{{asset('css/password.css')}}">
 @endsection
 @section('content')
     <main>
@@ -17,7 +18,7 @@
                                     <input id="email" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
                                            required autocomplete="email" autofocus
-                                           placeholder="Ваш e-mail"> <!--value="{{ old('email') }}" -->
+                                           placeholder="Ваш e-mail *"> <!--value="{{ old('email') }}" -->
 
                                     <!-- @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -26,10 +27,14 @@
                                     @enderror -->
                                 </div>
                                 <div class="">
-                                    <input id="password" type="password"
-                                           class="form-control @error('password') is-invalid @enderror" name="password"
-                                           required autocomplete="current-password" placeholder="Ваш пароль">
-
+                                    <div class="password-input-wrapper">
+                                        <input id="password" type="password"
+                                            class="form-control password-field @error('password') is-invalid @enderror" name="password"
+                                            required autocomplete="off" placeholder="Ваш пароль *">
+                                        <button type="button" name="" value="" class="view-password-button">
+                                            <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
+                                        </button>  
+                                    </div>
                                     <!-- @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -119,10 +124,14 @@
                                         @enderror -->
                                 </div>
                                 <div class="">
-                                    <input id="password" type="password"
-                                           class="form-control @error('password') is-invalid @enderror" name="password"
-                                           required autocomplete="new-password" placeholder="Пароль *">
-
+                                    <div class="password-input-wrapper">
+                                        <input id="password" type="password"
+                                            class="form-control password-field @error('password') is-invalid @enderror" name="password"
+                                            required autocomplete="off" placeholder="Пароль *">
+                                        <button type="button" name="" value="" class="view-password-button">
+                                            <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
+                                        </button>  
+                                    </div> 
                                     <!-- @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -130,9 +139,14 @@
                                     @enderror -->
                                 </div>
                                 <div class="">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                           name="password_confirmation" required autocomplete="new-password"
-                                           placeholder="Подтвердите пароль *">
+                                    <div class="password-input-wrapper">
+                                        <input id="password-confirm" type="password" class="form-control password-field @error('password_confirmation') is-invalid @enderror"
+                                            name="password_confirmation" required autocomplete="off"
+                                            placeholder="Подтвердите пароль *">
+                                        <button type="button" name="" value="" class="view-password-button">
+                                            <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
+                                        </button> 
+                                    </div>
                                 </div>
                                 <div class="center-button">
                                     <div class="">
@@ -149,6 +163,9 @@
             </div>
         </div>
     </main>
+@endsection  
+@section('custom_js')
+<script src="{{ asset('js/view-hide-password.js') }}" type="text/javascript"></script>
 @endsection                    
                 
 {{--<form method="POST" action="{{ route('login') }}">--}}

@@ -85,8 +85,8 @@ require __DIR__.'/auth.php'; */
 
 
 //админ панель
-// Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
-Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['auth', 'role:admin']], function () {    
+Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+// Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['auth', 'role:admin']], function () {    
     Route::get('/', function () {
         return view('admin.index');
     });

@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('custom_css')
     <link rel="stylesheet" href="{{asset('css/order-form-new.css')}}">
+    <link rel="stylesheet" href="{{asset('css/password.css')}}">
     <link rel="stylesheet" href="{{asset('css/cart.css')}}">
 @endsection
 @section('content')
@@ -51,20 +52,29 @@
 
                                         <!-- Поля ввода и подтверждения пароля -->
                                         <div class="">
-                                            <input id="password" type="password"
-                                                   class="form-control input-margin-top password hidden"
-                                                   name="password" autocomplete="new-password" placeholder="Пароль *">
-
+                                            <div class="password-input-wrapper hidden">
+                                                <input id="password" type="password"
+                                                    class="form-control password-field input-margin-top password hidden"
+                                                    name="password" autocomplete="off" placeholder="Пароль *">
+                                                <button type="button" name="" value="" class="view-password-button">
+                                                    <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
+                                                </button>  
+                                            </div>                                                  
                                             <!-- @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror -->
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror -->
                                         </div>
                                         <div class="">
-                                            <input id="password-confirm" type="password"
-                                                   class="form-control password hidden" name="password_confirmation"
-                                                   autocomplete="new-password" placeholder="Подтвердите пароль *">
+                                            <div class="password-input-wrapper hidden">
+                                                <input id="password-confirm" type="password"
+                                                    class="form-control password-field password hidden" name="password_confirmation"
+                                                    autocomplete="new-password" placeholder="Подтвердите пароль *">
+                                                <button type="button" name="" value="" class="view-password-button">
+                                                    <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
+                                                </button>  
+                                            </div>   
                                         </div>
                                         <!-- <input type="submit" value="Отправить"> -->
                                     @endguest
@@ -180,9 +190,9 @@
                         </div>
                     </form>
                     @else
-                        <p class="section-header">Корзина пуста.</p>
+                        <p class="section-header">Корзина пуста</p>
                         <br>
-                        <a href="{{url('/')}}" class="main-cart-back"> перейти к покупкам</a>
+                        <a href="{{url('/')}}" class="main-cart-back"> Перейти к покупкам</a>
                         <br>
                     @endif
                 </section>
@@ -191,5 +201,6 @@
     </main>
 @endsection
 @section('custom_js')
-    <script src="{{asset('js/orderform-control.js')}}"></script>
-@endsection
+    <script src="{{asset('js/orderform-control.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('js/view-hide-password.js') }}" type="text/javascript"></script>
+@endsection 

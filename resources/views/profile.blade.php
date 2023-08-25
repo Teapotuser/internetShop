@@ -2,6 +2,7 @@
 @section('custom_css') 
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/order-form-new.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/password.css')}}">
      <!--  <link rel="stylesheet" href="{{ asset('css/pagination.css') }}" type="text/css"> -->
 @endsection
 @section('content')
@@ -213,9 +214,13 @@
                                     <div class="form-inner"> 
                                         <div class="form-profile-changepassword-panel-container">
                                             <div class="">                                         
-                                            <!-- <h3>Адрес</h3> -->                                        
-                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off" placeholder="Старый пароль *">
-
+                                            <!-- <h3>Адрес</h3> --> 
+                                                <div class="password-input-wrapper">                                       
+                                                    <input id="password" type="password" class="form-control password-field @error('password') is-invalid @enderror" name="password" required autocomplete="off" placeholder="Старый пароль *">
+                                                    <button type="button" name="" value="" class="view-password-button">
+                                                        <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
+                                                    </button>  
+                                                </div> 
                                                 <!-- @error('password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -223,8 +228,12 @@
                                                 @enderror -->                                    
                                             </div>                                        
                                             <div class="">
-                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off" placeholder="Новый пароль *">
-
+                                                <div class="password-input-wrapper">
+                                                    <input id="password" type="password" class="form-control password-field @error('password') is-invalid @enderror" name="password" required autocomplete="off" placeholder="Новый пароль *">
+                                                    <button type="button" name="" value="" class="view-password-button">
+                                                        <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
+                                                    </button>  
+                                                </div> 
                                                 <!-- @error('password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -232,7 +241,12 @@
                                                 @enderror -->                                    
                                             </div>                                
                                             <div class="">
-                                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="off" placeholder="Подтвердите пароль *">
+                                                <div class="password-input-wrapper">
+                                                    <input id="password-confirm" type="password" class="form-control password-field @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="off" placeholder="Подтвердите пароль *">
+                                                    <button type="button" name="" value="" class="view-password-button">
+                                                        <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
+                                                    </button>  
+                                                </div> 
                                             </div>
                                         </div>
                                         <div class="feedbackform-center-button">
@@ -255,4 +269,5 @@
 @endsection     
 @section('custom_js')
 <script src="{{ asset('js/file-upload-pairs.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/view-hide-password.js') }}" type="text/javascript"></script>
 @endsection    
