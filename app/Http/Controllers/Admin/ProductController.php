@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\Collection;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\Category\StoreRequest;
+use App\Http\Requests\Admin\Product\StoreRequest;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -43,9 +43,20 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    // Сохранение нового товара
+    public function store(StoreRequest $request)
     {
-        //
+        $validated = $request->validated();
+        if ($request->file('picture')){
+            $file = $request->file('picture');            
+            $picture = Storage::putFile('/public/Products/'.$validated['article'], $file);
+          
+            $validated['picture'] =$picture;
+        }
+        $collection = Collection::create($validated);      
+        Storage::makeDirectory('/public/Products/' . $product->article);
+        
+        return redirect(route('dashboard.poduct.index'))->with('success', 'Товар "' . $product->title . '" добавлен');
     }
 
     /**
@@ -54,9 +65,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
+    //  Отображение View (формы) товара
     public function show(Product $product)
     {
-        //
+        $collections = Collection::all();
+        $categories = Category::all();
+        return view('admin.product.show', compact('collections', 'categories', 'product'));
     }
 
     /**
@@ -65,9 +79,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
+    // Станица (форма) редактирования товара
     public function edit(Product $product)
     {
-        //
+        $collections = Collection::all();
+        $categories = Category::all();
+        return view('admin.product.edit', compact('collections', 'categories', 'product'));
     }
 
     /**
@@ -77,9 +94,24 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    // Сохранение обновленного (отредактированного) товара
+    public function update(StoreRequest $request, Product $product)
     {
-        //
+        $validated = $request->validated();
+        if ($request->file('picture')||$request->validated('removeImage')) {
+            if ($product->picture) {
+                // Storage::delete($category->picture);
+                Storage::deleteDirectory('/public/Products/' . $validated['code']);
+                $collection->picture=null;
+            }
+        }
+        if ($request->file('picture')) {
+            $file = $request->file('picture');
+            $picture = Storage::putFile('/public/Products/' . $validated['code'], $file);
+            $validated['picture'] = $picture;
+        }
+        $product->update($validated);
+        return redirect(route('dashboard.product.index'))->with('success', 'Товар "' . $product->title . '" успешно сохранен');
     }
 
     /**
@@ -90,6 +122,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        if ($product->picture) {
+            // Storage::delete($category->picture);
+            Storage::deleteDirectory('/public/Products/' . $collection->code);
+        }
     }
 }

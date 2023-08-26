@@ -521,7 +521,7 @@ input[type=radio] + label {
 }
 }
 
-@media (min-width: 300px) and (max-width: 750px) {
+@media (min-width: 200px) and (max-width: 750px) {
 	/* Форма обратной связи */
 	.decor.form-feedback-panel {
 		width: 90%;
