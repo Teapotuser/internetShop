@@ -67,9 +67,9 @@ Route::get('clearCart', [CartController::class, 'clear']);
 Route::get('/feedback', function () {return view('feedback');})->name('feedback.form');
 Route::get('/profile', function () {return view('profile');})->name('profile.personal');
 
-Route::get('/dashboard', function () {
+/* Route::get('/dashboard', function () {
     return view('dashboard');
-})/* ->middleware(['auth', 'verified']) */->name('dashboard');
+}) *//* ->middleware(['auth', 'verified']) *//* ->name('dashboard'); */
 
 /*Route::get('/search', function () {
     return view('search');
