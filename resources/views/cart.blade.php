@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('custom_css')
     <link rel="stylesheet" href="{{asset('css/cart.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/order-form-new.css')}}" type="text/css">
 @endsection
 @section('content')
     <main>
