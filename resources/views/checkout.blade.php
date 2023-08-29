@@ -68,7 +68,7 @@
                                             </label>
                                         </div>
 
-                                        <!-- Поля ввода и подтверждения пароля -->
+                                        <!-- Поля ввода и подтверждения пароля  -->
                                         <div class="">
                                             <div class="password-input-wrapper @if(old('create-account')!='on') hidden @endif">
                                                 <input id="password" type="password"

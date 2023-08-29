@@ -209,7 +209,7 @@ class CartController extends Controller
             if ($create_account) {
                 $admin->notify(new \App\Notifications\Admin\NewRegistration($user));
             }
-        } */
+        }  */
 
         return view('orderconfirm', compact(['order', 'create_account']));
     }

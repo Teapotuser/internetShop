@@ -278,7 +278,7 @@ function changeQuantity(event) {
                 button.nextElementSibling.value = tempItem.quantity;
             }
         }
-        // отправляем запрос на обновление данных на сервере
+        // отправляем запрос на обновление данных на сервере 
         fetch(`/updateProductInCart/${id}/${tempItem.quantity}`);
         rePrintCart()
     } else {

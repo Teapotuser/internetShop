@@ -14,7 +14,7 @@
                             покупок @if(!Session::get('cart') || count(Session::get('cart'))==0)
                                 пуста
                             @endif</h2>
-                        <!--  Таблица товаров в корзине -->
+                        <!--  Таблица товаров в корзине  -->
                         @if(Session::get('cart') && count(Session::get('cart')))
                             <div class="cart-table-container">
                                 <!-- Заголовок таблицы -->

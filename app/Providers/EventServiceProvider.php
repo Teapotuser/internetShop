@@ -33,7 +33,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         /* Order::observe(OrderObserver::class);
-        User::observe(UserObserver::class); */
+        User::observe(UserObserver::class);  */
     }
 
     /**
