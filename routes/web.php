@@ -66,6 +66,7 @@ Route::get('clearCart', [CartController::class, 'clear']);
 
 Route::get('/feedback', function () {return view('feedback');})->name('feedback.form');
 Route::get('/profile', function () {return view('profile');})->name('profile.personal');
+Route::get('/profile-orders', function () {return view('profile-ordershistory');})->name('profile.ordershistory');
 
 /* Route::get('/dashboard', function () {
     return view('dashboard');
@@ -85,8 +86,8 @@ require __DIR__.'/auth.php'; */
 
 
 //админ панель
-Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
-// Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['auth', 'role:admin']], function () {    
+// Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['auth', 'role:admin']], function () {    
     Route::get('/', function () {
         return view('admin.index');
     });

@@ -13,6 +13,24 @@
                     <!-- Правая галерея товаров -->
                     <h2 class="section-header">Оформление заказа</h2>
                     <!--  Форма адреса -->
+                    @if($errors->any())
+                        <div class="alert-container">
+                            <div class="alert alert-danger showAlert show">
+                                <div class="alert-danger-icon"></div>
+                                <!-- <ul> -->
+                                <div class="alert-msg-container">
+                                    @foreach($errors->all() as $error)
+                                        <!-- <li>{{ $error }}</li> -->
+                                        <div class="msg">{{ $error }}</div>
+                                    @endforeach
+                                    <!-- </ul> -->
+                                </div>
+                                <div class="close-btn">
+                                    <button type="button" id="close-alert-button"></button>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                     @if(Session::get('cart')&& count(Session::get('cart')))
                     <form class="form-order" action="{{route('saveOrder')}}" method="POST">
                         @method('POST')
@@ -25,7 +43,7 @@
                                            value="{{old('name',Auth::user()?->name)}}"
                                            name="name">
                                     <input type="text" placeholder="Фамилия *" minlength="1" maxlength="150"
-                                           value="{{old('surnmae',Auth::user()?->last_name)}}"
+                                           value="{{old('last_name',Auth::user()?->last_name)}}"
                                            name="last_name"
                                            required="">
                                     <input type="email" placeholder="E-mail *" minlength="1" maxlength="150" required=""
@@ -40,7 +58,7 @@
                                         <p class="info-text">Вы можете создать аккаунт после оформления заказа</p>
                                         <div class="form-inner-checkbox">
 
-                                            <input type="checkbox" id="create-account" name="create-account">
+                                            <input type="checkbox" id="create-account" name="create-account" @checked(old('create-account', )) >
                                             <label for="create-account">
                                                 <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
                                                      class="svg-checkbox">
@@ -52,10 +70,10 @@
 
                                         <!-- Поля ввода и подтверждения пароля -->
                                         <div class="">
-                                            <div class="password-input-wrapper hidden">
+                                            <div class="password-input-wrapper @if(old('create-account')!='on') hidden @endif">
                                                 <input id="password" type="password"
-                                                    class="form-control password-field input-margin-top password hidden"
-                                                    name="password" autocomplete="off" placeholder="Пароль *">
+                                                    class="form-control password-field input-margin-top password @if(old('create-account')!='on') hidden @endif"
+                                                    name="password" autocomplete="off" placeholder="Пароль *" @if(old('create-account')=='on') required @endif>
                                                 <button type="button" name="" value="" class="view-password-button">
                                                     <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
                                                 </button>  
@@ -67,10 +85,10 @@
                                             @enderror -->
                                         </div>
                                         <div class="">
-                                            <div class="password-input-wrapper hidden">
+                                            <div class="password-input-wrapper @if(old('create-account')!='on') hidden @endif">
                                                 <input id="password-confirm" type="password"
-                                                    class="form-control password-field password hidden" name="password_confirmation"
-                                                    autocomplete="new-password" placeholder="Подтвердите пароль *">
+                                                    class="form-control password-field password @if(old('create-account')!='on') hidden @endif" name="password_confirmation"
+                                                    autocomplete="off" placeholder="Подтвердите пароль *" @if(old('create-account')=='on') required @endif>
                                                 <button type="button" name="" value="" class="view-password-button">
                                                     <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
                                                 </button>  

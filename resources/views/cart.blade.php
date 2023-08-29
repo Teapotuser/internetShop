@@ -33,10 +33,10 @@
                                         <span class="main-cart-delete main-cart-header main-cart-column"></span>
                                     </div>
                                 </div>
-                                <div class="main-cart-items-wrapper">
+                               <!--  <div class="main-cart-items-wrapper">
 
-                                </div>
-                                <div class="main-cart-total">
+                                </div> -->
+                                <div class="main-cart-total main-cart-row-footer">
                                     <strong class="main-cart-total-title">Итого:</strong>
                                     <span class="main-cart-total-price"></span>
                                 </div>

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class CartController extends Controller
@@ -45,6 +46,10 @@ class CartController extends Controller
 
     public function addToCart($id, $quantity): JsonResponse
     {
+        if ($quantity <= 0) {
+            $quantity = 1;
+        }
+        
         $product = Product::where('article', '=', $id)->first();
 
         if (!$product) {
@@ -63,7 +68,8 @@ class CartController extends Controller
                     "name" => $product->title,
                     "quantity" => $quantity && is_numeric($quantity) ? $quantity : 1,
                     "price" => $product->issetDiscount() ? $product->getPriceWithDiscount() : $product->price,
-                    "picture" => Storage::url($product->picture)
+                    "picture" => Storage::url($product->picture),
+                    "url" => route('product.show', $id)
                 ]
             ];
 
@@ -92,9 +98,10 @@ class CartController extends Controller
         $cart[$id] = [
             "id" => $id,
             "name" => $product->title,
-            "quantity" => 1,
+            "quantity" => $quantity,
             "price" => $product->price,
-            "picture" => Storage::url($product->picture)
+            "picture" => Storage::url($product->picture),
+            "url" => route('product.show', $id)
         ];
 
         Session::put('cart', $cart);
@@ -111,7 +118,7 @@ class CartController extends Controller
             Session::put('cart', $cart);
         }
 
-        return response()->json(['msg' => 'Cart updated successfully', 'cart' => array_values($cart)]);
+        return response()->json(['msg' => $product->title . ' добавлен в корзину!', 'type' => 'added', 'cart' => array_values($cart)]);
     }
 
     public function remove(Request $request): JsonResponse
@@ -150,9 +157,16 @@ class CartController extends Controller
         if (!is_array(Session::get('cart')) || count(Session::get('cart')) == 0) {
             return back()->with(['error' => 'Корзина пуста']);
         }
-        $admins = User::where('role', 'admin')->get();
+        // $admins = User::where('role', 'admin')->get();
         $create_account = $request->get('create-account');
         if ($create_account) {
+            $request->validate([
+                'email' => ['required', 'unique:users'],
+                'name' => ['required'],
+                'last_name' => ['required'],
+                'phone_number' => ['required'],
+                'password' => ['required', 'confirmed'],
+            ]);
 
             $user = User::create([
                 'name' => $request->get('name'),

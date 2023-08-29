@@ -68,6 +68,21 @@ function init_buttons() {
         let input = cart_plus_quantity[i];
         input.addEventListener('click', changeQuantity);
     }
+
+    let add_buttons = document.getElementsByClassName('add-cart'); // Кнопка В корзину
+    for (let i = 0; i < add_buttons.length; i++) {
+        let id = add_buttons[i].dataset.id;
+        // console.log(id)
+        // console.log(itemsInCart);
+        let in_cart = itemsInCart.filter(function (item) {
+            return item.id === id;
+        })
+        // console.log(in_cart);
+        if (in_cart.length === 0) {
+            enableButtonAfterRemove(add_buttons[i]);
+        }
+
+    }
 }
 
 // Making Function
@@ -212,7 +227,7 @@ async function removeCartItem(event) {
     // Присваиваем корзине значение соответствующее значению в нашей сессии;
     itemsInCart = result.cart;
     rePrintCart();
-    enableButtonAfterRemove(button); //я добавила
+    // enableButtonAfterRemove(button); я добавила
 }
 
 //Quantity Changes
@@ -236,10 +251,10 @@ async function quantityChanged(event) {
 
 //Plus\Minus button изменяет Quantity
 function changeQuantity(event) {
-    console.warn(event);
+    // console.warn(event);
     event.preventDefault();
     let button = event.target;
-    console.log(button);
+    // console.log(button);
     let id = button.dataset.id; //взять Артикул товара из аттрибута data-id кнопки .add-cartvar id = button.dataset.id;
     //Вернуть элемент массива с id
     let tempItem = itemsInCart.find(function (element) {
@@ -270,7 +285,13 @@ function changeQuantity(event) {
         if (button.dataset.actiontype === 'plus') {
             button.previousElementSibling.value = parseInt(button.previousElementSibling.value)+1;
         } else {
-            button.nextElementSibling.value = parseInt(button.nextElementSibling.value)-1;
+            // button.nextElementSibling.value = parseInt(button.nextElementSibling.value)-1;
+            let tempValue = parseInt(button.nextElementSibling.value) - 1
+            if (isNaN(tempValue) || tempValue <= 1) {
+                button.nextElementSibling.value = 1;
+            } else {
+                button.nextElementSibling.value = tempValue;
+            }
         }
     }
 }
@@ -287,39 +308,41 @@ function addCartClicked(event) {
     } else {
         quantity = 1;
     }
-    console.log(shopProducts)
-    if (shopProducts.classList.contains('img_block')) {
+    // console.log(shopProducts)
+    /* if (shopProducts.classList.contains('img_block')) {
         aTitle = shopProducts.getElementsByClassName('link-img-product')[0];
-        title = aTitle.getElementsByClassName('name-product')[0].innerText;
+        title = aTitle.getElementsByClassName('name-product')[0].innerText; */
         // console.log(title);
 
-        divPrice = shopProducts.getElementsByClassName('price-product')[0];
+       /*  divPrice = shopProducts.getElementsByClassName('price-product')[0];
         finalPrice = divPrice.getElementsByClassName('final-price-product')[0];
-        price = finalPrice.getElementsByClassName('final-price-product-amount')[0].innerText;
+        price = finalPrice.getElementsByClassName('final-price-product-amount')[0].innerText; */
         // console.log(price);
 
-        divProductImg = aTitle.getElementsByClassName('img-product')[0];
+       /*  divProductImg = aTitle.getElementsByClassName('img-product')[0];
         productImg = divProductImg.getElementsByClassName('img')[0].src;
     } else {
         title = document.getElementsByClassName('product-name')[0].innerText;
         price = document.getElementsByClassName('final-price-product-amount')[0].innerText;
         productImg = document.getElementById('slick-slide00').getElementsByClassName('slider-img')[0].src;
-    }
+    } */
 
     // console.log(productImg);
-    console.log(id, title, price, productImg, button);
-    addProductToCart(id, title, quantity, price, productImg, button);
+    // console.log(id, title, price, productImg, button);
+    // addProductToCart(id, title, quantity, price, productImg, button);
+    addProductToCart(id, quantity, button);
 }
 
 //Вывод в правую панель корзины
-async function addProductToCart(id, title, quantity, price, productImg, button) {
+// async function addProductToCart(id, title, quantity, price, productImg, button) {
+async function addProductToCart(id, quantity, button) {
     let response = await fetch(`/addToCart/${id}/${quantity}`);
     let result = await response.json();
     if (response.status !== 200) {
         alert(result.message);
         return false;
     }
-    console.log(result.cart);
+    // console.log(result.cart);
     // Присваиваем корзине значение соответствующее значению в нашей сессии;
     itemsInCart = result.cart;
     // перерисовываем корзину
@@ -329,14 +352,16 @@ async function addProductToCart(id, title, quantity, price, productImg, button) 
     cart.classList.add("active");
 
     blockButtonAfterAdd(button);
-
 }
 
 function rePrintCart() {
     var cartItems = document.getElementsByClassName("cart-right-content")[0]; //Контейнер cart right (header.blade.php) для строк отобранных товаров
-    var cartItemsMain = document.getElementsByClassName("main-cart-items-wrapper")[0]; //Контейнер в cart.blade.php для строк cart items, создал Даниил
+    var cartItemsMain = document.getElementsByClassName("main-cart-row-footer")[0]; //Строка Итого в cart.blade.php, назвал класс Даниил
     if (cartItemsMain) {
-        cartItemsMain.innerHTML = '';
+        let printed_items = document.getElementsByClassName('main-cart-row-product');
+        for (let i = printed_items.length - 1; i >= 0; --i) {
+            printed_items[i].remove();
+        }
     }
     cartItems.innerHTML = '';
     itemsInCart.forEach(function (item, key) {
@@ -367,6 +392,7 @@ function rePrintCart() {
         if (cartItemsMain) {
             let cartShopBox = document.createElement("div");
             cartShopBox.classList.add("main-cart-row");
+            cartShopBox.classList.add("main-cart-row-product");
             cartShopBox.innerHTML = `
                 <div class="main-cart-itemimage-container main-cart-not-column" data-set="50%">
                     <div class="main-cart-image main-cart-column">
@@ -404,7 +430,7 @@ function rePrintCart() {
                         <button class="cart-remove" data-id="${item.id}"></button>
                     </form>
                 </div>`;
-            cartItemsMain.append(cartShopBox);
+            cartItemsMain.before(cartShopBox);
         }
     })
 
@@ -436,7 +462,6 @@ function updateTotal() {
     if (document.getElementsByClassName('main-cart-total-price')[0]) {
         document.getElementsByClassName('main-cart-total-price')[0].innerText = total + " р."; // Итого сумма в cart.blade.php
     }
-
 
 }
 
