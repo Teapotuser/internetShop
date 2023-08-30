@@ -107,7 +107,7 @@
 }
 
 .orderhistory-menu__sublink:hover{
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 p.orderhistory-menu__sublink {
@@ -129,11 +129,11 @@ p.orderhistory-menu__sublink {
     pointer-events: all;
 }
 
-.orderhistory-menu__list  li {
+/* .orderhistory-menu__list  li {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-}
+} */
 
 
 body._pc .orderhistory-menu__arrow, body._touch .orderhistory-menu__arrow {
@@ -315,7 +315,9 @@ li._active > /*Вадим добавил уголок*/.orderhistory-menu__subli
     }
 
     .orderhistory-menu__sublist .orderhistory-menu__sublink {
-        margin-left: 50px;
+        /* margin-left: 50px; */
+        margin-left: 25px;
+        margin-right: 25px;
     }
 
     .orderhistory-menu__sublist .orderhistory-menu__sublist .orderhistory-menu__sublink {

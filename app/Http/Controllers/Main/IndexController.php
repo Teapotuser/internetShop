@@ -33,7 +33,7 @@ class IndexController extends Controller
             $categories = Category::all();
             $collections = Collection::all();
             // $products = Product::paginate(6); 
-            $products = Product::customSort($request->get('sort'))->paginate(6);
+            $products = Product::customSort($request->get('sort'))->IsActive()->paginate(6);
             //Фильтры ($filtrs) по умолчанию надо задать и в "CollectionController" и в "CategoryController" или будет ошибка
 		    $filters = [ 'minPrice' => 0, 'maxPrice' => 250, 'discount' => '', 'new' => ''/* , 'sort' => 'name' */ ];//задаём по умолчанию фильтр цен          
             return view('index', compact('categories', 'collections', 'products', 'filters') ); 

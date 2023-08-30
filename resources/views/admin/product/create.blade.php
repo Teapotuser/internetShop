@@ -68,40 +68,82 @@
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
             <!--Комбобокс Категории товара--> 
-            <label for="category_id">Категория *</label>
+            <div class="dropdown">
+                <button type="button" class="dropdown__button">
+                    <div class="dropdown__button-text">
+                        {{
+                            old('category_id')?
+                            $categories->find(old('category_id'))->name :
+                            'Выберите категорию...'
+                        }}
+                    </div>
+                </button>
+                <ul class="dropdown__list">
+                    @foreach($categories as $category)
+                        <li class="dropdown__list-item" data-value="{{$category->id}}">{{$category->name}}</li>
+                        <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
+                        <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
+                        <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
+                    @endforeach
+                </ul>
+                <input type="hidden" name="category_id" id="category_id" value="{{old('category_id')}}"
+                    class="dropdown__input-hidden">
+            </div>
+            <!-- <label for="category_id">Категория *</label>
             <br>
             <div class="form-group">
                 <div class="dropdown">
                     <button type="button" class="dropdown__button"><div class="dropdown__button-text">Выберите категорию ...</div></button>
                     <ul class="dropdown__list">
                         @foreach($categories as $category)
-                        <li class="dropdown__list-item" data-value="{{$category->id}}" >{{$category->name}}</li>
+                        <li class="dropdown__list-item" data-value="{{$category->id}}" >{{$category->name}}</li> -->
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
-                        @endforeach
+                       <!--  @endforeach
                     </ul>
-                    <input type="hidden" name="category_id" id="category_id" value="" class="dropdown__input-hidden" >
+                    <input type="hidden" name="category_id" id="category_id" value="{{ old('category_id') }}" class="dropdown__input-hidden" >
                 </div>
-            </div>
+            </div> -->
             <!--End of Комбобокс Категории товара--> 
             <!--Комбобокс Коллекции товара--> 
-            <label for="collection_id">Коллекция *</label>
+            <div class="dropdown">
+                <button type="button" class="dropdown__button">
+                    <div class="dropdown__button-text">
+                        {{
+                            old('category_id')?
+                            $categories->find(old('category_id'))->name :
+                            'Выберите категорию...'
+                        }}
+                    </div>
+                </button>
+                <ul class="dropdown__list">
+                    @foreach($categories as $category)
+                        <li class="dropdown__list-item" data-value="{{$category->id}}">{{$category->name}}</li>
+                        <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
+                        <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
+                        <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
+                    @endforeach
+                </ul>
+                <input type="hidden" name="category_id" id="category_id" value="{{old('category_id')}}"
+                    class="dropdown__input-hidden">
+            </div>
+            <!-- <label for="collection_id">Коллекция *</label>
             <br>
             <div class="form-group">
                 <div class="dropdown">
                     <button type="button" class="dropdown__button"><div class="dropdown__button-text">Выберите коллекцию ...</div></button>
                     <ul class="dropdown__list">
                         @foreach($collections as $collection)
-                        <li class="dropdown__list-item" data-value="{{$collection->id}}" >{{$collection->name}}</li>
+                        <li class="dropdown__list-item" data-value="{{$collection->id}}" >{{$collection->name}}</li> -->
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
-                        @endforeach
+                       <!--  @endforeach
                     </ul>
-                    <input type="hidden" name="collection_id" id="collection_id" value="" class="dropdown__input-hidden" >
+                    <input type="hidden" name="collection_id" id="collection_id" value="{{ old('collection_id') }}" class="dropdown__input-hidden" >
                 </div>
-            </div>
+            </div> -->
             <!--End of Комбобокс Коллекции товара--> 
             <label for="description">Описание</label>
             <br>
@@ -348,8 +390,8 @@
                             <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
                         </figure>
                 
-                        <input type="file" id="upload-button-11" class="upload-button" accept="image/*" name="preview_path[]">
-                        <label for="upload-button-11" class="upload-file-label upload-file-label-in-pair">
+                        <input type="file" id="upload-button-21" class="upload-button" accept="image/*" name="preview_path[]">
+                        <label for="upload-button-21" class="upload-file-label upload-file-label-in-pair">
                             <div class="file-upload-icon"></div>
                             <!-- <span>Загрузить файл</span> -->
                         </label>
@@ -364,8 +406,8 @@
                             <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
                         </figure>
                 
-                        <input type="file" id="upload-button-12" class="upload-button" accept="image/*" name="path[]">
-                        <label for="upload-button-12" class="upload-file-label upload-file-label-in-pair">
+                        <input type="file" id="upload-button-22" class="upload-button" accept="image/*" name="path[]">
+                        <label for="upload-button-22" class="upload-file-label upload-file-label-in-pair">
                             <div class="file-upload-icon"></div>
                             <!-- <span>Загрузить файл</span> -->
                         </label>
@@ -383,8 +425,8 @@
                             <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
                         </figure>
                 
-                        <input type="file" id="upload-button-11" class="upload-button" accept="image/*" name="preview_path[]">
-                        <label for="upload-button-11" class="upload-file-label upload-file-label-in-pair">
+                        <input type="file" id="upload-button-31" class="upload-button" accept="image/*" name="preview_path[]">
+                        <label for="upload-button-31" class="upload-file-label upload-file-label-in-pair">
                             <div class="file-upload-icon"></div>
                             <!-- <span>Загрузить файл</span> -->
                         </label>
@@ -399,8 +441,8 @@
                             <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
                         </figure>
                 
-                        <input type="file" id="upload-button-12" class="upload-button" accept="image/*" name="path[]">
-                        <label for="upload-button-12" class="upload-file-label upload-file-label-in-pair">
+                        <input type="file" id="upload-button-32" class="upload-button" accept="image/*" name="path[]">
+                        <label for="upload-button-32" class="upload-file-label upload-file-label-in-pair">
                             <div class="file-upload-icon"></div>
                             <!-- <span>Загрузить файл</span> -->
                         </label>

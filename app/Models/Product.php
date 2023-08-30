@@ -40,6 +40,10 @@ class Product extends Model
         return $this->discount ? true : false;
     }
 
+    public function scopeIsActive(Builder $query)
+    {
+        return $query->where('is_active', 1);
+    }
     /// Даниил добавил тут
     public function scopeMaxPrice(Builder $query, $price)
     {

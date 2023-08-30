@@ -110,15 +110,20 @@ class CartController extends Controller
     }
 
     public function update(Request $request): JsonResponse
-    {
-        $cart = Session::get('cart');
+{
+    $cart = Session::get('cart');
 
-        if ($request->id and $request->quantity) {
-            $cart[$request->id]["quantity"] = $request->quantity;
-            Session::put('cart', $cart);
+    if ($request->id and $request->quantity) {
+        $cart[$request->id]["quantity"] = $request->quantity;
+        Session::put('cart', $cart);
+        $msg = $cart[$request->id]['name'] . ' добавлен в корзину!';
+        $type = 'added';
+        } else {
+            $msg = 'Данного товара нет в корзине';
+            $type = 'error';
         }
 
-        return response()->json(['msg' => $product->title . ' добавлен в корзину!', 'type' => 'added', 'cart' => array_values($cart)]);
+        return response()->json(['msg' => $msg, 'type' => $type, 'cart' => array_values($cart)]);
     }
 
     public function remove(Request $request): JsonResponse

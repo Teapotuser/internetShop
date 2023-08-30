@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required',
+            'email' => ['required', 'email',
             Rule::unique('users')
                 ->when($this->user, function ($r) {
                     $r->ignore($this->user->id);
@@ -34,9 +34,9 @@ class StoreRequest extends FormRequest
             'name' => 'required',
             'last_name' => 'required',
             'phone_number' => 'required',
-            // 'address' => 'sometimes',
-            // 'city' => 'sometimes',
-            // 'zip_code' => 'sometimes',            
+            'address' => 'sometimes',
+            'city' => 'sometimes',
+            'zip_code' => 'sometimes',            
             'picture' => ['sometimes', 'file'],
             'removeImage' => 'sometimes',
             'role' => 'required',
