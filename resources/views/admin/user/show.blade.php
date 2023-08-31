@@ -71,7 +71,7 @@
             </div>
             <br>
 
-            <!-- <label for="address">Адрес</label>
+            <label for="address">Адрес</label>
             <input type="text" name="address" id="address" minLength="1" maxLength="500" autocomplete="off" value="{{ $user->address }}" disabled>
             @error('address')
                 <div class="form-field-validation-error">{{ $message }}</div>
@@ -91,14 +91,22 @@
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
                 </div>
-            </div> -->
+            </div>
 
             <!-- Комбобокс Роль --> 
             <label for="role">Роль *</label>
             <br>
             <div class="form-group">
                 <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">Выберите роль ...</div></button>
+                    <button type="button" class="dropdown__button">
+                        <div class="dropdown__button-text">
+                            @if ( $user->role == 'admin') 
+                                Админ 
+                            @elseif($user->role == 'user') 
+                                Пользователь 
+                            @endif                        
+                        </div>
+                    </button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="user" >Пользователь</li>
                         <li class="dropdown__list-item" data-value="admin" >Админ</li>

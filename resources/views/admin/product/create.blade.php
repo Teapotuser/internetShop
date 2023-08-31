@@ -68,26 +68,30 @@
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
             <!--Комбобокс Категории товара--> 
-            <div class="dropdown">
-                <button type="button" class="dropdown__button">
-                    <div class="dropdown__button-text">
-                        {{
-                            old('category_id')?
-                            $categories->find(old('category_id'))->name :
-                            'Выберите категорию...'
-                        }}
-                    </div>
-                </button>
-                <ul class="dropdown__list">
-                    @foreach($categories as $category)
-                        <li class="dropdown__list-item" data-value="{{$category->id}}">{{$category->name}}</li>
-                        <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
-                        <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
-                        <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
-                    @endforeach
-                </ul>
-                <input type="hidden" name="category_id" id="category_id" value="{{old('category_id')}}"
-                    class="dropdown__input-hidden">
+            <label for="category_id">Категория *</label>
+            <br>
+            <div class="form-group">
+                <div class="dropdown">
+                    <button type="button" class="dropdown__button enabled">
+                        <div class="dropdown__button-text enabled">
+                            {{
+                                old('category_id')?
+                                $categories->find(old('category_id'))->name :
+                                'Выберите категорию ...'
+                            }}
+                        </div>
+                    </button>
+                    <ul class="dropdown__list">
+                        @foreach($categories as $category)
+                            <li class="dropdown__list-item" data-value="{{$category->id}}">{{$category->name}}</li>
+                            <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
+                            <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
+                            <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
+                        @endforeach
+                    </ul>
+                    <input type="hidden" name="category_id" id="category_id" value="{{old('category_id')}}"
+                        class="dropdown__input-hidden">
+                </div>
             </div>
             <!-- <label for="category_id">Категория *</label>
             <br>
@@ -107,26 +111,30 @@
             </div> -->
             <!--End of Комбобокс Категории товара--> 
             <!--Комбобокс Коллекции товара--> 
-            <div class="dropdown">
-                <button type="button" class="dropdown__button">
-                    <div class="dropdown__button-text">
-                        {{
-                            old('category_id')?
-                            $categories->find(old('category_id'))->name :
-                            'Выберите категорию...'
-                        }}
-                    </div>
-                </button>
-                <ul class="dropdown__list">
-                    @foreach($categories as $category)
-                        <li class="dropdown__list-item" data-value="{{$category->id}}">{{$category->name}}</li>
-                        <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
-                        <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
-                        <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
-                    @endforeach
-                </ul>
-                <input type="hidden" name="category_id" id="category_id" value="{{old('category_id')}}"
-                    class="dropdown__input-hidden">
+            <label for="category_id">Коллекция *</label>
+            <br>
+            <div class="form-group">
+                <div class="dropdown">
+                    <button type="button" class="dropdown__button enabled">
+                        <div class="dropdown__button-text enabled">
+                            {{
+                                old('collection_id')?
+                                $collections->find(old('collection_id'))->name :
+                                'Выберите коллекцию ...'
+                            }}
+                        </div>
+                    </button>
+                    <ul class="dropdown__list">
+                        @foreach($collections as $collection)
+                            <li class="dropdown__list-item" data-value="{{$collection->id}}">{{$collection->name}}</li>
+                            <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
+                            <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
+                            <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
+                        @endforeach
+                    </ul>
+                    <input type="hidden" name="collection_id" id="collection_id" value="{{old('collection_id')}}"
+                        class="dropdown__input-hidden">
+                </div>
             </div>
             <!-- <label for="collection_id">Коллекция *</label>
             <br>
@@ -272,30 +280,44 @@
             <br>
             <div class="form-group">
                 <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">Выберите материал ...</div></button>
+                    <button type="button" class="dropdown__button enabled"><div class="dropdown__button-text enabled">
+                        {{
+                            old('material')?
+                            old('material') :
+                            'Выберите материал ...'
+                        }}
+                    </div></button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="плюш/полиэстер" >плюш/полиэстер</li>
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
                     </ul>
-                    <input type="hidden" name="material" id="material" value="" class="dropdown__input-hidden" >
+                    <input type="hidden" name="material" id="material" value="{{old('material')}}" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Материал товара--> 
              <!--Комбобокс Материал наполнителя товара--> 
-             <label for="material_filling">Материал наполнителя</label>
+            <label for="material_filling">Материал наполнителя</label>
             <br>
             <div class="form-group">
                 <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">Выберите материал наполнителя ...</div></button>
+                    <button type="button" class="dropdown__button enabled">
+                        <div class="dropdown__button-text enabled">
+                        {{
+                            old('material_filling')?
+                            old('material_filling') :
+                            'Выберите материал наполнителя ...'
+                        }}                        
+                    </div>
+                </button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="полиэфирное волокно (полиэстер)" >полиэфирное волокно (полиэстер)</li>
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
                     </ul>
-                    <input type="hidden" name="material_filling" id="material_filling" value="" class="dropdown__input-hidden" >
+                    <input type="hidden" name="material_filling" id="material_filling" value="old('material_filling')" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Материал наполнителя товара-->
@@ -304,30 +326,46 @@
             <br>
             <div class="form-group">
                 <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">Выберите рекомендуемый возраст ...</div></button>
+                    <button type="button" class="dropdown__button enabled">
+                        <div class="dropdown__button-text enabled">
+                        {{
+                            old('age_from')?
+                            old('age from') :
+                            'Выберите рекомендуемый возраст ...'
+                        }}                           
+                        </div>
+                    </button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="от 0 месяцев" >от 0 месяцев</li>
                         <li class="dropdown__list-item" data-value="от 12 месяцев">от 12 месяцев</li>
                         <li class="dropdown__list-item" data-value="от 3 лет">от 3 лет</li>
                         <!-- <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li>--> 
                     </ul>
-                    <input type="hidden" name="age_from" id="age_from" value="" class="dropdown__input-hidden" >
+                    <input type="hidden" name="age_from" id="age_from" value="old('age_from')" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Рекомендуемый возраст товара--> 
             <!--Комбобокс Рекомендации по уходу товара--> 
-             <label for="care_recommend">Рекомендации по уходу</label>
+            <label for="care_recommend">Рекомендации по уходу</label>
             <br>
             <div class="form-group">
                 <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">Выберите рекомендацию ...</div></button>
+                    <button type="button" class="dropdown__button enabled">
+                        <div class="dropdown__button-text enabled">
+                        {{
+                            old('care_recommend')?
+                            old('care_recommend') :
+                            'Выберите рекомендацию ...'
+                        }}                               
+                        </div>
+                    </button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="рекомендуется ручная стирка" >рекомендуется ручная стирка</li>
                         <li class="dropdown__list-item" data-value="можно стирать на деликатном режиме при температуре 30 градусов">можно стирать на деликатном режиме при температуре 30 градусов</li>
                         <!-- <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
                     </ul>
-                    <input type="hidden" name="care_recommend" id="care_recommend" value="" class="dropdown__input-hidden" >
+                    <input type="hidden" name="care_recommend" id="care_recommend" value="old('care_recommend')" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Рекомендации по уходу товара--> 

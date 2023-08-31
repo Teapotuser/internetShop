@@ -76,11 +76,10 @@ class UserController extends Controller
      */
     public function update(StoreRequest $request, User $user)
     {
-        $validated = $request->validated();
+        /* $validated = $request->validated();
         if ($request->file('picture')||$request->validated('removeImage')) {
-            if ($user->picture) {
-                // Storage::delete($category->picture);
-                Storage::deleteDirectory('/public/users/' . $validated['email']);
+            if ($user->picture) {                
+                Storage::deleteDirectory('/public/users/' . $request->user()->id);
                 $user->picture=null;
             }
         }
@@ -91,6 +90,31 @@ class UserController extends Controller
         }
         $user->update($validated);
         return redirect(route('dashboard.user.index'))->with('success', 'Пользователь "' . $user->name . ' ' . $user->last_name . '" успешно сохранен');
+ */
+
+
+        $validated = $request->validated();
+        if ($request->file('picture') || $request->validated('removeImage')) {
+            if ($request->user()->picture) {
+                Storage::deleteDirectory('/public/users/' . $request->user()->id);
+                $request->user()->picture = null;
+            }
+        }
+        if ($request->file('picture')) {
+            $file = $request->file('picture');
+            $picture = Storage::url(Storage::put('/public/users/' . $request->user()->id, $file));
+            $validated['picture'] = $picture;
+        }
+
+        $request->user()->fill($validated);
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+        $request->user()->save();
+
+        // return Redirect::back()->with('message', 'Профиль обновлен');
+        return redirect(route('dashboard.user.index'))->with('success', 'Пользователь "' . $user->name . ' ' . $user->last_name . '" успешно сохранен');
+
     }
 
     /**

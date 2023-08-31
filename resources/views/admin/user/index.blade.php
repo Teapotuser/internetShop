@@ -76,9 +76,9 @@
                 <div class="account-card-item user-role-column">
                     <p class="card-mobile-text">Роль</p>
                     <p class="account">
-                        @if ( $user->role) 
+                        @if ( $user->role == 'admin') 
                         <span>Админ</span> 
-                        @else 
+                        @elseif($user->role == 'user') 
                         <span>Пользователь</span> 
                         @endif
                     </p>                    

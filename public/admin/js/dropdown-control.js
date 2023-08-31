@@ -9,8 +9,8 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 }
 
 document.querySelectorAll('.dropdown').forEach(function (dropDownWrapper) {
-	const dropDownBtn = dropDownWrapper.querySelector('.dropdown__button');
-    const dropDownBtnText = dropDownBtn.querySelector('.dropdown__button-text');
+	const dropDownBtn = dropDownWrapper.querySelector('.dropdown__button.enabled');
+    const dropDownBtnText = dropDownBtn.querySelector('.dropdown__button-text.enabled');
 	const dropDownList = dropDownWrapper.querySelector('.dropdown__list');
 	const dropDownListItems = dropDownList.querySelectorAll('.dropdown__list-item');
     // const dropDownListItems = dropDownWrapper.querySelectorAll('.dropdown__list-item');

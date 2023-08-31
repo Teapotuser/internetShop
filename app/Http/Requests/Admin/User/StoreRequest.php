@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Models\User;
 
 class StoreRequest extends FormRequest
 {
@@ -30,9 +31,10 @@ class StoreRequest extends FormRequest
                 ->when($this->user, function ($r) {
                     $r->ignore($this->user->id);
                 })
-        ],            
-            'name' => 'required',
-            'last_name' => 'required',
+        ],    
+            // 'email' => ['sometimes', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],        
+            'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'phone_number' => 'required',
             'address' => 'sometimes',
             'city' => 'sometimes',
@@ -48,6 +50,7 @@ class StoreRequest extends FormRequest
         return [
             'email.required' => 'Поле "E-mail" обязательно',
             'email.unique' => 'Поле "E-mail" должно быть уникально, запись с таким уже существует',
+            'email.email' => 'Поле "E-mail" должно соответствовать формату электронной почты',
 
             'body.required' => 'A message is required',
         ];
