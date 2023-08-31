@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 // use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 // use App\Http\Controllers\CollectionController;
@@ -18,6 +17,8 @@ use \App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FeedbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,9 +65,12 @@ Route::get('getCart', [CartController::class, 'getCart']);
 Route::get('removeFromCart/{id}', [CartController::class, 'remove']);
 Route::get('clearCart', [CartController::class, 'clear']);
 
-Route::get('/feedback', function () {return view('feedback');})->name('feedback.form');
-Route::get('/profile', function () {return view('profile');})->name('profile.personal');
-Route::get('/profile-orders', function () {return view('profile-ordershistory');})->name('profile.ordershistory');
+// Форма обратной связи
+Route::get('/feedback', [FeedBackController::class, 'show'])->name('feedback.form');
+Route::post('/feedback', [FeedBackController::class, 'save'])->name('feedback.post');
+
+// Route::get('/profile', function () {return view('profile');})->name('profile.personal');
+// Route::get('/profile-orders', function () {return view('profile-ordershistory');})->name('profile.ordershistory');
 
 /* Route::get('/dashboard', function () {
     return view('dashboard');
@@ -83,6 +87,18 @@ Route::get('/profile-orders', function () {return view('profile-ordershistory');
 });
 
 require __DIR__.'/auth.php'; */
+/* require __DIR__.'/auth.php'; */
+// Личный кабинет пользователя
+Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+    Route::get('/update-password', [ProfileController::class, 'update_password_view'])->name('update-password.view');
+    Route::patch('/update-password', [ProfileController::class, 'update_password'])->name('update-password.update');
+    Route::patch('/userdata', [ProfileController::class, 'update'])->name('update');
+    Route::get('/userdata', [ProfileController::class, 'userdata'])->name('userdata.show');
+    Route::patch('/subscription', [ProfileController::class, 'subscription_update'])->name('subscription.update');
+    Route::get('/subscription', [ProfileController::class, 'subscription'])->name('subscription.show');
+    Route::get('/', [ProfileController::class, 'show'])->name('show');
+    // Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
+});
 
 
 //админ панель

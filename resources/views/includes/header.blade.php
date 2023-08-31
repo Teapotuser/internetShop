@@ -14,18 +14,25 @@
             </div>
             <div class="profile-basket">
                 <div class="profile menu__profile">
-                    <!-- <div><p></p></div> -->
-                    <a href=# class="prof-bask-a">
+                    <!-- <div><p></p></div> -->                    
+                    <a href="{{route('profile.show')}}" class="prof-bask-a">
                         <div>
-                            <img src="{{ asset('images/user-4253.svg') }}" alt="profile icon">
+                            <!-- <img src="{{ asset('images/user-4253.svg') }}" alt="profile icon"> -->
+                            @if(Auth::check())
+                                <img src="{{ Auth::user()?->picture ?:asset('/images/NICI/eule-profile3-trim.png')}}"
+                                     alt="profile icon">
+                            @else
+                                <img src="{{ asset('/images/user-4253.svg')}}" alt="profile icon">
+                            @endif
                         </div>
                         <p>Мой профиль</p>                            
                     </a>
                     <ul class="menu__sublist">
-                        @auth()
-                            
-                            <li><a href="#" class="menu__sublink">Личные данные</a></li>
+                        @auth()                            
+                            <li><a href="{{route('profile.userdata.show')}}" class="menu__sublink">Личные данные</a></li>                            
                             <li><a href="#" class="menu__sublink">История заказов</a></li>
+                            <li><a href="{{route('profile.subscription.show')}}" class="menu__sublink">Подписка</a></li>
+                            <li><a href="{{route('profile.update-password.view')}}" class="menu__sublink">Сменить пароль</a></li>
                             <!-- <li><a href="#" class="menu__sublink">Выход</a></li> -->
                             <li>
                                 <form action="{{route('logout')}}" method="post">
@@ -148,13 +155,15 @@
 
                     <li class="profile-hidden">
                         <div class="menu__wrapper">
-                            <a href="#" class="menu__link">Мой профиль</a>
+                            <a href="{{route('profile.show')}}" class="menu__link">Мой профиль</a>
                             <span class="menu__arrow"></span>
                         </div>    
                         <ul class="menu__sublist">
                             @auth()                                
-                                <li><a href="#" class="menu__sublink">Личные данные</a></li>
-                                <li><a href="#" class="menu__sublink">История заказов</a></li>
+                                <li><a href="{{route('profile.userdata.show')}}" class="menu__sublink">Личные данные</a></li>
+                                <li><a href="#" class="menu__sublink">История заказов</a></li>                              
+                                <li><a href="{{route('profile.subscription.show')}}" class="menu__sublink">Подписка</a></li>
+                                <li><a href="{{route('profile.update-password.view')}}" class="menu__sublink">Сменить пароль</a></li>
                                 <!-- <li><a href="#" class="menu__sublink">Выход</a></li> -->
                                 <li>
                                     <form action="{{route('logout')}}" method="post">

@@ -45,12 +45,12 @@ nav.profile-left-side-links-box ul {
     font-weight: bold;
 }
 
-.profile-left-side-title-box:hover p, .profile-left-side-title-box:active p, .profile-left-side-title-box:focus p {
+.profile-left-side-title-box:hover p, .profile-left-side-title-box:active p, .profile-left-side-title-box.active p, .profile-left-side-title-box:focus p {
     color: #e20049;
     transition: all 0.3s ease-in-out;
 }
 
-.profile-left-side-title-box:hover .button-right, .profile-left-side-title-box:active .button-right, .profile-left-side-title-box:focus .button-right{
+.profile-left-side-title-box:hover .button-right, .profile-left-side-title-box:active .button-right, .profile-left-side-title-box.active .button-right,.profile-left-side-title-box:focus .button-right{
     background-image: url(../images/arrow-right-bold-pink.svg);
     transition: all 0.3s ease-in-out;
 }

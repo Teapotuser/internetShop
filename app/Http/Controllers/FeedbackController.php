@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Http\Controllers;
+
+// use Illuminate\Http\Request;
+
+use App\Http\Requests\FeedbackRequest;
+use App\Mail\Feedback;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use View;
+
+class FeedbackController extends Controller
+{
+    public function show()
+    {
+        return view('feedback');
+    }
+
+    public function save(FeedbackRequest $request)
+    {
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            Mail::to($admin->email)->send(
+                new Feedback(
+                    $request->validated('name'),
+                    $request->validated('last_name'),
+                    $request->validated('email'),
+                    $request->validated('phone_number'),
+                    $request->validated('message')
+                )
+            );
+        }
+
+        return view('feedback')->with(['message' => 'Ваше обращение отправлено']);
+    }
+}

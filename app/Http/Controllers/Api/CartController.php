@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Notifications\Client\NewOrder;
 use App\Notifications\Client\NewRegistration;
+use Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -69,6 +70,7 @@ class CartController extends Controller
                     "quantity" => $quantity && is_numeric($quantity) ? $quantity : 1,
                     "price" => $product->issetDiscount() ? $product->getPriceWithDiscount() : $product->price,
                     "picture" => Storage::url($product->picture),
+                    "size" => $product->size,
                     "url" => route('product.show', $id)
                 ]
             ];
@@ -101,6 +103,7 @@ class CartController extends Controller
             "quantity" => $quantity,
             "price" => $product->price,
             "picture" => Storage::url($product->picture),
+            "size" => $product->size,
             "url" => route('product.show', $id)
         ];
 
@@ -162,7 +165,6 @@ class CartController extends Controller
         if (!is_array(Session::get('cart')) || count(Session::get('cart')) == 0) {
             return back()->with(['error' => 'Корзина пуста']);
         }
-        // $admins = User::where('role', 'admin')->get();
         $create_account = $request->get('create-account');
         if ($create_account) {
             $request->validate([
@@ -182,6 +184,8 @@ class CartController extends Controller
             ]);
 
             $request->merge(['user_id' => $user->id]);
+        } elseif (Auth::user()) {
+            $request->merge(['user_id' => Auth::user()->id]);    
 
             // $user->notify(new NewRegistration($user, $request->get('password')));
         }
