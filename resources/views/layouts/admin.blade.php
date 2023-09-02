@@ -53,7 +53,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{{route('dashboard.order.index')}}">
                             <!-- <i class='bx bx-bar-chart-alt-2 icon' ></i> -->
 							<span class='icon'><div class='icon-order'></div></span>
                             <span class="text nav-text">Заказы</span>
