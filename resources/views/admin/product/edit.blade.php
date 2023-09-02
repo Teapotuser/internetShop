@@ -61,7 +61,15 @@
             <br>
             <div class="form-group">
                 <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">{{ $product->category->name }}</div></button>
+                    <button type="button" class="dropdown__button enabled">
+                        <div class="dropdown__button-text enabled">                            
+                            {{
+                                $product->category->name ?
+                                $product->category->name :
+                            'Выберите категорию ...'
+                            }}
+                        </div>
+                    </button>
                     <ul class="dropdown__list">
                         @foreach($categories as $category)
                         <li class="dropdown__list-item" data-value="{{$category->id}}" >{{$category->name}}</li>
@@ -79,7 +87,15 @@
             <br>
             <div class="form-group">
                 <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">{{ $product->collection->name }}</div></button>
+                    <button type="button" class="dropdown__button enabled">
+                        <div class="dropdown__button-text enabled">                            
+                            {{
+                                $product->collection->name ?
+                                $product->collection->name :
+                                'Выберите коллекцию ...'
+                            }}
+                        </div>
+                    </button>
                     <ul class="dropdown__list">
                         @foreach($collections as $collection)
                         <li class="dropdown__list-item" data-value="{{$collection->id}}" >{{$collection->name}}</li>
@@ -196,7 +212,15 @@
             <br>
             <div class="form-group">
                 <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">{{ $product->material }}</div></button>
+                    <button type="button" class="dropdown__button enabled">
+                        <div class="dropdown__button-text enabled">                           
+                            {{
+                                $product->material ?
+                                $product->material :
+                                'Выберите материал ...'
+                            }}
+                        </div>
+                    </button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="плюш/полиэстер" >плюш/полиэстер</li>
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
@@ -212,7 +236,15 @@
             <br>
             <div class="form-group">
                 <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">{{ $product->material_filling }}</div></button>
+                    <button type="button" class="dropdown__button enabled">
+                        <div class="dropdown__button-text enabled">
+                            {{
+                                $product->material_filling ?
+                                $product->material_filling :
+                                'Выберите материал наполнителя ...'
+                            }}                            
+                        </div>
+                    </button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="полиэфирное волокно (полиэстер)" >полиэфирное волокно (полиэстер)</li>
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
@@ -228,7 +260,15 @@
             <br>
             <div class="form-group">
                 <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">{{ $product->age_from }}</div></button>
+                    <button type="button" class="dropdown__button enabled">
+                        <div class="dropdown__button-text enabled">                            
+                            {{
+                                $product->age_from ?
+                                $product->age_from :
+                                'Выберите рекомендуемый возраст ...'
+                            }}   
+                        </div>
+                    </button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="от 0 месяцев" >от 0 месяцев</li>
                         <li class="dropdown__list-item" data-value="от 12 месяцев">от 12 месяцев</li>
@@ -244,7 +284,16 @@
             <br>
             <div class="form-group">
                 <div class="dropdown">
-                    <button type="button" class="dropdown__button"><div class="dropdown__button-text">{{ $product->care_recommend }}</div></button>
+                    <button type="button" class="dropdown__button enabled">
+                        <div class="dropdown__button-text enabled">
+                            {{ $product->care_recommend }}
+                            {{
+                                $product->care_recommend ?
+                                $product->care_recommend :
+                                'Выберите рекомендацию ...'
+                            }}   
+                        </div>
+                    </button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="рекомендуется ручная стирка" >рекомендуется ручная стирка</li>
                         <li class="dropdown__list-item" data-value="можно стирать на деликатном режиме при температуре 30 градусов">можно стирать на деликатном режиме при температуре 30 градусов</li>
@@ -258,7 +307,7 @@
 
             <br>
             <div class="form-inner-checkbox">
-                <input type="checkbox" id="is_active" name="is_active" class="checkbox-customized">
+                <input type="checkbox" id="is_active" name="is_active" class="checkbox-customized" @checked( $product->is_active )>
                 <label for="is_active">
                     <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
                         <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
@@ -284,7 +333,7 @@
                             <div class="file-upload-icon"></div>
                             <!-- <span>Загрузить файл</span> -->
                         </label>
-                        <input type="hidden" name="removeImage">
+                        <input type="hidden" name="removeImage" id="removeImage-11">
                         <button type="button" id="clear-file-button" class="clear-file-button clear-file-button-in-pair @if(!$product->picture) hidden @endif "></button>                            
                     </div>
                 </div>
@@ -301,14 +350,13 @@
                             <div class="file-upload-icon"></div>
                             <!-- <span>Загрузить файл</span> -->
                         </label>
-                        <input type="hidden" name="removeImage">
+                        <input type="hidden" name="removeImage" id="removeImage-12">
                         <button type="button" id="clear-file-button" class="clear-file-button clear-file-button-in-pair @if(!$product->picture) hidden @endif"></button>                            
                     </div>
                 </div>
             </div>
 
-
-            <div class="more-file-upload-pairs-container"></div>
+            <div class="more-file-upload-pairs-insert-before-div"></div>
             <div class="center-button">
                 <div class="">                                
                     <button type="button" class="more-file-upload-fields-button">

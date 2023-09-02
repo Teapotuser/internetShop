@@ -51,13 +51,11 @@
             <div class="form-group">
                 <div class="dropdown">
                     <button type="button" class="dropdown__button"><div class="dropdown__button-text">{{ $product->category->name }}</div></button>
-                    <ul class="dropdown__list">
-                        @foreach($categories as $category)
-                        <li class="dropdown__list-item" data-value="{{$category->id}}" >{{$category->name}}</li>
+                    <ul class="dropdown__list">                        
+                        <!-- <li class="dropdown__list-item" data-value="" ></li> -->
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
-                        @endforeach
                     </ul>
                     <input type="hidden" name="category_id" id="category_id" value="{{ $product->category_id }}" class="dropdown__input-hidden" >
                 </div>
@@ -70,12 +68,10 @@
                 <div class="dropdown">
                     <button type="button" class="dropdown__button"><div class="dropdown__button-text">{{ $product->collection->name }}</div></button>
                     <ul class="dropdown__list">
-                        @foreach($collections as $collection)
-                        <li class="dropdown__list-item" data-value="{{$collection->id}}" >{{$collection->name}}</li>
+                        <!-- <li class="dropdown__list-item" data-value="" ></li> -->
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
-                        @endforeach
                     </ul>
                     <input type="hidden" name="collection_id" id="collection_id" value="{{ $product->collection_id }}" class="dropdown__input-hidden" >
                 </div>
@@ -246,7 +242,7 @@
 
             <br>
             <div class="form-inner-checkbox">
-                <input type="checkbox" id="is_active" name="is_active" class="checkbox-customized" disabled>
+                <input type="checkbox" id="is_active" name="is_active" class="checkbox-customized" @checked( $product->is_active ) disabled>
                 <label for="is_active">
                     <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
                         <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
@@ -256,7 +252,7 @@
             </div>  
             <br>
 
-            <h3 class="file-upload-pairs-title">Загрузка фото для карточки товара</h3>
+            <h3 class="file-upload-pairs-title">Фото для карточки товара</h3>
             <!-- Загрузка картинок для карусели на странице товара -->
             <div class="file-upload-pair-wrapper">
                 <div class="file-upload-control">

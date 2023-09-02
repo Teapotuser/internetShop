@@ -372,7 +372,7 @@
 
             <br>
             <div class="form-inner-checkbox">
-                <input type="checkbox" id="is_active" name="is_active" class="checkbox-customized">
+                <input type="checkbox" id="is_active" name="is_active" class="checkbox-customized" @checked(old('is_active', 1))>
                 <label for="is_active">
                     <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
                         <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
@@ -489,7 +489,7 @@
                 </div>
             </div>
             <!-- End of Загрузка картинок для карусели на странице товара -->
-            <div class="more-file-upload-pairs-container"></div>
+            <div class="more-file-upload-pairs-insert-before-div"></div>
             <div class="center-button">
                 <div class="">                                
                     <button type="button" class="more-file-upload-fields-button">
