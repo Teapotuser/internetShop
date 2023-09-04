@@ -1,0 +1,24 @@
+.form-inner select.js-example-basic-single {
+    display: block;
+    width: 100%;
+    padding: 0 20px;
+    margin-bottom: 10px;
+    /* background: #fff; */
+    background-color: var(--input-color); /* background-color: var(--primary-color-light); */
+    color: var(--text-color);
+    /* color: #333; */
+    font-size: 17px;
+    font-weight: 500;
+    /* line-height: 40px; */
+     /* border-width: 0; */
+    /* border: 1px solid #e1e1e1; */
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    /* font-family: 'Roboto', sans-serif; */
+    transition: var(--tran-05);
+  
+    height: 50px;
+    line-height: 40px;
+}
+
+body.dark .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable{background-color:var(--checkbox-color);color:#444746;}

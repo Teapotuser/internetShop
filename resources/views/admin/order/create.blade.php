@@ -3,6 +3,9 @@
     <link rel="stylesheet" href="{{ asset('admin/css/admin-form.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('admin/css/dropdown-control.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('admin/css/admin-alert1.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('admin/css/select2.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('admin/css/select2-mystyle.css') }}" type="text/css">
+
 @endsection    
 @section('dashboard-content')
 <div class="overview">
@@ -143,19 +146,22 @@
                 <option @selected(Request::get('sort')=='price-low') value="price-low">Уменьшению цены</option>
                 <option @selected(Request::get('sort')=='price-high') value="price-high">Увеличению цены</option>                                
             </select> --> 
-            
-           <!--  <div class="form-inner-checkbox">
-                <input type="checkbox" id="is_subscribe" name="is_subscribe" class="checkbox-customized">
-                <label for="is_subscribe">
-                    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
-                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
-                    </svg>
-                    Подписаться на рассылку новостей
-                </label>                                       
-            </div>              
-            <br> 
 
-            <div class="form-inner-checkbox">
+            <h3 class="file-upload-pairs-title">Состав заказа</h3>
+
+            <label for="select2-product">Товар *</label>
+            <select class="js-example-basic-single" name="state" id="select2-product">
+                <option></option>
+                <optgroup label="Овечки">    
+                    <option value="AL">Alabama</option>                        
+                    <option value="WY">Wyoming</option>
+                </optgroup>
+                <optgroup label="Единорог Theodor">
+                    <option>Nested option</option>
+                </optgroup>
+            </select>
+
+             <!-- <div class="form-inner-checkbox">
                 <input type="checkbox" id="create-account" name="create-account">
                 <label for="create-account">
                     <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
@@ -185,8 +191,11 @@
 </div>
 @endsection
 @section('custom_js')
+<script src="{{ asset('js/jquery.min.js') }}" type='text/javascript'></script>
 <script src="{{ asset('admin/js/dropdown-control.js') }}" type="text/javascript"></script>
 <!-- <script src="{{ asset('admin/js/file-upload.js') }}" type="text/javascript"></script> -->
 <!-- <script src="{{ asset('admin/js/file-upload-pairs.js') }}" type="text/javascript"></script> -->
 <script src="{{ asset('admin/js/admin-alert-form.js') }}" type="text/javascript"></script>
+<script src="{{ asset('admin/js/select2.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('admin/js/select2-with-search.js') }}" type="text/javascript"></script>
 @endsection  
