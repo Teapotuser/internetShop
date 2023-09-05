@@ -401,6 +401,7 @@ function rePrintCart() {
                     <div class="main-cart-item main-cart-column">
                         <a href="${item.url}" class="main-cart-title">${item.name}</a>
                         <div>Артикул: ${item.id}</div>
+                        <div>Размер: ${item.size} см</div>
                     </div>
                 </div>
                 <div class="main-cart-priceqtysum-container main-cart-not-column" data-set="50%">

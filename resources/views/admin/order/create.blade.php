@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="{{ asset('admin/css/select2.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('admin/css/select2-mystyle.css') }}" type="text/css">
 
+    <link rel="stylesheet" href="{{ asset('admin/css/style-right-dashboard-table.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('admin/css/style-right-dashboard-orderitem.css') }}" type="text/css">
 @endsection    
 @section('dashboard-content')
 <div class="overview">
@@ -187,8 +189,77 @@
             </div>
 
         </div>
-    </form> 
+    </form>     
+
 </div>
+
+ <!-- Таблица с данными Вадим-->
+    <!-- Строка заголовков таблицы-->
+    <div class="accounts-list">
+        <div class="accounts-head orderitem">
+            <p class="head-orderitem-image">Изображение</p>            
+            <p class="head-orderitem-title">Название</p>            
+            <p class="head-orderitem-quantity">Количество</p>
+            <p class="head-orderitem-price">Цена</p>
+            <p class="head-orderitem-sum">Сумма</p>            
+            <p class="head-orderitem-actions">Действие</p>
+        </div>
+        <div class="account-rows">
+            <!-- Строки таблицы-->
+            @foreach($products as $product)
+            <div class="account-card list"> <!--  list -->
+                <div class="account-card-item orderitem-image-column orderitem">
+                    <p class="card-mobile-text">Изображение</p>
+                    <!-- <p class="account">7675.89</p> -->
+                    <div class="account admin-table-img-container">
+                        <img class="admin-table-img" src="{{Storage::url($product->picture)}}" alt=""> 
+                    </div>
+                </div>
+                <div class="account-card-item orderitem-title-column orderitem">
+                    <p class="card-mobile-text">Название</p>
+                    <p class="account">{{$product->title}}</p>
+                    <p class="account orderitem">Артикул: {{$product->article}}</p>
+                    <p class="account orderitem">Размер: {{$product->size}} см</p>
+                </div>               
+                <div class="account-card-item orderitem-quantity-column orderitem">
+                    <p class="card-mobile-text">Количество</p>
+                    <p class="account">
+                        <div class="admin-orderitem-quantity-controls">
+                            <button class="admin-orderitem-minus-quantity" data-id="${id}">-</button>
+                            <input type="number" value="1" class="admin-orderitem-quantity" data-id="${id}">
+                            <button class="admin-orderitem-plus-quantity" data-id="${id}">+</button>                                
+                        </div>
+                    </p>
+                </div>
+                <div class="account-card-item orderitem-price-column orderitem">
+                    <p class="card-mobile-text">Цена</p>
+                    <p class="account">{{$product->price}} р.</p>
+                </div>
+                <div class="account-card-item orderitem-sum-column orderitem">
+                    <p class="card-mobile-text">Сумма</p>
+                    <p class="account">123.45 р.</p>
+                </div>
+                
+                <div class="account-card-item orderitem-actions-column orderitem">
+                    <p class="card-mobile-text">Действие</p>                            
+                    <!-- <p class="account">HJGHG7</p> -->
+                    <div class="account">
+                        <div class="wrapper-icon">
+                           <!--  <a href="{{route('dashboard.product.show', $product)}}" class="admin-action-ahref"><div class="btn-view"></div></a>
+                            <a href="{{route('dashboard.product.edit', $product)}}" class="admin-action-ahref"><div class="btn-edit"></div></a> -->
+                            <!-- link that opens popup -->
+                            <!-- <a class="popup-with-delete-form admin-action-ahref" href="#delete-form"><div class="btn-delete"></div></a> -->
+                            <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.product.destroy', $product)}}">
+                                <div class="btn-delete"></div>
+                            </a>                            
+                        </div>                               
+                    </div>
+                </div>
+            </div>
+            @endforeach           
+        </div>        
+    </div>
+  
 @endsection
 @section('custom_js')
 <script src="{{ asset('js/jquery.min.js') }}" type='text/javascript'></script>

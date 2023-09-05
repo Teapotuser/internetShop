@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 // use App\Models\OrderProducts;
-// use App\Models\Product;
+use App\Models\Product;
 use Illuminate\Http\Request;
 // use App\Http\Requests\Admin\Order\StoreRequest;
 use Illuminate\Support\Facades\Storage;
@@ -41,7 +41,9 @@ class OrderController extends Controller
     // Станица создания нового заказа
     public function create()
     {
-        return view('admin.order.create');
+        $products = Product::where('id', '<', 3)->get();
+        
+        return view('admin.order.create', compact('products'));
     }
 
     /**
