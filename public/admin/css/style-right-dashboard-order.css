@@ -96,51 +96,76 @@ body.dark .admin-add-button .title-add-icon {
     text-align: center;
 } */
 
-.accounts-head .head-user-id {
+.accounts-head .head-order-id {
     max-width: 5%;
     min-width: 80px;
 }
 
-.account-rows .user-id-column {
+.account-rows .order-id-column {
     max-width: 5%;
     min-width: 80px;
     text-align: center;
 }
 
-.accounts-head .head-user-title {
+.accounts-head .head-order-title {
     text-align: left;
     padding-left: 15px;
     max-width: 25%;
     min-width: 25%;
 }
 
-.account-rows .user-title-column {
+.account-rows .order-title-column {
     max-width: 25%;
     min-width: 25%;
 }
 
-.accounts-head .head-user-email {
+.accounts-head .head-order-creationdate {
     text-align: left;
     padding-left: 15px;
-    max-width: 25%;
-    min-width: 25%;
+    max-width: 14%;
+    min-width: 14%;
 }
 
-.user-email-column {
-    max-width: 25%;
-    min-width: 25%;
+.account-rows .order-creationdate-column {
+    max-width: 14%;
+    min-width: 14%;
 }
 
-.accounts-head .head-user-role {
-    text-align: left;
+.accounts-head .head-order-sum {
+	text-align: left;
     padding-left: 15px;
-    max-width: 20%;
-    min-width: 20%;
+    max-width: 12%;
+    min-width: 12%;
 }
 
-.user-role-column {
-    max-width: 20%;
-    min-width: 20%;
+.account-rows .order-sum-column {
+    max-width: 12%;
+    min-width: 12%;
+}
+
+.accounts-head .head-order-payment {
+	text-align: left;
+    padding-left: 15px;
+    max-width: 9%;
+    min-width: 9%;
+}
+
+.account-rows .order-payment-column {
+    max-width: 9%;
+    min-width: 9%;
+}
+
+.accounts-head .head-order-status {
+    text-align: center;
+    padding-left: 15px;
+    max-width: 18%;
+    min-width: 18%;
+}
+
+.order-status-column {
+	text-align: center;
+    max-width: 18%;
+    min-width: 18%;
 }
 
 /* .accounts-head .head-product-image {
@@ -153,16 +178,16 @@ body.dark .admin-add-button .title-add-icon {
     max-width: 15%;
 } */
 
-.accounts-head .head-user-actions {
+.accounts-head .head-order-actions {
     text-align: left;
     padding-left: 15px;
-    max-width: 20%;
-    min-width: 20%;
+    max-width: 15%;
+    min-width: 15%;
 }
 
-.user-actions-column {
-    max-width: 20%;
-    min-width: 20%;
+.order-actions-column {
+    max-width: 15%;
+    min-width: 15%;
 }
 
 
@@ -282,7 +307,7 @@ body.dark .accounts-list .list:hover {
 
 /* На мобильном экране */
 /* @media (max-width: 780px) { */
-@media (max-width: 1070px) {
+@media (max-width: 1200px) {
     .accounts-head {
         display: none;
     }

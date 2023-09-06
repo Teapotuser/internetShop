@@ -97,6 +97,18 @@ body.dark .accounts-list .list:hover {
   -moz-appearance: textfield;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .form-inner input:active, .form-inner input:hover, .form-inner input:focus,
 .form-inner textarea:active, .form-inner textarea:hover, .form-inner textarea:focus,
 .form-inner select:active, .form-inner select:hover, .form-inner select:focus {
@@ -932,6 +944,54 @@ body.dark .admin-save-button .admin-save-icon {
   transition: var(--tran-05);
 }
 
+/* Кнопка Добавить товар (order item) в заказ */
+button.add-orderitem-to-order-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0px 12px;
+  text-decoration: none;
+  font-size: 16px; 
+  font-weight: 500;   
+  background-color: var(--primary-color);
+  color: var(--title-icon-color);
+  height: 35px;
+  width: 200px;
+  min-width: 122px;    
+  border-radius: 6px;  
+  border: none;  
+  transition: var(--tran-05);
+  cursor: pointer;
+  /* text-align: center;
+  padding: 18px 0;*/  
+  margin: auto;    
+}
+
+.add-orderitem-to-order-button .add-orderitem-to-order-icon {
+  background-image: url(../images/noun-purse-625217-white.svg);    
+  /* background-size: auto, auto;    */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: center;
+  height: 22px;
+  width: 22px;
+  /* max-height: 10px; */
+  /* max-width: ; */
+  min-width: 22px;
+  transition: var(--tran-05);
+}
+
+body.dark .add-orderitem-to-order-button .add-orderitem-to-order-icon {
+  background-image: url(../images/noun-purse-625217-light-grey.svg);    
+  /* background-size: auto, auto;    */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: center;
+  transition: var(--tran-05);
+}
+
+
 .form-field-validation-error {
    color: #ff4658;
    font-size: 14px;
@@ -940,13 +1000,6 @@ body.dark .admin-save-button .admin-save-icon {
 
 /* === End of Кнопки ==== */
 
-/* .form-wrapper {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;  
- } */
- 
 .admin-save-button-wrapper {
 	 display: flex;
 	  flex-direction: row;
@@ -970,34 +1023,7 @@ body.dark .admin-save-button .admin-save-icon {
 	width: 100%;
 }
 
-/*  .login-form-decor {
-  position: relative;
-  max-width: 50%;
-  width: 50%; 
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 10px;
-  margin-bottom: 30px; 
-  border-radius: 20px;
-}
 
-.form-inner {   
-  background-color: transparent; 
-  padding: 30px;  
-  width: 100%;
-  border-radius: 20px;
-  font-family: 'Roboto', sans-serif;
-  transition: var(--tran-05);
-} 
-
-.center-button {
-  margin: 20px auto;
- } 
-
- .center-button > div {
-  display: flex;
-  justify-content: center; */
-} 
 
 @media (min-width: 769px) and (max-width: 1000px) {
 .login-form-decor {   

@@ -117,29 +117,29 @@ body.dark .admin-add-button .title-add-icon {
 }
 
 .accounts-head .head-orderitem-quantity {
-    max-width: 20%;
+    max-width: 17%;
     min-width: 80px;
-    min-width: 20%;
+    min-width: 17%;
     text-align: left;
 }
 
 .account-rows .orderitem-quantity-column {
-    max-width: 20%;
+    max-width: 17%;
     min-width: 80px;
-    min-width: 20%;
+    min-width: 17%;
     text-align: center;
 }
 
 .accounts-head .head-orderitem-price {
     text-align: left;
     padding-left: 15px;
-    max-width: 10%;
-    min-width: 10%;
+    max-width: 13%;
+    min-width: 13%;
 }
 
-.orderitem-price-column {
-    max-width: 10%;
-    min-width: 10%;
+.account-rows .orderitem-price-column {
+    max-width: 13%;
+    min-width: 13%;
 }
 
 .accounts-head .head-orderitem-sum {
@@ -149,7 +149,7 @@ body.dark .admin-add-button .title-add-icon {
     min-width: 15%;
 }
 
-.orderitem-sum-column {
+.account-rows .orderitem-sum-column {
     max-width: 15%;
     min-width: 15%;
 }
@@ -161,14 +161,32 @@ body.dark .admin-add-button .title-add-icon {
     min-width: 10%;
 }
 
-.orderitem-actions-column {
+.account-rows .orderitem-actions-column {
     max-width: 10%;
     min-width: 10%;
 }
 
+/* Total row */
+.account-rows .orderitem-total-title-column {
+    text-align: right;
+    /* padding-left: 15px; */
+    max-width: 45%;
+    min-width: 45%;
+}
 
+.account-rows .orderitem-total-quantity-column {
+    max-width: 13%;
+    min-width: 80px;
+    min-width: 13%;
+    text-align: center;
+}
 
-
+.account-rows .orderitem-total-sum-column {
+    text-align: right;
+    /* padding-left: 15px; */
+    max-width: 25%;
+    min-width: 25%;
+}
 
 /* .account-rows {
     display: flex;
@@ -197,9 +215,24 @@ body.dark .admin-add-button .title-add-icon {
     background-color: #fff;
     border-radius: 8px;
     
+} */
+
+.list.orderitem-total {
+    background-color: transparent;
+   
 }
 
-.accounts-list .list:hover {
+.list.orderitem-total:hover {
+    background-color: transparent;
+   
+}
+
+.orderitem-total .account-card-item .account {
+    font-size: 17px;
+    font-weight: 550;
+}
+
+/* .accounts-list .list:hover {
     background-color: var(--primary-color-trasparent); 
     transition: var(--tran-05);
 }
@@ -271,9 +304,19 @@ body.dark .accounts-list .list:hover {
 .wrapper-icon .admin-action-ahref:hover {
     background-color: var(--primary-color);
     transition: var(--tran-03);
+} */
+
+.wrapper-icon .admin-action-ahref.orderitem {
+    border: none;
+    background-color: transparent;
 }
 
-.admin-form-delete {
+.wrapper-icon .admin-action-ahref.orderitem:hover {
+    background-color: var(--primary-color);
+    transition: var(--tran-03);
+} 
+
+/*.admin-form-delete {
     display: inline;
     display: flex;
     flex-direction: column;
@@ -303,6 +346,12 @@ body.dark .accounts-list .list:hover {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     /* color: #333; */
     color: var(--text-color);
+    transition: var(--tran-05);
+}
+
+body.dark .admin-orderitem-quantity{
+    border-left: 1px solid var(--text-color);
+    border-right: 1px solid var(--text-color);
 }
 
 .admin-orderitem-quantity:active, .admin-orderitem-quantity:hover, .admin-orderitem-quantity:focus, .admin-orderitem-quantity:focus-visible {
@@ -387,6 +436,10 @@ input[type=number].admin-orderitem-quantity {
         padding: 10px;
     }
 
+    .list.orderitem-total { 
+        box-shadow: none;
+    }   
+
     .account-card {
         width: 100%;
         padding: 0;
@@ -404,6 +457,10 @@ input[type=number].admin-orderitem-quantity {
         /* font-size: 18px;
         font-weight: 500;
         color: var(--text-color); */
+    }
+
+    .account-card-item.orderitem-actions-column.orderitem-total {
+        display: none;
     }
 }
 

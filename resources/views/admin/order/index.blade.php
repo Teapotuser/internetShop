@@ -51,23 +51,24 @@
     <!-- Строка заголовков таблицы-->
     <div class="accounts-list">
         <div class="accounts-head">
-            <p class="head-user-id">Номер</p>
-            <p class="head-user-title">Имя</p>
+            <p class="head-order-id">Номер</p>
+            <p class="head-order-title">Имя</p>
             <!-- <p class="head-user-email">E-mail</p> -->
-            <p class="head-user-email">Создан</p>
-            <p class="head-user-sum">Сумма</p>
-            <p class="head-user-role">Статус</p>
-            <p class="head-user-actions">Действие</p>
+            <p class="head-order-creationdate">Создан</p>
+            <p class="head-order-sum">Сумма</p>
+            <p class="head-order-payment">Оплата</p>
+            <p class="head-order-status">Статус</p>
+            <p class="head-order-actions">Действие</p>
         </div>
         <div class="account-rows">
             <!-- Строки таблицы-->
             @foreach($orders as $order)
             <div class="account-card list"> <!--  list -->
-                <div class="account-card-item user-id-column">
+                <div class="account-card-item order-id-column">
                     <p class="card-mobile-text">Номер</p>
                     <p class="account">{{$order->id}}</p>
                 </div>
-                <div class="account-card-item user-title-column">
+                <div class="account-card-item order-title-column">
                     <p class="card-mobile-text">Имя</p>
                     <p class="account">{{$order->name}}<span> </span>{{$order->last_name}}</p>
                 </div>
@@ -75,15 +76,19 @@
                     <p class="card-mobile-text">E-mail</p>
                     <p class="account">{{$order->email}}</p>
                 </div> -->
-                <div class="account-card-item user-email-column">
+                <div class="account-card-item order-creationdate-column">
                     <p class="card-mobile-text">Создан</p>
                     <p class="account">{{$order->created_at}}</p>
                 </div>
-                <div class="account-card-item user-sum-column">
+                <div class="account-card-item order-sum-column">
                     <p class="card-mobile-text">Сумма</p>
-                    <p class="account">123,45</p>
-                </div>            
-                <div class="account-card-item user-role-column">
+                    <p class="account">123,45 р.</p>
+                </div>  
+                <div class="account-card-item order-payment-column">
+                    <p class="card-mobile-text">Оплата</p>
+                    <p class="account">Да / Нет</p>
+                </div>          
+                <div class="account-card-item order-status-column">
                     <p class="card-mobile-text">Статус</p>
                     <p class="account">
                         @if ( $order->status == 'New') 
@@ -93,7 +98,7 @@
                         @endif
                     </p>                    
                 </div>                
-                <div class="account-card-item user-actions-column">
+                <div class="account-card-item order-actions-column">
                     <p class="card-mobile-text">Действие</p>                            
                     <!-- <p class="account">HJGHG7</p> -->
                     <div class="account">

@@ -255,8 +255,8 @@
                      
             <div class="center-button">
                 <div class="">                                
-                    <button type="button" class="more-file-upload-fields-button">
-                        <div class="more-file-upload-fields-icon"></div>
+                    <button type="button" class="add-orderitem-to-order-button">
+                        <div class="add-orderitem-to-order-icon"></div>
                         <span>Добавить товар</span>                                    
                     </button> 
                     <div></div>                           
@@ -334,14 +334,45 @@
                             <a href="{{route('dashboard.product.edit', $product)}}" class="admin-action-ahref"><div class="btn-edit"></div></a> -->
                             <!-- link that opens popup -->
                             <!-- <a class="popup-with-delete-form admin-action-ahref" href="#delete-form"><div class="btn-delete"></div></a> -->
-                            <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.product.destroy', $product)}}">
+                            <!-- <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.product.destroy', $product)}}">
                                 <div class="btn-delete"></div>
-                            </a>                            
+                            </a>   -->  
+                            <button class="admin-action-ahref orderitem" >
+                                <div class="btn-delete"></div>
+                            </button>                                                    
                         </div>                               
                     </div>
                 </div>
             </div>
-            @endforeach           
+            @endforeach  
+            
+            <div class="account-card list orderitem-total"> <!--  list -->                
+                <div class="account-card-item orderitem-total-title-column orderitem">
+                    <p class="card-mobile-text"><!-- Название --></p>
+                    <p class="account">Итого:</p>                    
+                </div>               
+                <div class="account-card-item orderitem-total-quantity-column orderitem">
+                    <p class="card-mobile-text">Количество</p>
+                    <p class="account">5 шт.</p>
+                </div>               
+                <div class="account-card-item orderitem-total-sum-column orderitem">
+                    <p class="card-mobile-text">Сумма</p>
+                    <p class="account">123.45 р.</p>
+                </div>
+                
+                <div class="account-card-item orderitem-actions-column orderitem orderitem-total">
+                    <p class="card-mobile-text"><!-- Действие --></p>                            
+                    <!-- <p class="account">HJGHG7</p> -->
+                    <div class="account">
+                        <div class="wrapper-icon">                           
+                            <!-- <button class="admin-action-ahref orderitem" >
+                                <div class="btn-delete"></div>
+                            </button>   -->                                                  
+                        </div>                               
+                    </div>
+                </div>
+            </div>
+
         </div>        
     </div>
 

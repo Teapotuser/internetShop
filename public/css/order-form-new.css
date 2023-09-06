@@ -87,6 +87,18 @@
  .form-inner input[type="number"] {
    -moz-appearance: textfield;
  }
+ 
+ /* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
  .form-inner input:active, .form-inner input:hover, .form-inner input:focus,
 .form-inner textarea:active, .form-inner textarea:hover, .form-inner textarea:focus {
