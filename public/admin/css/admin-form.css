@@ -68,7 +68,7 @@ body.dark .accounts-list .list:hover {
   transition: var(--tran-05);
 }
 
-.form-inner input[type="text"], .form-inner input[type="email"], .form-inner input[type="number"], .form-inner input[type="password"], .form-inner textarea {
+.form-inner input[type="text"], .form-inner input[type="email"], .form-inner input[type="number"], .form-inner input[type="password"], .form-inner input[type="date"], .form-inner textarea {
   display: block;
   width: 100%;
   padding: 0 20px;
@@ -88,7 +88,7 @@ body.dark .accounts-list .list:hover {
   transition: var(--tran-05);
 }
 
-.form-inner input[type="text"], .form-inner input[type="email"], .form-inner input[type="number"], .form-inner input[type="password"], .form-inner select {
+.form-inner input[type="text"], .form-inner input[type="email"], .form-inner input[type="number"], .form-inner input[type="password"], .form-inner input[type="date"], .form-inner select {
   height: 50px;
   line-height: 40px;
 }
@@ -108,7 +108,7 @@ body.dark .accounts-list .list:hover {
    transition: var(--tran-05);
 }
 
-body.dark .form-inner input[type="text"], body.dark .form-inner input[type="email"], body.dark .form-inner input[type="number"], body.dark .form-inner input[type="password"], body.dark .form-inner textarea 
+body.dark .form-inner input[type="text"], body.dark .form-inner input[type="email"], body.dark .form-inner input[type="number"], body.dark .form-inner input[type="password"], body.dark .form-inner input[type="date"], body.dark .form-inner textarea 
 /* .form-inner input:hover, .form-inner input:focus, 
 .form-inner textarea:active, .form-inner textarea:hover, .form-inner textarea:focus  */{
   outline: none;
@@ -295,6 +295,7 @@ select.admin-combobox option {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: end;
   gap: 3%;
 }
 
@@ -372,12 +373,16 @@ select.admin-combobox option {
   margin-bottom: 3px;
 }
 
+.form-inner ul li.radiobutton-row {
+	margin-bottom: 15px;
+}
+
 .form-inner li {
    list-style: none;
 }
 
 input[type=radio] + label {
-   padding: 0 0 0 2rem;
+   padding: 0 0 0 40px;
    position: relative;
  }
  
@@ -394,26 +399,34 @@ input[type=radio] + label {
  }
  
  input[type=radio] + label::before {
-   left: 0.5rem;
-   top: 0.2rem;
+   left: 2px;
+   top: 0px;
    display: inline-block;
-   width: 0.8rem;
-   height: 0.8rem;
-   border: 0.05rem solid #333;
-   background: white;
- }
-
- /*выбранная опция*/
- input[type=radio]:checked + label::after {
-   left: 0.7rem;
-   top: 0.4rem;
-   border: 0.25rem solid #e20049;
+   width: 24px; /* 0.8rem; */
+   height: 24px; /* 0.8rem; */
+   /* border: 0.05rem solid #333; */
+   border: 1px solid var(--border-color);
+   /* background: white; */
+   background-color: var(--input-color);
  }
  
- input[type=radio]:focus + label::before {
-   outline: 0.05rem dotted;
+ /*выбранная опция*/
+ input[type=radio]:checked + label::after {
+   left: 7px;
+   top: 5px;
+   border: 8px solid var(--checkbox-color);/* #e20049; */
+   /* fill: var(--checkbox-color); */
  }
-
+ 
+ input[type=radio]:focus + label::before, input[type=radio]:hover + label::before {
+   outline: 0.05rem dotted;
+   outline: 1px;
+	outline-color: var(--primary-color); /* #695CFE; */
+	border-width: 1px;
+	border-color: var(--primary-color); /* #695CFE; */
+	transition: var(--tran-05);
+ }
+ 
  .form-inner /* input[type="text"]  */.delivery-address.hidden, .form-inner .password.hidden {
   display: none;
   transition: all 0.5s ease;
@@ -613,7 +626,7 @@ input[type=radio] + label {
 
  /* === File Upload controls === */
  .form-inner h3.file-upload-pairs-title {
-    margin-top: 10px;  
+    margin-top: 24px;  
     margin-bottom: 24px; 
    font-weight: 600;
    font-size: 20px;   
@@ -926,6 +939,66 @@ body.dark .admin-save-button .admin-save-icon {
 }
 
 /* === End of Кнопки ==== */
+
+/* .form-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;  
+ } */
+ 
+.admin-save-button-wrapper {
+	 display: flex;
+	  flex-direction: row;
+	  flex-wrap: nowrap;
+	  justify-content: center;  
+	
+	max-width: 50%;
+	  width: 50%;
+	  /* margin: 50px auto 0; */
+	  margin-left: auto; /* 5%; */
+	  margin-right: auto; /* 5%; */
+	 /*  margin-top: 10px;
+	  margin-bottom: 30px; */
+	  padding-left: 30px;
+	  padding-right: 30px;
+  
+}
+
+.admin-save-button-wrapper .center-button{
+	margin: 20px auto;
+	width: 100%;
+}
+
+/*  .login-form-decor {
+  position: relative;
+  max-width: 50%;
+  width: 50%; 
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10px;
+  margin-bottom: 30px; 
+  border-radius: 20px;
+}
+
+.form-inner {   
+  background-color: transparent; 
+  padding: 30px;  
+  width: 100%;
+  border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
+  transition: var(--tran-05);
+} 
+
+.center-button {
+  margin: 20px auto;
+ } 
+
+ .center-button > div {
+  display: flex;
+  justify-content: center; */
+} 
+
 @media (min-width: 769px) and (max-width: 1000px) {
 .login-form-decor {   
   max-width: 70%;

@@ -59,9 +59,60 @@
 <!-- Форма добавления Пользователя -->
 <div class="form-wrapper"> 
     <!--Форма логина--> 
-    <form method="POST" action="{{ route('dashboard.order.store') }}" enctype="multipart/form-data" class="login-form-decor">
+    <form method="POST" action="{{ route('dashboard.order.store') }}" enctype="multipart/form-data" class="login-form-decor" id="order-form">
         @csrf
         <div class="form-inner">
+            <div class="two-fields-product-container">
+                <div>
+                    <label for="order_number">Номер заказа *</label>
+                    <input type="number" name="order_number" id="order_number" minLength="1" maxLength="50" required autocomplete="off" value="{{ old('order_number') }}" disabled>
+                    @error('order_number')
+                        <div class="form-field-validation-error">{{ $message }}</div>
+                    @enderror  
+                </div>
+                <div>
+                    <label for="created_at">Дата создания*</label>
+                    <input type="date" name="created_at" id="created_at" min="2023-04-01" autocomplete="off" value="{{ old('created_at') }}">
+                    @error('created_at')
+                        <div class="form-field-validation-error">{{ $message }}</div>
+                    @enderror 
+                </div>
+            </div>
+             <!-- Комбобокс Роль --> 
+             <label for="status">Статус *</label>
+            <br>
+            <div class="form-group">
+                <div class="dropdown">
+                    <button type="button" class="dropdown__button enabled"><div class="dropdown__button-text enabled">Новый</div></button>
+                    <ul class="dropdown__list">                        
+                        <li class="dropdown__list-item" data-value="New" >Новый</li>
+                        <li class="dropdown__list-item" data-value="Paid" >Оплачен</li>
+                        <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
+                        <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
+                        <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->                        
+                    </ul>
+                    <input type="hidden" name="status" id="status" value="{{ old('status') }}" class="dropdown__input-hidden" >
+                </div>
+            </div>
+            <!--End of Комбобокс Роль--> 
+            <div class="two-fields-product-container">
+                <div>
+                    <label for="orderitems_count">Количество товаров (шт.)</label>
+                    <input type="number" name="orderitems_count" id="orderitems_count" min="1" max="10000" autocomplete="off" value="{{ old('orderitems_count') }}" disabled>
+                    @error('orderitems_count')
+                        <div class="form-field-validation-error">{{ $message }}</div>
+                    @enderror  
+                </div>
+                <div>
+                    <label for="order_total">Сумма (р.)</label>
+                    <input type="text" name="order_total" id="order_total" minLength="1" maxLength="50"  autocomplete="off" value="{{ old('order_total') }}" disabled>
+                    @error('order_total')
+                        <div class="form-field-validation-error">{{ $message }}</div>
+                    @enderror 
+                </div>
+            </div>
+            
+            <h3 class="file-upload-pairs-title">Контактное лицо</h3>
             <label for="name">Имя *</label>
             <input type="text" name="name" id="name" minLength="1" maxLength="150" required autocomplete="off" value="{{ old('name') }}">
             @error('name')
@@ -99,6 +150,20 @@
             </div>
             <br>   -->
 
+            <h3 class="file-upload-pairs-title">Данные доставки</h3>
+            <ul class="ul-margin-bottom-zero">
+                <li class="radiobutton-row">
+                    <input type="radio" id="pickup" name="delivery_method" value="pickup"
+                        @checked(old('delivery_method', true))>
+                    <label for="pickup">Самовывоз</label>
+                </li>
+                <li class="radiobutton-row">
+                    <input type="radio" id="post" name="delivery_method"
+                            value="post" @checked(old('delivery_method', ))>
+                    <label for="post">Адресная доставка</label>
+                </li>
+            </ul>  
+            <br>
             <label for="address">Адрес</label>
             <input type="text" name="address" id="address" minLength="1" maxLength="500" autocomplete="off" value="{{ old('address') }}">
             @error('address')
@@ -120,23 +185,48 @@
                     @enderror
                 </div>
             </div>
-            <!-- Комбобокс Роль --> 
-            <label for="status">Статус *</label>
+            <label for="track_number">Трек номер посылки</label>
+            <input type="text" name="track_number" id="track_number" minLength="1" maxLength="150" autocomplete="off" value="{{ old('track_number') }}">
+            @error('track_number')
+                <div class="form-field-validation-error">{{ $message }}</div>
+            @enderror
+
+            <h3 class="file-upload-pairs-title">Данные оплаты</h3>
+            <ul class="ul-margin-bottom-zero">
+                <li class="radiobutton-row">
+                    <input type="radio" id="cash" name="payment_method" value="cash"
+                        @checked(old('payment-method', true))>
+                    <label for="cash">Наличными</label>
+                </li>
+                <li class="radiobutton-row">
+                    <input type="radio" id="card" name="payment_method"
+                            value="card" @checked(old('payment_method', ))>
+                    <label for="card">Кредитной картой</label>
+                </li>
+            </ul>
             <br>
-            <div class="form-group">
-                <div class="dropdown">
-                    <button type="button" class="dropdown__button enabled"><div class="dropdown__button-text enabled">Новый</div></button>
-                    <ul class="dropdown__list">                        
-                        <li class="dropdown__list-item" data-value="New" >Новый</li>
-                        <li class="dropdown__list-item" data-value="Paid" >Оплачен</li>
-                        <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
-                        <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
-                        <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->                        
-                    </ul>
-                    <input type="hidden" name="status" id="status" value="{{ old('status') }}" class="dropdown__input-hidden" >
+            <div class="two-fields-product-container">
+                <div>
+                <br>
+                    <div class="form-inner-checkbox">
+                        <input type="checkbox" id="is_paid" name="is_paid" class="checkbox-customized" @checked(old('is_paid', 0))>
+                        <label for="is_paid">
+                            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
+                                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
+                            </svg>
+                            Оплачен
+                        </label>                                       
+                    </div>  
+                    <br>
                 </div>
-            </div>
-            <!--End of Комбобокс Роль-->                            
+                <div>
+                    <label for="payment_date">Дата оплаты</label>
+                    <input type="date" name="payment_date" id="payment_date" min="2023-04-01" autocomplete="off" value="{{ old('payment_date') }}">
+                    @error('payment_date')
+                        <div class="form-field-validation-error">{{ $message }}</div>
+                    @enderror 
+                </div>
+            </div>                     
                            
             <!--Комбобокс Коллекции товара-->           
             <!-- <label for="collection_id">Коллекция</label>
@@ -155,38 +245,33 @@
             <select class="js-example-basic-single" name="state" id="select2-product">
                 <option></option>
                 <optgroup label="Овечки">    
-                    <option value="AL">Alabama</option>                        
-                    <option value="WY">Wyoming</option>
+                    <option value="AL">Мягкая игрушка Овечка Jolly Frances</option>                        
+                    <option value="WY">Мягкая игрушка Овечка Jolly Rosa</option>
                 </optgroup>
                 <optgroup label="Единорог Theodor">
                     <option>Nested option</option>
                 </optgroup>
-            </select>
-
-             <!-- <div class="form-inner-checkbox">
-                <input type="checkbox" id="create-account" name="create-account">
-                <label for="create-account">
-                    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
-                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
-                    </svg>
-                    Активен
-                </label>                                       
-            </div>  
-            <br> -->
-
-             
-           
+            </select>                  
                      
-
             <div class="center-button">
                 <div class="">                                
-                    <button type="submit" class="admin-save-button">
+                    <button type="button" class="more-file-upload-fields-button">
+                        <div class="more-file-upload-fields-icon"></div>
+                        <span>Добавить товар</span>                                    
+                    </button> 
+                    <div></div>                           
+                </div>                            
+            </div>
+
+           <!--  <div class="center-button">
+                <div class="">                                
+                    <button type="submit" class="admin-save-button" form="order-form">
                         <div class="admin-save-icon"></div>
                         <span>Сохранить</span>                                    
                     </button> 
                     <div></div>                           
                 </div>                            
-            </div>
+            </div> -->
 
         </div>
     </form>     
@@ -226,7 +311,7 @@
                     <p class="account">
                         <div class="admin-orderitem-quantity-controls">
                             <button class="admin-orderitem-minus-quantity" data-id="${id}">-</button>
-                            <input type="number" value="1" class="admin-orderitem-quantity" data-id="${id}">
+                            <input type="number" form="order-form" value="1" class="admin-orderitem-quantity" data-id="${id}">
                             <button class="admin-orderitem-plus-quantity" data-id="${id}">+</button>                                
                         </div>
                     </p>
@@ -259,6 +344,25 @@
             @endforeach           
         </div>        
     </div>
+
+     <!-- <div class="form-wrapper"> -->
+    <!--Форма логина--> 
+    <!-- <form method="POST" action="{{ route('dashboard.order.store') }}" enctype="multipart/form-data" class="login-form-decor" id="order-form">        -->
+    <!-- <div class="login-form-decor"> -->
+        <!-- <div class="form-inner"> -->
+        <div class="admin-save-button-wrapper">
+            <div class="center-button">
+                <div class="">                                
+                    <button type="submit" class="admin-save-button" form="order-form">
+                        <div class="admin-save-icon"></div>
+                        <span>Сохранить</span>                                    
+                    </button> 
+                    <div></div>                           
+                </div>                            
+            </div> 
+        </div>   
+    <!-- </div> -->
+    <!-- </div> -->
   
 @endsection
 @section('custom_js')

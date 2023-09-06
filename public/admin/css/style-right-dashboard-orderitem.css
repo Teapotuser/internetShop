@@ -120,6 +120,7 @@ body.dark .admin-add-button .title-add-icon {
     max-width: 20%;
     min-width: 80px;
     min-width: 20%;
+    text-align: left;
 }
 
 .account-rows .orderitem-quantity-column {
@@ -230,7 +231,7 @@ body.dark .accounts-list .list:hover {
 
 /* Картинка в строке таблицы */
 .admin-table-img-container {
-	height: 27px; /* 1.875rem; */
+	height: 44px; /* 1.875rem; */
 	/* width: 10%; */
     width: auto;
 	min-width: 10%;		
