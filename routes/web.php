@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\NewArrivalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,10 @@ Route::get('category/{category:code}', 'App\Http\Controllers\CategoryController@
 Route::get('collection/{collection:code}', 'App\Http\Controllers\CollectionController@show')->name('collection.show');    
 
 Route::get('product/{article}', 'App\Http\Controllers\ProductController@show')->name('product.show');
+
+Route::get('/newArrival', [NewArrivalController::class, 'showNewArrival'])->name('new.arrival');
+Route::get('/discount', [NewArrivalController::class, 'showDiscount'])->name('discount');
+
 /* Route::get('/', function () {
     return view('welcome');
 }); */

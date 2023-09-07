@@ -129,7 +129,29 @@
                             </li>                               
                         </ul>
                     </li>
-                    <li><a href="#" class="menu__link">Акции</a></li>
+                    <li>
+                        <!-- <a href="#" class="menu__link">Акции</a> -->
+                        <div class="menu__wrapper">
+                            <p class="menu__link">Акции</p>
+                            <span class="menu__arrow"></span>
+                        </div>
+                        <ul class="menu__sublist">
+                            <li>
+                                <a class="menu__sublink
+                                    @if(url()->current() == route('new.arrival') )
+                                        active
+                                    @endif"
+                                    href="{{ route('new.arrival') }}">Новинки</a>
+                            </li>
+                            <li>
+                                <a class="menu__sublink
+                                    @if(url()->current() == route('discount') )
+                                        active
+                                    @endif"
+                                    href="{{ route('discount') }}">Распродажа</a>
+                            </li>                                                          
+                        </ul>
+                    </li>
                     <li><a href="#" class="menu__link">Доставка и оплата</a></li>
                     <!-- <li><a href="#" class="menu__link">Контакты</a></li> -->
                     <li>
