@@ -1,8 +1,9 @@
 .orderhistory-header-bottom{
-    background-color: #fd9a9a;
+    /* background-color: #fd9a9a; */
     width: 100%;
     /* height: 46px; */
     /* box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2); */
+    margin-top: 24px;
 }
 
 /* nav{
@@ -43,14 +44,15 @@
     justify-content: space-between; */
 
     width: 100%;
-    padding-right: 20px;
-    
+    padding-right: 20px;  
 }
 
 /*li первого уровня меню*/
 .orderhistory-menu__list > li{
     position: relative;
     /* margin: 0px 0px 0px 20px; Вадим убрал*/
+
+    margin-bottom: 25px;
 }
 
 /* a href первого уровня меню */
@@ -61,7 +63,7 @@
 }
 
 .orderhistory-menu__link:hover{
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 .orderhistory-menu__sublist{
@@ -92,10 +94,10 @@
 
 .orderhistory-menu__sublist li{
     /* margin: 10px 20px 15px 20px; */
-    border-bottom: 1px solid #e1e2e1;
+    /* border-bottom: 1px solid #e1e2e1; */
     position: relative;
     /* padding: 10px 20px; закомментировано для burger menu на мобильном экране
-    margin-left: 5px; */
+    margin-left: 5px; */   
 }
 
 .orderhistory-menu__sublist li:last-child{
@@ -192,7 +194,7 @@ li._active > /*Вадим добавил уголок*/.orderhistory-menu__subli
         width: 100%;
         /* height: 80%; */
         /* transform: translate(-100%, 0px); */
-        background-color: rgba(248, 244, 238, 1); /* rgba(0, 0, 0, 0.9); */
+     /*    background-color: rgba(248, 244, 238, 1); */ /* rgba(0, 0, 0, 0.9); */
         /* padding: 0px 30px 30px 30px; */
         transition: left 0.3s ease 0s;
         /* overflow: scroll; */
@@ -233,11 +235,14 @@ li._active > /*Вадим добавил уголок*/.orderhistory-menu__subli
     .orderhistory-menu__list > li {
         flex-wrap: wrap;
         /* margin: 20px 0px 20px 0px; Вадим убрал*/
-        border-bottom: 1px solid #e1e2e1;
+        /* border-bottom: 1px solid #e1e2e1; */
         /* display: flex;
         flex-direction: row;
         align-items: center;
         line-height: 40px; */
+
+        background-color: rgba(248, 244, 238, 1);
+        border-radius: 20px;
     }
 
     .orderhistory-menu__list > li:last-child {
@@ -247,7 +252,7 @@ li._active > /*Вадим добавил уголок*/.orderhistory-menu__subli
 
     /*Я добавила*/
     .orderhistory-menu__list > li._active {
-        border-bottom: 1px solid  #e1e2e1;
+        /* border-bottom: 1px solid  #e1e2e1; */
     }
 
     /*Я добавила для отступов параграфа p*/
@@ -259,6 +264,11 @@ li._active > /*Вадим добавил уголок*/.orderhistory-menu__subli
     .orderhistory-menu__list  li._active > .orderhistory-menu__sublist {
         display: block;
         width: 100%; /*Вадим добавил*/
+
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     .orderhistory-menu__link {
@@ -329,9 +339,9 @@ li._active > /*Вадим добавил уголок*/.orderhistory-menu__subli
 
     .orderhistory-menu__arrow {
         cursor: pointer;
-        width: 12px;
-        height: 13px;
-        background-image: url(../images/arrow-down-grey.svg); /*button-minus.svg*/
+        width: 15px;
+        height: 16px;
+        background-image: url(../images/arrow-down-pink.svg); /*button-minus.svg*/
         background-size: cover;  
         background-repeat: no-repeat;
         /* margin-left: 10px; Вадим убрал*/
@@ -340,36 +350,122 @@ li._active > /*Вадим добавил уголок*/.orderhistory-menu__subli
 
    
     
-    li._active > .orderhistory-menu__arrow, li._active > .orderhistory-menu__wrapper > .orderhistory-menu__arrow/* , .orderhistory-menu__list li:hover > .orderhistory-menu__arrow */ {
+    li._active > .orderhistory-menu__arrow, li._active > .orderhistory-menu__wrapper > .orderhistory-menu__arrow, li._active > .orderhistory-menu__wrapper .orderhistory-menu__arrow/* , .orderhistory-menu__list li:hover > .orderhistory-menu__arrow */ {
         transform: rotate(-180deg);
     }    
     
 /* } */
 
+
 /* === Видео стройматериалы === */
 .order-prev {
     line-height: 18px;
+    font-size: 15px;
+    /* padding: 20px; */
 }
 
+.order-prev > * {
+    margin: 20px 0;
+}
+
+.order-prev > *:first-child {
+    margin-top: 0;
+}
+
+.order-prev > *:last-child {
+    margin-bottom: 0;
+}
+
+/* Строка с номером, статусом и стрелкой*/
+.order-prev__header {
+    display: flex;
+    align-items: baseline;
+    position: relative;
+}
+
+.order-prev__header > *:not(:last-child) {
+    margin-right: 20px;
+}
+
+.order-prev__number {
+    font-size: 22px;
+    line-height: 1.44;
+    color: #e20049;
+}
+
+.order-prev__date {
+    font-size: 15px;
+}
+
+.order-status {
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.order-status--waiting {
+background-color: #f8e71c;
+}
+
+.order-prev__link {
+    margin-left: auto;
+    color: #e20049;
+    font-size: 16px;
+    /* font-weight: 600; */
+    white-space: nowrap; /*я добавила*/
+    display: flex; /*я добавила*/
+}
+
+.order-prev__link span:first-child {
+    margin-right: 10px;
+}
+
+/*Две колонки с деталями заказа*/
 .order-prev__body {
     margin: 20px 0;
     width: 100%; /*я добавила*/
+}
+
+.order-prev__body > * {
+    margin: 20px 0;
+}
+
+.order-prev__body > *:first-child {
+    margin-top: 0;
+}
+
+.order-prev__body > *:last-child {
+    margin-bottom: 0;
 }
 
 .order-prev__block {
     margin: 20px 0;
     display: flex;
     align-items: flex-start;
-    justify-content: space-between; /*я добавила*/
+    /* justify-content: space-between; */ /*я добавила*/
+}
+
+.order-prev__block > *:not(:last-child) {
+    margin-right: 15px;
 }
 
 .order-prev__item {
     flex: 1;
-    margin-right: 15px;
+    /* margin-right: 15px; */
 }
 
 .order-prev__item > * {
     margin: 10px 0;
+}
+
+.order-prev__item > *:first-child {
+    margin-top: 0;
+}
+
+.order-prev__item > *:last-child {
+    margin-bottom: 0;
 }
 
 .order-prev__total {
@@ -381,25 +477,46 @@ li._active > /*Вадим добавил уголок*/.orderhistory-menu__subli
     margin: 10px 0;
 }
 
+.order-prev__total > *:first-child {
+    margin-top: 0;
+}
+
+.order-prev__total > *:last-child {
+    margin-bottom: 0;
+}
+
 .order-prev-line {
     display: flex;
     align-items: baseline;
 }
 
+.order-prev-line > *:not(:last-child) {
+    margin-right: 10px;
+}
+
 .order-prev-line__label {
     text-transform: uppercase;
     font-size: 12px;
-    margin-right: 10px; /*child */
-    color: #1fa349;
+   /*  margin-right: 10px; */ /*child */
+    color: #00b5c3; /* #1fa349; */
     flex: 0 0 140px;
     width: 140px;
-    letter-spacing: 0.6px;
+    letter-spacing: .6px;
+}
+
+.label-pink, .order-prev-line__label.label-pink {
+    color: #e20049;
 }
 
 .order-prev-line__body {
     display: flex;
     flex-direction: column;
     font-size: 14px;
+}
+
+.order-prev-line__value {
+    font-size: 15px; /*я добавила*/
+    white-space: wrap; /*я добавила*/
 }
 
 .order-prev-line__descr {
@@ -413,7 +530,103 @@ li._active > /*Вадим добавил уголок*/.orderhistory-menu__subli
     padding-top: 10px;
 }
 
+.order-prev-total-price span:first-child {
+    font-weight: bold; /*я добавила */
+}
+
 .order-prev-total-price__number {
     font-size: 16px;
     font-weight: bold;
+}
+
+@media screen and (max-width: 1070px) {
+    .order-prev__block {
+        flex-direction: column;
+    }
+
+    .order-prev__block > *:not(:last-child) {
+        margin-bottom: 15px;
+        margin-right: 0;
+    }
+
+    .order-prev__item {
+        width: 100%;
+    }
+
+    .order-prev__total {
+        margin-left: 0;
+        flex: 1;
+        width: 100%;
+    }
+
+
+    .order-prev__header {
+        flex-wrap: wrap;
+    }
+    .order-prev__status {
+        margin-top: 10px;
+        width: 50%;
+    }
+
+    .order-prev__link {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .order-prev > * {
+        margin: 15px 0;
+    }
+
+    /* .order-prev__item > * {
+        margin: 5px 0;
+    }
+
+    .order-prev__total > * {
+        margin: 5px 0;
+    } */
+
+    .order-prev-line {
+        /* flex-direction: column;         */
+        flex-wrap: wrap;
+    }
+
+    .order-prev-line > *:not(:last-child) {
+        margin-right: 0;
+        /* margin-bottom: 5px; */
+    }
+
+    .order-prev-line__label {
+        flex: 1;
+        width: 100%;
+    }
+
+    .order-prev-line__value {
+        white-space: wrap; /*я добавила*/
+    }
+
+    .order-prev__number {
+        font-size: 18px;        
+    }
+
+    .order-prev__header {
+        padding-right: 80px;
+        flex-direction: column;
+    }
+
+    .order-prev__header > *:not(:last-child) {
+        margin-bottom: 10px;
+        margin-right: 0;
+    }    
+
+    .order-status.order-prev__status {
+        font-size: 12px;
+        text-align: right;
+        position: absolute;
+        right: 0; /* -20px; */
+        width: 95px;
+        word-break: normal; /*я добавила*/
+        flex-wrap: wrap; /*я добавила*/
+        white-space: wrap;
+    }
 }

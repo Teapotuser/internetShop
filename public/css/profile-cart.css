@@ -20,7 +20,7 @@
 .orderitem-header {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px; /* 18px; */
     letter-spacing: 2px;
     color: #e20049;
 }
@@ -192,12 +192,17 @@
 /*Адаптив*/
 @media(max-width: 1000px){
 
+    .orderitem-column {
+       margin-right: 10px;
+    }
+
     .orderitem-header {
         display: none !important;
     }
 
     .orderitem-header-hide {
        display: block;
+       font-size: 15px;
     }
 
     .orderitem-row {
@@ -243,18 +248,25 @@
     }
 
     .orderitem-quantity {
-        width: 36%; /* 44%; */
+        width: 24%; /* 36%; */ /* 44%; */
         display: block;
+        font-size: 14px;
+    }
+
+    .orderitem-quantity p:last-child {
+        margin-left: 0;
     }
 
     .orderitem-price {
-        width: 23%;  
-        display: block;  
+        width: 29%; /* 23%; */  
+        display: block; 
+        font-size: 14px; 
     }   
     
     .orderitem-sum {
-        width: 23%;
+        width: 29%; /* 23%; */
         display: block;
+        font-size: 14px;
     }
 
 }
