@@ -77,7 +77,7 @@ Route::get('/feedback', [FeedBackController::class, 'show'])->name('feedback.for
 Route::post('/feedback', [FeedBackController::class, 'save'])->name('feedback.post');
 
 // Route::get('/profile', function () {return view('profile');})->name('profile.personal');
-// Route::get('/profile-orders', function () {return view('profile-ordershistory');})->name('profile.ordershistory');
+Route::get('/profile-orders', function () {return view('profile-ordershistory');})->name('profile.ordershistory');
 
 /* Route::get('/dashboard', function () {
     return view('dashboard');

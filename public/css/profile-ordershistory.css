@@ -38,10 +38,13 @@
 } */
 
 .orderhistory-menu__wrapper {
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; */
+
     width: 100%;
+    padding-right: 20px;
+    
 }
 
 /*li первого уровня меню*/
@@ -116,7 +119,7 @@ p.orderhistory-menu__sublink {
 }
 
 .orderhistory-menu__arrow {
-    /* display: none; */
+    display: block;
     transition: all 0.2s ease-in-out;
 }
 
@@ -326,7 +329,6 @@ li._active > /*Вадим добавил уголок*/.orderhistory-menu__subli
 
     .orderhistory-menu__arrow {
         cursor: pointer;
-
         width: 12px;
         height: 13px;
         background-image: url(../images/arrow-down-grey.svg); /*button-minus.svg*/
@@ -343,3 +345,75 @@ li._active > /*Вадим добавил уголок*/.orderhistory-menu__subli
     }    
     
 /* } */
+
+/* === Видео стройматериалы === */
+.order-prev {
+    line-height: 18px;
+}
+
+.order-prev__body {
+    margin: 20px 0;
+    width: 100%; /*я добавила*/
+}
+
+.order-prev__block {
+    margin: 20px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between; /*я добавила*/
+}
+
+.order-prev__item {
+    flex: 1;
+    margin-right: 15px;
+}
+
+.order-prev__item > * {
+    margin: 10px 0;
+}
+
+.order-prev__total {
+    margin-left: auto;
+    flex: 0 0 auto;
+}
+
+.order-prev__total > * {
+    margin: 10px 0;
+}
+
+.order-prev-line {
+    display: flex;
+    align-items: baseline;
+}
+
+.order-prev-line__label {
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-right: 10px; /*child */
+    color: #1fa349;
+    flex: 0 0 140px;
+    width: 140px;
+    letter-spacing: 0.6px;
+}
+
+.order-prev-line__body {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.order-prev-line__descr {
+    color:darkgrey;
+}
+
+.order-prev-total-price {
+    border-top: 1px solid darkgrey;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.order-prev-total-price__number {
+    font-size: 16px;
+    font-weight: bold;
+}

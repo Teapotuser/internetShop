@@ -66,9 +66,9 @@
                                 </div>                               
                             </div>
                             <div class="list-link open">
-                                <div class="left-filter-title">
+                               <!--  <div class="left-filter-title">
                                     <p>Категория</p>                                                                   
-                                </div>
+                                </div> -->
                                 <form class="left-form-filter" method="get"  action="">
                                    
                                     <!-- <li>
@@ -88,29 +88,46 @@
                                         <label class="" for="id_farm">Веселая ферма</label>
                                     </li>   -->                            
                                 <!-- </form> -->
-                                @isset($collections_all_forFilter)
-                                    @foreach ($collections_all_forFilter as $collection_Filter)
-                                        <li>
-                                            <input type="checkbox" id="{{ $collection_Filter->id }}"
-                                                value="{{$collection_Filter->code}}"
-                                                @checked(in_array($collection_Filter->code,Request::get('collection')??[]))
-                                                name="collection[]">
-                                            <label for="{{ $collection_Filter->id }}">{{ $collection_Filter->name }}</label>
-                                        </li>
-                                    @endforeach
-                                @endisset
-                                @isset($categories_all_forFilter)
-                                    @foreach ($categories_all_forFilter as $category_Filter)
-                                        <li>
-                                            <input type="checkbox" id="{{ $category_Filter->id }}"
-                                                value="{{$category_Filter->code}}"
-                                                @checked(in_array($category_Filter->code,Request::get('category')??[]))
-                                                name="category[]">
-                                            <label for="{{ $category_Filter->id }}">{{ $category_Filter->name }}</label>
-                                        </li>
-                                    @endforeach
-                                @endisset
-                                
+                                    @isset($categories_all_forFilter)
+                                        <div class="left-filter-title">
+                                            <p>Категория</p>                                                                   
+                                        </div>
+                                        @foreach ($categories_all_forFilter as $category_Filter)
+                                            <li>
+                                                <input type="checkbox" id="{{ $category_Filter->id }}"
+                                                    value="{{$category_Filter->code}}"
+                                                    @checked(in_array($category_Filter->code,Request::get('category')??[]))
+                                                    name="category[]">
+                                                <label for="{{ $category_Filter->id }}">{{ $category_Filter->name }}</label>
+                                            </li>
+                                        @endforeach
+                                    @endisset
+                                    @isset($collections_all_forFilter)
+                                        <div class="left-filter-title">
+                                            <p>Коллекция</p>                                                                   
+                                        </div>
+                                        @foreach ($collections_all_forFilter as $collection_Filter)
+                                            <li>
+                                                <input type="checkbox" id="{{ $collection_Filter->id }}"
+                                                    value="{{$collection_Filter->code}}"
+                                                    @checked(in_array($collection_Filter->code,Request::get('collection')??[]))
+                                                    name="collection[]">
+                                                <label for="{{ $collection_Filter->id }}">{{ $collection_Filter->name }}</label>
+                                            </li>
+                                        @endforeach
+                                    @endisset
+                               
+                                    <div class="left-filter-title">
+                                        <p>Новинки и акции</p>                                                                   
+                                    </div>
+                                    <li>
+                                        <input class="" type="checkbox" id="discount" name="discount" @if (request()->has('discount')) checked @endif >  
+                                        <label class="" for="discount">Акция</label>
+                                    </li>
+                                    <li>
+                                        <input class="" type="checkbox" id="new" name="new" @if (request()->has('new')) checked @endif >
+                                        <label class="" for="new">Новинка</label>
+                                    </li>
                                 <!-- левая панель: Фильтр по цене -->
                                     <div class="filter-price">
                                         <div class="left-filter-title">

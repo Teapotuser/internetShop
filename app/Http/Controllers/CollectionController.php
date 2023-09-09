@@ -42,20 +42,41 @@ class CollectionController extends Controller
     {
         $categories = Category::all();
         $collections = Collection::all();
-        $products_query = Product::query()->where('collection_id', $collection->id);
+        $products_query = Product::query()->where('collection_id', $collection->id)->IsActive();
 
         $query_for_filter = clone $products_query;
         $categories_all_forFilter = Category::query()->whereIn('id', $query_for_filter->distinct()->get('category_id'))->get();
 
+        //получаем только те коллекции что есть по фильтру
+        /* $query_for_filter = clone $products_query;
+        $query_for_filter->distinct()->select('collection_id')->get();
+        $collections_all_forFilter = Collection::query()->whereIn('id', $query_for_filter)->get(); */
+
         //получаем мин макс цену что есть по фильтру
-        $prices = clone $products_query;
-        $prices = $prices->selectRaw('round(min(`products`.`price`)/100,2) as min,round(max(`products`.`price`)/100,2) as max')->first();
+        /* $prices = clone $products_query;
+        $prices = $prices->selectRaw('round(min(`products`.`price`)/100,2) as min,round(max(`products`.`price`)/100,2) as max')->first(); */
 
         // фильтруем по категории если есть запрос на фильтрацию
         if ($request->get('category')) {
             $products_query->whereHas('category', function (Builder $query) use ($request) {
                 return $query->whereIn('code', $request->get('category'));
             });
+        }
+
+         //делаем фильтрацию по ценам
+         if ($request->get('minPrice')) {
+            $products_query->minPrice($request->get('minPrice'));
+        }
+        if ($request->get('maxPrice')) {
+            $products_query->maxPrice($request->get('maxPrice'));
+        }
+
+        if ($request->has('new')) {
+            $products_query->where('is_new', 1);
+        }
+
+        if ($request->has('discount')) {
+            $products_query->where('discount', '>', 0);
         }
         
         //получаем товары
@@ -65,6 +86,6 @@ class CollectionController extends Controller
 
         //для карусели популярных товаров
         $products_bestsellers = Product::where('collection_id', $collection->id)->where('is_best_selling', 1)->get();
-        return view('collection', compact('collection', 'categories', 'collections', 'products', 'categories_all_forFilter', 'products_bestsellers', 'prices'));
+        return view('collection', compact('collection', 'categories', 'collections', 'products', 'categories_all_forFilter', 'products_bestsellers'));
     }
 }

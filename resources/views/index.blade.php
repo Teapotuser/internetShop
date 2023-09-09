@@ -61,11 +61,22 @@
                             </div>
                             <div class="list-link open">
                                 <div class="left-filter-title">
-                                    <p>Категория или коллекция</p>                                                                   
+                                    <p>Категория</p>                                                                   
                                 </div>
                                 <form id="left-form-filter" class="left-form-filter" method="get"  action="{{ route('indexFilter') }}">
-                                    {{csrf_field()}}
-                                    <li>
+                                    {{csrf_field()}}                                    
+
+                                    @foreach ($categories_all_forFilter as $category_Filter)
+                                        <li>
+                                            <input type="checkbox" id="{{ $category_Filter->id }}"
+                                                    value="{{$category_Filter->code}}"
+                                                    @checked(in_array($category_Filter->code,Request::get('category')??[]))
+                                                    name="category[]">
+                                            <label
+                                                for="{{ $category_Filter->id }}">{{ $category_Filter->name }}</label>
+                                        </li>
+                                    @endforeach
+                                    <!-- <li>
                                         <input class="" type="checkbox" id="id_sheep" name="sheep">
                                         <label class="" for="id_sheep">Овечки Jolly Mäh</label>
                                     </li>  
@@ -84,17 +95,17 @@
                                     <li>
                                         <input class="" type="checkbox" id="id_farm" name="farm">
                                         <label class="" for="id_farm">Веселая ферма</label>
-                                    </li>                                      
+                                    </li>                        -->               
                                 <!-- </form> -->
                                     <div class="left-filter-title">
                                         <p>Новинки и акции</p>                                                                   
                                     </div>
                                     <li>
-                                        <input class="" type="checkbox" id="discount" name="discount" @if (request()->has('discount')) checked @endif > <!-- {{ $filters['discount'] ? 'checked':'unchecked' }}--> 
+                                        <input class="" type="checkbox" id="discount" name="discount" @if (request()->has('discount')) checked @endif >  
                                         <label class="" for="discount">Акция</label>
                                     </li>
                                     <li>
-                                        <input class="" type="checkbox" id="new" name="new" @if (request()->has('new')) checked @endif > <!-- {{ $filters['new'] ? 'checked':'unchecked' }} --> 
+                                        <input class="" type="checkbox" id="new" name="new" @if (request()->has('new')) checked @endif >  
                                         <label class="" for="new">Новинка</label>
                                     </li>
                                 <!-- левая панель: Фильтр по цене -->

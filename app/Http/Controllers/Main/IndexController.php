@@ -34,9 +34,11 @@ class IndexController extends Controller
             $collections = Collection::all();
             // $products = Product::paginate(6); 
             $products = Product::customSort($request->get('sort'))->IsActive()->paginate(6);
+
+            $categories_all_forFilter = Category::all();
             //Фильтры ($filtrs) по умолчанию надо задать и в "CollectionController" и в "CategoryController" или будет ошибка
 		    $filters = [ 'minPrice' => 0, 'maxPrice' => 250, 'discount' => '', 'new' => ''/* , 'sort' => 'name' */ ];//задаём по умолчанию фильтр цен          
-            return view('index', compact('categories', 'collections', 'products', 'filters') ); 
+            return view('index', compact('categories', 'collections', 'products', 'categories_all_forFilter','filters') ); 
             }
 
         public function indexFilter(Request $request) {
@@ -44,8 +46,16 @@ class IndexController extends Controller
             $collections = Collection::all();
             // $products = Product::paginate(6);
             // $productsQuery = Product::query();
-            $productsQuery = Product::query()->with(['collection','category']); //Даниил добавил with
+            $products_query = Product::query()->with(['collection','category'])->IsActive(); //Даниил добавил with
             
+            $categories_all_forFilter = Category::all();
+
+             //если есть категории в фильтре делаем фильтрацию
+            if ($request->get('category')) {
+                $products_query->whereHas('category', function (Builder $query) use ($request) {
+                    return $query->whereIn('code', $request->get('category'));
+                });
+            }
 
             $minPrice = $request->minPrice;
             $maxPrice = $request->maxPrice;
@@ -56,25 +66,25 @@ class IndexController extends Controller
             } */
 
             if ($minPrice) {
-                $productsQuery->minPrice($minPrice);
+                $products_query->minPrice($minPrice);
             }
             if ($maxPrice) {
-                $productsQuery->maxPrice($maxPrice);
+                $products_query->maxPrice($maxPrice);
             }
 
             if ($request->has('discount')) {
-                $productsQuery->where('discount', '>', 0);
+                $products_query->where('discount', '>', 0);
             }
 
             if ($request->has('new')) {
-                $productsQuery->where('is_new', 1);
+                $products_query->where('is_new', 1);
             }
 
             $filters = [ 'minPrice' => $minPrice, 'maxPrice' => $maxPrice, 'discount' => $request->discount, 'new' => $request->new /*,  'sort' => $sorto */ ];
             // dd($filters);
-            $productsQuery->customSort($request->get('sort'));
-            $products = $productsQuery->paginate(6)/* ->withPath("?" . $request->getQueryString()) */;
-            return view('index', compact('categories', 'collections', 'products', 'filters') ); 
+            $products_query->customSort($request->get('sort'));
+            $products = $products_query->paginate(6)/* ->withPath("?" . $request->getQueryString()) */;
+            return view('index', compact('categories', 'collections', 'products', 'categories_all_forFilter') ); 
         }
 
         /* public function indexSearch(Request $request) {

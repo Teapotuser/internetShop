@@ -164,7 +164,7 @@
                                             <!-- <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
                                             <input type="range" class="range-max" min="0" max="10000" value="7500" step="100"> -->
                                             <input type="range" class="range-min" name="minPrice" min="0" max="250" value="{{Request::get('minPrice')?? 0}}" step="10">
-                                            <input type="range" class="range-max" name="maxPrice"min="0" max="250" value="{{Request::get('maxPrice')?? 200}}" step="10">
+                                            <input type="range" class="range-max" name="maxPrice" min="0" max="250" value="{{Request::get('maxPrice')?? 200}}" step="10">
                                         </div>
                                     </div>
                                     <div  class="filter-buttons-container">

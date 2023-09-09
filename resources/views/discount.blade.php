@@ -125,7 +125,7 @@
                                     @endisset                                     
 
                                     <div class="left-filter-title">
-                                        <p>Акция</p>                                                                   
+                                        <p>Новинка</p>                                                                   
                                     </div>
                                     <!-- <li>
                                         <input class="" type="checkbox" id="discount" name="discount" @if (request()->has('discount')) checked @endif >  

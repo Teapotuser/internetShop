@@ -135,8 +135,81 @@
                                         <!-- <li><a href="#" class="orderhistory-menu__link">Контакты</a></li> -->
                                         <li>
                                             <div class="orderhistory-menu__wrapper">
-                                                <p class="orderhistory-menu__link">Заказ #12</p>
-                                                <span class="orderhistory-menu__arrow"></span>
+                                                <!-- <p class="orderhistory-menu__link">Заказ #12</p> -->
+                                                <div class="orderhistory-menu__link order-prev">
+                                                    <div class="order-prev__header">
+                                                        <span class="orderhistory-menu__arrow"></span>
+                                                    </div>
+                                                    <div class="order-prev__body">
+                                                        <div class="order-prev__block">
+                                                            <div class="order-prev__item">
+                                                                <div class="order-prev-line">
+                                                                    <span class="order-prev-line__label">
+                                                                        Количество товаров
+                                                                    </span>
+                                                                    <div class="order-prev-line__body">
+                                                                        <span class="order-prev-line__value">24 шт.</span>
+                                                                        <!-- <span class="order-prev-line__descr"></span> -->
+                                                                    </div>                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="order-prev__block">
+                                                            <div class="order-prev__item">
+                                                                <div class="order-prev-line">
+                                                                    <span class="order-prev-line__label">
+                                                                        Контактное лицо
+                                                                    </span>
+                                                                    <div class="order-prev-line__body">
+                                                                        <span class="order-prev-line__value">Вениамин Константинопольский</span>
+                                                                        <!-- <span class="order-prev-line__descr"></span> -->
+                                                                    </div>                                                                    
+                                                                </div>
+                                                                <div class="order-prev-line">
+                                                                    <span class="order-prev-line__label">
+                                                                        Адрес доставки
+                                                                    </span>
+                                                                    <div class="order-prev-line__body">
+                                                                        <span class="order-prev-line__value">220015 РБ г. Минск, ул. Берестянская, д. 17, кв. 25</span>
+                                                                        <span class="order-prev-line__descr">Доставка по Беларуси 3-7 дней</span>
+                                                                    </div>                                                                    
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="order-prev__total">
+                                                                <div class="order-prev-line">
+                                                                    <span class="order-prev-line__label">
+                                                                        Стоимость товаров
+                                                                    </span>
+                                                                    <div class="order-prev-line__body">
+                                                                        <span class="order-prev-line__value">123.45 р.</span>
+                                                                        <!-- <span class="order-prev-line__descr"></span> -->
+                                                                    </div>                                                                    
+                                                                </div>
+                                                                <div class="order-prev-line">
+                                                                    <span class="order-prev-line__label">
+                                                                        Доставка
+                                                                    </span>
+                                                                    <div class="order-prev-line__body">
+                                                                        <span class="order-prev-line__value">5.79 р.</span>
+                                                                        <!-- <span class="order-prev-line__descr">Доставка по Беларуси 3-7 дней</span> -->
+                                                                    </div>                                                                    
+                                                                </div>
+
+                                                                <div class="order-prev-total-price">
+                                                                    <span>
+                                                                       Итого
+                                                                    </span>
+                                                                    <span class="order-prev-total-price__number">
+                                                                       129.24 р.
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- <span class="orderhistory-menu__arrow"></span> -->
                                             </div>
                                             <ul class="orderhistory-menu__sublist">
                                                 <li>
