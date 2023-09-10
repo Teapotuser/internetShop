@@ -127,4 +127,9 @@ class UserController extends Controller
     {
         //
     }
+
+    public function changepassword()
+    {
+        return view('admin.user.changepassword');
+    }
 }

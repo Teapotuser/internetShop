@@ -517,6 +517,41 @@ body.dark .title .title-rectangle-icon .title-edit-icon:hover {
     transition: var(--tran-05);
 }
 
+.dash-content .title .title-rectangle-icon .title-password-icon {
+    background-image: url(../images/noun-password-5978458-white.svg);    
+    background-size: contain;   
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;	    
+    height: 27px;
+    width: 27px;
+    /* max-height: 10px; */
+    /* max-width: ; */
+    min-width: 27px;
+    /* cursor: pointer; */
+    padding: 0;
+    margin: auto;
+    /* position: absolute;
+    top: 40%;
+    left: 0%; */
+    transition: background-color 200ms ease-out;
+}
+
+body.dark .title .title-rectangle-icon .title-password-icon,
+body.dark .title .title-rectangle-icon .title-password-icon:hover {
+    background-image: url(../images/noun-password-5978458-light-grey.svg);    
+    /* background-size: auto, auto;    */
+	background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: center;
+    height: 27px;
+    width: 27px;
+    /* max-height: 10px; */
+    /* max-width: ; */
+    min-width: 27px;
+    transition: var(--tran-05);
+}
+
 /* End of Icons для Add, Edit форм */
 
 .dash-content .title .text{

@@ -75,13 +75,15 @@ Route::get('clearCart', [CartController::class, 'clear']);
 // Форма обратной связи
 Route::get('/feedback', [FeedBackController::class, 'show'])->name('feedback.form');
 Route::post('/feedback', [FeedBackController::class, 'save'])->name('feedback.post');
+Route::get('/feedback-confirmation', function () {return view('feedbackconfirm');});
+
 
 // Route::get('/profile', function () {return view('profile');})->name('profile.personal');
 Route::get('/profile-orders', function () {return view('profile-ordershistory');})->name('profile.ordershistory');
 
-/* Route::get('/dashboard', function () {
-    return view('dashboard');
-}) *//* ->middleware(['auth', 'verified']) *//* ->name('dashboard'); */
+/*Route::get('/dashboard/user-password', function () {
+    return view('dashboard.changepassword');
+}) */ /* ->middleware(['auth', 'verified']) *//* ->name('dashboard'); */
 
 /*Route::get('/search', function () {
     return view('search');
@@ -118,6 +120,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::resource('collection', 'App\Http\Controllers\Admin\CollectionController');
     Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
     Route::resource('user', 'App\Http\Controllers\Admin\UserController');
+    Route::get('/user-password', 'App\Http\Controllers\Admin\UserController@changepassword');
     Route::resource('order', 'App\Http\Controllers\Admin\OrderController');
 });
 
