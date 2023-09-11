@@ -12,12 +12,12 @@
                     <!-- Правая галерея товаров -->
                     <h2 class="section-header">Подтверждение отправки сообщения</h2>
                     <!--  Форма адреса -->
-                    <div class="order-placed-container">
-                        <div class="order-placed-card">
+                    <div class="feedback-confirmation-container">
+                        <div class="feedback-confirmation-card">
                             <div class="icon-container">
                                 <div class="circle"></div>
                                 <div class="icon-circle">
-                                    <div class="order-confirm-img-container">
+                                    <div class="feedback-confirm-img-container">
                                         <img class="" src="{{asset('images/NICI/Egon_Postmappen-feedbackconfirm.png')}}">
                                     </div>
                                     <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -28,44 +28,14 @@
                                     </svg> -->
                                 </div>
                             </div>
-                            <h3 class="title">Ваш заказ №<span></span> принят!</h3>
-                            <p class="message">Благодарим за заказ!</p>
-                           
-                                <p class="message">Вы успешно зарегистрированы. Доступ к личному кабинету, пароль, а
-                                    также информацию о
-                                    заказе мы отправили на вашу почту <span></span>.</p>
-                            
-                                <p class="message">Данные заказа мы отправили на вашу почту <br>
-                                    <span></span>.
-                                </p>
-                            
-                            <p class="message bottom-margin">В ближайшие 24 часа с вами свяжется менеджер магазина для
-                                уточнения деталей. Статус выполнения заказа вы можете отслеживать в личном кабинете.</p>
-                            <div class="order-placed-table-title">Детали заказа</div>
-                            <div class="details-container">
-                                <div class="order-detail">
-                                    <p class="label">Номер заказа:</p>
-                                    <p class="data"></p>
-                                </div>
-                                <div class="order-detail">
-                                    <p class="label">Итого:</p>
-                                    <p class="data">
-                                        <span></span><span> р.</span></p>
-                                </div>
-                                <div class="order-detail">
-                                    <p class="label">Доставка:</p>
-                                    <p class="data">
-                                    </p>
-                                </div>
-                                <div class="order-detail">
-                                    <p class="label">Способ оплаты:</p>
-                                    <p class="data">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="order-confirm-img-container">
+                            <h3 class="title">Сообщение успешно отправлено!</h3>
+                            <p class="message">Благодарим за ваше обращение!</p>
+                            <p class="message">Спасибо, что помогаете нам стать лучше.</p>                           
+                            <p class="message bottom-margin">В ближайшие 48 часов мы пришлем ответ на вашу почту <span>email@gmail.com</span>.</p>
+                        
+                            <!--  <div class="order-confirm-img-container">
                                 <img class="" src="{{asset('images/NICI/shopping_cart_with_bags_lion_einhorn.png')}}">
-                            </div>
+                            </div> -->
                             <a href="/" class="btn-buy">Отправить новое сообщение</a>
                         </div>
                     </div>
