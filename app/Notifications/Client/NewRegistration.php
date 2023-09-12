@@ -20,10 +20,10 @@ class NewRegistration extends Notification
      *
      * @return void
      */
-    public function __construct(User $user, $password)
+    public function __construct(User $user)
     {
         $this->user = $user;
-        $this->password = $password;
+        // $this->password = $password;
     }
 
     /**
@@ -64,8 +64,8 @@ class NewRegistration extends Notification
             ->line('Имя: ' . $client_name)
             ->line('Фамилия: ' . $client_last_name)
             ->line('Телефон: ' . $client_phone)
-            ->line('Email: ' . $client_email)
-            ->line('Пароль: ' . $this->password);
+            ->line('Email: ' . $client_email);
+            // ->line('Пароль: ' . $this->password);
     }
 
     /**
