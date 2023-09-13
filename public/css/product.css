@@ -143,6 +143,11 @@
     margin-block-end: 0px;
 }
 
+.product-final-price.blue-price{
+    color: #50bcca;	
+	margin-top: 8px;
+}
+
 .product-darker-bg {
     width: 100%;
     background-color: rgb(243, 233, 222);
@@ -338,8 +343,14 @@ td.product--properties-label {
     .product-details-wrapper .product-details {
         display: block;
         width: 100%;
-        min-width: 350px;
+        min-width: 250px;
     }
+	
+	/*  .product-details-wrapper .product-details p {
+        display: block;
+        width: 100%;
+        min-width: 250px;
+    } */
 
     .product-details-wrapper .product-details-table {
         display: block;

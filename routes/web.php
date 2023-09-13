@@ -120,7 +120,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::resource('collection', 'App\Http\Controllers\Admin\CollectionController');
     Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
     Route::resource('user', 'App\Http\Controllers\Admin\UserController');
-    Route::get('/user-password', 'App\Http\Controllers\Admin\UserController@changepassword');
+    // Route::get('/user-password', 'App\Http\Controllers\Admin\UserController@changepassword');
     Route::resource('order', 'App\Http\Controllers\Admin\OrderController');
 });
 

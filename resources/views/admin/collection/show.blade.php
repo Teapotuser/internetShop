@@ -73,7 +73,7 @@
                 <!-- <br> -->
                 <!-- <button type="button" id="clear-file-button" class="hidden"></button>                             -->
             </div>
-            <br>
+            <!-- <br>
             <div class="form-inner-checkbox">
                 <input type="checkbox" id="create-account" name="create-account">
                 <label for="create-account">
@@ -82,7 +82,7 @@
                     </svg>
                     Активна
                 </label>                                       
-            </div>              
+            </div>     -->          
         </div>
     </form> 
 </div>

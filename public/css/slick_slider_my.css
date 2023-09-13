@@ -19,6 +19,7 @@
     width: auto;
     height: 450px;
     margin: 0 auto;
+	max-width: 580px;
 }
 
 .slider-nav{
@@ -63,6 +64,8 @@
     height: 100%;
     margin: 1px auto;
     /* padding: 3px; */
+	max-height: 58px;
+	max-width: 58px;
 }
 
 /*не помню зачем*/

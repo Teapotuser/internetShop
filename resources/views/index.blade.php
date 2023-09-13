@@ -155,12 +155,12 @@
                             </a>
                             </div> 
                             <div class="slider-wrap">
-                            <a href="#">                    
+                            <a href="{{ route('collection.show', 'unicorn_theodor') }}">                    
                                 <img class="slider-img" src="images/NICI/slider/slider2.jpg" alt="" />   
                             </a>
                             </div>
                             <div class="slider-wrap"> 
-                            <a href="#">                          
+                            <a href="{{ route('collection.show', 'jolly_maeh') }}">                          
                                 <img class="slider-img" src="images/NICI/slider/slider3.jpg" alt="" />
                             </a> 
                             </div>                              

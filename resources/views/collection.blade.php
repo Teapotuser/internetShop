@@ -186,7 +186,7 @@
 
                                 @foreach ($products_bestsellers as $product_popular)
                                     <div class="slider-wrap-collection">
-                                        <a href="#" class="slider-img-collection">
+                                        <a href="{{ route('product.show', $product_popular->article) }}" class="slider-img-collection">
                                             <div class="img-name-wrapper-product-collection">
                                                 <div class="img-product-collection">
                                                     <img class="img" src="{{ Storage::url($product_popular->picture) }}" alt="" />

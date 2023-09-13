@@ -87,7 +87,7 @@
                 <input type="hidden" name="removeImage">
                 <button type="button" id="clear-file-button" class="clear-file-button @if(!$category->picture) hidden @endif"></button>
             </div>
-            <br>
+            <!-- <br>
             <div class="form-inner-checkbox">
                 <input type="checkbox" id="create-account" name="create-account"> <!-- @checked( $category->is_active) -->
                 <label for="create-account">
@@ -96,7 +96,7 @@
                     </svg>
                     Активна
                 </label>                                       
-            </div>
+            </div> -->
             <div class="center-button">
                 <div class="">                                
                     <button type="submit" class="admin-save-button">

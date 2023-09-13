@@ -175,6 +175,9 @@
                         <h1 class="right-side-title">{{ $category->name }}</h1>
                         <div class="right-side-description">                            
                             <p>{{ $category->description }}</p>
+                            <div class="right-side-description-img-wrapper">
+                                <img src="{{ Storage::url($category->picture) }}" alt="category image">
+                            </div>
                         </div>
 
                         <div class="dotted-line-divider"></div>
@@ -186,7 +189,7 @@
 
                                 @foreach ($products_bestsellers as $product_popular)
                                     <div class="slider-wrap-collection">
-                                        <a href="#" class="slider-img-collection">
+                                        <a href="{{ route('product.show', $product_popular->article) }}" class="slider-img-collection">
                                             <div class="img-name-wrapper-product-collection">
                                                 <div class="img-product-collection">
                                                     <img class="img" src="{{ Storage::url($product_popular->picture) }}" alt="" />

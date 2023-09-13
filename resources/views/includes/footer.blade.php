@@ -38,7 +38,8 @@
                             <nav>
                                 <li><a href="#">Доставка</a></li>
                                 <li><a href="#">Оплата</a></li>
-                                <li><a href="#">Акции</a></li>
+                                <li><a href="{{ route('new.arrival') }}">Новинки</a></li>
+                                <li><a href="{{ route('discount') }}">Распродажа</a></li>
                             </nav>
                         </div>
                     </div>
@@ -51,7 +52,7 @@
                         <div class="f-list-link open">
                             <nav>
                                 <li><a href="#">Контакты</a></li>
-                                <li><a href="#">Обратная связь</a></li>
+                                <li><a href="{{ route('feedback.form') }}">Обратная связь</a></li>
                                 <li><a href="#">О нас</a></li>
                                 <li><a href="#">О фирме NICI</a></li>
                             </nav>

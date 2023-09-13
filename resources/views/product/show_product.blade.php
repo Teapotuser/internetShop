@@ -204,7 +204,7 @@
                                                 <span class="final-price-product-currency"> р.</span>
                                             </p>
                                         @else
-                                            <p class="product-final-price">
+                                            <p class="product-final-price blue-price">
                                                 <span class="final-price-product-amount blue-price">{{ $product->price }}</span>
                                                 <span class="final-price-product-currency blue-price"> р.</span>
                                             </p>
@@ -277,7 +277,7 @@
                                                     <td class="product--properties-value">{{ $product->material_filling }}</td> 
                                                 </tr> 
                                                 <tr class="product--properties-row"> 
-                                                    <td class="product--properties-label is--bold">Рекомендуемый возраст (от): </td> 
+                                                    <td class="product--properties-label is--bold">Рекомендуемый возраст: </td> 
                                                     <td class="product--properties-value">{{ $product->age_from }}</td> 
                                                 </tr>
                                                 <tr class="product--properties-row"> 

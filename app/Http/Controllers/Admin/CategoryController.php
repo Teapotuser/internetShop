@@ -47,8 +47,10 @@ class CategoryController extends Controller
         $validated = $request->validated();
         if ($request->file('picture')){
             $file = $request->file('picture');            
-            $picture = Storage::putFile('/public/categories/'.$validated['code'],$file);
-          
+            // $picture = Storage::putFile('/public/categories/'.$validated['code'],$file);
+            $picture = Storage::putFile('/public/categories/'.$validated['code'], $file);
+
+
             $validated['picture'] =$picture;
         }
         $category = Category::create($validated);      
