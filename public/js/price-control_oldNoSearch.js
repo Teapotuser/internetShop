@@ -28,7 +28,7 @@ document.addEventListener('input', function (event) {
     if (query.get('page') != null){
         query.delete('page');
     }
-
+    
     query.set('sort', event.target.value)
     // console.log(query.toString());
     // console.log(event.target, event.target.value);
@@ -40,22 +40,9 @@ document.addEventListener('input', function (event) {
 document.addEventListener('submit', function (event) {
     if (event.target.className !== 'left-form-filter') return;
     let sort = document.getElementById('sort').value;
-
-
-    let params = new URLSearchParams(window.location.search);
-    let sSearch = params.get('sSearch') // 'chrome-instant'
-    if (sSearch && !event.target.querySelector("input[name='sSearch']")){
-        event.preventDefault();
-        let FN = document.createElement("input");
-        FN.setAttribute("type", "hidden");
-        FN.setAttribute("value", sSearch);
-        FN.setAttribute("name", 'sSearch');
-        event.target.appendChild(FN);
-        event.target.submit()
-    }
     if (sort && !event.target.querySelector("input[name='sort']")){
         event.preventDefault();
-        let FN = document.createElement("input");
+        var FN = document.createElement("input");
         FN.setAttribute("type", "hidden");
         FN.setAttribute("value", sort);
         FN.setAttribute("name", 'sort');
@@ -74,7 +61,7 @@ priceInput.forEach(input =>{
     input.addEventListener("input", e =>{
         let minPrice = parseInt(priceInput[0].value),
         maxPrice = parseInt(priceInput[1].value);
-
+        
         if((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max){
             if(e.target.className === "input-min"){
                 rangeInput[0].value = minPrice;

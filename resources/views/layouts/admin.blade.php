@@ -24,11 +24,11 @@
                     <img src="images/logo.png" alt="">
                 </span> -->
                 <div class="image">
-                    <a href="{{route('index')}}"><img src="{{ asset('admin/images/logo.png') }}" alt="NICI logo"></a>
+                    <a href="{{route('dashboard.index')}}"><img src="{{ asset('admin/images/logo.png') }}" alt="NICI logo"></a>
                 </div>
                 <div class="text logo-text">
-                    <span class="name">Codinglab</span>
-                    <span class="profession">Web developer</span>
+                    <span class="name">Admin</span>
+                    <span class="profession">Dashboard</span>
                 </div>
             </div>
 
@@ -45,10 +45,10 @@
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{{route('dashboard.index')}}">
                             <!-- <i class='bx bx-home-alt icon' ></i> -->
 							<span class='icon'><div class='icon-dashboard'></div></span>
-                            <span class="text nav-text">Dashboard</span>
+                            <span class="text nav-text">Главная</span>
                         </a>
                     </li>
 
@@ -119,11 +119,15 @@
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="#">
-                        <!-- <i class='bx bx-log-out icon' ></i> -->
-						<span class='icon'><div class='icon-logout'></div></span>
-                        <span class="text nav-text">Выйти</span>
-                    </a>
+                    <form action="{{route('logout')}}" method="post">
+                        @method('POST')
+                        @csrf
+                        <a href="#" onclick="$(this).parent().submit()">
+                            <!-- <i class='bx bx-log-out icon' ></i> -->
+                            <span class='icon'><div class='icon-logout'></div></span>
+                            <span class="text nav-text">Выйти</span>
+                        </a>
+                    </form>
                 </li>
 
                 <li class="mode">
@@ -157,7 +161,7 @@
                 <input type="text" placeholder="Search here...">
             </div>
             
-            <img src="{{ asset('admin/images/profile.jpg') }}" alt="face">
+            <img src="{{  Auth::user()?->picture? : asset('admin/images/profile.jpg') }}" alt="face">
         </div>
 
         <div class="dash-content">

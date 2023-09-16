@@ -18,12 +18,13 @@
                             <!-- Главный слайдер -->
                             <div class="product-slider-wrapper">
                                 <div class="product-carousel">
-                                    @foreach ($images->toArray()['path'] as $path)
-                                        <a class="link-image" href="{{ Storage::url($path) }}">                          
-                                            <img class="slider-img" src="{{ Storage::url($path) }}" alt="" /> 
-                                        </a>
-                                    @endforeach
-
+                                    @if($images->toArray())
+                                        @foreach ($images->toArray()['path'] as $path)
+                                            <a class="link-image" href="{{ Storage::url($path) }}">                          
+                                                <img class="slider-img" src="{{ Storage::url($path) }}" alt="" /> 
+                                            </a>
+                                        @endforeach
+                                    @endif
                                    <!--  <a class="link-image" href="images/goods/products/48531_01_HA.jpg">                          
                                         <img class="slider-img" src="images/goods/products/48531_01_HA.jpg" alt="" /> 
                                     </a>
@@ -146,12 +147,13 @@
                             <div class="product-slider-nav-wrapper">  
                                 <div class="slider-nav">
                                     <!-- конвертация коллекции (из контроллера ProductController) в массив -->
-                                    @foreach ($previews->toArray()['preview'] as $preview_path)
-                                        <div class="slider-wrap-nav"> 
-                                            <img class="slider-img1" src="{{ Storage::url($preview_path) }}" alt="" />
-                                        </div>
-                                    @endforeach
-
+                                    @if($previews->toArray())
+                                        @foreach ($previews->toArray()['preview'] as $preview_path)
+                                            <div class="slider-wrap-nav"> 
+                                                <img class="slider-img1" src="{{ Storage::url($preview_path) }}" alt="" />
+                                            </div>
+                                        @endforeach
+                                    @endif
                                     <!-- <div class="slider-wrap-nav">                                
                                         <img class="slider-img1" src="images/goods/products/48531_01_200_200.jpg" alt="" /> 
                                     </div> 

@@ -2,6 +2,13 @@ $(function () {
     // при нажатии на корзину берем дата атрибут ссылки удаления(куда мы должны отправить форму), и подставляем данную ссылку в форму в попапе
     $('.popup-with-delete-form').click(function(){
         $('.admin-form-delete').attr('action',$(this).data('action'));
+		//Даниил добавил: блокировать удаление категории/коллекции, если в ней есть товары 
+		if ($(this).data('products')) {
+            $('.delete-form-products-message').css('display', 'block');
+            $('.delete-form-products-count').text($(this).data('products'));
+            // $('.admin-delete-yes-button').attr('disabled', true);
+			$('.admin-delete-yes-button').css('display', 'none');
+        }
     });
 	$('.popup-with-delete-form').magnificPopup({
 		type: 'inline',
@@ -11,6 +18,12 @@ $(function () {
 	});
 	$(document).on('click', '.popup-modal-dismiss', function (e) {
 		e.preventDefault();
+		//Даниил добавил: блокировать удаление категории/коллекции, если в ней есть товары
+		$('.delete-form-products-message').css('display', 'none');
+        $('.delete-form-products-count').text('');
+        // $('.admin-delete-yes-button').removeAttr('disabled');
+		$('.admin-delete-yes-button').css('display', 'flex');
+
 		$.magnificPopup.close();
 	});
 });

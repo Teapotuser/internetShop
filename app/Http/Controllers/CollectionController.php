@@ -85,7 +85,9 @@ class CollectionController extends Controller
         $products = $products_query->paginate(6);
 
         //для карусели популярных товаров
-        $products_bestsellers = Product::where('collection_id', $collection->id)->where('is_best_selling', 1)->get();
+        // $products_bestsellers = Product::where('collection_id', $collection->id)->where('is_best_selling', 1)->get();
+        $products_bestsellers = $collection->getBestSellers();
+
         return view('collection', compact('collection', 'categories', 'collections', 'products', 'categories_all_forFilter', 'products_bestsellers'));
     }
 }

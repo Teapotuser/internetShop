@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Models\Category;
 use App\Models\Collection;
 // use App\Models\ProductImages;
@@ -28,6 +29,11 @@ class Product extends Model
     public function collection() : BelongsTo {
         return $this->belongsTo(Collection::class);
     } 
+
+    public function orders(): BelongsToMany
+    {
+        return $this->belongsToMany(Order::class, OrderProducts::class);
+    }
     
     //округление цены и расчет копеек
     public function price(): Attribute {
@@ -40,7 +46,7 @@ class Product extends Model
         return $this->discount ? true : false;
     }
 
-    public function scopeIsActive(Builder $query)
+    public function scopeIsActive(Builder $query): Builder
     {
         return $query->where('is_active', 1);
     }

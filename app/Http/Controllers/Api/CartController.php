@@ -181,6 +181,9 @@ class CartController extends Controller
                 'phone_number' => $request->get('phone_number'),
                 'email' => $request->get('email'),
                 'password' => bcrypt($request->get('password')),
+                'address' => '',
+                'city'=>'',
+                'zip_code' => ''
             ]);
 
             $request->merge(['user_id' => $user->id]);

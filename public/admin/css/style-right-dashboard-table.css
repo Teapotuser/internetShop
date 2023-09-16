@@ -472,3 +472,8 @@ body.dark .admin-delete-cancel-button .admin-delete-cancel-icon {
     background-position-y: center;
     transition: var(--tran-05);
  }
+ 
+ .delete-form-products-message {
+	 margin: 0 auto;
+	 text-align: center;
+ }

@@ -79,7 +79,7 @@ Route::get('/feedback-confirmation', function () {return view('feedbackconfirm')
 
 
 // Route::get('/profile', function () {return view('profile');})->name('profile.personal');
-Route::get('/profile-orders', function () {return view('profile-ordershistory');})->name('profile.ordershistory');
+// Route::get('/profile-orders', function () {return view('profile-ordershistory');})->name('profile.ordershistory');
 
 /*Route::get('/dashboard/user-password', function () {
     return view('dashboard.changepassword');
@@ -98,7 +98,9 @@ Route::get('/profile-orders', function () {return view('profile-ordershistory');
 require __DIR__.'/auth.php'; */
 /* require __DIR__.'/auth.php'; */
 // Личный кабинет пользователя
-Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+// Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth', 'role:user']], function () {    
+    Route::get('/orders', [ProfileController::class, 'orders'])->name('orders');
     Route::get('/update-password', [ProfileController::class, 'update_password_view'])->name('update-password.view');
     Route::patch('/update-password', [ProfileController::class, 'update_password'])->name('update-password.update');
     Route::patch('/userdata', [ProfileController::class, 'update'])->name('update');
@@ -107,6 +109,7 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
     Route::get('/subscription', [ProfileController::class, 'subscription'])->name('subscription.show');
     Route::get('/', [ProfileController::class, 'show'])->name('show');
     // Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
+    Route::get('/profile-orders', [ProfileController::class, 'orders'])->name('orderhistory.show');
 });
 
 
@@ -115,13 +118,14 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 // Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['auth', 'role:admin']], function () {    
     Route::get('/', function () {
         return view('admin.index');
-    });
+    })->name('index');
     Route::resource('category', 'App\Http\Controllers\Admin\CategoryController');
     Route::resource('collection', 'App\Http\Controllers\Admin\CollectionController');
     Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
     Route::resource('user', 'App\Http\Controllers\Admin\UserController');
-    // Route::get('/user-password', 'App\Http\Controllers\Admin\UserController@changepassword');
+    Route::get('/user-password', 'App\Http\Controllers\Admin\UserController@changepassword');
     Route::resource('order', 'App\Http\Controllers\Admin\OrderController');
+    Route::get('/subscription', 'App\Http\Controllers\Admin\SubscriptionController@index');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

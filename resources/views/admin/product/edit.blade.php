@@ -42,7 +42,7 @@
 <!-- Форма редактирования Категории -->
 <div class="form-wrapper"> 
     <!--Форма логина--> 
-    <form method="POST" action="{{ route('dashboard.product.update', $product) }}" enctype="multipart/form-data" class="login-form-decor">
+    <form method="POST" action="{{ route('dashboard.product.update', $product) }}" enctype="multipart/form-data" id="saveProducts" class="login-form-decor">
         @csrf
         @method('put')
         <div class="form-inner">
@@ -319,42 +319,49 @@
 
             <h3 class="file-upload-pairs-title">Загрузка фото для карточки товара</h3>
             <!-- Загрузка картинок для карусели на странице товара -->
-            <div class="file-upload-pair-wrapper">
-                <div class="file-upload-control">
-                    <p class="label">Иконка 1 *</p>
-                    <div class="file-upload-container">
-                        <figure class="file-upload-preview-image-container">
-                            <img id="chosen-image" class="chosen-image" src="{{ $product->picture ? Storage::url($product->picture) : asset('/admin/images/Untitled.png')}}">
-                            <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
-                        </figure>
-                
-                        <input type="file" id="upload-button-11" class="upload-button" accept="image/*" name="preview_path[]">
-                        <label for="upload-button-11" class="upload-file-label upload-file-label-in-pair">
-                            <div class="file-upload-icon"></div>
-                            <!-- <span>Загрузить файл</span> -->
-                        </label>
-                        <input type="hidden" name="removeImage" id="removeImage-11">
-                        <button type="button" id="clear-file-button" class="clear-file-button clear-file-button-in-pair @if(!$product->picture) hidden @endif "></button>                            
+            @foreach($product->images as $key=>$image)
+                @php($key++)
+                <div class="file-upload-pair-wrapper">
+                    <div class="file-upload-control">
+                        <p class="label">Иконка {{$key}} *</p>
+                        <div class="file-upload-container">
+                            <figure class="file-upload-preview-image-container">
+                                <!-- <img id="chosen-image" class="chosen-image" src="{{ $product->picture ? Storage::url($product->picture) : asset('/admin/images/Untitled.png')}}"> -->
+                                <img id="chosen-image" class="chosen-image" src="{{  Storage::url($image->preview_path) }}" data-image="img{{$image->id}}">
+                                <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
+                            </figure>
+                    
+                            <input type="file" id="upload-button-{{$key}}1" class="upload-button" accept="image/*" name="preview_path[img{{$image->id}}]">
+                            <label for="upload-button-{{$key}}1" class="upload-file-label upload-file-label-in-pair">
+                                <div class="file-upload-icon"></div>
+                                <!-- <span>Загрузить файл</span> -->
+                            </label>
+                            <!-- <input type="hidden" name="removeImage" id="removeImage-11"> -->
+                            <input type="hidden" name="removePreviewImages[{{$key}}]" class="removePreviewImage">
+                            <button type="button" id="clear-file-button" data-key="{{$key}}" data-type="preview" class="clear-file-button clear-file-button-in-pair"></button>                            
+                        </div>
+                    </div>
+                    <div class="file-upload-control">
+                        <p class="label">Изображение {{$key}} *</p>
+                        <div class="file-upload-container">
+                            <figure class="file-upload-preview-image-container">
+                                <!-- <img id="chosen-image" class="chosen-image" src="{{ $product->picture ? Storage::url($product->picture) : asset('/admin/images/Untitled.png')}}"> -->
+                                <img id="chosen-image" class="chosen-image" src="{{  Storage::url($image->path) }}" data-image="img{{$image->id}}">
+                                <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
+                            </figure>
+                    
+                            <input type="file" id="upload-button-{{$key}}2" class="upload-button" accept="image/*" name="path[img{{$image->id}}]">
+                            <label for="upload-button-{{$key}}2" class="upload-file-label upload-file-label-in-pair">
+                                <div class="file-upload-icon"></div>
+                                <!-- <span>Загрузить файл</span> -->
+                            </label>
+                            <!-- <input type="hidden" name="removeImage" id="removeImage-12"> -->
+                            <input type="hidden" name="removeImages[{{$key}}]" class="removeImage">
+                            <button type="button" id="clear-file-button" data-key="{{$key}}" data-type="image" class="clear-file-button clear-file-button-in-pair"></button>                            
+                        </div>
                     </div>
                 </div>
-                <div class="file-upload-control">
-                    <p class="label">Изображение 1 *</p>
-                    <div class="file-upload-container">
-                        <figure class="file-upload-preview-image-container">
-                            <img id="chosen-image" class="chosen-image" src="{{ $product->picture ? Storage::url($product->picture) : asset('/admin/images/Untitled.png')}}">
-                            <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
-                        </figure>
-                
-                        <input type="file" id="upload-button-12" class="upload-button" accept="image/*" name="path[]">
-                        <label for="upload-button-12" class="upload-file-label upload-file-label-in-pair">
-                            <div class="file-upload-icon"></div>
-                            <!-- <span>Загрузить файл</span> -->
-                        </label>
-                        <input type="hidden" name="removeImage" id="removeImage-12">
-                        <button type="button" id="clear-file-button" class="clear-file-button clear-file-button-in-pair @if(!$product->picture) hidden @endif"></button>                            
-                    </div>
-                </div>
-            </div>
+            @endforeach
 
             <div class="more-file-upload-pairs-insert-before-div"></div>
             <div class="center-button">
@@ -365,9 +372,7 @@
                     </button> 
                     <div></div>                           
                 </div>                            
-            </div>
-           
-            
+            </div>           
             
             <div class="center-button">
                 <div class="">                                
@@ -384,6 +389,7 @@
 </div>
 @endsection
 @section('custom_js')
+<script src="{{ asset('js/jquery-3.6.1.js') }}" type="text/javascript"></script>
 <script src="{{ asset('admin/js/dropdown-control.js') }}" type="text/javascript"></script>
 <script src="{{ asset('admin/js/file-upload-pairs.js') }}" type="text/javascript"></script>
 <script src="{{ asset('admin/js/admin-alert-form.js') }}" type="text/javascript"></script>

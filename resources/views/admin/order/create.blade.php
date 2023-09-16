@@ -71,15 +71,15 @@
                     @enderror  
                 </div>
                 <div>
-                    <label for="created_at">Дата создания*</label>
-                    <input type="date" name="created_at" id="created_at" min="2023-04-01" autocomplete="off" value="{{ old('created_at') }}">
+                    <label for="created_at">Дата создания *</label>
+                    <input type="date" name="created_at" id="created_at" min="2023-04-01" autocomplete="off" value="{{ old('created_at') }}" disabled>
                     @error('created_at')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror 
                 </div>
             </div>
-             <!-- Комбобокс Роль --> 
-             <label for="status">Статус *</label>
+            <!-- Комбобокс Роль --> 
+            <label for="status">Статус *</label>
             <br>
             <div class="form-group">
                 <div class="dropdown">
@@ -91,7 +91,7 @@
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->                        
                     </ul>
-                    <input type="hidden" name="status" id="status" value="{{ old('status') }}" class="dropdown__input-hidden" >
+                    <input type="hidden" name="status" id="status" value="{{ old('status','New') }}" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Роль--> 
@@ -113,6 +113,20 @@
             </div>
             
             <h3 class="file-upload-pairs-title">Контактное лицо</h3>
+
+            <label for="select2-user">Пользователь</label>
+            <select class="select2-users" id="select2-user" name="user_id">
+                <option></option>
+                @foreach($users as $user)
+                    <option
+                        data-name="{{$user->name}}"
+                        data-last_name="{{$user->last_name}}"
+                        data-email="{{$user->email}}"
+                        data-phone_number="{{$user->phone_number}}"
+                        value="{{$user->id}}">{{implode(' ',[$user->name,$user->last_name,$user->email,$user->phone_number])}}</option>
+                @endforeach
+            </select>
+
             <label for="name">Имя *</label>
             <input type="text" name="name" id="name" minLength="1" maxLength="150" required autocomplete="off" value="{{ old('name') }}">
             @error('name')
@@ -242,20 +256,36 @@
             <h3 class="file-upload-pairs-title">Состав заказа</h3>
 
             <label for="select2-product">Товар *</label>
-            <select class="js-example-basic-single" name="state" id="select2-product">
+            <select class="js-example-basic-single" id="select2-product">
                 <option></option>
-                <optgroup label="Овечки">    
+
+                <!-- <optgroup label="Овечки">    
                     <option value="AL">Мягкая игрушка Овечка Jolly Frances</option>                        
                     <option value="WY">Мягкая игрушка Овечка Jolly Rosa</option>
                 </optgroup>
                 <optgroup label="Единорог Theodor">
                     <option>Nested option</option>
-                </optgroup>
+                </optgroup> -->
+
+                @foreach($products->groupBy('collection_id') as $collection=>$items)
+                    <optgroup label="{{\App\Models\Collection::find($collection)->name}}">
+                        @foreach($items as $product)
+                            <option
+                                data-price="{{$product->price}}"
+                                data-articul="{{$product->article}}"
+                                data-size="{{$product->size}}"
+                                data-url="{{route('product.show',$product->id)}}"
+                                data-picture="{{Storage::url($product->picture)}}"
+                                value="{{$product->id}}">{{$product->title}}</option>
+                        @endforeach
+                    </optgroup>
+                @endforeach
+
             </select>                  
                      
             <div class="center-button">
                 <div class="">                                
-                    <button type="button" class="add-orderitem-to-order-button">
+                    <button type="button" class="add-orderitem-to-order-button" id="add-orderitem-to-order-button">
                         <div class="add-orderitem-to-order-icon"></div>
                         <span>Добавить товар</span>                                    
                     </button> 
@@ -291,11 +321,10 @@
         </div>
         <div class="account-rows">
             <!-- Строки таблицы-->
-            @foreach($products as $product)
-            <div class="account-card list"> <!--  list -->
+            
+           <!--  <div class="account-card list">
                 <div class="account-card-item orderitem-image-column orderitem">
-                    <p class="card-mobile-text">Изображение</p>
-                    <!-- <p class="account">7675.89</p> -->
+                    <p class="card-mobile-text">Изображение</p>                    
                     <div class="account admin-table-img-container">
                         <img class="admin-table-img" src="{{Storage::url($product->picture)}}" alt=""> 
                     </div>
@@ -326,17 +355,9 @@
                 </div>
                 
                 <div class="account-card-item orderitem-actions-column orderitem">
-                    <p class="card-mobile-text">Действие</p>                            
-                    <!-- <p class="account">HJGHG7</p> -->
+                    <p class="card-mobile-text">Действие</p>                        
                     <div class="account">
-                        <div class="wrapper-icon">
-                           <!--  <a href="{{route('dashboard.product.show', $product)}}" class="admin-action-ahref"><div class="btn-view"></div></a>
-                            <a href="{{route('dashboard.product.edit', $product)}}" class="admin-action-ahref"><div class="btn-edit"></div></a> -->
-                            <!-- link that opens popup -->
-                            <!-- <a class="popup-with-delete-form admin-action-ahref" href="#delete-form"><div class="btn-delete"></div></a> -->
-                            <!-- <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.product.destroy', $product)}}">
-                                <div class="btn-delete"></div>
-                            </a>   -->  
+                        <div class="wrapper-icon">                           
                             <button class="admin-action-ahref orderitem" >
                                 <div class="btn-delete"></div>
                             </button>                                                    
@@ -344,7 +365,7 @@
                     </div>
                 </div>
             </div>
-            @endforeach  
+             -->
             
             <div class="account-card list orderitem-total"> <!--  list -->                
                 <div class="account-card-item orderitem-total-title-column orderitem">
@@ -353,11 +374,11 @@
                 </div>               
                 <div class="account-card-item orderitem-total-quantity-column orderitem">
                     <p class="card-mobile-text">Количество</p>
-                    <p class="account">5 шт.</p>
+                    <p class="account"><span></span> шт.</p>
                 </div>               
                 <div class="account-card-item orderitem-total-sum-column orderitem">
                     <p class="card-mobile-text">Сумма</p>
-                    <p class="account">123.45 р.</p>
+                    <p class="account"><span></span> р.</p>
                 </div>
                 
                 <div class="account-card-item orderitem-actions-column orderitem orderitem-total">

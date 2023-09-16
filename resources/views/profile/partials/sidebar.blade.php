@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="profile-left-side-title-box">
+                    <a href="{{route('profile.orderhistory.show')}}" class="profile-left-side-title-box">
                         <p>История заказов</p>
                         <div class="button-right"></div>
                     </a>

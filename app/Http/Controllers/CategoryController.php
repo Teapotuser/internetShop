@@ -17,8 +17,11 @@ class CategoryController extends Controller
         $collections = Collection::all();
         // $category = Category::where('code', $code)->first();
         // $products = Product::where('category_id', $category->id)->paginate(6);
+        
         //для карусели популярных товаров
-        $products_bestsellers = Product::where('category_id', $category->id)->where('is_best_selling', 1)->IsActive()->get();
+        // $products_bestsellers = Product::where('category_id', $category->id)->where('is_best_selling', 1)->IsActive()->get();
+        $products_bestsellers = $category->getBestSellers(); //используется Traits
+
         // return view('category', compact('category', 'categories', 'collections', 'products', 'products_bestsellers'));
         
         $products_query = Product::query()->where('category_id', $category->id)->IsActive();

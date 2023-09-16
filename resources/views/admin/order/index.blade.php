@@ -70,7 +70,7 @@
                 </div>
                 <div class="account-card-item order-title-column">
                     <p class="card-mobile-text">Имя</p>
-                    <p class="account">{{$order->name}}<span> </span>{{$order->last_name}}</p>
+                    <p class="account">{{$order->getUserFIO()}}</p>
                 </div>
                 <!-- <div class="account-card-item user-email-column">
                     <p class="card-mobile-text">E-mail</p>
@@ -78,24 +78,25 @@
                 </div> -->
                 <div class="account-card-item order-creationdate-column">
                     <p class="card-mobile-text">Создан</p>
-                    <p class="account">{{$order->created_at}}</p>
+                    <p class="account">{{$order->created_at->format('d-m-Y')}}</p>
                 </div>
                 <div class="account-card-item order-sum-column">
                     <p class="card-mobile-text">Сумма</p>
-                    <p class="account">123,45 р.</p>
+                    <p class="account">{{$order->orderPrice()}} р.</p>
                 </div>  
                 <div class="account-card-item order-payment-column">
                     <p class="card-mobile-text">Оплата</p>
-                    <p class="account">Да / Нет</p>
+                    <p class="account">
+                        @if($order->is_paid)
+                            Да
+                        @else
+                            Нет
+                        @endif</p>
                 </div>          
                 <div class="account-card-item order-status-column">
                     <p class="card-mobile-text">Статус</p>
                     <p class="account">
-                        @if ( $order->status == 'New') 
-                        <span>Новый</span> 
-                        @elseif($order->status == 'Paid') 
-                        <span>Оплачен</span> 
-                        @endif
+                        {{$order->getStatusTitle()}}
                     </p>                    
                 </div>                
                 <div class="account-card-item order-actions-column">

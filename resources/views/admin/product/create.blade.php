@@ -111,7 +111,7 @@
             </div> -->
             <!--End of Комбобокс Категории товара--> 
             <!--Комбобокс Коллекции товара--> 
-            <label for="category_id">Коллекция *</label>
+            <label for="collection_id">Коллекция *</label>
             <br>
             <div class="form-group">
                 <div class="dropdown">

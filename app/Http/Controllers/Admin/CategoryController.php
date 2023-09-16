@@ -45,15 +45,17 @@ class CategoryController extends Controller
     {
         // dd($request->file('picture'));
         $validated = $request->validated();
+        $category = Category::create($validated);
         if ($request->file('picture')){
             $file = $request->file('picture');            
-            // $picture = Storage::putFile('/public/categories/'.$validated['code'],$file);
-            $picture = Storage::putFile('/public/categories/'.$validated['code'], $file);
+            // $picture = Storage::putFile('/public/categories/'.$validated['code'], $file);
+            $picture = Storage::putFile('/public/categories/' . $category->id, $file);
 
-
-            $validated['picture'] =$picture;
+            // $validated['picture'] =$picture;
+            $category->picture = $picture;
+            $category->save();
         }
-        $category = Category::create($validated);      
+        // $category = Category::create($validated);      
 
         return redirect(route('dashboard.category.index'))->with('success', 'Категория "' . $category->name . '" добавлена');
     }
@@ -97,15 +99,16 @@ class CategoryController extends Controller
         if ($request->file('picture')||$request->validated('removeImage')) {
             if ($category->picture) {
                 // Storage::delete($category->picture);
-                Storage::deleteDirectory('/public/categories/' . $validated['code']);
-                $category->picture=null;
+                // Storage::deleteDirectory('/public/categories/' . $validated['code']);
+                Storage::deleteDirectory('/public/categories/' . $category->id);
+                $category->picture = null;
             }
         }
         if ($request->file('picture')) {
             $file = $request->file('picture');
 
-            $picture = Storage::putFile('/public/categories/' . $validated['code'], $file);
-            
+            // $picture = Storage::putFile('/public/categories/' . $validated['code'], $file);
+            $picture = Storage::putFile('/public/categories/' . $category->id, $file);
 
             $validated['picture'] = $picture;
         }
@@ -126,7 +129,8 @@ class CategoryController extends Controller
         $category->forceDelete();
         if ($category->picture) {
             // Storage::delete($category->picture);
-            Storage::deleteDirectory('/public/categories/' . $category->code);
+            // Storage::deleteDirectory('/public/categories/' . $category->code);
+            Storage::deleteDirectory('/public/categories/' . $category->id);
         }
         // return back();
         return redirect(route('dashboard.category.index'))->with('success', 'Категория "' . $category->name . '" удалена');

@@ -11,7 +11,7 @@
             </a>
         </li>
         <li class="profile_img_block">
-            <a href="#" class="profile-link-img-product">
+            <a href="{{route('profile.orderhistory.show')}}" class="profile-link-img-product">
                 <!-- <div class="img-product">
                     <img class="img" src="" alt="" />
                 </div>  -->

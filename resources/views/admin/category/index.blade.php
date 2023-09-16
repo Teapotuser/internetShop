@@ -89,7 +89,7 @@
                             <a href="{{route('dashboard.category.edit', $category)}}" class="admin-action-ahref"><div class="btn-edit"></div></a>
                             <!-- link that opens popup -->
                             <!-- <a class="popup-with-delete-form admin-action-ahref" href="#delete-form"><div class="btn-delete"></div></a> -->
-                            <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.category.destroy', $category)}}">
+                            <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.category.destroy', $category)}}" data-products="{{$category->products()->count()}}">
                                 <div class="btn-delete"></div>
                             </a>
                             <!-- <div class="main-cart-remove admin-action-ahref">
@@ -116,6 +116,13 @@
             @csrf
             @method('DELETE')    
             <p>Вы действительно хотите удалить Категорию?<p>
+            <!-- <p class="delete-form-products-message" style="display: none">Удалить категорию нельзя! К категории
+                    привязано товаров: <span class="delete-form-products-count"></span>
+            </p>-->
+			<div class="delete-form-products-message" style="display: none">
+				<p>Удалить Категорию нельзя!</p>
+				<p>К Категории привязано товаров: <span class="delete-form-products-count"></span></p>            
+			</div>
             <br>
             <!-- <p><a class="popup-modal-dismiss" href="#">Нет</a></p> -->
             <!-- <button class="btn-delete" data-id="${id}"></button> -->

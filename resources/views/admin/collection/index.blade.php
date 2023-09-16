@@ -89,7 +89,7 @@
                             <a href="{{route('dashboard.collection.edit', $collection)}}" class="admin-action-ahref"><div class="btn-edit"></div></a>
                             <!-- link that opens popup -->
                             <!-- <a class="popup-with-delete-form admin-action-ahref" href="#delete-form"><div class="btn-delete"></div></a> -->
-                            <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.collection.destroy', $collection)}}">
+                            <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.collection.destroy', $collection)}}" data-products="{{$collection->products()->count()}}">
                                 <div class="btn-delete"></div>
                             </a>                            
                         </div>                               
@@ -106,6 +106,13 @@
             @csrf
             @method('DELETE')    
             <p>Вы действительно хотите удалить Коллекцию?<p>
+            <!-- <p class="delete-form-products-message" style="display: none">Удалить коллекцию нельзя!<br>К коллекции
+                привязано товаров: <span class="delete-form-products-count"></span>
+            </p> -->			
+			<div class="delete-form-products-message" style="display: none">
+				<p>Удалить Коллекцию нельзя!</p>
+				<p>К Коллекции привязано товаров: <span class="delete-form-products-count"></span></p>            
+			</div>			
             <br>
             <!-- <p><a class="popup-modal-dismiss" href="#">Нет</a></p> -->
             <!-- <button class="btn-delete" data-id="${id}"></button> -->

@@ -16,6 +16,13 @@ class ProfileController extends Controller
         return view('profile.general');
     }
 
+    public function orders()
+    {
+        $orders=auth()->user()->orders()->paginate(1);
+
+        return view('profile.profile-ordershistory', compact(['orders']));
+    }
+
     public function userdata()
     {
         return view('profile.userdata');

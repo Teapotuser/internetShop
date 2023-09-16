@@ -254,40 +254,45 @@
 
             <h3 class="file-upload-pairs-title">Фото для карточки товара</h3>
             <!-- Загрузка картинок для карусели на странице товара -->
-            <div class="file-upload-pair-wrapper">
-                <div class="file-upload-control">
-                    <p class="label">Иконка 1 *</p>
-                    <div class="file-upload-container">
-                        <figure class="file-upload-preview-image-container">
-                            <img id="chosen-image" class="chosen-image" src="{{ $product->picture ? Storage::url($product->picture) : asset('/admin/images/Untitled.png')}}">
-                            <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
-                        </figure>
-                
-                        <!-- <input type="file" id="upload-button-11" class="upload-button" accept="image/*" name="preview_path[]">
-                        <label for="upload-button-11" class="upload-file-label upload-file-label-in-pair">
-                            <div class="file-upload-icon"></div> -->
-                            <!-- <span>Загрузить файл</span> -->
-                       <!--  </label>                        
-                        <button type="button" id="clear-file-button" class="clear-file-button clear-file-button-in-pair hidden"></button> -->                            
+            @foreach($product->images as $key=>$image)
+                @php($key++)
+                <div class="file-upload-pair-wrapper">
+                    <div class="file-upload-control">
+                        <p class="label">Иконка {{$key}} *</p>
+                        <div class="file-upload-container">
+                            <figure class="file-upload-preview-image-container">
+                                <!-- <img id="chosen-image" class="chosen-image" src="{{ $product->picture ? Storage::url($product->picture) : asset('/admin/images/Untitled.png')}}"> -->
+                                <img id="chosen-image" class="chosen-image" src="{{  Storage::url($image->preview_path) }}">
+                                <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
+                            </figure>
+                    
+                            <!-- <input type="file" id="upload-button-11" class="upload-button" accept="image/*" name="preview_path[]">
+                            <label for="upload-button-11" class="upload-file-label upload-file-label-in-pair">
+                                <div class="file-upload-icon"></div> -->
+                                <!-- <span>Загрузить файл</span> -->
+                        <!--  </label>                        
+                            <button type="button" id="clear-file-button" class="clear-file-button clear-file-button-in-pair hidden"></button> -->                            
+                        </div>
                     </div>
-                </div>
-                <div class="file-upload-control">
-                    <p class="label">Изображение 1 *</p>
-                    <div class="file-upload-container">
-                        <figure class="file-upload-preview-image-container">
-                            <img id="chosen-image" class="chosen-image" src="{{ $product->picture ? Storage::url($product->picture) : asset('/admin/images/Untitled.png')}}">
-                            <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
-                        </figure>
-                
-                        <!-- <input type="file" id="upload-button-12" class="upload-button" accept="image/*" name="path[]">
-                        <label for="upload-button-12" class="upload-file-label upload-file-label-in-pair">
-                            <div class="file-upload-icon"></div> -->
-                            <!-- <span>Загрузить файл</span> -->
-                        <!-- </label>                        
-                        <button type="button" id="clear-file-button" class="clear-file-button clear-file-button-in-pair hidden"></button> -->                            
+                    <div class="file-upload-control">
+                        <p class="label">Изображение {{$key}} *</p>
+                        <div class="file-upload-container">
+                            <figure class="file-upload-preview-image-container">
+                                <!-- <img id="chosen-image" class="chosen-image" src="{{ $product->picture ? Storage::url($product->picture) : asset('/admin/images/Untitled.png')}}"> -->
+                                <img id="chosen-image" class="chosen-image" src="{{  Storage::url($image->path) }}">
+                                <!-- <figcaption id="file-name" class="file-name"></figcaption> -->
+                            </figure>
+                    
+                            <!-- <input type="file" id="upload-button-12" class="upload-button" accept="image/*" name="path[]">
+                            <label for="upload-button-12" class="upload-file-label upload-file-label-in-pair">
+                                <div class="file-upload-icon"></div> -->
+                                <!-- <span>Загрузить файл</span> -->
+                            <!-- </label>                        
+                            <button type="button" id="clear-file-button" class="clear-file-button clear-file-button-in-pair hidden"></button> -->                            
+                        </div>
                     </div>
-                </div>
-            </div>                      
+                </div> 
+            @endforeach                     
         </div>
     </form> 
 </div>

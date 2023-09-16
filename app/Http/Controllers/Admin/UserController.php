@@ -106,11 +106,12 @@ class UserController extends Controller
             $validated['picture'] = $picture;
         }
 
-        $request->user()->fill($validated);
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // $request->user()->fill($validated);
+        $user->fill($validated);
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
-        $request->user()->save();
+        $user->save();
 
         // return Redirect::back()->with('message', 'Профиль обновлен');
         return redirect(route('dashboard.user.index'))->with('success', 'Пользователь "' . $user->name . ' ' . $user->last_name . '" успешно сохранен');

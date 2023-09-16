@@ -10,7 +10,7 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 
 document.querySelectorAll('.file-upload-container').forEach(uploadFile);
     
-    function uploadFile(fileUploadWrapper) {
+    function uploadFile(fileUploadWrapper, key) {
     // const dropDownBtn = fileUploadWrapper.querySelector('.dropdown__button');
 
     let uploadButton = fileUploadWrapper.querySelector(".upload-button");
@@ -33,17 +33,33 @@ document.querySelectorAll('.file-upload-container').forEach(uploadFile);
     }
 
     clearButton.onclick = () => {
+        //Даниил добавил
+        let type = clearButton.dataset.type;
+        let key = clearButton.dataset.key;
+        let imageToRemoveUrl = chosenImage.dataset.image;
+
         chosenImage.setAttribute("src", "/admin/images/Untitled.png");
         //Имя файла есть только в одиночном file upload, в паре нет
         if(!(fileName === null)){
             fileName.textContent = "";
         }
         uploadButton.value="";
-        // console.log(fileUploadWrapper.getElementsByName('removeImage'));
-        // fileUploadWrapper.getElementsByName('removeImage')[0].value=true;
-        if(!(fileUploadWrapper.querySelector('[name="removeImage[0]"]') === null)){
+        
+       /*  if(!(fileUploadWrapper.querySelector('[name="removeImage[0]"]') === null)){
             fileUploadWrapper.querySelector('[name="removeImage[0]"]').value=true;
-        };
+        }; */
+        //Даниил добавил
+        if (type === 'preview') {
+            fileUploadWrapper.getElementsByClassName('removePreviewImage')[0].value = imageToRemoveUrl;
+
+        } else if (type === 'image') {
+            fileUploadWrapper.getElementsByClassName('removeImage')[0].value = imageToRemoveUrl;
+        } else {
+            if (!(fileUploadWrapper.querySelector('[name="removeImage"]') === null)) {
+                fileUploadWrapper.querySelector('[name="removeImage"]').value = imageToRemoveUrl;
+            }
+        }
+
         clearButton.classList.add("hidden");
     }
 
@@ -100,3 +116,32 @@ addMoreUploadButton.onclick = () => {
         addMoreUploadButton.classList.add('hidden');
     }
 }
+
+
+$('#saveProducts').on('submit', function (e) {
+    let previews = document.getElementsByName('preview_path[]');
+    let images = document.getElementsByName('path[]');
+    let filled_previews = 0;
+    let filled_images = 0;
+    // previews.forEach(function (item) {
+    //     console.log(item);
+    // })
+    images.forEach(function (item, index) {
+        // console.log(item, index, item.files[0], item.files);
+        if (item.files.length > 0) {
+            filled_images++;
+        }
+    })
+    previews.forEach(function (item, index) {
+        // console.log(item, index, item.files[0], item.files);
+        if (item.files.length > 0) {
+            filled_previews++;
+        }
+    })
+
+    if (filled_images !== images.length || filled_previews !== previews.length) {
+        e.preventDefault();
+        alert("Заполните все изображения");
+    }
+
+})
