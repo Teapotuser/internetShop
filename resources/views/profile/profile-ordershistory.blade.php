@@ -107,7 +107,7 @@
                                                     Количество товаров
                                                 </span>
                                                 <div class="order-prev-line__body">
-                                                    <span class="order-prev-line__value">{{$order->order_products()->count()}} шт.</span>
+                                                    <span class="order-prev-line__value">{{$order->getOrderItemsCount()}} шт.</span>
                                                     <!-- <span class="order-prev-line__descr">Доставка по Беларуси 3-7 дней</span> -->
                                                 </div>                                                                    
                                             </div>
@@ -188,7 +188,7 @@
                                                     @if($product->product->trashed())
                                                         {{$product->product->title}}
                                                     @else
-                                                        <a href="{{route('product.show',$product->product_id)}}"
+                                                        <a href="{{route('product.show', ['article'=>$product->product->article])}}"
                                                             class="orderitem-title">
                                                             {{$product->product->title}}
                                                         </a>

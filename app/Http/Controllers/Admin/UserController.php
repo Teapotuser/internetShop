@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\User\UpdatePassword;
 use App\Models\User;
+use App\Notifications\Client\NewPasswordGenerated;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\User\StoreRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
 
 class UserController extends Controller
 {
@@ -132,5 +137,27 @@ class UserController extends Controller
     public function changepassword()
     {
         return view('admin.user.changepassword');
+    }
+
+    public function changepasswordView(User $user)
+    {
+        return view('admin.user.changepassword', compact('user'));
+    }
+
+    public function changepasswordUpdate(UpdatePassword $request, User $user)
+    {
+
+        if ($request->validated('is_generate_password') == 'on') {
+            $password = Str::random(8);
+            $user->update(['password' => Hash::make($password)]);
+            $user->notify(new NewPasswordGenerated($password));
+            return redirect(route('dashboard.user.index'))->with('success', 'Пароль пользователю "' . $user->name . ' ' . $user->last_name . '" успешно выслан');
+        } else {
+            if ($request->validated('password')) {
+                $user->update(['password' => Hash::make($request->validated('password'))]);
+            }
+            return redirect(route('dashboard.user.index'))->with('success', 'Пароль успешно изменен');
+        }
+
     }
 }

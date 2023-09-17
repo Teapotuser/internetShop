@@ -90,7 +90,7 @@
                         <div class="wrapper-icon">
                             <a href="{{route('dashboard.user.show', $user)}}" class="admin-action-ahref"><div class="btn-view"></div></a>
                             <a href="{{route('dashboard.user.edit', $user)}}" class="admin-action-ahref"><div class="btn-edit"></div></a>
-                            <a href="{{route('dashboard.user.edit', $user)}}" class="admin-action-ahref"><div class="btn-password"></div></a>
+                            <a href="{{route('dashboard.user.changepassword-view', $user)}}" class="admin-action-ahref"><div class="btn-password"></div></a>
                             <!-- link that opens popup -->
                             <!-- <a class="popup-with-delete-form admin-action-ahref" href="#delete-form"><div class="btn-delete"></div></a> -->
                             <!-- <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.user.destroy', $user)}}">

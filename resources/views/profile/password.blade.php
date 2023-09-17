@@ -4,6 +4,7 @@
     <!--  Форма Сменить пароль -->
     <form class="form-order" action="{{ route('profile.update-password.update') }}" method="POST">
         @csrf
+        @method('PATCH')
         <div class="form-order-wrapper">
             <div class="decor form-profile-changepassword-panel">                
                 <div class="form-inner">

@@ -70,7 +70,7 @@
             <p class="label">Изображение</p>
             <div class="file-upload-container">
                 <figure class="file-upload-preview-image-container">
-                    <img id="chosen-image" class="chosen-image" src="{{ $user->picture ? Storage::url($user->picture) : asset('/admin/images/Untitled.png')}}">
+                    <img id="chosen-image" class="chosen-image" src="{{ $user->picture ? : asset('/admin/images/Untitled.png')}}">
                     <figcaption id="file-name" class="file-name"></figcaption>
                 </figure>
         

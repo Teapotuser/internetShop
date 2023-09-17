@@ -138,7 +138,7 @@
             </div>
             <div class="two-fields-product-container">
                 <div class="form-inner-checkbox">
-                    <input type="checkbox" id="is_new" name="is_new" class="checkbox-customized">
+                    <input type="checkbox" id="is_new" name="is_new" class="checkbox-customized" @checked(old('is_new', $product->is_new))>
                     <label for="is_new">
                         <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
                             <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
@@ -147,7 +147,7 @@
                     </label>                                       
                 </div> 
                 <div class="form-inner-checkbox">
-                    <input type="checkbox" id="is_best_selling" name="is_best_selling" class="checkbox-customized">
+                    <input type="checkbox" id="is_best_selling" name="is_best_selling" class="checkbox-customized" @checked(old('is_best_selling', $product->is_best_selling))>
                     <label for="is_best_selling">
                         <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
                             <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
@@ -307,7 +307,7 @@
 
             <br>
             <div class="form-inner-checkbox">
-                <input type="checkbox" id="is_active" name="is_active" class="checkbox-customized" @checked( $product->is_active )>
+                <input type="checkbox" id="is_active" name="is_active" class="checkbox-customized" @checked(old('is_active', $product->is_active))>
                 <label for="is_active">
                     <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
                         <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
@@ -323,7 +323,7 @@
                 @php($key++)
                 <div class="file-upload-pair-wrapper">
                     <div class="file-upload-control">
-                        <p class="label">Иконка {{$key}} *</p>
+                        <p class="label">Иконка {{$key}} {{ $key <= 3 ? '*' : ''  }}</p>
                         <div class="file-upload-container">
                             <figure class="file-upload-preview-image-container">
                                 <!-- <img id="chosen-image" class="chosen-image" src="{{ $product->picture ? Storage::url($product->picture) : asset('/admin/images/Untitled.png')}}"> -->
@@ -342,7 +342,7 @@
                         </div>
                     </div>
                     <div class="file-upload-control">
-                        <p class="label">Изображение {{$key}} *</p>
+                        <p class="label">Изображение {{$key}} {{ $key <= 3 ? '*' : ''  }}</p>
                         <div class="file-upload-container">
                             <figure class="file-upload-preview-image-container">
                                 <!-- <img id="chosen-image" class="chosen-image" src="{{ $product->picture ? Storage::url($product->picture) : asset('/admin/images/Untitled.png')}}"> -->

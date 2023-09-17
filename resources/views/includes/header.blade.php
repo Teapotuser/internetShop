@@ -30,7 +30,7 @@
                     <ul class="menu__sublist">
                         @auth()                            
                             <li><a href="{{route('profile.userdata.show')}}" class="menu__sublink">Личные данные</a></li>                            
-                            <li><a href="#" class="menu__sublink">История заказов</a></li>
+                            <li><a href="{{route('profile.orderhistory.show')}}" class="menu__sublink">История заказов</a></li>
                             <li><a href="{{route('profile.subscription.show')}}" class="menu__sublink">Подписка</a></li>
                             <li><a href="{{route('profile.update-password.view')}}" class="menu__sublink">Сменить пароль</a></li>
                             <!-- <li><a href="#" class="menu__sublink">Выход</a></li> -->
@@ -183,7 +183,7 @@
                         <ul class="menu__sublist">
                             @auth()                                
                                 <li><a href="{{route('profile.userdata.show')}}" class="menu__sublink">Личные данные</a></li>
-                                <li><a href="#" class="menu__sublink">История заказов</a></li>                              
+                                <li><a href="{{route('profile.orderhistory.show')}}" class="menu__sublink">История заказов</a></li>          
                                 <li><a href="{{route('profile.subscription.show')}}" class="menu__sublink">Подписка</a></li>
                                 <li><a href="{{route('profile.update-password.view')}}" class="menu__sublink">Сменить пароль</a></li>
                                 <!-- <li><a href="#" class="menu__sublink">Выход</a></li> -->

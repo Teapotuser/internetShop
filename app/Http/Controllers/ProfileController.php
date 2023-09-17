@@ -104,7 +104,7 @@ class ProfileController extends Controller
             'password' => \Hash::make($request->validated('password'))
         ]);
 
-        return to_route('profile.edit')->with('status', 'profile-updated');
+        return to_route('profile.userdata.show')->with('message', 'Пароль успешно обновлен');
     }
 
     /**

@@ -51,53 +51,55 @@
         </div>  
     </div>      
 @endif -->
-<!-- Форма добавления Пользователя -->
+<!-- Форма смены пароля Пользователя -->
 <div class="form-wrapper"> 
     <!--Форма логина--> 
-    <form method="POST" action="{{ route('dashboard.user.store') }}" enctype="multipart/form-data" class="login-form-decor">
+    <form method="POST" action="{{ route('dashboard.user.changepassword-update', ['user'=>$user]) }}" enctype="multipart/form-data" class="login-form-decor">
         @csrf
-        <div class="form-inner">           
-            <div class="form-inner-checkbox">
-                <input type="checkbox" id="is_generate_password" name="is_generate_password" class="checkbox-customized">
-                <label for="is_generate_password">
-                    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
-                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
-                    </svg>
-                    Изменить пароль пользователя
-                </label>                                       
-            </div>              
-            <br>           
-
-            <label for="password">Текущий пароль *</label>
-            <input type="password" id="password" name="current_password" class="form-control @error('password') is-invalid @enderror" minLength="1" maxLength="150" required autocomplete="off" value="{{ old('current_password') }}">
-            @error('current_password')
-                <div class="form-field-validation-error">{{ $message }}</div>
-            @enderror
-            <!-- @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror -->  
-            <label for="password">Новый пароль *</label>
-            <input type="password" id="password" name="password" class="form-control @error('password'||'password_confirmation') is-invalid @enderror" minLength="1" maxLength="150" required autocomplete="off" value="{{ old('password') }}">
-            @error('password'||'password_confirmation')
-                <div class="form-field-validation-error">{{ $message }}</div>
-            @enderror
-            <!-- @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror --> 
-            <label for="password-confirm">Повторите пароль *</label>
-            <input type="password" id="password-confirm" name="password_confirmation" class="form-control @error('password_confirmation'||'password') is-invalid @enderror" minLength="1" maxLength="150" required autocomplete="off" value="{{ old('password-confirmation') }}">
-            @error('password_confirmation'||'password')
-                <div class="form-field-validation-error">{{ $message }}</div>
-            @enderror
-            <!-- @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror -->             
+        <div class="form-inner"> 
+            @if(auth()->user()->id != $user->id)          
+                <div class="form-inner-checkbox">
+                    <input type="checkbox" id="is_generate_password" name="is_generate_password" class="checkbox-customized">
+                    <label for="is_generate_password">
+                        <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
+                            <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
+                        </svg>
+                        Изменить пароль пользователя
+                    </label>                                       
+                </div>              
+                <br>           
+            @else
+                <label for="password">Текущий пароль *</label>
+                <input type="password" id="password" name="current_password" class="form-control @error('password') is-invalid @enderror" minLength="1" maxLength="150" required autocomplete="off" value="">
+                @error('current_password')
+                    <div class="form-field-validation-error">{{ $message }}</div>
+                @enderror
+                <!-- @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror -->  
+                <label for="password">Новый пароль *</label>
+                <input type="password" id="password" name="password" class="form-control @error('password'||'password_confirmation') is-invalid @enderror" minLength="1" maxLength="150" required autocomplete="off" value="">
+                @error('password'||'password_confirmation')
+                    <div class="form-field-validation-error">{{ $message }}</div>
+                @enderror
+                <!-- @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror --> 
+                <label for="password-confirm">Повторите пароль *</label>
+                <input type="password" id="password-confirm" name="password_confirmation" class="form-control @error('password_confirmation'||'password') is-invalid @enderror" minLength="1" maxLength="150" required autocomplete="off" value="">
+                @error('password_confirmation'||'password')
+                    <div class="form-field-validation-error">{{ $message }}</div>
+                @enderror
+                <!-- @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror -->             
+            @endif
 
             <div class="center-button">
                 <div class="">                                

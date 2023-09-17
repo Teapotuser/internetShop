@@ -2,7 +2,7 @@
     <div class="profile-left-side">
         <div class="profile-details-box">
             <div class="profile-left-side-photo-container">
-                <img src="/images/NICI/eule-profile3-trim.png" alt="Users photo">
+                <img src="{{  Auth::user()?->picture? : asset('images/NICI/eule-profile3-trim.png') }}" alt="Users photo">
             </div>
             <h3>{{Auth::user()?->name}} {{Auth::user()?->last_name}}</h3>
             <p>{{Auth::user()?->email}}</p>

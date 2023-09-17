@@ -114,8 +114,8 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth'
 
 
 //админ панель
-Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
-// Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['auth', 'role:admin']], function () {    
+// Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['auth', 'role:admin']], function () {    
     Route::get('/', function () {
         return view('admin.index');
     })->name('index');
@@ -123,7 +123,9 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::resource('collection', 'App\Http\Controllers\Admin\CollectionController');
     Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
     Route::resource('user', 'App\Http\Controllers\Admin\UserController');
-    Route::get('/user-password', 'App\Http\Controllers\Admin\UserController@changepassword');
+    Route::get('{user}/user-password', 'App\Http\Controllers\Admin\UserController@changepasswordView')->name('user.changepassword-view');
+    Route::post('{user}/user-password', 'App\Http\Controllers\Admin\UserController@changepasswordUpdate')->name('user.changepassword-update');
+    // Route::get('/user-password', 'App\Http\Controllers\Admin\UserController@changepassword');
     Route::resource('order', 'App\Http\Controllers\Admin\OrderController');
     Route::get('/subscription', 'App\Http\Controllers\Admin\SubscriptionController@index');
 });

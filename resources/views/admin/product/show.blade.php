@@ -107,7 +107,7 @@
             </div>
             <div class="two-fields-product-container">
                 <div class="form-inner-checkbox">
-                    <input type="checkbox" id="is_new" name="is_new" class="checkbox-customized" disabled>
+                    <input type="checkbox" id="is_new" name="is_new" class="checkbox-customized" @checked($product->is_new) disabled>
                     <label for="is_new">
                         <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
                             <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
@@ -116,7 +116,7 @@
                     </label>                                       
                 </div> 
                 <div class="form-inner-checkbox">
-                    <input type="checkbox" id="is_best_selling" name="is_best_selling" class="checkbox-customized" disabled>
+                    <input type="checkbox" id="is_best_selling" name="is_best_selling" class="checkbox-customized" @checked($product->is_best_selling) disabled>
                     <label for="is_best_selling">
                         <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
                             <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>

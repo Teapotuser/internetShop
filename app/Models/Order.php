@@ -122,7 +122,7 @@ class Order extends Model
     {
         return match ($this->delivery_method) {
             'pickup' => 'Самовывоз',
-            'post' => 'Почтой',
+            'post' => 'Адресная доставка',
             default => $this->delivery_method
         };
     }
@@ -130,7 +130,8 @@ class Order extends Model
     public function getPaymentStatus()
     {
         if ($this->is_paid) {
-            return 'Да / ' . $this->payment_date->format('d.m.Y');
+            // return 'Да / ' . $this->payment_date->format('d.m.Y');
+            return 'Да / ' . Carbon::parse($this->payment_date)->format('d.m.Y');
         } else {
             return 'Нет';
         }
@@ -151,6 +152,7 @@ class Order extends Model
         return match ($this->status) {
             'New' => 'new',
             'Waiting' => 'waiting',
+            'Paid' => 'paid',
             default => $this->status
         };
     }
@@ -160,6 +162,7 @@ class Order extends Model
         return match ($this->status) {
             'New' => 'Новый',
             'Waiting' => 'Ожидает подтверждения',
+            'Paid' => 'Оплачен',
             default => $this->status
         };
     }

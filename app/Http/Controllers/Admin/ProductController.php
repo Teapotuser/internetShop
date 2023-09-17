@@ -55,7 +55,7 @@ class ProductController extends Controller
         if ($request->file('picture')){
             $file = $request->file('picture');            
             // $picture = Storage::putFile('/public/Products/'.$validated['article'], $file);
-            $picture = Storage::putFileAs('/public/Products/'. $collection->id .'/'. $product->id, $file, $file->getClientOriginalName());
+            $picture = Storage::putFileAs('/public/Products/'. $product->collection_id .'/'. $product->id, $file, $file->getClientOriginalName());
             // $picture = Storage::putFile('/public/Products/' . $product->id, $file);
             $product->update(['picture' => $picture]);
           
@@ -65,15 +65,55 @@ class ProductController extends Controller
         Storage::makeDirectory('/public/Products/' . $product->article); */
 
         if ($request->file('preview_path')) {
-            foreach ($request->file('preview_path') as $file) {
-                $file = $request->file('picture');
+            foreach ($request->file('preview_path') as $key => $item) {
+                $file = $item;
                 // $picture = Storage::putFile('/public/Products/' . $product->id, $file);
-                $picture = Storage::putFileAs('/public/Products/'. $collection->id .'/'. $product->id . '/carousel/preview', $file, $file->getClientOriginalName());
-
+                // $preview_path = $file->storeAs('/public/Products/' . $product->collection_id . '/' . $product->id . '/carousel/preview', $file->getClientOriginalName());
+                $preview_path = Storage::putFileAs('/public/Products/'. $product->collection_id .'/'. $product->id . '/carousel/preview', $file, $file->getClientOriginalName());
+                if (str_starts_with($key, 'img')) {
+                    $image = ProductImages::find(trim($key, 'img'));
+                    if (Storage::exists($image->preview_path)) {
+                        Storage::delete($image->preview_path);
+                    }
+                    $image->update(['preview_path' => $preview_path]);
+                } else {
+                    $preview_paths[] = $preview_path;
+                }
                 // $product->update(['picture' => $picture]);
             }
         }
         
+        if ($request->file('path')) {
+            foreach ($request->file('path') as $key => $item) {
+                $file = $item;
+                $path = $file->storeAs('/public/Products/' . $product->collection_id . '/' . $product->id . '/carousel', $file->getClientOriginalName());
+                if (str_starts_with($key, 'img')) {
+                    $image = ProductImages::find(trim($key, 'img'));
+                    if (Storage::exists($image->path)) {
+                        Storage::delete($image->path);
+                    }
+                    $image->update(['path' => $path]);
+                } else {
+                    $paths[] = $path;
+                }
+            }
+        }
+
+        if (isset($paths) && isset($preview_paths)) {
+            $images = array_combine($preview_paths, $paths);
+            $store_images = [];
+            $x = 0;
+            foreach ($images as $preview => $image) {
+                $store_images[] = [
+                    'counter' => $x,
+                    'path' => $image,
+                    'preview_path' => $preview
+                ];
+                $x++;
+            }
+            $product->images()->createMany($store_images);
+        }
+
         return redirect(route('dashboard.poduct.index'))->with('success', 'Товар "' . $product->title . '" добавлен');
     }
 
@@ -120,41 +160,39 @@ class ProductController extends Controller
             if ($product->picture) {
                 // Storage::delete($category->picture);
                 // Storage::deleteDirectory('/public/Products/' . $validated['code']);
-                Storage::deleteDirectory('/public/Products/' . $product->id);
-                $collection->picture=null;
+                Storage::delete($product->picture);// удаляем только картинку, без папки
+                $product->picture = null;
             }
         }
         if ($request->file('picture')) {
             $file = $request->file('picture');
             // $picture = Storage::putFile('/public/Products/' . $validated['code'], $file);
-            $picture = Storage::putFile('/public/Products/' . $product->id, $file);
+            // $picture = Storage::putFile('/public/Products/' . $product->id, $file);
+            $picture = Storage::putFileAs('/public/Products/'. $product->collection_id .'/'. $product->id, $file, $file->getClientOriginalName());
             $validated['picture'] = $picture;
         }
 
         if ($request->file('preview_path')) {
             foreach ($request->file('preview_path') as $key => $item) {
-                    $file = $item;
-                    $preview_path = $file->storeAs('/public/Products/' . $product->id . '/carousel/preview', $file->getClientOriginalName());
-                    // dump($key,str_starts_with($key,'img'),trim($key,'img'));
-                    if (str_starts_with($key,'img')) {
-                        $image = ProductImages::find(trim($key,'img'));
-                        // dump($image,Storage::exists($image->preview_path));
-                        if (Storage::exists($image->preview_path)) {
-                            // dump($image->preview_path);
-                            Storage::delete($image->preview_path);
-                        }
-                        $image->update(['preview_path' => $preview_path]);
-                    } else {
-                        $preview_paths[] = $preview_path;
+                $file = $item;
+                $preview_path = $file->storeAs('/public/Products/' . $product->collection_id . '/' . $product->id . '/carousel/preview', $file->getClientOriginalName());
+                // dump($key,str_starts_with($key,'img'),trim($key,'img'));
+                if (str_starts_with($key,'img')) {
+                    $image = ProductImages::find(trim($key,'img'));
+                    if (Storage::exists($image->preview_path)) {
+                        Storage::delete($image->preview_path);
                     }
-
+                    $image->update(['preview_path' => $preview_path]);
+                } else {
+                    $preview_paths[] = $preview_path;
+                }
             }
         }
 
         if ($request->file('path')) {
             foreach ($request->file('path') as $key => $item) {
                 $file = $item;
-                $path = $file->storeAs('/public/Products/' . $product->id . '/carousel', $file->getClientOriginalName());
+                $path = $file->storeAs('/public/Products/' . $product->collection_id . '/' . $product->id . '/carousel', $file->getClientOriginalName());
                 if (str_starts_with($key,'img')) {
                     $image = ProductImages::find(trim($key,'img'));
                     if (Storage::exists($image->path)) {
@@ -173,7 +211,7 @@ class ProductController extends Controller
             $x = 0;
             foreach ($images as $preview => $image) {
                 $store_images[] = [
-                    'counte' => $x,
+                    'counter' => $x,
                     'path' => $image,
                     'preview_path' => $preview
                 ];
@@ -196,9 +234,12 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        if ($product->picture) {
-            // Storage::delete($category->picture);
-            Storage::deleteDirectory('/public/Products/' . $collection->code);
+        if ($product->images()->count()) {
+            //удаляем только папку с каруселью
+            if (Storage::deleteDirectory('/public/Products/' . $product->collection_id . '/' . $product->id . '/carousel')) {
+                $product->images()->delete();
+            }
         }
+        return redirect(route('dashboard.product.index'))->with('success', 'Товар "' . $product->title . '" успешно удален');
     }
 }

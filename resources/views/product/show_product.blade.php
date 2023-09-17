@@ -18,10 +18,10 @@
                             <!-- Главный слайдер -->
                             <div class="product-slider-wrapper">
                                 <div class="product-carousel">
-                                    @if($images->toArray())
-                                        @foreach ($images->toArray()['path'] as $path)
-                                            <a class="link-image" href="{{ Storage::url($path) }}">                          
-                                                <img class="slider-img" src="{{ Storage::url($path) }}" alt="" /> 
+                                    @if($product->images()->count())
+                                        @foreach ($product->images as $image)
+                                            <a class="link-image" href="{{ Storage::url($image->path) }}">                          
+                                                <img class="slider-img" src="{{ Storage::url($image->path) }}" alt="" /> 
                                             </a>
                                         @endforeach
                                     @endif
@@ -147,10 +147,10 @@
                             <div class="product-slider-nav-wrapper">  
                                 <div class="slider-nav">
                                     <!-- конвертация коллекции (из контроллера ProductController) в массив -->
-                                    @if($previews->toArray())
-                                        @foreach ($previews->toArray()['preview'] as $preview_path)
+                                    @if($product->images()->count())
+                                        @foreach ($product->images as $image)
                                             <div class="slider-wrap-nav"> 
-                                                <img class="slider-img1" src="{{ Storage::url($preview_path) }}" alt="" />
+                                                <img class="slider-img1" src="{{ Storage::url($image->preview_path) }}" alt="" />
                                             </div>
                                         @endforeach
                                     @endif

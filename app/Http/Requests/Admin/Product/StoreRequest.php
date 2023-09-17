@@ -40,14 +40,15 @@ class StoreRequest extends FormRequest
             'category_id' => 'required',
             'collection_id' => 'required',
             // 'picture' => ['required', 'file'],
-            'picture' => [Rule::requiredIf(!$this->product->picture|| $this->removeImage), 'file'],
+            // 'picture' => [Rule::requiredIf(!$this->product->picture|| $this->removeImage), 'file'],
+            'picture' => [Rule::requiredIf(($this->product && !$this->product->picture) || $this->removeImage), 'file'],
             'removeImage' => 'sometimes',
-            // 'is_new' => 'boolean',
+            'is_new' => 'boolean',
             'is_best_selling' => 'boolean',
-            // 'is_active' => 'boolean',
-            'height' => ['sometimes', 'numeric'],
-            'width' => ['sometimes', 'numeric'],
-            'depth' => ['sometimes', 'numeric'],
+            'is_active' => 'boolean',
+            'height' => ['sometimes', 'numeric', 'nullable'],
+            'width' => ['sometimes', 'numeric', 'nullable'],
+            'depth' => ['sometimes', 'numeric', 'nullable'],
             'material' => 'sometimes',
             'material_filling' => 'sometimes',
             'age_from' => 'sometimes',
@@ -55,6 +56,56 @@ class StoreRequest extends FormRequest
             /* 'path' => ['sometimes', 'file'],
             'preview_path' => ['sometimes', 'file'], */
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        if ($this->get('is_new') && $this->get('is_new') == 'On') {
+            $this->merge([
+                'is_new' => true
+            ]);
+        } else {
+            $this->merge([
+                'is_new' => false
+            ]);
+        }
+
+        if ($this->get('is_best_selling') && $this->get('is_best_selling') == 'On') {
+            $this->merge([
+                'is_best_selling' => true
+            ]);
+        } else {
+            $this->merge([
+                'is_best_selling' => false
+            ]);
+        }
+
+        if ($this->get('is_active') && $this->get('is_active') == 'On') {
+            $this->merge([
+                'is_active' => true
+            ]);
+        } else {
+            $this->merge([
+                'is_active' => false
+            ]);
+        }
+
+
+        if ($this->get('height') || is_null($this->get('height'))) {
+            $this->merge([
+                'height' => 0
+            ]);
+        }
+        if ($this->get('width') || is_null($this->get('width'))) {
+            $this->merge([
+                'width' => 0
+            ]);
+        }
+        if ($this->get('depth') || is_null($this->get('depth'))) {
+            $this->merge([
+                'depth' => 0
+            ]);
+        }
     }
 
     public function messages(): array
