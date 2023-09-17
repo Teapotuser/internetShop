@@ -89,7 +89,7 @@
             </div>
             <!-- <br>
             <div class="form-inner-checkbox">
-                <input type="checkbox" id="create-account" name="create-account"> <!-- @checked( $category->is_active) -->
+                <input type="checkbox" id="create-account" name="create-account"> 
                 <label for="create-account">
                     <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
                         <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>

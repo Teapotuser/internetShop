@@ -51,3 +51,15 @@ body.dark .select2-container--default .select2-results__option--highlighted.sele
    /* outline-offset: 0; */
    transition: var(--tran-05);
 	}
+
+/* Картинка в выпадающем комбобоксе*/
+.select2-container--default .select2-results__option .select2-results__option span {
+	display: flex;
+	align-items: center;
+}
+
+.select2-container--default .select2-results__option .select2-results__option .img-flag{
+	height: 26px;
+	width: auto;
+	margin-right: 10px;
+}

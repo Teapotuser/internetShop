@@ -49,8 +49,9 @@ class CategoryController extends Controller
         if ($request->file('picture')){
             $file = $request->file('picture');            
             // $picture = Storage::putFile('/public/categories/'.$validated['code'], $file);
-            $picture = Storage::putFile('/public/categories/' . $category->id, $file);
-
+            // $picture = Storage::putFile('/public/categories/' . $category->id, $file->getClientOriginalName());
+            $picture = $file->storeAs('/public/categories/' . $category->id, $file->getClientOriginalName());
+          
             // $validated['picture'] =$picture;
             $category->picture = $picture;
             $category->save();
@@ -108,8 +109,8 @@ class CategoryController extends Controller
             $file = $request->file('picture');
 
             // $picture = Storage::putFile('/public/categories/' . $validated['code'], $file);
-            $picture = Storage::putFile('/public/categories/' . $category->id, $file);
-
+            // $picture = Storage::putFile('/public/categories/' . $category->id, $file);
+            $picture = $file->storeAs('/public/categories/' . $category->id, $file->getClientOriginalName());
             $validated['picture'] = $picture;
         }
         $category->update($validated);

@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use Illuminate\Database\Eloquent\Builder;
 
 class OrderController extends Controller
 {
@@ -45,7 +46,7 @@ class OrderController extends Controller
     // Станица создания нового заказа
     public function create()
     {
-        $products = Product::all();
+        $products = Product::query()->IsActive()->get();
         $users = User::all();
         return view('admin.order.create', compact(['products', 'users']));      
     }
@@ -110,7 +111,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        $products = Product::all();
+        $products = Product::query()->IsActive()->get();
         $users = User::all();
         return view('admin.order.edit', compact(['products', 'users', 'order']));
     }

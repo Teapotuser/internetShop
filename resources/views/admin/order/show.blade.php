@@ -17,7 +17,7 @@
                 <div class="title-rectangle-icon">
                     <div class="title-add-icon"></div>
                 </div>
-                <span class="text">Просмотр заказа № {{$order->id}}</span>
+                <span class="text">Просмотр заказа</span>
             </div>
             <a href="{{route('dashboard.order.index')}}" class="admin-back-button">
                 <div class="title-back-icon"></div>
@@ -113,6 +113,23 @@
                 </div>
 
                 <h3 class="file-upload-pairs-title">Контактное лицо</h3>
+                 <!--Комбобокс Категории товара--> 
+                <label for="user_id">Пользователь</label>
+                <br>
+                <div class="form-group">
+                    <div class="dropdown">
+                        <button type="button" class="dropdown__button"><div class="dropdown__button-text">{{ $order->user->name }} {{ $order->user->last_name }}</div></button>
+                        <ul class="dropdown__list">                        
+                            <!-- <li class="dropdown__list-item" data-value="" ></li> -->
+                            <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
+                            <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
+                            <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
+                        </ul>
+                        <input type="hidden" name="user_id" id="user_id" value="{{ $order->user_id }}" class="dropdown__input-hidden" >
+                    </div>
+                </div>
+                <!--End of Комбобокс Категории товара--> 
+
                 <label for="name">Имя *</label>
                 <input type="text" name="name" id="name" minLength="1" maxLength="150" required autocomplete="off"
                        disabled

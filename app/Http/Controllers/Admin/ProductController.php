@@ -55,7 +55,8 @@ class ProductController extends Controller
         if ($request->file('picture')){
             $file = $request->file('picture');            
             // $picture = Storage::putFile('/public/Products/'.$validated['article'], $file);
-            $picture = Storage::putFile('/public/Products/' . $product->id, $file);
+            $picture = Storage::putFileAs('/public/Products/'. $collection->id .'/'. $product->id, $file, $file->getClientOriginalName());
+            // $picture = Storage::putFile('/public/Products/' . $product->id, $file);
             $product->update(['picture' => $picture]);
           
             // $validated['picture'] =$picture;
@@ -66,8 +67,10 @@ class ProductController extends Controller
         if ($request->file('preview_path')) {
             foreach ($request->file('preview_path') as $file) {
                 $file = $request->file('picture');
-                $picture = Storage::putFile('/public/Products/' . $product->id, $file);
-                $product->update(['picture' => $picture]);
+                // $picture = Storage::putFile('/public/Products/' . $product->id, $file);
+                $picture = Storage::putFileAs('/public/Products/'. $collection->id .'/'. $product->id . '/carousel/preview', $file, $file->getClientOriginalName());
+
+                // $product->update(['picture' => $picture]);
             }
         }
         

@@ -43,14 +43,17 @@ class CollectionController extends Controller
     public function store(StoreRequest $request)
     {
         $validated = $request->validated();
+        $collection = Collection::create($validated);
         if ($request->file('picture')){
             $file = $request->file('picture');            
-            $picture = Storage::putFile('/public/collections/'.$validated['code'], $file);
-          
-            $validated['picture'] =$picture;
+            // $picture = Storage::putFile('/public/collections/'.$validated['code'], $file);
+            $picture = Storage::putFileAs('/public/collections/'. $collection->id, $file, $file->getClientOriginalName());
+            // $validated['picture'] =$picture;
+            $collection->picture = $picture;
+            $collection->save();
         }
-        $collection = Collection::create($validated);      
-        Storage::makeDirectory('/public/Products/' . $collection->code);
+        // $collection = Collection::create($validated);      
+        Storage::makeDirectory('/public/Products/' . $collection->id);
         
         return redirect(route('dashboard.collection.index'))->with('success', 'Коллекция "' . $collection->name . '" добавлена');
     }
@@ -93,13 +96,15 @@ class CollectionController extends Controller
         if ($request->file('picture')||$request->validated('removeImage')) {
             if ($collection->picture) {
                 // Storage::delete($category->picture);
-                Storage::deleteDirectory('/public/collections/' . $validated['code']);
+                // Storage::deleteDirectory('/public/collections/' . $validated['code']);
+                Storage::deleteDirectory('/public/collections/' . $collection->id);
                 $collection->picture=null;
             }
         }
         if ($request->file('picture')) {
             $file = $request->file('picture');
-            $picture = Storage::putFile('/public/collections/' . $validated['code'], $file);
+            // $picture = Storage::putFile('/public/collections/' . $validated['code'], $file);
+            $picture = Storage::putFileAs('/public/collections/'. $collection->id, $file, $file->getClientOriginalName());
             $validated['picture'] = $picture;
         }
         $collection->update($validated);
@@ -119,12 +124,12 @@ class CollectionController extends Controller
         $collection->forceDelete();
         if ($collection->picture) {
             // Storage::delete($category->picture);
-            Storage::deleteDirectory('/public/collections/' . $collection->code);
+            Storage::deleteDirectory('/public/collections/' . $collection->id);
         }
-        $files_in_Products_folder = Storage::allFiles('/public/Products/' . $collection->code);
-        $directories_in_Products_folder = Storage::allDirectories('/public/Products/' . $collection->code);
+        $files_in_Products_folder = Storage::allFiles('/public/Products/' . $collection->id);
+        $directories_in_Products_folder = Storage::allDirectories('/public/Products/' . $collection->id);
         if ((count($files_in_Products_folder) == 0) && (count($files_in_Products_folder) == 0)) {
-            Storage::deleteDirectory('/public/Products/' . $collection->code);
+            Storage::deleteDirectory('/public/Products/' . $collection->id);
         }
         // return back();
         return redirect(route('dashboard.collection.index'))->with('success', 'Коллекция "' . $collection->name . '" удалена');
