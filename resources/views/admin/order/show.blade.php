@@ -55,16 +55,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
     @endif -->
     <!-- Форма добавления Пользователя -->
     <div class="form-wrapper">
@@ -113,13 +103,13 @@
                 </div>
 
                 <h3 class="file-upload-pairs-title">Контактное лицо</h3>
-                 <!--Комбобокс Категории товара--> 
+                 <!--Комбобокс Категории товара-->
                 <label for="user_id">Пользователь</label>
                 <br>
                 <div class="form-group">
                     <div class="dropdown">
                         <button type="button" class="dropdown__button"><div class="dropdown__button-text">{{ $order->user->name }} {{ $order->user->last_name }}</div></button>
-                        <ul class="dropdown__list">                        
+                        <ul class="dropdown__list">
                             <!-- <li class="dropdown__list-item" data-value="" ></li> -->
                             <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                             <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
@@ -128,7 +118,7 @@
                         <input type="hidden" name="user_id" id="user_id" value="{{ $order->user_id }}" class="dropdown__input-hidden" >
                     </div>
                 </div>
-                <!--End of Комбобокс Категории товара--> 
+                <!--End of Комбобокс Категории товара-->
 
                 <label for="name">Имя *</label>
                 <input type="text" name="name" id="name" minLength="1" maxLength="150" required autocomplete="off"
@@ -152,12 +142,12 @@
                 <ul class="ul-margin-bottom-zero">
                     <li class="radiobutton-row">
                         <input type="radio" id="pickup" name="delivery_method" value="pickup"
-                            @checked($order->delivery_method)>
+                            @checked($order->delivery_method=='pickup')>
                         <label for="pickup">Самовывоз</label>
                     </li>
                     <li class="radiobutton-row">
                         <input type="radio" id="post" name="delivery_method"
-                               value="post" @checked($order->delivery_method)>
+                               value="post" @checked($order->delivery_method=='post')>
                         <label for="post">Адресная доставка</label>
                     </li>
                 </ul>
@@ -186,12 +176,12 @@
                 <ul class="ul-margin-bottom-zero">
                     <li class="radiobutton-row">
                         <input type="radio" id="cash" name="payment_method" value="cash" disabled
-                            @checked($order->payment_method)>
+                            @checked($order->payment_method=='cash')>
                         <label for="cash">Наличными</label>
                     </li>
                     <li class="radiobutton-row">
                         <input type="radio" id="card" name="payment_method" disabled
-                               value="card" @checked($order->payment_method)>
+                               value="card" @checked($order->payment_method=='card')>
                         <label for="card">Кредитной картой</label>
                     </li>
                 </ul>
@@ -242,7 +232,9 @@
                     <div class="account-card-item orderitem-image-column orderitem">
                         <p class="card-mobile-text">Изображение</p>
                         <div class="account admin-table-img-container">
-                            <img class="admin-table-img" src="{{$product->product->picture}}" alt="">
+                            @if($product->product->picture)
+                                <img class="admin-table-img" src="{{\Storage::url($product->product->picture)}}" alt="">
+                            @endif
                         </div>
                     </div>
                     <div class="account-card-item orderitem-title-column orderitem">
@@ -258,8 +250,7 @@
                             <input type="hidden" form="order-form" value="${articul}" name="products[]">
                             <input type="number" form="order-form" value="{{$product->quantity}}"
                                    class="admin-orderitem-quantity"
-                                   name="quantity[]
-                           data-id=" ${articul}">
+                                   name="quantity[]">
                         </div>
                         </p>
                     </div>
@@ -292,8 +283,7 @@
                 </div>
 
                 <div class="account-card-item orderitem-actions-column orderitem orderitem-total">
-                    <p class="card-mobile-text"><!-- Действие --></p>
-                    <!-- <p class="account">HJGHG7</p> -->
+                    <p class="card-mobile-text"><!-- Действие --></p>                    
                     <div class="account">
                         <div class="wrapper-icon">
                             <!-- <button class="admin-action-ahref orderitem" >

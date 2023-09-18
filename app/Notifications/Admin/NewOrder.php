@@ -56,6 +56,7 @@ class NewOrder extends Notification
             "card" => "Кредитной картой",
             default => $this->order->payment_method
         };
+
         $mailMessage = (new MailMessage)
             ->subject('Сформирован новый заказ ' . $this->order->id)
             ->salutation('')
@@ -64,20 +65,14 @@ class NewOrder extends Notification
             ->line('Товары в заказе :');
 
         foreach ($this->order->order_products as $order_product) {
-            $mailMessage->line('Товар: ' . $order_product->product->title . ' кол-во' . $order_product->quantity . ' шт.');
+            $mailMessage->line(' - ' . $order_product->product->title . ' кол-во ' . $order_product->quantity . ' шт.');
         }
 
-        if ($this->order->user_id) {
-            $client_name = $this->order->user->name;
-            $client_last_name = $this->order->user->last_name;
-            $client_phone = $this->order->user->phone_number;
-            $client_email = $this->order->user->email;
-        } else {
-            $client_name = $this->order->name;
-            $client_last_name = $this->order->surname;
-            $client_phone = $this->order->tel;
-            $client_email = $this->order->email;
-        }
+        $client_name = $this->order->name;
+        $client_last_name = $this->order->last_name;
+        $client_phone = $this->order->phone_number;
+        $client_email = $this->order->email;
+
         $mailMessage
             ->line('Имя: ' . $client_name)
             ->line('Фамилия: ' . $client_last_name)
@@ -87,8 +82,9 @@ class NewOrder extends Notification
             ->line('Доставка: ' . $delivery);
         if ($this->order->delivery_method == 'post') {
             $mailMessage
+                ->line('Индекс: ' . $this->order->zip_code);
                 ->line('Город: ' . $this->order->city)
-                ->line('Адрес: ' . $this->order->address);
+                ->line('Адрес: ' . $this->order->address)                
         }
 
         return $mailMessage;            

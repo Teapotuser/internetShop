@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
-use App\Notifications\Client\NewOrder;
-use App\Notifications\Client\NewRegistration;
-use Auth;
+use App\Events\OrderCreated;
+/* use App\Notifications\Client\NewOrder;
+use App\Notifications\Client\NewRegistration; */
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
+/* use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification; */
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -135,9 +136,7 @@ class CartController extends Controller
         if ($request->id) {
 
             if (isset($cart[$request->id])) {
-
                 unset($cart[$request->id]);
-
                 Session::put('cart', $cart);
             }
         }
@@ -207,6 +206,8 @@ class CartController extends Controller
         $order->load('order_products');
 
         Session::forget('cart');
+
+        OrderCreated::dispatch($order);
 
        /*  if (isset($user) && $user != null) {
             $user->notify(new NewOrder($order));

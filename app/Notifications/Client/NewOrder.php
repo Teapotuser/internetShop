@@ -67,15 +67,16 @@ class NewOrder extends Notification
             ->line('Товары в заказе :');
 
         foreach ($this->order->order_products as $order_product) {
-            $mailMessage->line('Товар: ' . $order_product->product->title . ' кол-во ' . $order_product->quantity . ' шт.');
+            $mailMessage->line(' - ' . $order_product->product->title . ' кол-во ' . $order_product->quantity . ' шт.');
         }
 
         $mailMessage->line('Способ оплаты: ' . $payment_method)
             ->line('Доставка: ' . $delivery);
         if ($this->order->delivery_method == 'post') {
             $mailMessage
-                ->line('Город: ' . $this->order->city)
-                ->line('Адрес: ' . $this->order->address);
+            ->line('Индекс: ' . $this->order->zip_code)
+            ->line('Город: ' . $this->order->city)            
+            ->line('Адрес: ' . $this->order->address);
         }
 
         return $mailMessage;

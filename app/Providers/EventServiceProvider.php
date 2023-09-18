@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\User;
 use App\Observers\OrderObserver;
 use App\Observers\UserObserver;
+use App\Events\OrderCreated;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        OrderCreated::class=>[
+            \App\Listeners\OrderCreated::class
+        ],
     ];
 
     /**
@@ -32,7 +36,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Order::observe(OrderObserver::class);
+        // Order::observe(OrderObserver::class);
         User::observe(UserObserver::class);
     }
 

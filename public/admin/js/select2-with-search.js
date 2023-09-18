@@ -1,4 +1,26 @@
 $(document).ready(function() {
+  $('#order-form').on('submit', function (e) {
+    // console.log(
+    //     $('input[name="delivery_method"]:checked').val(),
+    //     $('#city,#zip_code,#track_number').attr('required'),
+    //     $('input[name="delivery_method"]:checked').val() == 'post' && $('#city,#zip_code,#track_number').attr('required') != 'required' )
+    // e.preventDefault();
+    // return false;
+    if ($('input[name="delivery_method"]:checked').val() === 'post' && $('#city,#zip_code,#address').attr('required') != 'required') {
+        $('#city,#zip_code,#address').attr('required', true);
+        e.preventDefault();
+        $('.admin-save-button').trigger('click');
+    }
+})
+$('input[name="delivery_method"]').change(function () {
+    console.log($(this).val())
+    if ($(this).val() == 'post') {
+        $('#city,#zip_code,#address').attr('required', true);
+    } else {
+        $('#city,#zip_code,#address').removeAttr('required');
+    }
+})
+
   var $productsSelect = $('.js-example-basic-single').select2({
     placeholder: 'Выберите товар ...',
     allowClear: true,
@@ -15,28 +37,32 @@ $(document).ready(function() {
   $(document).on('click', '#add-orderitem-to-order-button', function () {
       var data = $('.js-example-basic-single').select2('data')[0];
       // console.log(data);
-      appendToCart(data.id,data.element.dataset.articul, data.text, data.element.dataset.price, data.element.dataset.picture, data.element.dataset.size, data.element.dataset.url);
+      appendToCart(data.id, data.element.dataset.articul, data.text, data.element.dataset.price, data.element.dataset.picture, data.element.dataset.size, data.element.dataset.url);
+      $('.js-example-basic-single :selected').attr('disabled', true)
       $productsSelect.val(null).trigger('change');
       recountTotal();
 
   })
   $usersSelect.on('select2:unselect, select2:clear',function (e) {
-    $('#name').val('').removeAttr('disabled');
+   /*  $('#name').val('').removeAttr('disabled');
     $('#last_name').val('').removeAttr('disabled');
     $('#email').val('').removeAttr('disabled');
-    $('#phone_number').val('').removeAttr('disabled');
+    $('#phone_number').val('').removeAttr('disabled'); */
   })
 
-  $usersSelect.on('select2:select',function (e) {
+  $usersSelect.on('select2:select', function (e) {
     // console.log(e);
     let data = e.params.data;
     let elementDataSet = e.params.data.element.dataset;
-    $('#name').val(elementDataSet.name).attr('disabled',true);
-    $('#last_name').val(elementDataSet.last_name).attr('disabled',true);
-    $('#email').val(elementDataSet.email).attr('disabled',true);
-    $('#phone_number').val(elementDataSet.phone_number).attr('disabled',true);
-  })
+    $('#name').val(elementDataSet.name);
+    $('#last_name').val(elementDataSet.last_name);
+    $('#email').val(elementDataSet.email);
+    $('#phone_number').val(elementDataSet.phone_number);
 
+    $('#city').val(elementDataSet.city);
+    $('#address').val(elementDataSet.address);
+    $('#zip_code').val(elementDataSet.zip_code);
+  })
 });
 
 function recountTotal() {
@@ -47,7 +73,8 @@ function recountTotal() {
       let currentItemPrice = parseFloat(
           $(item).find('.orderitem-price-column span').text()
       ) * parseInt($(item).find('.admin-orderitem-quantity').val());
-      price = price + currentItemPrice;
+      currentItemPrice = Math.round((currentItemPrice + +Number.EPSILON) * 100) / 100;
+      price = Math.round((price + currentItemPrice + Number.EPSILON) * 100) / 100;
       total_items = total_items + parseInt($(item).find('.admin-orderitem-quantity').val());
       $(item).find('.orderitem-sum-column span').text(currentItemPrice)
   });
@@ -55,11 +82,6 @@ function recountTotal() {
   $('#order_total').val(price);
   $('.orderitem-total-quantity-column span').text(total_items);
   $('#orderitems_count').val(total_items);
-}
-
-function removeOrderItem() {
-  $(this).parents('itemRow').remove();
-  recountTotal();
 }
 
 $(document).on('click', '.admin-orderitem-minus-quantity, .admin-orderitem-plus-quantity', function () {
@@ -75,14 +97,18 @@ $(document).on('click', '.admin-orderitem-minus-quantity, .admin-orderitem-plus-
   recountTotal();
 })
 
-function appendToCart(id,articul, title, price, picture, size, url) {
-  console.log(articul, title, price, picture, url)
+function appendToCart(id, articul, title, price, picture, size, url) {
+  // console.log(articul, title, price, picture, url)
+  let img = '';
+    if (picture) {
+        img = `<img class="admin-table-img" src="${picture}" alt="">`;
+    }
   var card =
       `<div class="account-card list itemRow">
           <div class="account-card-item orderitem-image-column orderitem">
               <p class="card-mobile-text">Изображение</p>
               <div class="account admin-table-img-container">
-                  <img class="admin-table-img" src="${picture}" alt="">
+                ${img}
               </div>
           </div>
           <div class="account-card-item orderitem-title-column orderitem">
@@ -117,7 +143,7 @@ function appendToCart(id,articul, title, price, picture, size, url) {
               <p class="card-mobile-text">Действие</p>
               <div class="account">
                   <div class="wrapper-icon">
-                      <button class="admin-action-ahref orderitem removeOrderItem">
+                      <button class="admin-action-ahref orderitem removeOrderItem" data-id="${id}">
                           <div class="btn-delete"></div>
                       </button>
                   </div>
@@ -128,17 +154,29 @@ function appendToCart(id,articul, title, price, picture, size, url) {
   $('.list.orderitem-total').before(card);
 }
 
+$(document).on('click', '.removeOrderItem', function () {
+  console.log($(this), $(this).parent('.itemRow'), $(this).parents('.itemRow'))
+  $(this).parents('.itemRow').remove();
+
+  $('.js-example-basic-single option[value="' + $(this).data('id') + '"]').removeAttr('disabled');
+  recountTotal();
+})
 
 function formatState (state) {
     if (!state.id) {
       return state.text;
     }
     // var baseUrl = "D:/OpenServer_543/domains/blog/public/admin/images";
+    let img = '';
+    if (state.element.dataset.picture) {
+        img = '<img src="' + state.element.dataset.picture + '" class="img-flag" />'
+    }
     var $state = $(
     //   '<span><img src="' + baseUrl + '/' + state.element.value.toLowerCase() + '.png" class="img-flag" /> ' + state.text + '</span>'
     // '<span><img src="' + baseUrl + '/' + 48531_01_200_200 + '.jpg" class="img-flag" /> ' + state.text + '</span>'
     // '<span><img src="' + baseUrl + '/' + 'logo' + '.png" class="img-flag" /> ' + state.text + '</span>'
-    '<span><img src="' + state.element.dataset.picture + '" class="img-flag" /> ' + state.text + '</span>');
+    // '<span><img src="' + state.element.dataset.picture + '" class="img-flag" /> ' + state.text + '</span>');
+    '<span>' + img + state.text + '</span>');
     // );
     return $state;
   };

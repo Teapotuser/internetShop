@@ -1,6 +1,5 @@
 @extends('layouts.admin')
-@section('custom_css') 
-        
+@section('custom_css')         
     <link rel="stylesheet" href="{{ asset('admin/css/style-right-dashboard-table.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('admin/css/style-right-dashboard-category.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}" type="text/css">
@@ -77,7 +76,11 @@
                     <p class="card-mobile-text">Изображение</p>
                     <!-- <p class="account">7675.89</p> -->
                     <div class="account admin-table-img-container">
-                        <img class="admin-table-img" src="{{Storage::url($category->picture)}}" alt=""> 
+                        @if($category->picture == null)
+                            <div></div>
+                        @else                            
+                            <img class="admin-table-img" src="{{Storage::url($category->picture)}}" alt=""> 
+                        @endif                           
                     </div>
                 </div>
                 <div class="account-card-item">

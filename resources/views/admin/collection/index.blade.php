@@ -77,7 +77,11 @@
                     <p class="card-mobile-text">Изображение</p>
                     <!-- <p class="account">7675.89</p> -->
                     <div class="account admin-table-img-container">
-                        <img class="admin-table-img" src="{{Storage::url($collection->picture)}}" alt=""> 
+                        @if($collection->picture == null)
+                            <div></div>
+                        @else                            
+                            <img class="admin-table-img" src="{{Storage::url($collection->picture)}}" alt=""> 
+                        @endif                          
                     </div>
                 </div>
                 <div class="account-card-item collection-actions-column">

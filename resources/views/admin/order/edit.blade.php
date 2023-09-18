@@ -59,7 +59,7 @@
     <!-- Форма добавления Пользователя -->
     <div class="form-wrapper">
         <!--Форма логина-->
-        <form method="POST" action="{{ route('dashboard.order.update',$order) }}" enctype="multipart/form-data"
+        <form method="POST" action="{{ route('dashboard.order.update', $order) }}" enctype="multipart/form-data"
               class="login-form-decor" id="order-form">
             @csrf
             @method('PATCH')
@@ -114,7 +114,7 @@
 
                 <h3 class="file-upload-pairs-title">Контактное лицо</h3>
 
-                <label for="select2-user">Пользователь *</label>
+                <label for="select2-user">Пользователь</label>
                 <select class="select2-users" id="select2-user" name="user_id">
                     <option></option>
 
@@ -125,76 +125,76 @@
                             data-last_name="{{$user->last_name}}"
                             data-email="{{$user->email}}"
                             data-phone_number="{{$user->phone_number}}"
+                            data-city="{{$user->city}}"
+                            data-address="{{$user->address}}"
+                            data-zip_code="{{$user->zip_code}}"
                             value="{{$user->id}}">{{implode(' ',[$user->name,$user->last_name,$user->email,$user->phone_number])}}</option>
                     @endforeach
                 </select>
 
                 <label for="name">Имя *</label>
                 <input type="text" name="name" id="name" minLength="1" maxLength="150" required autocomplete="off"
-                       @disabled($order->user_id)
-                       value="{{ $order->getUserName() }}">
+                       value="{{ old('name', $order->getUserName()) }}">
 
                 <label for="last_name">Фамилия *</label>
-                <input type="text" name="last_name" id="last_name" minLength="1" maxLength="200" required
-                       @disabled($order->user_id)
-                       autocomplete="off"
-                       value="{{ $order->getUserLastName() }}">
+                <input type="text" name="last_name" id="last_name" minLength="1" maxLength="200" required autocomplete="off"
+                       value="{{old('last_name', $order->getUserLastName()) }}">
 
                 <label for="email">E-mail *</label>
-                <input type="email" name="email" id="email" minLength="1" maxLength="150" required
-                       @disabled($order->user_id)
-                       autocomplete="off"
-                       value="{{ $order->getUserEmail() }}">
+                <input type="email" name="email" id="email" minLength="1" maxLength="150" required autocomplete="off"
+                        value="{{ old('email',$order->getUserEmail()) }}">
 
                 <label for="phone_number">Телефон *</label>
-                <input @disabled($order->user_id)
-                       type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone_number" id="phone_number"
-                       minLength="1" maxLength="20" required autocomplete="off" value="{{ $order->getUserPhone() }}">
+                <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone_number" id="phone_number"
+                       minLength="1" maxLength="20" required autocomplete="off" value="{{ old('phone_number',$order->getUserPhone()) }}">
 
                 <h3 class="file-upload-pairs-title">Данные доставки</h3>
                 <ul class="ul-margin-bottom-zero">
                     <li class="radiobutton-row">
                         <input type="radio" id="pickup" name="delivery_method" value="pickup"
-                            @checked($order->delivery_method)>
+                        @checked(old('delivery_method'=='pickup',$order->delivery_method=='pickup'))>
                         <label for="pickup">Самовывоз</label>
                     </li>
                     <li class="radiobutton-row">
                         <input type="radio" id="post" name="delivery_method"
-                               value="post" @checked($order->delivery_method)>
+                               value="post" @checked(old('delivery_method'=='post',$order->delivery_method=='post'))>
                         <label for="post">Адресная доставка</label>
                     </li>
                 </ul>
                 <br>
                 <label for="address">Адрес</label>
                 <input type="text" name="address" id="address" minLength="1" maxLength="500" autocomplete="off"
-                       value="{{ $order->address }}">
+                value="{{ old('address',$order->address) }}"
+                       @if(old('delivery_method'=='post',$order->delivery_method=='post')) required @endif>
 
                 <div class="two-fields-product-container">
                     <div>
                         <label for="city">Город</label>
                         <input type="text" name="city" id="city" minLength="1" maxLength="200" autocomplete="off"
-                               value="{{ $order->city }}">
+                        value="{{ old('city',$order->city) }}"
+                               @if(old('delivery_method'=='post',$order->delivery_method=='post')) required @endif>
                     </div>
                     <div>
                         <label for="zip_code">Индекс</label>
                         <input type="text" name="zip_code" id="zip_code" minLength="1" maxLength="20" autocomplete="off"
-                               value="{{ $order->zip_code }}">
+                        value="{{ old('zip_code',$order->zip_code) }}"
+                               @if(old('delivery_method'=='post',$order->delivery_method=='post')) required @endif>
                     </div>
                 </div>
                 <label for="track_number">Трек номер посылки</label>
                 <input type="text" name="track_number" id="track_number" minLength="1" maxLength="150"
-                       autocomplete="off" value="{{ $order->track_number }}">
+                       autocomplete="off" value="{{ old('track_number',$order->track_number) }}">
 
                 <h3 class="file-upload-pairs-title">Данные оплаты</h3>
                 <ul class="ul-margin-bottom-zero">
                     <li class="radiobutton-row">
                         <input type="radio" id="cash" name="payment_method" value="cash"
-                            @checked($order->payment_method)>
+                            @checked(old('payment_method'=='cash',$order->payment_method=='cash'))>
                         <label for="cash">Наличными</label>
                     </li>
                     <li class="radiobutton-row">
                         <input type="radio" id="card" name="payment_method"
-                               value="card" @checked($order->payment_method)>
+                               value="card" @checked(old('payment_method'=='card',$order->payment_method=='card'))>
                         <label for="card">Кредитной картой</label>
                     </li>
                 </ul>
@@ -204,7 +204,7 @@
                         <br>
                         <div class="form-inner-checkbox">
                             <input type="checkbox" id="is_paid" name="is_paid"
-                                   class="checkbox-customized" @checked($order->is_paid)>
+                                   class="checkbox-customized" @checked(old('is_paid',$order->is_paid))>
                             <label for="is_paid">
                                 <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
                                     <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
@@ -216,14 +216,45 @@
                     </div>
                     <div>
                         <label for="payment_date">Дата оплаты</label>
-                        <input type="date" name="payment_date" id="payment_date" min="2023-04-01" autocomplete="off"
-
-                               value="{{ $order->payment_date }}">
+                        <input type="date" name="payment_date" id="payment_date" min="2023-04-01" autocomplete="off" 
+                            value="{{ old('payment_date',$order->payment_date) }}">
                     </div>
                 </div>
+
+
+                <h3 class="file-upload-pairs-title">Состав заказа</h3>
+
+                <label for="select2-product">Товар *</label>
+                <select class="js-example-basic-single" id="select2-product">
+                    <option></option>
+                    @foreach($products->groupBy('collection_id') as $collection=>$items)
+                        <optgroup label="{{\App\Models\Collection::find($collection)->name}}">
+                            @foreach($items as $product)
+                                <option
+                                    @disabled($order->order_products->where('product_id','=',$product->id)->count())
+                                    data-price="{{$product->issetDiscount()? $product->getPriceWithDiscount() : $product->price}}"
+                                    data-articul="{{$product->article}}"
+                                    data-size="{{$product->size}}"
+                                    data-url="{{route('product.show',$product->id)}}"
+                                    data-picture="{{Storage::url($product->picture)}}"
+                                    value="{{$product->id}}">{{$product->title}}</option>
+                            @endforeach
+                        </optgroup>
+                    @endforeach
+                </select>
+
+                <div class="center-button">
+                    <div class="">
+                        <button type="button" class="add-orderitem-to-order-button" id="add-orderitem-to-order-button">
+                            <div class="add-orderitem-to-order-icon"></div>
+                            <span>Добавить товар</span>
+                        </button>
+                        <div></div>
+                    </div>
+                </div>
+
             </div>
         </form>
-
     </div>
 
     <!-- Таблица с данными Вадим-->
@@ -245,7 +276,9 @@
                     <div class="account-card-item orderitem-image-column orderitem">
                         <p class="card-mobile-text">Изображение</p>
                         <div class="account admin-table-img-container">
-                            <img class="admin-table-img" src="{{$product->product->picture}}" alt="">
+                            @if($product->product->picture)
+                                <img class="admin-table-img" src="{{\Storage::url($product->product->picture)}}" alt="">
+                            @endif
                         </div>
                     </div>
                     <div class="account-card-item orderitem-title-column orderitem">
@@ -275,7 +308,17 @@
                         <p class="card-mobile-text">Сумма</p>
                         <p class="account"><span>{{$product->price / 100 * $product->quantity}}</span> р.</p>
                     </div>
-
+                    <div class="account-card-item orderitem-actions-column orderitem">
+                        <p class="card-mobile-text">Действие</p>
+                        <div class="account">
+                            <div class="wrapper-icon">
+                                <button class="admin-action-ahref orderitem removeOrderItem"
+                                        data-id="{{$product->product_id}}">
+                                    <div class="btn-delete"></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             @endforeach
@@ -297,7 +340,6 @@
 
                 <div class="account-card-item orderitem-actions-column orderitem orderitem-total">
                     <p class="card-mobile-text"><!-- Действие --></p>
-                    <!-- <p class="account">HJGHG7</p> -->
                     <div class="account">
                         <div class="wrapper-icon">
                             <!-- <button class="admin-action-ahref orderitem" >

@@ -119,10 +119,10 @@
 
             <div class="bottom-content">
                 <li class="">
-                    <form action="{{route('logout')}}" method="post">
+                    <form action="{{route('logout')}}" id="adminLogoutForm" method="post">
                         @method('POST')
                         @csrf
-                        <a href="#" onclick="$(this).parent().submit()">
+                        <a href="#" onclick="document.getElementById('adminLogoutForm').submit()">
                             <!-- <i class='bx bx-log-out icon' ></i> -->
                             <span class='icon'><div class='icon-logout'></div></span>
                             <span class="text nav-text">Выйти</span>

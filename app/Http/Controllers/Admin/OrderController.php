@@ -7,9 +7,14 @@ use App\Models\Order;
 // use App\Models\OrderProducts;
 use App\Models\Product;
 use App\Models\User;
+use App\Events\OrderCreated;
+
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-// use App\Http\Requests\Admin\Order\StoreRequest;
+use App\Http\Requests\Admin\Order\StoreOrder;
+use App\Http\Requests\Admin\Order\StoreRequest;
+use App\Http\Requests\Admin\Order\UpdateOrder;
+
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
@@ -71,23 +76,25 @@ class OrderController extends Controller
         }
 
         $order = Order::create([
-            'user_id' => $request->get('user_id'),
-            'name' => $request->get('user_id') ? null : $request->get('name'),
-            'last_name' => $request->get('user_id') ? null : $request->get('last_name'),
-            'email' => $request->get('user_id') ? null : $request->get('email'),
-            'phone_number' => $request->get('user_id') ? null : $request->get('phone_number'),
-            'address' => $request->get('delivery_method') == 'post' ? $request->get('address') : null,
-            'city' => $request->get('delivery_method') == 'post' ? $request->get('city') : null,
-            'zip_code' => $request->get('delivery_method') == 'post' ? $request->get('zip_code') : null,
-            'delivery_method' => $request->get('delivery_method'),
-            'payment_method' => $request->get('payment_method'),
-            'status' => $request->get('status'),
-            'is_paid' => $request->get('is_paid') == 'on',
-            'track_number' => $request->get('track_number'),
-            'payment_date' => $request->get('payment_date'),
+            'user_id' => $request->validated('user_id'),
+            'name' => $request->validated('name'),
+            'last_name' => $request->validated('last_name'),
+            'email' => $request->validated('email'),
+            'phone_number' => $request->validated('phone_number'),
+            'address' => $request->validated('delivery_method') == 'post' ? $request->validated('address') : null,
+            'city' => $request->validated('delivery_method') == 'post' ? $request->validated('city') : null,
+            'zip_code' => $request->validated('delivery_method') == 'post' ? $request->validated('zip_code') : null,
+            'delivery_method' => $request->validated('delivery_method'),
+            'payment_method' => $request->validated('payment_method'),
+            'status' => $request->validated('status'),
+            'is_paid' => $request->validated('is_paid') == 'on',
+            'track_number' => $request->validated('track_number'),
+            'payment_date' => $request->validated('payment_date'),
         ]);
 
         $order->order_products()->createMany($append_products_array);
+
+        OrderCreated::dispatch($order);
 
         return to_route('dashboard.order.index')->with('success', 'Заказ №"' . $order->id . '" создан');
     }
@@ -123,7 +130,7 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(UpdateOrder $request, Order $order)
     {
         $products = array_combine($request->get('products'), $request->get('quantity'));
         $append_products_array = [];
@@ -137,20 +144,20 @@ class OrderController extends Controller
         }
 
         $order->update([
-            'user_id' => $request->get('user_id'),
-            'name' => $request->get('user_id') ? null : $request->get('name'),
-            'last_name' => $request->get('user_id') ? null : $request->get('last_name'),
-            'email' => $request->get('user_id') ? null : $request->get('email'),
-            'phone_number' => $request->get('user_id') ? null : $request->get('phone_number'),
-            'address' => $request->get('delivery_method') == 'post' ? $request->get('address') : null,
-            'city' => $request->get('delivery_method') == 'post' ? $request->get('city') : null,
-            'zip_code' => $request->get('delivery_method') == 'post' ? $request->get('zip_code') : null,
-            'delivery_method' => $request->get('delivery_method'),
-            'payment_method' => $request->get('payment_method'),
-            'status' => $request->get('status'),
-//            'is_paid' => $request->get('is_paid') == 'on',
-//            'track_number' => $request->get('track_number'),
-//            'payment_date' => $request->get('payment_date'),
+            'user_id' => $request->validated('user_id'),
+            'name' => $request->validated('name'),
+            'last_name' => $request->validated('last_name'),
+            'email' => $request->validated('email'),
+            'phone_number' => $request->validated('phone_number'),
+            'address' => $request->validated('delivery_method') == 'post' ? $request->validated('address') : null,
+            'city' => $request->validated('delivery_method') == 'post' ? $request->validated('city') : null,
+            'zip_code' => $request->validated('delivery_method') == 'post' ? $request->validated('zip_code') : null,
+            'delivery_method' => $request->validated('delivery_method'),
+            'payment_method' => $request->validated('payment_method'),
+            'status' => $request->validated('status'),
+            'is_paid' => $request->validated('is_paid') == 'on',
+            'track_number' => $request->validated('track_number'),
+            'payment_date' => $request->validated('payment_date'),
         ]);
 
 

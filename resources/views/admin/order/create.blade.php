@@ -72,7 +72,7 @@
                 </div>
                 <div>
                     <label for="created_at">Дата создания *</label>
-                    <input type="date" name="created_at" id="created_at" min="2023-04-01" autocomplete="off" value="{{ old('created_at') }}" disabled>
+                    <input type="date" name="created_at" id="created_at" min="2023-04-01" autocomplete="off" value="{{ old('created_at',\Carbon\Carbon::now()->format('Y-m-d')) }}" disabled>
                     @error('created_at')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror 
@@ -123,10 +123,13 @@
                         data-last_name="{{$user->last_name}}"
                         data-email="{{$user->email}}"
                         data-phone_number="{{$user->phone_number}}"
+                        data-city="{{$user->city}}"
+                        data-address="{{$user->address}}"
+                        data-zip_code="{{$user->zip_code}}"
                         value="{{$user->id}}">{{implode(' ',[$user->name,$user->last_name,$user->email,$user->phone_number])}}</option>
                 @endforeach
             </select>
-
+            <br>
             <label for="name">Имя *</label>
             <input type="text" name="name" id="name" minLength="1" maxLength="150" required autocomplete="off" value="{{ old('name') }}">
             @error('name')
@@ -271,7 +274,7 @@
                     <optgroup label="{{\App\Models\Collection::find($collection)->name}}">
                         @foreach($items as $product)
                             <option
-                                data-price="{{$product->price}}"
+                                data-price="{{$product->issetDiscount()? $product->getPriceWithDiscount() : $product->price}}"
                                 data-articul="{{$product->article}}"
                                 data-size="{{$product->size}}"
                                 data-url="{{route('product.show',$product->id)}}"
@@ -280,7 +283,6 @@
                         @endforeach
                     </optgroup>
                 @endforeach
-
             </select>                  
                      
             <div class="center-button">
@@ -382,8 +384,7 @@
                 </div>
                 
                 <div class="account-card-item orderitem-actions-column orderitem orderitem-total">
-                    <p class="card-mobile-text"><!-- Действие --></p>                            
-                    <!-- <p class="account">HJGHG7</p> -->
+                    <p class="card-mobile-text"><!-- Действие --></p>                      
                     <div class="account">
                         <div class="wrapper-icon">                           
                             <!-- <button class="admin-action-ahref orderitem" >

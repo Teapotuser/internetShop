@@ -14,15 +14,16 @@
                     @endisset             
                     <h2 class="section-header">Обратная связь</h2>
                    <!--  Форма адреса -->
-                   <form class="form-order" method="POST" action="{{route('feedback.form')}}">
+                   <form class="form-order" method="POST" action="{{route('feedback.post')}}">
+                        @csrf
                         <div class="form-order-wrapper">
                             <div class="decor form-feedback-panel">                                
                                 <div class="form-inner">
                                     <h3>Напишите нам</h3>
-                                    <input type="text" name="name" placeholder="Имя *" minLength="1" maxLength="150" required autocomplete="off" @error('name') class="invalid" @enderror value="{{old('name',Auth::user()?->name)}}">
-                                    <input type="text" name="last_name" placeholder="Фамилия *" minLength="1" maxLength="150" required autocomplete="off" @error('last_name') class="invalid" @enderror value="{{old('last_name',Auth::user()?->last_name)}}">
-                                    <input type="email" name="email" placeholder="Email *" minLength="1" maxLength="150" required autocomplete="off" @error('email') class="invalid" @enderror value="{{old('email',Auth::user()?->email)}}">
-                                    <input type="number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Номер телефона" minLength="1" maxLength="20" autocomplete="off" @error('phone_number') class="invalid" @enderror value="{{old('phone_number',Auth::user()?->phone_number)}}">
+                                    <input type="text" name="name" placeholder="Имя *" minLength="1" maxLength="150" required autocomplete="off" @error('name') class="invalid" @enderror value="{{old('name', Auth::user()?->name)}}">
+                                    <input type="text" name="last_name" placeholder="Фамилия *" minLength="1" maxLength="150" required autocomplete="off" @error('last_name') class="invalid" @enderror value="{{old('last_name', Auth::user()?->last_name)}}">
+                                    <input type="email" name="email" placeholder="Email *" minLength="1" maxLength="150" required autocomplete="off" @error('email') class="invalid" @enderror value="{{old('email', Auth::user()?->email)}}">
+                                    <input type="number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Номер телефона" minLength="1" maxLength="20" autocomplete="off" @error('phone_number') class="invalid" @enderror value="{{old('phone_number', Auth::user()?->phone_number)}}">
                                     <textarea name="message" placeholder="Сообщение..." rows="4" autocomplete="off" @error('message') class="invalid" @enderror>{{old('message','')}}</textarea>     
                                     
                                     <div class="feedbackform-center-button">
@@ -30,7 +31,7 @@
                                         <!-- <a href="#" type="button" class="main-cart-button-order">Оформить заказ</a> -->
                                     </div> 
                                     <div class="feedback-img-container">
-                                        <img class="" src="images/NICI/sheep_pencil.png">
+                                        <img class="" src="{{ asset('images/NICI/sheep_pencil.png') }}">
                                     </div>                                 
                                 </div>                                                   
                             </div>

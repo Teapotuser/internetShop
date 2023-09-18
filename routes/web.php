@@ -73,9 +73,9 @@ Route::get('removeFromCart/{id}', [CartController::class, 'remove']);
 Route::get('clearCart', [CartController::class, 'clear']);
 
 // Форма обратной связи
-Route::get('/feedback', [FeedBackController::class, 'show'])->name('feedback.form');
-Route::post('/feedback', [FeedBackController::class, 'save'])->name('feedback.post');
-Route::get('/feedback-confirmation', function () {return view('feedbackconfirm');});
+Route::get('/feedback', [FeedbackController::class, 'show'])->name('feedback.form');
+Route::post('/feedback', [FeedbackController::class, 'save'])->name('feedback.post');
+Route::get('/feedback-confirmation', function () {return view('feedbackconfirm');})->name('feedback.confirmation');
 
 
 // Route::get('/profile', function () {return view('profile');})->name('profile.personal');
