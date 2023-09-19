@@ -100,14 +100,14 @@ class UserController extends Controller
 
         $validated = $request->validated();
         if ($request->file('picture') || $request->validated('removeImage')) {
-            if ($request->user()->picture) {
-                Storage::deleteDirectory('/public/users/' . $request->user()->id);
-                $request->user()->picture = null;
+            if ($user->picture) {
+                Storage::deleteDirectory('/public/users/' . $user->id);
+                $user->picture = null;
             }
         }
         if ($request->file('picture')) {
             $file = $request->file('picture');
-            $picture = Storage::url(Storage::put('/public/users/' . $request->user()->id, $file));
+            $picture = Storage::url(Storage::put('/public/users/' . $user->id, $file));
             $validated['picture'] = $picture;
         }
 

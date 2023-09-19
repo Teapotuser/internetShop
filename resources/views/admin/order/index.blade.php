@@ -70,7 +70,7 @@
                 </div>
                 <div class="account-card-item order-title-column">
                     <p class="card-mobile-text">Имя</p>
-                    <p class="account">{{$order->getUserFIO()}}</p>
+                    <p class="account">{{$order->name}}  {{$order->last_name}}</p>
                 </div>
                 <!-- <div class="account-card-item user-email-column">
                     <p class="card-mobile-text">E-mail</p>

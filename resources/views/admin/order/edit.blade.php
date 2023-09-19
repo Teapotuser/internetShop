@@ -131,70 +131,70 @@
                             value="{{$user->id}}">{{implode(' ',[$user->name,$user->last_name,$user->email,$user->phone_number])}}</option>
                     @endforeach
                 </select>
-
+                <br><br>
                 <label for="name">Имя *</label>
                 <input type="text" name="name" id="name" minLength="1" maxLength="150" required autocomplete="off"
-                       value="{{ old('name', $order->getUserName()) }}">
+                       value="{{ old('name', $order->name) }}">
 
                 <label for="last_name">Фамилия *</label>
                 <input type="text" name="last_name" id="last_name" minLength="1" maxLength="200" required autocomplete="off"
-                       value="{{old('last_name', $order->getUserLastName()) }}">
+                       value="{{old('last_name', $order->last_name) }}">
 
                 <label for="email">E-mail *</label>
                 <input type="email" name="email" id="email" minLength="1" maxLength="150" required autocomplete="off"
-                        value="{{ old('email',$order->getUserEmail()) }}">
+                        value="{{ old('email', $order->email) }}">
 
                 <label for="phone_number">Телефон *</label>
                 <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone_number" id="phone_number"
-                       minLength="1" maxLength="20" required autocomplete="off" value="{{ old('phone_number',$order->getUserPhone()) }}">
+                       minLength="1" maxLength="20" required autocomplete="off" value="{{ old('phone_number', $order->phone_number) }}">
 
                 <h3 class="file-upload-pairs-title">Данные доставки</h3>
                 <ul class="ul-margin-bottom-zero">
                     <li class="radiobutton-row">
                         <input type="radio" id="pickup" name="delivery_method" value="pickup"
-                        @checked(old('delivery_method'=='pickup',$order->delivery_method=='pickup'))>
+                        @checked(old('delivery_method'=='pickup', $order->delivery_method=='pickup'))>
                         <label for="pickup">Самовывоз</label>
                     </li>
                     <li class="radiobutton-row">
                         <input type="radio" id="post" name="delivery_method"
-                               value="post" @checked(old('delivery_method'=='post',$order->delivery_method=='post'))>
+                               value="post" @checked(old('delivery_method'=='post', $order->delivery_method=='post'))>
                         <label for="post">Адресная доставка</label>
                     </li>
                 </ul>
                 <br>
                 <label for="address">Адрес</label>
                 <input type="text" name="address" id="address" minLength="1" maxLength="500" autocomplete="off"
-                value="{{ old('address',$order->address) }}"
+                value="{{ old('address', $order->address) }}"
                        @if(old('delivery_method'=='post',$order->delivery_method=='post')) required @endif>
 
                 <div class="two-fields-product-container">
                     <div>
                         <label for="city">Город</label>
                         <input type="text" name="city" id="city" minLength="1" maxLength="200" autocomplete="off"
-                        value="{{ old('city',$order->city) }}"
+                        value="{{ old('city', $order->city) }}"
                                @if(old('delivery_method'=='post',$order->delivery_method=='post')) required @endif>
                     </div>
                     <div>
                         <label for="zip_code">Индекс</label>
                         <input type="text" name="zip_code" id="zip_code" minLength="1" maxLength="20" autocomplete="off"
                         value="{{ old('zip_code',$order->zip_code) }}"
-                               @if(old('delivery_method'=='post',$order->delivery_method=='post')) required @endif>
+                               @if(old('delivery_method'=='post', $order->delivery_method=='post')) required @endif>
                     </div>
                 </div>
                 <label for="track_number">Трек номер посылки</label>
                 <input type="text" name="track_number" id="track_number" minLength="1" maxLength="150"
-                       autocomplete="off" value="{{ old('track_number',$order->track_number) }}">
+                       autocomplete="off" value="{{ old('track_number', $order->track_number) }}">
 
                 <h3 class="file-upload-pairs-title">Данные оплаты</h3>
                 <ul class="ul-margin-bottom-zero">
                     <li class="radiobutton-row">
                         <input type="radio" id="cash" name="payment_method" value="cash"
-                            @checked(old('payment_method'=='cash',$order->payment_method=='cash'))>
+                            @checked(old('payment_method'=='cash', $order->payment_method=='cash'))>
                         <label for="cash">Наличными</label>
                     </li>
                     <li class="radiobutton-row">
                         <input type="radio" id="card" name="payment_method"
-                               value="card" @checked(old('payment_method'=='card',$order->payment_method=='card'))>
+                               value="card" @checked(old('payment_method'=='card', $order->payment_method=='card'))>
                         <label for="card">Кредитной картой</label>
                     </li>
                 </ul>
@@ -204,7 +204,7 @@
                         <br>
                         <div class="form-inner-checkbox">
                             <input type="checkbox" id="is_paid" name="is_paid"
-                                   class="checkbox-customized" @checked(old('is_paid',$order->is_paid))>
+                                   class="checkbox-customized" @checked(old('is_paid', $order->is_paid))>
                             <label for="is_paid">
                                 <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
                                     <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
@@ -217,7 +217,7 @@
                     <div>
                         <label for="payment_date">Дата оплаты</label>
                         <input type="date" name="payment_date" id="payment_date" min="2023-04-01" autocomplete="off" 
-                            value="{{ old('payment_date',$order->payment_date) }}">
+                            value="{{ old('payment_date', $order->payment_date) }}">
                     </div>
                 </div>
 

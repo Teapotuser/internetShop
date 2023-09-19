@@ -82,9 +82,9 @@ class NewOrder extends Notification
             ->line('Доставка: ' . $delivery);
         if ($this->order->delivery_method == 'post') {
             $mailMessage
-                ->line('Индекс: ' . $this->order->zip_code);
+                ->line('Индекс: ' . $this->order->zip_code)
                 ->line('Город: ' . $this->order->city)
-                ->line('Адрес: ' . $this->order->address)                
+                ->line('Адрес: ' . $this->order->address);                
         }
 
         return $mailMessage;            

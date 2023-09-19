@@ -36,7 +36,7 @@ class StoreRequest extends FormRequest
             'product_info' => 'sometimes',
             'price' => ['required', 'numeric', 'min:0'], //больше нуля
             'discount' => ['sometimes', 'numeric', 'min:0', 'max:100'],
-            'size' => ['required', 'numeric', 'min:1'] //больше нуля
+            'size' => ['required', 'numeric', 'min:1'], //больше нуля
             'category_id' => 'required',
             'collection_id' => 'required',
             // 'picture' => ['required', 'file'],
@@ -46,9 +46,9 @@ class StoreRequest extends FormRequest
             'is_new' => 'boolean',
             'is_best_selling' => 'boolean',
             'is_active' => 'boolean',
-            'height' => ['sometimes', 'numeric', 'nullable'],
-            'width' => ['sometimes', 'numeric', 'nullable'],
-            'depth' => ['sometimes', 'numeric', 'nullable'],
+            'height' => ['sometimes', 'numeric'],
+            'width' => ['sometimes', 'numeric'],
+            'depth' => ['sometimes', 'numeric'],
             'material' => 'sometimes',
             'material_filling' => 'sometimes',
             'age_from' => 'sometimes',
@@ -91,7 +91,7 @@ class StoreRequest extends FormRequest
         }
 
 
-        if ($this->get('height') || is_null($this->get('height'))) {
+       /*  if ($this->get('height') || is_null($this->get('height'))) {
             $this->merge([
                 'height' => 0
             ]);
@@ -102,6 +102,22 @@ class StoreRequest extends FormRequest
             ]);
         }
         if ($this->get('depth') || is_null($this->get('depth'))) {
+            $this->merge([
+                'depth' => 0
+            ]);
+        } */
+
+        if ( is_null($this->get('height'))) {
+            $this->merge([
+                'height' => 0
+            ]);
+        }
+        if ( is_null($this->get('width'))) {
+            $this->merge([
+                'width' => 0
+            ]);
+        }
+        if ( is_null($this->get('depth'))) {
             $this->merge([
                 'depth' => 0
             ]);

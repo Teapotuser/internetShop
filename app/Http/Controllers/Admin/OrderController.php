@@ -52,7 +52,7 @@ class OrderController extends Controller
     public function create()
     {
         $products = Product::query()->IsActive()->get();
-        $users = User::all();
+        $users = User::where('role', 'user')->get();
         return view('admin.order.create', compact(['products', 'users']));      
     }
 
@@ -62,7 +62,7 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOrder $request)
     {
         $products = array_combine($request->get('products'), $request->get('quantity'));
         $append_products_array = [];
@@ -119,7 +119,7 @@ class OrderController extends Controller
     public function edit(Order $order)
     {
         $products = Product::query()->IsActive()->get();
-        $users = User::all();
+        $users = User::where('role', 'user')->get();
         return view('admin.order.edit', compact(['products', 'users', 'order']));
     }
 

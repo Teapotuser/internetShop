@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\OrderCreated;
+// use App\Events\OrderCreated;
 /* use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue; */
 
@@ -30,7 +30,7 @@ class OrderCreated
      * @param  \App\Events\OrderCreated  $event
      * @return void
      */
-    public function handle(OrderCreated $event)
+    public function handle(\App\Events\OrderCreated $event)
     {
         
         $order = $event->order;

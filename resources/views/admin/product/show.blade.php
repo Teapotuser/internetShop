@@ -92,14 +92,14 @@
             <div class="two-fields-product-container">
                 <div>
                     <label for="price">Цена *</label>
-                    <input type="number" name="price" id="price" min="0.01" max="100 000" required autocomplete="off" value="{{ $product->price }}" disabled>
+                    <input type="number" name="price" id="price" min="0.01" max="100 000" step="0.01" required autocomplete="off" value="{{ $product->price }}" disabled>
                     @error('price')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
                 </div>
                 <div>
                     <label for="discount">Скидка (%)</label>
-                    <input type="number" name="discount" id="discount" min="0" max="100" required autocomplete="off" value="{{ $product->discount }}" disabled>
+                    <input type="number" name="discount" id="discount" min="0" max="100" autocomplete="off" value="{{ $product->discount }}" disabled>
                     @error('discount')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
@@ -183,6 +183,7 @@
                     <button type="button" class="dropdown__button"><div class="dropdown__button-text">{{ $product->material }}</div></button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="плюш/полиэстер" >плюш/полиэстер</li>
+                        <li class="dropdown__list-item" data-value="плюш/полиэстер из переработанного материала" >плюш/полиэстер из переработанного материала</li>
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
@@ -199,6 +200,7 @@
                     <button type="button" class="dropdown__button"><div class="dropdown__button-text">{{ $product->material_filling }}</div></button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="полиэфирное волокно (полиэстер)" >полиэфирное волокно (полиэстер)</li>
+                        <li class="dropdown__list-item" data-value="полиэфирное волокно (полиэстер) из переработанного материала" >полиэфирное волокно (полиэстер) из переработанного материала</li>
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
@@ -258,7 +260,7 @@
                 @php($key++)
                 <div class="file-upload-pair-wrapper">
                     <div class="file-upload-control">
-                        <p class="label">Иконка {{$key}} *</p>
+                        <p class="label">Иконка {{$key}} {{ $key <= 3 ? '*' : ''  }}</p>
                         <div class="file-upload-container">
                             <figure class="file-upload-preview-image-container">
                                 <!-- <img id="chosen-image" class="chosen-image" src="{{ $product->picture ? Storage::url($product->picture) : asset('/admin/images/Untitled.png')}}"> -->
@@ -275,7 +277,7 @@
                         </div>
                     </div>
                     <div class="file-upload-control">
-                        <p class="label">Изображение {{$key}} *</p>
+                        <p class="label">Изображение {{$key}} {{ $key <= 3 ? '*' : ''  }}</p>
                         <div class="file-upload-container">
                             <figure class="file-upload-preview-image-container">
                                 <!-- <img id="chosen-image" class="chosen-image" src="{{ $product->picture ? Storage::url($product->picture) : asset('/admin/images/Untitled.png')}}"> -->

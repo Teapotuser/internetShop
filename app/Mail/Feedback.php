@@ -18,13 +18,13 @@ class Feedback extends Mailable
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(    
         public string $name,
         public string $last_name,
         public string $email,
         public string $phone_number,
-        public string $question,
+        public string $question)
+    {
     }
 
     /**

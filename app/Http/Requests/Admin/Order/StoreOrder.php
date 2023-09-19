@@ -51,6 +51,11 @@ class StoreOrder extends FormRequest
             'status.required' => 'Поле "Статус" обязательно',
             'email.required' => 'Поле "E-mail" обязательно',
             'email.email' => 'Поле "E-mail" должно соответствовать формату электронной почты',
+            'address.required' => 'Поле "Адрес" обязательно',
+            'city.required' => 'Поле "Город" обязательно',
+            'zip_code.required' => 'Поле "Индекс" обязательно',
+            'products.required' => 'Заказ должен включать товары',
+            'quantity.required' => 'Заполните поле "Количество" для товаров',
         ];
     }
 }

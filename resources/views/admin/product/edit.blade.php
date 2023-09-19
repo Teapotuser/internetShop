@@ -123,14 +123,14 @@
             <div class="two-fields-product-container">
                 <div>
                     <label for="price">Цена *</label>
-                    <input type="number" name="price" id="price" min="0.01" max="100 000" required autocomplete="off" value="{{ $product->price }}">
+                    <input type="number" name="price" id="price" min="0.01" max="100 000" step="0.01" required autocomplete="off" value="{{ $product->price }}">
                     @error('price')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
                 </div>
                 <div>
                     <label for="discount">Скидка (%)</label>
-                    <input type="number" name="discount" id="discount" min="0" max="100" required autocomplete="off" value="{{ $product->discount }}">
+                    <input type="number" name="discount" id="discount" min="0" max="100" autocomplete="off" value="{{ $product->discount }}">
                     @error('discount')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
@@ -223,6 +223,7 @@
                     </button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="плюш/полиэстер" >плюш/полиэстер</li>
+                        <li class="dropdown__list-item" data-value="плюш/полиэстер из переработанного материала" >плюш/полиэстер из переработанного материала</li>
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
@@ -247,6 +248,7 @@
                     </button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="полиэфирное волокно (полиэстер)" >полиэфирное волокно (полиэстер)</li>
+                        <li class="dropdown__list-item" data-value="полиэфирное волокно (полиэстер) из переработанного материала" >полиэфирное волокно (полиэстер) из переработанного материала</li>
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
@@ -285,8 +287,7 @@
             <div class="form-group">
                 <div class="dropdown">
                     <button type="button" class="dropdown__button enabled">
-                        <div class="dropdown__button-text enabled">
-                            {{ $product->care_recommend }}
+                        <div class="dropdown__button-text enabled">                            
                             {{
                                 $product->care_recommend ?
                                 $product->care_recommend :

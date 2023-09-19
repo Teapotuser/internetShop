@@ -58,8 +58,10 @@
                                                     </span>
                                                     <div class="order-prev-line__body">
                                                         <span class="order-prev-line__value">{{$order->zip_code}} {{$order->city}} {{$order->address}}</span>
-                                                        <span class="order-prev-line__value">Трек номер: {{$order->track_number}}</span>
-                                                        <span class="order-prev-line__descr">Доставка по Беларуси 3-7 дней</span>
+                                                        @if($order->track_number)
+                                                            <span class="order-prev-line__value">Трек номер: {{$order->track_number}}</span>
+                                                            <span class="order-prev-line__descr">Доставка по Беларуси 3-7 дней</span>
+                                                        @endif
                                                     </div>                                                                    
                                                 </div>
                                             @endif

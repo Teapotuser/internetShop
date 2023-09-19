@@ -31,12 +31,12 @@
                             <h3 class="title">Сообщение успешно отправлено!</h3>
                             <p class="message">Благодарим за ваше обращение!</p>
                             <p class="message">Спасибо, что помогаете нам стать лучше.</p>                           
-                            <p class="message bottom-margin">В ближайшие 48 часов мы пришлем ответ на вашу почту <span>email@gmail.com</span>.</p>
+                            <p class="message bottom-margin">В ближайшие 48 часов мы пришлем ответ на вашу почту <span>{{ session('user_email_feedback') }}</span>.</p>
                         
                             <!--  <div class="order-confirm-img-container">
                                 <img class="" src="{{asset('images/NICI/shopping_cart_with_bags_lion_einhorn.png')}}">
                             </div> -->
-                            <a href="/" class="btn-buy">Отправить новое сообщение</a>
+                            <a href="{{ route('feedback.form') }}" class="btn-buy">Отправить новое сообщение</a>
                         </div>
                     </div>
                 </section>

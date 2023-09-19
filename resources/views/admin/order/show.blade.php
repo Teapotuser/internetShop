@@ -108,7 +108,9 @@
                 <br>
                 <div class="form-group">
                     <div class="dropdown">
-                        <button type="button" class="dropdown__button"><div class="dropdown__button-text">{{ $order->user->name }} {{ $order->user->last_name }}</div></button>
+                        <button type="button" class="dropdown__button"><div class="dropdown__button-text">
+                            @isset($order->user_id) {{ $order->user->name}} {{$order->user->last_name }} @endisset
+                        </div></button>
                         <ul class="dropdown__list">
                             <!-- <li class="dropdown__list-item" data-value="" ></li> -->
                             <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
@@ -123,31 +125,31 @@
                 <label for="name">Имя *</label>
                 <input type="text" name="name" id="name" minLength="1" maxLength="150" required autocomplete="off"
                        disabled
-                       value="{{ $order->getUserName() }}">
+                       value="{{ $order->name }}">
 
                 <label for="last_name">Фамилия *</label>
                 <input type="text" name="last_name" id="last_name" minLength="1" maxLength="200" required disabled
-                       autocomplete="off" value="{{ $order->getUserLastName() }}">
+                       autocomplete="off" value="{{ $order->last_name }}">
 
                 <label for="email">E-mail *</label>
                 <input type="email" name="email" id="email" minLength="1" maxLength="150" required autocomplete="off"
                        disabled
-                       value="{{ $order->getUserEmail() }}">
+                       value="{{ $order->email }}">
 
                 <label for="phone_number">Телефон *</label>
                 <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone_number" id="phone_number" disabled
-                       minLength="1" maxLength="20" required autocomplete="off" value="{{ $order->getUserPhone() }}">
+                       minLength="1" maxLength="20" required autocomplete="off" value="{{ $order->phone_number }}">
 
                 <h3 class="file-upload-pairs-title">Данные доставки</h3>
                 <ul class="ul-margin-bottom-zero">
                     <li class="radiobutton-row">
                         <input type="radio" id="pickup" name="delivery_method" value="pickup"
-                            @checked($order->delivery_method=='pickup')>
+                            @checked($order->delivery_method=='pickup') disabled>
                         <label for="pickup">Самовывоз</label>
                     </li>
                     <li class="radiobutton-row">
                         <input type="radio" id="post" name="delivery_method"
-                               value="post" @checked($order->delivery_method=='post')>
+                               value="post" @checked($order->delivery_method=='post') disabled>
                         <label for="post">Адресная доставка</label>
                     </li>
                 </ul>
@@ -248,9 +250,10 @@
                         <p class="account">
                         <div class="admin-orderitem-quantity-controls">
                             <input type="hidden" form="order-form" value="${articul}" name="products[]">
-                            <input type="number" form="order-form" value="{{$product->quantity}}"
+                            <!-- <input type="number" form="order-form" value="{{$product->quantity}}"
                                    class="admin-orderitem-quantity"
-                                   name="quantity[]">
+                                   name="quantity[]"> -->
+                            <p><span>{{$product->quantity}}</span><span>  шт.</span></p>
                         </div>
                         </p>
                     </div>

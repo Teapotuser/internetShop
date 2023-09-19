@@ -50,6 +50,7 @@ class ProductController extends Controller
     public function store(StoreRequest $request)
     {
         $validated = $request->validated();
+        $validated['price'] = $validated['price'] * 100;
         $product = Product::create($validated);
 
         if ($request->file('picture')){
@@ -114,7 +115,7 @@ class ProductController extends Controller
             $product->images()->createMany($store_images);
         }
 
-        return redirect(route('dashboard.poduct.index'))->with('success', 'Товар "' . $product->title . '" добавлен');
+        return redirect(route('dashboard.product.index'))->with('success', 'Товар "' . $product->title . '" добавлен');
     }
 
     /**

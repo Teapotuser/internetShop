@@ -168,14 +168,14 @@
             <div class="two-fields-product-container">
                 <div>
                     <label for="price">Цена *</label>
-                    <input type="number" name="price" id="price" min="0.01" max="100 000" required autocomplete="off" value="{{ old('price') }}">
+                    <input type="number" name="price" id="price" min="0.01" max="100 000" step="0.01" required autocomplete="off" value="{{ old('price') }}">
                     @error('price')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
                 </div>
                 <div>
                     <label for="discount">Скидка (%)</label>
-                    <input type="number" name="discount" id="discount" min="0" max="100" required autocomplete="off" value="{{ old('discount') }}">
+                    <input type="number" name="discount" id="discount" min="0" max="100" autocomplete="off" value="{{ old('discount', 0) }}">
                     @error('discount')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
@@ -218,14 +218,14 @@
             <div class="two-fields-product-container">
                 <div>
                     <label for="size">Размер (см) *</label>
-                    <input type="number" name="size" id="size" min="1" max="1000" required autocomplete="off" value="{{ old('size') }}">
+                    <input type="number" name="size" id="size" min="1" max="1000" required autocomplete="off" value="{{ old('size', 0) }}">
                     @error('size')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
                 </div>
                 <div>
                     <label for="height">Высота (см)</label>
-                    <input type="number" name="height" id="height" min="0" max="1000" autocomplete="off" value="{{ old('height') }}">
+                    <input type="number" name="height" id="height" min="0" max="1000" autocomplete="off" value="{{ old('height', 0) }}">
                     @error('height')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
@@ -234,14 +234,14 @@
             <div class="two-fields-product-container">
                 <div>
                     <label for="width">Ширина (см)</label>
-                    <input type="number" name="width" id="width" min="0" max="1000" autocomplete="off" value="{{ old('width') }}">
+                    <input type="number" name="width" id="width" min="0" max="1000" autocomplete="off" value="{{ old('width', 0) }}">
                     @error('width')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
                 </div>
                 <div>    
                     <label for="depth">Глубина (см)</label>
-                    <input type="number" name="depth" id="depth" min="0" max="1000" autocomplete="off" value="{{ old('depth') }}">
+                    <input type="number" name="depth" id="depth" min="0" max="1000" autocomplete="off" value="{{ old('depth', 0) }}">
                     @error('depth')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
@@ -289,6 +289,7 @@
                     </div></button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="плюш/полиэстер" >плюш/полиэстер</li>
+                        <li class="dropdown__list-item" data-value="плюш/полиэстер из переработанного материала" >плюш/полиэстер из переработанного материала</li>
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
@@ -313,11 +314,12 @@
                 </button>
                     <ul class="dropdown__list">                        
                         <li class="dropdown__list-item" data-value="полиэфирное волокно (полиэстер)" >полиэфирное волокно (полиэстер)</li>
+                        <li class="dropdown__list-item" data-value="полиэфирное волокно (полиэстер) из переработанного материала" >полиэфирное волокно (полиэстер) из переработанного материала</li>
                         <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
                     </ul>
-                    <input type="hidden" name="material_filling" id="material_filling" value="old('material_filling')" class="dropdown__input-hidden" >
+                    <input type="hidden" name="material_filling" id="material_filling" value="{{old('material_filling')}}" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Материал наполнителя товара-->
@@ -330,7 +332,7 @@
                         <div class="dropdown__button-text enabled">
                         {{
                             old('age_from')?
-                            old('age from') :
+                            old('age_from') :
                             'Выберите рекомендуемый возраст ...'
                         }}                           
                         </div>
@@ -341,7 +343,7 @@
                         <li class="dropdown__list-item" data-value="от 3 лет">от 3 лет</li>
                         <!-- <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li>--> 
                     </ul>
-                    <input type="hidden" name="age_from" id="age_from" value="old('age_from')" class="dropdown__input-hidden" >
+                    <input type="hidden" name="age_from" id="age_from" value="{{old('age_from')}}" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Рекомендуемый возраст товара--> 
@@ -365,7 +367,7 @@
                         <!-- <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
                     </ul>
-                    <input type="hidden" name="care_recommend" id="care_recommend" value="old('care_recommend')" class="dropdown__input-hidden" >
+                    <input type="hidden" name="care_recommend" id="care_recommend" value="{{old('care_recommend')}}" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Рекомендации по уходу товара--> 

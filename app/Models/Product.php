@@ -20,7 +20,7 @@ class Product extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'article', 'title', 'description', 'price', 'category_id', 'collection_id', 'size', 'picture', 'discount', 'is_new', 'is_best_selling', 'height', 'width', 'depth', 'material', 'material_filling', 'age_from', 'care_recommend'
+        'article', 'title', 'description', 'product_info', 'price', 'category_id', 'collection_id', 'size', 'picture', 'discount', 'is_new', 'is_best_selling', 'height', 'width', 'depth', 'material', 'material_filling', 'age_from', 'care_recommend'
        ];
     
     public function category() : BelongsTo {

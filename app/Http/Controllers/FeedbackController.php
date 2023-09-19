@@ -19,6 +19,8 @@ class FeedbackController extends Controller
 
     public function save(FeedbackRequest $request)
     {
+        $user_email_feedback = $request->validated('email');
+        
         $admins = User::where('role', 'admin')->get();
         foreach ($admins as $admin) {
             Mail::to($admin->email)->send(
@@ -32,6 +34,7 @@ class FeedbackController extends Controller
             );
         }
 
-        return view('feedback')->with(['message' => 'Ваше обращение отправлено']);
+        // return view('feedback')->with(['message' => 'Ваше обращение отправлено']);
+        return to_route('feedback.confirmation')->with(compact('user_email_feedback'));
     }
 }
