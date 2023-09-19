@@ -8,6 +8,7 @@
     <title>Toys shop</title>
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/breadcrumbs.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/search_style.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/left-bar.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/filter_price.css') }}" type="text/css">
