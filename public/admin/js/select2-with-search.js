@@ -32,11 +32,20 @@ $('input[name="delivery_method"]').change(function () {
     placeholder: 'Выберите пользователя ...', 
     allowClear: true, 
     width: '100%'
-  });  
+  }); 
+  
+  $(document).on('change','.admin-orderitem-quantity', function () {
+    recountTotal();
+})
   
   $(document).on('click', '#add-orderitem-to-order-button', function () {
       var data = $('.js-example-basic-single').select2('data')[0];
       // console.log(data);
+      // Если не выбран товар в Select2 контроле
+      if (!data.id) {
+        alert('Выберите товар');
+        return false;
+    }
       appendToCart(data.id, data.element.dataset.articul, data.text, data.element.dataset.price, data.element.dataset.picture, data.element.dataset.size, data.element.dataset.url);
       $('.js-example-basic-single :selected').attr('disabled', true)
       $productsSelect.val(null).trigger('change');

@@ -60,7 +60,7 @@ class StoreRequest extends FormRequest
 
     public function prepareForValidation()
     {
-        if ($this->get('is_new') && $this->get('is_new') == 'On') {
+        if ($this->get('is_new') == 'on') {
             $this->merge([
                 'is_new' => true
             ]);
@@ -70,7 +70,7 @@ class StoreRequest extends FormRequest
             ]);
         }
 
-        if ($this->get('is_best_selling') && $this->get('is_best_selling') == 'On') {
+        if ($this->get('is_best_selling') == 'on') {
             $this->merge([
                 'is_best_selling' => true
             ]);
@@ -80,7 +80,7 @@ class StoreRequest extends FormRequest
             ]);
         }
 
-        if ($this->get('is_active') && $this->get('is_active') == 'On') {
+        if ($this->get('is_active') == 'on') {
             $this->merge([
                 'is_active' => true
             ]);
