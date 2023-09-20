@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\NewArrivalController;
+use App\Http\Controllers\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,11 @@ Route::get('clearCart', [CartController::class, 'clear']);
 Route::get('/feedback', [FeedbackController::class, 'show'])->name('feedback.form');
 Route::post('/feedback', [FeedbackController::class, 'save'])->name('feedback.post');
 Route::get('/feedback-confirmation', function () {return view('feedbackconfirm');})->name('feedback.confirmation');
+
+// Форма подписки на рассылку новостей (footer)
+Route::get('/subscription', [SubscriptionController::class, 'show'])->name('subscription.form');
+Route::post('/subscription', [SubscriptionController::class, 'save'])->name('subscription.post');
+Route::get('/subscription-confirmation', function () {return view('subscriptionconfirm');})->name('subscription.confirmation');
 
 
 // Route::get('/profile', function () {return view('profile');})->name('profile.personal');
