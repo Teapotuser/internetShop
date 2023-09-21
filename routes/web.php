@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\CollectionController as AdminCollectionController
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\MainController;
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
@@ -122,9 +123,10 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth'
 //админ панель
 // Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['auth', 'role:admin']], function () {    
-    Route::get('/', function () {
+   /*  Route::get('/', function () {
         return view('admin.index');
-    })->name('index');
+    })->name('index'); */
+    Route::get('/', 'App\Http\Controllers\Admin\MainController@index')->name('index');
     Route::resource('category', 'App\Http\Controllers\Admin\CategoryController');
     Route::resource('collection', 'App\Http\Controllers\Admin\CollectionController');
     Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
