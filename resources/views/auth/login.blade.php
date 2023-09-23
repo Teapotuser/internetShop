@@ -20,11 +20,11 @@
                                            required autocomplete="email" autofocus
                                            placeholder="Ваш e-mail *"> <!--value="{{ old('email') }}" -->
 
-                                    <!-- @error('email')
+                                    @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                         </span>
-                                    @enderror -->
+                                    @enderror
                                 </div>
                                 <div class="">
                                     <div class="password-input-wrapper">
@@ -35,11 +35,11 @@
                                             <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
                                         </button>  
                                     </div>
-                                    <!-- @error('password')
+                                    @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                         </span>
-                                    @enderror -->
+                                    @enderror
                                 </div>
                                 <!-- <div class="">
                                     <div class="">
