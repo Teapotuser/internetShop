@@ -24,6 +24,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\NewArrivalController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\StaticPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,10 @@ Route::get('/subscription', [SubscriptionController::class, 'show'])->name('subs
 Route::post('/subscription', [SubscriptionController::class, 'save'])->name('subscription.post');
 Route::get('/subscription-confirmation', function () {return view('subscriptionconfirm');})->name('subscription.confirmation');
 
+Route::get('/delivery', [StaticPageController::class, 'delivery'])->name('delivery');
+/* Route::get('/payment', [StaticPageController::class, 'payment'])->name('payment');
+Route::get('/contacts', [StaticPageController::class, 'contacts'])->name('contacts');
+Route::get('/about', [StaticPageController::class, 'about'])->name('about'); */
 
 // Route::get('/profile', function () {return view('profile');})->name('profile.personal');
 // Route::get('/profile-orders', function () {return view('profile-ordershistory');})->name('profile.ordershistory');
