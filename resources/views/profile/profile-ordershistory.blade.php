@@ -398,7 +398,7 @@
                     
                 </ul>
             </nav> 
-            {{ $orders->withQueryString()->links('includes.pagination') }}
+            <!-- {{ $orders->withQueryString()->links('includes.pagination') }} -->
         </div>    
     </div>              
 @endsection     

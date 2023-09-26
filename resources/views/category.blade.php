@@ -6,6 +6,7 @@
 @section('content')
 <main>
         <div class="wrapper">   
+            <!-- Хлебные крошки -->
            <nav class="breadcrumbs-panel">
                 <ul class="breadcrumbs-list">
                     <li class="breadcrumb-item">

@@ -25,6 +25,22 @@
     /* margin: 0px auto; */
 }
 
+.right-side-description-search {
+	/* display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center; */
+    text-align: center;
+	/* flex-wrap: nowrap; */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+	font-weight: 600;
+    line-height: 140%;
+    color: #484848;
+    margin: 20px auto 0px auto;
+	width: 100%;
+}
+
 .right-side-description-img-wrapper {
     width: 80%;
     height: auto;
