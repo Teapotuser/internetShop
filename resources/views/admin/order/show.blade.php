@@ -81,8 +81,8 @@
                 <br>
                 <div class="form-group">
                     <div class="dropdown">
-                        <button type="button" class="dropdown__button enabled">
-                            <div class="dropdown__button-text enabled">{{$order->getStatusTitle()}}</div>
+                        <button type="button" class="dropdown__button">
+                            <div class="dropdown__button-text">{{$order->getStatusTitle()}}</div>
                         </button>
 
                     </div>

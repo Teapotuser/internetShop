@@ -95,7 +95,7 @@
                 </div>          
                 <div class="account-card-item order-status-column">
                     <p class="card-mobile-text">Статус</p>
-                    <p class="account">
+                    <p class="account order-status--{{$order->getStatusClass()}} dark-mode-dark-text">
                         {{$order->getStatusTitle()}}
                     </p>                    
                 </div>                

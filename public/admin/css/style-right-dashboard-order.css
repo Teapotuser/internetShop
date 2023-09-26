@@ -327,6 +327,30 @@ body.dark .accounts-list .list:hover {
     justify-content: center;
 }*/
 
+/* Цвета статусов заказа */
+.order-status--new {
+	background-color:  rgb(255, 255, 170);
+}
+/* .order-status--waiting {
+	background-color:  ;
+} */
+.order-status--paid {
+	background-color:  rgb(170, 255, 170);
+}
+.order-status--sent {
+	background-color:  rgb(170, 227, 255);
+}
+.order-status--cancelled {
+	background-color:  rgb(255, 170, 170);
+}
+.order-status--finished {
+	background-color: rgb(195, 195, 195) ;
+}
+
+body.dark p.dark-mode-dark-text {
+	color: #444746;
+}
+
 
 /* На мобильном экране */
 /* @media (max-width: 780px) { */

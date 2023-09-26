@@ -16,15 +16,18 @@
                 <div class="profile menu__profile">
                     <!-- <div><p></p></div> -->                    
                     <a href="{{route('profile.show')}}" class="prof-bask-a">
-                        <div>
-                            <!-- <img src="{{ asset('images/user-4253.svg') }}" alt="profile icon"> -->
-                            @if(Auth::check())
+                        @if(Auth::check())
+                            <div class="profile-auth-user-img-container">
+                            <!-- <img src="{{ asset('images/user-4253.svg') }}" alt="profile icon"> -->                            
                                 <img src="{{ Auth::user()?->picture ?:asset('/images/NICI/eule-profile3-trim.png')}}"
                                      alt="profile icon">
-                            @else
+                            </div>
+                        @else
+                            <div>
                                 <img src="{{ asset('/images/user-4253.svg')}}" alt="profile icon">
-                            @endif
-                        </div>
+                            </div>
+                        @endif
+                        
                         <p>Мой профиль</p>                            
                     </a>
                     <ul class="menu__sublist">

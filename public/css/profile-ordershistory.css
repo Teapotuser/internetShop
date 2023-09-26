@@ -13,8 +13,9 @@
 .orderhistory-horizont-menu-wrap{
     height: inherit;
     display: flex;
+    flex-direction: column;
     flex-wrap: nowrap;
-    flex-flow: row;
+    /* flex-flow: row; */
     justify-content: space-between;
     gap: 40px;
     align-items: center;
@@ -405,8 +406,28 @@ li._active > /*Вадим добавил уголок*/.orderhistory-menu__subli
     border-radius: 4px;
 }
 
+/* Цвета статусов заказа */
+.order-status--new {
+	background-color:  rgb(255, 255, 170);
+}
+/* .order-status--waiting {
+	background-color:  ;
+} */
+.order-status--paid {
+	background-color:  rgb(170, 255, 170);
+}
+.order-status--sent {
+	background-color:  rgb(170, 227, 255);
+}
+.order-status--cancelled {
+	background-color:  rgb(255, 170, 170);
+}
+.order-status--finished {
+	background-color: rgb(195, 195, 195) ;
+}
+
 .order-status--waiting {
-background-color: #f8e71c;
+	background-color: #f8e71c;
 }
 
 .order-prev__link {

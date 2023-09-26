@@ -152,8 +152,11 @@ class Order extends Model
     {
         return match ($this->status) {
             'New' => 'new',
-            'Waiting' => 'waiting',
+            // 'Waiting' => 'waiting',
             'Paid' => 'paid',
+            'Sent' => 'sent',
+            'Cancelled' => 'cancelled',            
+            'Finished' => 'finished',
             default => $this->status
         };
     }
@@ -162,8 +165,11 @@ class Order extends Model
     {
         return match ($this->status) {
             'New' => 'Новый',
-            'Waiting' => 'Ожидает подтверждения',
+            // 'Waiting' => 'Ожидает подтверждения',
             'Paid' => 'Оплачен',
+            'Sent' => 'Отправлен',
+            'Cancelled' => 'Отменен',            
+            'Finished' => 'Завершен',
             default => $this->status
         };
     }

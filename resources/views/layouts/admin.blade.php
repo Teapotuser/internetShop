@@ -158,7 +158,7 @@
 
             <div class="search-box">
                 <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
+                <!-- <input type="text" placeholder="Search here..."> -->
             </div>
             
             <img src="{{  Auth::user()?->picture? : asset('admin/images/profile.jpg') }}" alt="face">

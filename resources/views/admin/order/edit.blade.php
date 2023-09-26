@@ -88,7 +88,10 @@
                         </button>
                         <ul class="dropdown__list">
                             <li class="dropdown__list-item" data-value="New">Новый</li>
-                            <li class="dropdown__list-item" data-value="Paid">Оплачен</li>
+                            <li class="dropdown__list-item" data-value="Paid">Оплачен</li>                            
+                            <li class="dropdown__list-item" data-value="Sent" >Отправлен</li>
+                            <li class="dropdown__list-item" data-value="Cancelled" >Отменен</li>
+                            <li class="dropdown__list-item" data-value="Finished" >Завершен</li>
                             <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
                             <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                             <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->

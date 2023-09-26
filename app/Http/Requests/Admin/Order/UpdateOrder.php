@@ -38,7 +38,7 @@ class UpdateOrder extends FormRequest
             'status' => ['required'],
             'is_paid' => ['sometimes'],
             'track_number' => ['sometimes', 'string', 'nullable'],
-            'payment_date' => ['sometimes', 'date'],
+            'payment_date' => ['sometimes', 'date', 'nullable'],
             'products' => ['required', 'array'],
             'quantity' => ['required', 'array']
         ];
