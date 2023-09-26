@@ -36,7 +36,8 @@
                         </div>
                         <div class="f-list-link open">
                             <nav>
-                                <li><a href="#">Доставка</a></li>
+                                <li><a href="{{ route('index') }}">Каталог</a></li>
+                                <li><a href="{{ route('delivery') }}">Доставка</a></li>
                                 <li><a href="#">Оплата</a></li>
                                 <li><a href="{{ route('new.arrival') }}">Новинки</a></li>
                                 <li><a href="{{ route('discount') }}">Распродажа</a></li>

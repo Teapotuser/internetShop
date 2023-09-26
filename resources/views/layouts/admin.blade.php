@@ -24,7 +24,7 @@
                     <img src="images/logo.png" alt="">
                 </span> -->
                 <div class="image">
-                    <a href="{{route('dashboard.index')}}"><img src="{{ asset('admin/images/logo.png') }}" alt="NICI logo"></a>
+                    <a href="{{route('dashboard.index')}}"><img src="{{ asset('admin/images/logo_admin.png') }}" alt="NICI logo"></a>
                 </div>
                 <div class="text logo-text">
                     <span class="name">Admin</span>

@@ -321,6 +321,7 @@ li.profile-hidden {
         width: 30px;
         height: 18px;
         cursor: pointer;
+		margin-right: 15px;
     }
 
     .menu__icon::before, .menu__icon::after, .menu__icon span {
@@ -424,6 +425,11 @@ li.profile-hidden {
         margin: 0;
         border-bottom: none;
     }
+
+	.profile-hidden .menu__sublist > li:last-child {
+		height: 45px;  /*я выставила, чтобы в бургер меню последняя строка не была малой по высоте, а стала как все остальные строки*/
+
+}
 
     /*Я добавила*/
     .menu__list > li._active {

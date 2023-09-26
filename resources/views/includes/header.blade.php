@@ -152,7 +152,35 @@
                             </li>                                                          
                         </ul>
                     </li>
-                    <li><a href="#" class="menu__link">Доставка и оплата</a></li>
+                    <li>
+                        <!-- <a href="#" class="menu__link">Доставка и оплата</a> -->
+                        <div class="menu__wrapper">
+                            <p class="menu__link">Доставка и оплата</p>
+                            <span class="menu__arrow"></span>
+                        </div>
+                        <ul class="menu__sublist">
+                            <li>
+                                <a class="menu__sublink
+                                    @if(url()->current() == route('delivery') )
+                                        active
+                                    @endif"
+                                    href="{{ route('delivery') }}">Доставка</a>
+                            </li>
+                            <li>
+                                <a class="menu__sublink
+                                    @if(url()->current() == route('delivery') )
+                                        active
+                                    @endif"
+                                    href="{{ route('delivery') }}">Оплата</a>
+                            </li>
+                            <!-- <li><a href="#" class="menu__sublink">Овечки Jolly Mäh</a></li>
+                            <li><a href="#" class="menu__sublink">Единорог Theodor и его друзья</a></li>
+                            <li><a href="#" class="menu__sublink">Лесные жители</a></li>
+                            <li><a href="#" class="menu__sublink">Дикие обитатели</a></li>
+                            <li><a href="#" class="menu__sublink">Веселая ферма</a></li>       -->                                  
+                        </ul>
+
+                    </li>
                     <!-- <li><a href="#" class="menu__link">Контакты</a></li> -->
                     <li>
                         <div class="menu__wrapper">
