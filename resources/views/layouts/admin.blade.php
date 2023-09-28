@@ -107,7 +107,7 @@
                     </li> -->
 					
 					<li class="nav-link">
-                        <a href="#">
+                        <a href="{{route('dashboard.subscription.index')}}">
                             <!-- <i class='bx bx-pie-chart-alt icon' ></i> -->
 							<span class='icon'><div class='icon-subscribe'></div></span>
                             <span class="text nav-text">Рассылки</span>

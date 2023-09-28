@@ -40,7 +40,7 @@ body {
 }
 
 header{
-    border-bottom: 1px solid red;
+    /* border-bottom: 1px solid red; */
     
 }
 
@@ -293,7 +293,7 @@ nav{
 .shop-wrapper{
     margin-top: 15px;
     margin-bottom: 20px;
-    border: 1px solid orange;
+    /* border: 1px solid orange; */
     display: flex;
     flex-flow: row;
     justify-content: space-between;
@@ -303,13 +303,13 @@ nav{
 }
 
 .left-side{
-    border: 1px solid blueviolet;
+    /* border: 1px solid blueviolet; */
     width: 30%;
     max-width: 285px;
 }
 
 .right-side{
-    border: 1px solid green;
+    /* border: 1px solid green; */
     display: flex;
     flex-direction: column;
     flex: 1;

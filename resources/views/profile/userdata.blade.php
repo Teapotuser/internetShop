@@ -24,7 +24,7 @@
                                    placeholder="Email *" minLength="1" maxLength="150" required
                                    autocomplete="off">
                             <input type="number" name="phone_number"
-                                   value="{{old('phone_number',Auth::user()->phone_number)}}"
+                                   value="{{old('phone_number', Auth::user()->phone_number)}}"
                                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                                    placeholder="Номер телефона *" minLength="1" maxLength="20"
                                    required autocomplete="off">
@@ -35,7 +35,7 @@
                             <div class="file-upload-container">
                                 <figure class="file-upload-preview-image-container">
                                     <img id="chosen-image" class="chosen-image"
-                                         src="{{ Auth::user()->picture? :asset('/admin/images/Untitled.png')}}">
+                                         src="{{  Auth::user()?->picture ?:asset('/admin/images/Untitled.png')}}">
                                 </figure>
                                 <input type="file" id="upload-button" class="upload-button"
                                        accept="image/*" name="picture">
@@ -45,21 +45,21 @@
                                 </label>
                                 <input type="hidden" name="removeImage">
                                 <button type="button" id="clear-file-button"
-                                        class="clear-file-button hidden"></button>
+                                        class="clear-file-button  @if( !(Auth::user()->picture)) hidden @endif "></button>
                             </div>
                         </div>
                     </div>
                     <h3>Адрес</h3>
                     <input type="text" placeholder="Адрес" name="address"
-                           value="{{old('address',Auth::user()->address)}}"
+                           value="{{old('address', Auth::user()->address)}}"
                            class="delivery-address input-margin-top"
                            maxLength="250">
                     <div class="two-fields-in-row">
                         <input type="text" placeholder="Город" name="city"
-                               value="{{old('city',Auth::user()->city)}}" class="delivery-address"
+                               value="{{old('city', Auth::user()->city)}}" class="delivery-address"
                                maxLength="150">
                         <input type="text" placeholder="Индекс"
-                               value="{{old('zip_code',Auth::user()->zip_code)}}" name="zip_code"
+                               value="{{old('zip_code', Auth::user()->zip_code)}}" name="zip_code"
                                class="delivery-address"
                                maxLength="20">
                     </div>

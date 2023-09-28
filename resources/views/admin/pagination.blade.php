@@ -35,7 +35,7 @@
                     <span> Страница 
                     {{ $paginator->currentPage() }}
                     из {{ ceil($paginator->total() / $paginator->perPage() ) }}</span>
-                    <span>  |  Товары
+                    <span>  |  Позиции
                     @if ($paginator->firstItem())
                         {{ $paginator->firstItem() }} - {{ $paginator->lastItem() }}
                     @else

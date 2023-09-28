@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests\FeedbackRequest;
-use App\Mail\Feedback;
-use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use View;
+
+use App\Http\Requests\SubscriptionRequest;
+use App\Models\Subscription;
 
 class SubscriptionController extends Controller
 {
@@ -17,25 +16,21 @@ class SubscriptionController extends Controller
         return view('subscription');
     }
 
-   /*  public function save(FeedbackRequest $request)
+    public function save(SubscriptionRequest $request)
     {
-        $user_email_feedback = $request->validated('email');
-        
-        $admins = User::where('role', 'admin')->get();
-        foreach ($admins as $admin) {
-            Mail::to($admin->email)->send(
-                new Feedback(
-                    $request->validated('name'),
-                    $request->validated('last_name'),
-                    $request->validated('email'),
-                    $request->validated('phone_number'),
-                    $request->validated('message')
-                )
+        $user_email = $request->validated('subsribe-email');
+        $unsubscribe = $request->validated('subscription_choice') == 'unsubscribe';
+        if ($unsubscribe) {
+            $subscription = Subscription::query()->where('email', $user_email)->firstOrCreate();
+            $subscription->update(['is_active' => 0]);
+        } else {
+            Subscription::create(
+                [
+                    'email' => $user_email
+                ]
             );
-        } */
-
-        // return view('feedback')->with(['message' => 'Ваше обращение отправлено']);
-        /* return to_route('feedback.confirmation')->with(compact('user_email_feedback'));
-    } */
+        }
+        return to_route('subscription.confirmation')->with(compact(['user_email', 'unsubscribe']));
+    }
 }
 

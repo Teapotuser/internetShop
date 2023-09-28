@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Http\Requests\ProfileUpdatePasswordRequest;
+use App\Models\Subscription;
 
 class ProfileController extends Controller
 {
@@ -18,7 +19,7 @@ class ProfileController extends Controller
 
     public function orders()
     {
-        $orders=auth()->user()->orders()->paginate(1);
+        $orders=auth()->user()->orders()->paginate(2);
 
         return view('profile.profile-ordershistory', compact(['orders']));
     }
@@ -35,8 +36,12 @@ class ProfileController extends Controller
 
     public function subscription_update(Request $request)
     {
-        $request->user()->is_subscribe = intval($request->has('is_subscribe'));
-        $request->user()->save();
+        /* $request->user()->is_subscribe = intval($request->has('is_subscribe'));
+        $request->user()->save(); */
+        $subscription = Subscription::query()->where('email', $request->user()->email)->firstOrCreate();
+        $subscription->is_active = intval($request->has('is_subscribe'));
+        $subscription->save();
+
         return to_route('profile.subscription.show')->with('message', 'Подписка изменена');
     }
 

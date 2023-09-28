@@ -4,7 +4,7 @@
 }
 
 .product-slider-title-container {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -15,7 +15,7 @@
 }
 
 .product-slider {
-    border: 1px solid blueviolet;
+    /* border: 1px solid blueviolet; */
     width: 60%;
     /* max-width: 600px; */
     display: flex;
@@ -24,7 +24,7 @@
 }
 
 .product-title {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     display: flex;
     flex-direction: column;
     padding: 10px auto;
@@ -35,7 +35,7 @@
 }
 
 .left-side-product{
-    border: 1px solid blueviolet;
+    /* border: 1px solid blueviolet; */
     padding: 5px;
     width: 60%;
     max-width: 720px;

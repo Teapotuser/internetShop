@@ -58,7 +58,7 @@
                         <div class="title-rectangle-icon">
                             <div class="recent-icon"></div>
                         </div>
-                        <span class="text">Последние заказы</span>
+                        <span class="text">Недавние заказы</span>
                     </div>    
                     <a href="{{route('dashboard.order.index')}}" class="admin-add-button">
                         <div class="title-go-to-orders-icon"></div>
@@ -114,7 +114,7 @@
                 </div>          
                 <div class="account-card-item order-status-column">
                     <p class="card-mobile-text">Статус</p>
-                    <p class="account">
+                    <p class="account order-status--{{$order->getStatusClass()}} dark-mode-dark-text">
                         {{$order->getStatusTitle()}}
                     </p>                    
                 </div>                

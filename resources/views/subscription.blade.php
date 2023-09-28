@@ -32,7 +32,14 @@
                 <section class="right-side"> <!-- Правая галерея товаров --> 
                     @isset($message)
                         {{$message}}
-                    @endisset             
+                    @endisset  
+                    @if($errors->any())
+                        @foreach($errors->all() as $error)
+                            <!-- <li>{{ $error }}</li> -->
+                            <div class="msg">{{ $error }}</div>
+                        @endforeach
+                        <!-- </ul> -->
+                    @endif           
                     <h2 class="section-header">Подписка на рассылку</h2>
                     <div class="right-side-description"> 
                         <p>Просто подпишитесь на нашу регулярную рассылку, и вы всегда будете первыми узнавать о новых статьях и предложениях.<br>
@@ -59,11 +66,11 @@
                                         </li>
                                     </ul>  
                                     <br> 
-                                    <input type="email" name="email" placeholder="Email *" minLength="1" maxLength="150" required autocomplete="off" @error('email') class="invalid" @enderror value="{{old('email', Auth::user()?->email)}}">
+                                    <input type="email" name="subsribe-email" placeholder="Email *" minLength="1" maxLength="150" required autocomplete="off" @error('subsribe-email') class="invalid" @enderror value="{{old('subsribe-email', Auth::user()?->email)}}">
                                     <br>                                 
                                     <!-- <p class="info-text">Вы можете создать аккаунт после оформления заказа</p> -->
                                     <div class="form-inner-checkbox">
-                                        <input type="checkbox" id="create-account" name="create-account" @checked(old('create-account', )) >
+                                        <input type="checkbox" id="create-account" name="agree" @checked(old('agree', )) >
                                         <label for="create-account">
                                             <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
                                                     class="svg-checkbox">

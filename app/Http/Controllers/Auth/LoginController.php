@@ -40,6 +40,11 @@ class LoginController extends Controller
 
     protected function authenticated($request, $user)
     {
-        return $user->role=='admin'? to_route('dashboard.') : redirect(RouteServiceProvider::HOME);
+        // return $user->role=='admin'? to_route('dashboard.') : redirect(RouteServiceProvider::HOME);
+        return match ($user->role) {
+            'admin' => to_route('dashboard.index'),
+            'user' => to_route('profile.show'),
+            default => redirect(RouteServiceProvider::HOME)
+        };
     }
 }

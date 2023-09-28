@@ -22,7 +22,7 @@
                     </li> -->
                     <li class="breadcrumb-item">
                         <!-- <a href="#" class="breadcrumb-link breadcrumb-link--active"> -->
-                            <span class="breadcrumb-title breadcrumb-title--active">Логин и Регистрация</span>
+                            <span class="breadcrumb-title breadcrumb-title--active">Логин / Регистрация</span>
                         <!-- </a> -->
                     </li>
                 </ul>

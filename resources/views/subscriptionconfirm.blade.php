@@ -40,29 +40,24 @@
                                 <div class="icon-circle">
                                     <div class="feedback-confirm-img-container">
                                         <img class="" src="{{asset('images/NICI/subscription-confirm.png')}}">
-                                    </div>
-                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                         version="1.1" x="0px" y="0px" viewBox="0 0 100 100"
-                                         style="enable-background:new 0 0 100 100;" xml:space="preserve" class="icon"><path
-                                            d="M95.5509872,17.8440819c-2.5986938-2.5986881-6.8119583-2.5986881-9.4107132-0.0000648L35.9452019,68.0378723  l-22.085495-22.0844002c-2.5986881-2.5986252-6.8119555-2.5985603-9.4106426,0.0001259  c-2.5987515,2.5987549-2.5987515,6.8120842,0,9.4107742L31.2398472,82.15522  c1.2985706,1.2998581,3.0026379,1.9497223,4.7053547,1.9497223c1.7027779,0,3.4068451-0.6498642,4.7053528-1.9497223  l54.9004326-54.9004288C98.1496735,24.6561012,98.1496735,20.4427681,95.5509872,17.8440819z"
-                                            fill="#ffffff"></path>
-                                    </svg> -->
+                                    </div>                                    
                                 </div>
                             </div>
-                            <h3 class="title">Подписка успешно оформлена!</h3>
-                            <p class="message">Поздравляем, вы подписались на нашу рассылку!</p>
-                            <!-- <p class="message">Спасибо, что помогаете нам стать лучше.</p>                            -->
-                            <p class="message bottom-margin">Самые интересные новости, выгодные акции и предложения магазина вы сможете найти в вашей почте <span>user_email_subscription@mail.ru</span>.</p>
-                        
-                            <h3 class="title">Вы успешно отписались от рассылки!</h3>
-                            <p class="message">Спасибо, что были с нами. Надеемся, наши письма были полезными для вас.</p>
-                            <p class="message">Вы больше не будете получать рассылку на вашу почту <span>user_email_subscription@mail.ru</span>.</p>
-                            <p class="message bottom-margin">В любой момент вы можете подписаться на рассылку снова.</p>
-                        
+                            @if(!session('unsubscribe'))
+                                <h3 class="title">Подписка успешно оформлена!</h3>
+                                <p class="message">Поздравляем, вы подписались на нашу рассылку!</p>
+                                <!-- <p class="message">Спасибо, что помогаете нам стать лучше.</p>                            -->
+                                <p class="message bottom-margin">Самые интересные новости, выгодные акции и предложения магазина вы сможете найти в вашей почте <span>{{session('user_email')}}</span>.</p>
+                            @else
+                                <h3 class="title">Вы успешно отписались от рассылки!</h3>
+                                <p class="message">Спасибо, что были с нами. Надеемся, наши письма были полезными для вас.</p>
+                                <p class="message">Вы больше не будете получать рассылку на вашу почту <span>{{session('user_email')}}</span>.</p>
+                                <p class="message bottom-margin">В любой момент вы можете подписаться на рассылку снова.</p>
+                            @endif
                             <!--  <div class="order-confirm-img-container">
                                 <img class="" src="{{asset('images/NICI/shopping_cart_with_bags_lion_einhorn.png')}}">
                             </div> -->
-                            <a href="{{ route('feedback.form') }}" class="btn-buy">На главную</a>
+                            <a href="{{ route('index') }}" class="btn-buy">На главную</a>
                         </div>
                     </div>
                 </section>

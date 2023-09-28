@@ -10,7 +10,7 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 
 document.querySelectorAll('.file-upload-container').forEach(uploadFile);
     
-    function uploadFile(fileUploadWrapper, key) {
+    function uploadFile(fileUploadWrapper) {
     // const dropDownBtn = fileUploadWrapper.querySelector('.dropdown__button');
 
     let uploadButton = fileUploadWrapper.querySelector(".upload-button");
@@ -33,33 +33,17 @@ document.querySelectorAll('.file-upload-container').forEach(uploadFile);
     }
 
     clearButton.onclick = () => {
-        //Даниил добавил
-        let type = clearButton.dataset.type;
-        let key = clearButton.dataset.key;
-        let imageToRemoveUrl = chosenImage.dataset.image;
-
         chosenImage.setAttribute("src", "/admin/images/Untitled.png");
         //Имя файла есть только в одиночном file upload, в паре нет
         if(!(fileName === null)){
             fileName.textContent = "";
         }
         uploadButton.value="";
-        
-       /*  if(!(fileUploadWrapper.querySelector('[name="removeImage[0]"]') === null)){
+        // console.log(fileUploadWrapper.getElementsByName('removeImage'));
+        // fileUploadWrapper.getElementsByName('removeImage')[0].value=true;
+        if(!(fileUploadWrapper.querySelector('[name="removeImage[0]"]') === null)){
             fileUploadWrapper.querySelector('[name="removeImage[0]"]').value=true;
-        }; */
-        //Даниил добавил
-        if (type === 'preview') {
-            fileUploadWrapper.getElementsByClassName('removePreviewImage')[0].value = imageToRemoveUrl;
-
-        } else if (type === 'image') {
-            fileUploadWrapper.getElementsByClassName('removeImage')[0].value = imageToRemoveUrl;
-        } else {
-            if (!(fileUploadWrapper.querySelector('[name="removeImage"]') === null)) {
-                fileUploadWrapper.querySelector('[name="removeImage"]').value = imageToRemoveUrl;
-            }
-        }
-
+        };
         clearButton.classList.add("hidden");
     }
 
@@ -69,10 +53,11 @@ let addMoreUploadButton = document.querySelector(".more-file-upload-fields-butto
 let addMoreUploadBeforeDiv = document.querySelector(".more-file-upload-pairs-insert-before-div");
 /* let countMoreUploadContainerChildren = addMoreUploadContainer.childElementCount;
 countMoreUploadContainerChildren = countMoreUploadContainerChildren + 4; */
-
-addMoreUploadButton.onclick = () => {
+console.log(addMoreUploadButton);
+addMoreUploadButton.onclick = () => {    
     let countMoreUploadPairs = document.getElementsByClassName("file-upload-pair-wrapper").length;
-    countMoreUploadPairs = countMoreUploadPairs + 1;
+    console.log(countMoreUploadPairs);
+    countMoreUploadPairs = countMoreUploadPairs + 4;
     let divPair = document.createElement('div');
     divPair.className = "file-upload-pair-wrapper";
     var divPairContent = `                        
@@ -112,36 +97,8 @@ addMoreUploadButton.onclick = () => {
 
     document.querySelectorAll('.file-upload-container').forEach(uploadFile);
     // console.log(countMoreUploadContainerChildren);
-    if (countMoreUploadPairs === 10){
+    // if (countMoreUploadContainerChildren === 10){
+    if (countMoreUploadPairs === 10){    
         addMoreUploadButton.classList.add('hidden');
     }
 }
-
-
-$('#saveProducts').on('submit', function (e) {
-    let previews = document.getElementsByName('preview_path[]');
-    let images = document.getElementsByName('path[]');
-    let filled_previews = 0;
-    let filled_images = 0;
-    // previews.forEach(function (item) {
-    //     console.log(item);
-    // })
-    images.forEach(function (item, index) {
-        // console.log(item, index, item.files[0], item.files);
-        if (item.files.length > 0) {
-            filled_images++;
-        }
-    })
-    previews.forEach(function (item, index) {
-        // console.log(item, index, item.files[0], item.files);
-        if (item.files.length > 0) {
-            filled_previews++;
-        }
-    })
-
-    if (filled_images !== images.length || filled_previews !== previews.length) {
-        e.preventDefault();
-        alert("Заполните все изображения");
-    }
-
-})

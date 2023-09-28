@@ -140,7 +140,10 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::post('{user}/user-password', 'App\Http\Controllers\Admin\UserController@changepasswordUpdate')->name('user.changepassword-update');
     // Route::get('/user-password', 'App\Http\Controllers\Admin\UserController@changepassword');
     Route::resource('order', 'App\Http\Controllers\Admin\OrderController');
-    Route::get('/subscription', 'App\Http\Controllers\Admin\SubscriptionController@index');
+    Route::get('/subscription', 'App\Http\Controllers\Admin\SubscriptionController@index')->name('subscription.index');
+    Route::delete('/subscription/{subscription}', 'App\Http\Controllers\Admin\SubscriptionController@destroy')->name('subscription.destroy');
+    Route::post('/update-subscriptions', 'App\Http\Controllers\Admin\SubscriptionController@bulkUpdate')->name('subscription.bulk-update');
+    Route::post('/subscription-send', 'App\Http\Controllers\Admin\SubscriptionController@send')->name('subscription.send');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -56,7 +56,8 @@
 <!-- Форма добавления Категории -->
 <div class="form-wrapper"> 
     <!--Форма логина--> 
-    <form method="POST" action="{{ route('dashboard.category.store') }}" enctype="multipart/form-data" class="login-form-decor subscription">
+    <form method="POST" action="{{ route('dashboard.subscription.send') }}" enctype="multipart/form-data" id="sendSubscription" class="login-form-decor subscription">
+        @method('POST')    
         @csrf        
         <div class="form-inner subscription">  
             <h3 class="file-upload-pairs-title">Создание рассылки</h3>         
@@ -124,12 +125,12 @@
 <!-- Форма добавления Категории -->
 <div class="form-wrapper"> 
     <!--Форма логина--> 
-    <form method="POST" action="{{ route('dashboard.category.store') }}" enctype="multipart/form-data" class="login-form-decor subscription" id="subscriptions-list">
-        @csrf        
+    {{--    <form method="POST" action="{{ route('dashboard.category.store') }}" enctype="multipart/form-data" class="login-form-decor subscription" id="subscriptions-list"> --}}
+    {{--       @csrf       --}} 
         <div class="form-inner subscription">  
             <h3 class="file-upload-pairs-title">Редактирование списка рассылки</h3>
         </div>
-    </form> 
+    {{--       </form> --}}
 </div>
 
  <!-- Таблица с данными Вадим-->
@@ -138,31 +139,38 @@
         <div class="accounts-head orderitem">
             <p class="head-subscription-id">Номер</p>            
             <p class="head-subscription-email">E-mail</p>            
-            <p class="head-subscription-status">Статус</p>
-           <!--  <p class="head-orderitem-price">Цена</p>
-            <p class="head-orderitem-sum">Сумма</p>   -->          
+            <p class="head-subscription-status">Статус</p>                    
             <p class="head-subscription-actions">Действие</p>
         </div>
         <div class="account-rows">
+            <form
+                id="subscriptions-list"
+                method="POST"
+                action="{{route('dashboard.subscription.bulk-update')}}">
+                @method('POST')
+                @csrf
             <!-- Строки таблицы-->
+            @foreach($subscriptions as $subscription)
             
            <div class="account-card list">
                 <div class="account-card-item subscription-id-column orderitem">
                     <p class="card-mobile-text">Номер</p>                    
-                    <p class="account">1</p>
-                    <input type="hidden" form="subscriptions-list" value="email-id">
+                    <p class="account">{{$subscription->id}}</p>
+                    <!-- <input type="hidden" form="subscriptions-list" value="email-id"> -->
                 </div>
                 <div class="account-card-item subscription-email-column orderitem">
                     <p class="card-mobile-text">E-mail</p>
-                    <p class="account">e-mail-email@gmail.com</p>                                        
+                    <p class="account">{{$subscription->email}}</p>                                        
                 </div>               
                 <div class="account-card-item subscription-status-column orderitem">
                     <p class="card-mobile-text">Статус</p>
                     <p class="account">
                         <div class="toggle-checkbox-control">
-                            <label for="is_subscribe1" class="checkbox">
-                                <input type="checkbox" class="checkbox__inp" id="is_subscribe1"
-                                    name="is_subscribe" form="subscriptions-list">
+                            <label for="is_subscribe[{{$subscription->id}}]" class="checkbox">
+                                <input type="hidden" class="realValue" name="is_subscribe[{{$subscription->id}}]">
+                                <input type="checkbox" class="checkbox__inp" id="is_subscribe[{{$subscription->id}}]"
+                                    name="is_subscribe[{{$subscription->id}}]" form="subscriptions-list" onchange="this.previousSibling.value=1-this.previousSibling.value"
+                                        @checked($subscription->is_active)>
                                 <span class="checkbox__inner"></span>
                             </label>                      
                         </div>
@@ -175,15 +183,17 @@
                            <!--  <button class="admin-action-ahref orderitem" >
                                 <div class="btn-delete"></div>
                             </button>  -->
-                            <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.product.destroy', 1)}}">
+                            <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.subscription.destroy', $subscription->id)}}">
                                 <div class="btn-delete"></div>
                             </a>                                                     
                         </div>                               
                     </div>
                 </div>
             </div>
+        @endforeach
+        </form>
 
-            <div class="account-card list">
+           <!--  <div class="account-card list">
                 <div class="account-card-item subscription-id-column orderitem">
                     <p class="card-mobile-text">Номер</p>                    
                     <p class="account">1</p>
@@ -208,17 +218,14 @@
                 <div class="account-card-item subscription-actions-column orderitem">
                     <p class="card-mobile-text">Действие</p>                        
                     <div class="account">
-                        <div class="wrapper-icon">                           
-                            <!-- <button class="admin-action-ahref orderitem" >
-                                <div class="btn-delete"></div>
-                            </button> -->  
+                        <div class="wrapper-icon">                          
                             <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.product.destroy', 1)}}">
                                 <div class="btn-delete"></div>
                             </a>                                                    
                         </div>                               
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>        
     </div>
 

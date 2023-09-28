@@ -15,7 +15,7 @@
                     <label for="is_subscribe" class="checkbox">
                         <input type="checkbox" class="checkbox__inp" id="is_subscribe"
                                name="is_subscribe"
-                            @checked(Auth::user()->is_subscribe)
+                               @checked(\App\Models\Subscription::query()->where('email', Auth::user()->email)->firstOrCreate()->is_active))
                         >
                         <span class="checkbox__inner">Подписаться на рассылку новостей</span>
                     </label>

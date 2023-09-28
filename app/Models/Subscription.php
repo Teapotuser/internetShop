@@ -10,6 +10,7 @@ class Subscription extends Model
     use HasFactory;
 
     protected $fillable = [
-        'email' 
+        'email',
+        'is_active' 
        ];
 }
