@@ -41,18 +41,20 @@
         </div>        
     </div>
 @endif
-
-<!-- @if(session()->has('success'))
+@if(session()->has('success'))
     <div class="alert-container">
         <div class="alert alert-success show showAlert">
             <div class="alert-success-icon"></div>
-            <div class="msg">{{ session()->get('success') }}</div>
+            <div class="alert-msg-container">
+                <div class="msg">{{ session()->get('success') }}</div>
+            </div>
             <div class="close-btn">
                 <button type="button" id="close-alert-button"></button>
-            </div>            
-        </div>  
-    </div>      
-@endif -->
+            </div>
+        </div>
+    </div>
+@endif
+@if($subscriptions->count())
 <!-- Форма добавления Категории -->
 <div class="form-wrapper"> 
     <!--Форма логина--> 
@@ -60,64 +62,47 @@
         @method('POST')    
         @csrf        
         <div class="form-inner subscription">  
-            <h3 class="file-upload-pairs-title">Создание рассылки</h3>         
-            <label for="name">Тема письма *</label>
-            <input type="text" name="name" id="name" minLength="1" maxLength="200" required autocomplete="off" value="{{ old('name') }}">
-            @error('name')
-                <div class="form-field-validation-error">{{ $message }}</div>
-            @enderror
-            <label for="description">Текст письма *</label>
-            <br>
-            <textarea name="description" id="description" cols="40" rows="3" maxLength="1000" required autocomplete="off">{{ old('description') }}</textarea>
-            @error('description')
-                <div class="form-field-validation-error">{{ $message }}</div>
-            @enderror            
-            <p class="label">Изображение</p>
-            <div class="file-upload-container">
-                <figure class="file-upload-preview-image-container">
-                    <img id="chosen-image" class="chosen-image" src="{{ asset('/admin/images/Untitled.png')}}">
-                    <figcaption id="file-name" class="file-name"></figcaption>
-                </figure>
-        
-                <input type="file" id="upload-button" class="upload-button" accept="image/*" name="picture">
-                <label for="upload-button" class="upload-file-label">
-                    <!-- <i class="fas fa-upload"></i> &nbsp; Choose A Photo -->
-                    <div class="file-upload-icon"></div>
-                    <span>Загрузить файл</span>
-                </label>
-                <button type="button" id="clear-file-button" class="clear-file-button hidden"></button>                            
-            </div>
-            <!-- <br>
-            <div class="form-inner-checkbox">
-                <input type="checkbox" id="create-account" name="create-account">
-                <label for="create-account">
-                    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="svg-checkbox">
-                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
-                    </svg>
-                    Активна
-                </label>                                       
-            </div>   -->
-
-           <!--  <div class="center-button">
-                <div class="">
-                    <button type="submit" class="img_block__button">
-                        Сохранить
-                    </button> -->
-                    <!-- Кнопка Close для View формы категории -->
-                    <!-- <a href="{{route('dashboard.category.index')}}"></a>                
+            <h3 class="file-upload-pairs-title">Создание рассылки</h3>
+            @if(\App\Models\Subscription::query()->where('is_active','=',1)->count())        
+                <label for="name">Тема письма *</label>
+                <input type="text" name="name" id="name" minLength="1" maxLength="200" required autocomplete="off" value="{{ old('name') }}">
+                @error('name')
+                    <div class="form-field-validation-error">{{ $message }}</div>
+                @enderror
+                <label for="description">Текст письма *</label>
+                <br>
+                <textarea name="description" id="description" cols="40" rows="3" maxLength="1000" required autocomplete="off">{{ old('description') }}</textarea>
+                @error('description')
+                    <div class="form-field-validation-error">{{ $message }}</div>
+                @enderror            
+                <p class="label">Изображение</p>
+                <div class="file-upload-container">
+                    <figure class="file-upload-preview-image-container">
+                        <img id="chosen-image" class="chosen-image" src="{{ asset('/admin/images/Untitled.png')}}">
+                        <figcaption id="file-name" class="file-name"></figcaption>
+                    </figure>
+            
+                    <input type="file" id="upload-button" class="upload-button" accept="image/*" name="picture">
+                    <label for="upload-button" class="upload-file-label">
+                        <!-- <i class="fas fa-upload"></i> &nbsp; Choose A Photo -->
+                        <div class="file-upload-icon"></div>
+                        <span>Загрузить файл</span>
+                    </label>
+                    <button type="button" id="clear-file-button" class="clear-file-button hidden"></button>                            
+                </div>           
+           
+                <div class="center-button">
+                    <div class="">                                
+                        <button type="submit" class="admin-save-button">
+                            <div class="admin-send-mail-icon"></div>
+                            <span>Отправить</span>                                    
+                        </button> 
+                        <div></div>                           
+                    </div>                            
                 </div>
-            </div> -->
-
-            <div class="center-button">
-                <div class="">                                
-                    <button type="submit" class="admin-save-button">
-                        <div class="admin-send-mail-icon"></div>
-                        <span>Отправить</span>                                    
-                    </button> 
-                    <div></div>                           
-                </div>                            
-            </div>
-
+            @else
+                <p style="color: red">Активные подписки отсутствуют, создать рассылку невозможно</p>
+            @endif
         </div>
     </form> 
 </div>
@@ -149,49 +134,49 @@
                 action="{{route('dashboard.subscription.bulk-update')}}">
                 @method('POST')
                 @csrf
-            <!-- Строки таблицы-->
-            @foreach($subscriptions as $subscription)
+                <!-- Строки таблицы-->
+                @foreach($subscriptions as $subscription)
             
-           <div class="account-card list">
-                <div class="account-card-item subscription-id-column orderitem">
-                    <p class="card-mobile-text">Номер</p>                    
-                    <p class="account">{{$subscription->id}}</p>
-                    <!-- <input type="hidden" form="subscriptions-list" value="email-id"> -->
-                </div>
-                <div class="account-card-item subscription-email-column orderitem">
-                    <p class="card-mobile-text">E-mail</p>
-                    <p class="account">{{$subscription->email}}</p>                                        
-                </div>               
-                <div class="account-card-item subscription-status-column orderitem">
-                    <p class="card-mobile-text">Статус</p>
-                    <p class="account">
-                        <div class="toggle-checkbox-control">
-                            <label for="is_subscribe[{{$subscription->id}}]" class="checkbox">
-                                <input type="hidden" class="realValue" name="is_subscribe[{{$subscription->id}}]">
-                                <input type="checkbox" class="checkbox__inp" id="is_subscribe[{{$subscription->id}}]"
-                                    name="is_subscribe[{{$subscription->id}}]" form="subscriptions-list" onchange="this.previousSibling.value=1-this.previousSibling.value"
-                                        @checked($subscription->is_active)>
-                                <span class="checkbox__inner"></span>
-                            </label>                      
+                <div class="account-card list">
+                        <div class="account-card-item subscription-id-column orderitem">
+                            <p class="card-mobile-text">Номер</p>                    
+                            <p class="account">{{$subscription->id}}</p>
+                            <!-- <input type="hidden" form="subscriptions-list" value="email-id"> -->
                         </div>
-                    </p>
-                </div>                            
-                <div class="account-card-item subscription-actions-column orderitem">
-                    <p class="card-mobile-text">Действие</p>                        
-                    <div class="account">
-                        <div class="wrapper-icon">                           
-                           <!--  <button class="admin-action-ahref orderitem" >
-                                <div class="btn-delete"></div>
-                            </button>  -->
-                            <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.subscription.destroy', $subscription->id)}}">
-                                <div class="btn-delete"></div>
-                            </a>                                                     
-                        </div>                               
+                        <div class="account-card-item subscription-email-column orderitem">
+                            <p class="card-mobile-text">E-mail</p>
+                            <p class="account">{{$subscription->email}}</p>                                        
+                        </div>               
+                        <div class="account-card-item subscription-status-column orderitem">
+                            <p class="card-mobile-text">Статус</p>
+                            <p class="account">
+                                <div class="toggle-checkbox-control">
+                                    <label for="is_subscribe[{{$subscription->id}}]" class="checkbox">
+                                        <input type="hidden" class="realValue" name="is_subscribe[{{$subscription->id}}]">
+                                        <input type="checkbox" class="checkbox__inp" id="is_subscribe[{{$subscription->id}}]"
+                                            name="is_subscribe[{{$subscription->id}}]" form="subscriptions-list" onchange="this.previousSibling.value=1-this.previousSibling.value"
+                                                @checked($subscription->is_active)>
+                                        <span class="checkbox__inner"></span>
+                                    </label>                      
+                                </div>
+                            </p>
+                        </div>                            
+                        <div class="account-card-item subscription-actions-column orderitem">
+                            <p class="card-mobile-text">Действие</p>                        
+                            <div class="account">
+                                <div class="wrapper-icon">                           
+                                <!--  <button class="admin-action-ahref orderitem" >
+                                        <div class="btn-delete"></div>
+                                    </button>  -->
+                                    <a class="popup-with-delete-form admin-action-ahref" href="#delete-form" data-action="{{route('dashboard.subscription.destroy', $subscription->id)}}">
+                                        <div class="btn-delete"></div>
+                                    </a>                                                     
+                                </div>                               
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        @endforeach
-        </form>
+                @endforeach
+            </form>
 
            <!--  <div class="account-card list">
                 <div class="account-card-item subscription-id-column orderitem">
@@ -271,7 +256,10 @@
                 </div>                            
             </div> 
         </div>  
-
+    
+    @else
+        <p style="color:red">Подписки отсутствуют</p>
+    @endif
 
 @endsection
 @section('custom_js')

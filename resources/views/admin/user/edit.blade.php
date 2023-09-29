@@ -47,22 +47,22 @@
         @method('put')
         <div class="form-inner">
             <label for="name">Имя *</label>
-            <input type="text" name="name" id="name" minLength="1" maxLength="150" required autocomplete="off" value="{{ $user->name }}">
+            <input type="text" name="name" id="name" minLength="1" maxLength="150" required autocomplete="off" value="{{old('name', $user->name)}}">
             @error('name')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
             <label for="last_name">Фамилия *</label>
-            <input type="text" name="last_name" id="last_name" minLength="1" maxLength="200" required autocomplete="off" value="{{ $user->last_name }}">
+            <input type="text" name="last_name" id="last_name" minLength="1" maxLength="200" required autocomplete="off" value="{{old('last_name', $user->last_name)}}">
             @error('last_name')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
             <label for="email">E-mail *</label>
-            <input type="email" name="email" id="email" minLength="1" maxLength="150" required autocomplete="off" value="{{ $user->email }}">
+            <input type="email" name="email" id="email" minLength="1" maxLength="150" required autocomplete="off" value="{{old('email', $user->email)}}">
             @error('email')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
             <label for="phone_number">Телефон *</label>
-            <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone_number" id="phone_number" minLength="1" maxLength="20" required autocomplete="off" value="{{ $user->phone_number }}">
+            <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone_number" id="phone_number" minLength="1" maxLength="20" required autocomplete="off" value="{{old('phone_number', $user->phone_number)}}">
             @error('phone_number')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror 
@@ -85,21 +85,21 @@
             <br>
 
             <label for="address">Адрес</label>
-            <input type="text" name="address" id="address" minLength="1" maxLength="500" autocomplete="off" value="{{ $user->address }}">
+            <input type="text" name="address" id="address" minLength="1" maxLength="500" autocomplete="off" value="{{old('address', $user->address)}}">
             @error('address')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
             <div class="two-fields-product-container">
                 <div>
                     <label for="city">Город</label>
-                    <input type="text" name="city" id="city" minLength="1" maxLength="200" autocomplete="off" value="{{ $user->city }}">
+                    <input type="text" name="city" id="city" minLength="1" maxLength="200" autocomplete="off" value="{{old('city', $user->city)}}">
                     @error('city')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
                 </div>
                 <div>
                     <label for="zip_code">Индекс</label>
-                    <input type="text" name="zip_code" id="zip_code" minLength="1" maxLength="20" autocomplete="off" value="{{ $user->zip_code }}">
+                    <input type="text" name="zip_code" id="zip_code" minLength="1" maxLength="20" autocomplete="off" value="{{old('zip_code', $user->zip_code)}}">
                     @error('zip_code')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
@@ -127,7 +127,7 @@
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->                        
                     </ul>
-                    <input type="hidden" name="role" id="role" value="{{ $user->role }}" class="dropdown__input-hidden" >
+                    <input type="hidden" name="role" id="role" value="{{ old('role', $user->role ) }}" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Роль-->                       

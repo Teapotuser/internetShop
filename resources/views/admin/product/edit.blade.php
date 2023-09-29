@@ -47,12 +47,12 @@
         @method('put')
         <div class="form-inner">
             <label for="article">Артикул *</label>
-            <input type="text" name="article" id="article" minLength="1" maxLength="150" required autocomplete="off" value="{{ $product->article }}">
+            <input type="text" name="article" id="article" minLength="1" maxLength="150" required autocomplete="off" value="{{old('article', $product->article)}}">
             @error('article')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
             <label for="title">Название *</label>
-            <input type="text" name="title" id="title" minLength="1" maxLength="200" required autocomplete="off" value="{{ $product->title }}">
+            <input type="text" name="title" id="title" minLength="1" maxLength="200" required autocomplete="off" value="{{old('title', $product->title)}}">
             @error('title')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
@@ -66,7 +66,7 @@
                             {{
                                 $product->category->name ?
                                 $product->category->name :
-                            'Выберите категорию ...'
+                                'Выберите категорию ...'
                             }}
                         </div>
                     </button>
@@ -110,27 +110,27 @@
             <!--End of Комбобокс Коллекции товара--> 
             <label for="description">Описание</label>
             <br>
-            <textarea name="description" id="description" cols="40" rows="3" maxLength="1000" autocomplete="off">{{ $product->description }}</textarea>
+            <textarea name="description" id="description" cols="40" rows="3" maxLength="1000" autocomplete="off">{{old('description', $product->description)}}</textarea>
             @error('description')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
             <label for="product_info">Информация</label>
             <br>
-            <textarea name="product_info" id="product_info" cols="40" rows="3" maxLength="1000" autocomplete="off">{{ $product->product_info }}</textarea>
+            <textarea name="product_info" id="product_info" cols="40" rows="3" maxLength="1000" autocomplete="off">{{old('product_info', $product->product_info)}}</textarea>
             @error('product_info')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror 
             <div class="two-fields-product-container">
                 <div>
                     <label for="price">Цена *</label>
-                    <input type="number" name="price" id="price" min="0.01" max="100 000" step="0.01" required autocomplete="off" value="{{ $product->price }}">
+                    <input type="number" name="price" id="price" min="0.01" max="100 000" step="0.01" required autocomplete="off" value="{{old('price', $product->price)}}">
                     @error('price')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
                 </div>
                 <div>
                     <label for="discount">Скидка (%)</label>
-                    <input type="number" name="discount" id="discount" min="0" max="100" autocomplete="off" value="{{ $product->discount }}">
+                    <input type="number" name="discount" id="discount" min="0" max="100" autocomplete="off" value="{{old('discount', $product->discount)}}">
                     @error('discount')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
@@ -160,14 +160,14 @@
             <div class="two-fields-product-container">
                 <div>
                     <label for="size">Размер (см) *</label>
-                    <input type="number" name="size" id="size" min="1" max="1000" required autocomplete="off" value="{{ $product->size }}">
+                    <input type="number" name="size" id="size" min="1" max="1000" required autocomplete="off" value="{{old('size', $product->size)}}">
                     @error('size')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
                 </div>
                 <div>
                     <label for="height">Высота (см)</label>
-                    <input type="number" name="height" id="height" min="0" max="1000" autocomplete="off" value="{{ $product->height }}">
+                    <input type="number" name="height" id="height" min="0" max="1000" autocomplete="off" value="{{old('height', $product->height)}}">
                     @error('height')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
@@ -176,14 +176,14 @@
             <div class="two-fields-product-container">
                 <div>
                     <label for="width">Ширина (см)</label>
-                    <input type="number" name="width" id="width" min="0" max="1000" autocomplete="off" value="{{ $product->width }}">
+                    <input type="number" name="width" id="width" min="0" max="1000" autocomplete="off" value="{{old('width', $product->width)}}">
                     @error('width')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
                 </div>
                 <div>    
                     <label for="depth">Глубина (см)</label>
-                    <input type="number" name="depth" id="depth" min="0" max="1000" autocomplete="off" value="{{ $product->depth }}">
+                    <input type="number" name="depth" id="depth" min="0" max="1000" autocomplete="off" value="{{old('depth', $product->depth)}}">
                     @error('depth')
                         <div class="form-field-validation-error">{{ $message }}</div>
                     @enderror
@@ -215,9 +215,7 @@
                     <button type="button" class="dropdown__button enabled">
                         <div class="dropdown__button-text enabled">                           
                             {{
-                                $product->material ?
-                                $product->material :
-                                'Выберите материал ...'
+                                old('material', $product->material ) ?:'Выберите материал ...'
                             }}
                         </div>
                     </button>
@@ -228,7 +226,7 @@
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
                     </ul>
-                    <input type="hidden" name="material" id="material" value="{{ $product->material }}" class="dropdown__input-hidden" >
+                    <input type="hidden" name="material" id="material" value="{{ old('material', $product->material) }}" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Материал товара--> 
@@ -240,9 +238,7 @@
                     <button type="button" class="dropdown__button enabled">
                         <div class="dropdown__button-text enabled">
                             {{
-                                $product->material_filling ?
-                                $product->material_filling :
-                                'Выберите материал наполнителя ...'
+                                old('material_filling', $product->material_filling ) ?: 'Выберите материал наполнителя ...'
                             }}                            
                         </div>
                     </button>
@@ -253,7 +249,7 @@
                         <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
                     </ul>
-                    <input type="hidden" name="material_filling" id="material_filling" value="{{ $product->material_filling }}" class="dropdown__input-hidden" >
+                    <input type="hidden" name="material_filling" id="material_filling" value="{{ old('material_filling', $product->material_filling) }}" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Материал наполнителя товара-->
@@ -265,9 +261,7 @@
                     <button type="button" class="dropdown__button enabled">
                         <div class="dropdown__button-text enabled">                            
                             {{
-                                $product->age_from ?
-                                $product->age_from :
-                                'Выберите рекомендуемый возраст ...'
+                                old('age_from', $product->age_from ) ?: 'Выберите рекомендуемый возраст ...'                               
                             }}   
                         </div>
                     </button>
@@ -277,7 +271,7 @@
                         <li class="dropdown__list-item" data-value="от 3 лет">от 3 лет</li>
                         <!-- <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li>--> 
                     </ul>
-                    <input type="hidden" name="age_from" id="age_from" value="{{ $product->age_from }}" class="dropdown__input-hidden" >
+                    <input type="hidden" name="age_from" id="age_from" value="{{ old('age_from', $product->age_from) }}" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Рекомендуемый возраст товара--> 
@@ -289,9 +283,7 @@
                     <button type="button" class="dropdown__button enabled">
                         <div class="dropdown__button-text enabled">                            
                             {{
-                                $product->care_recommend ?
-                                $product->care_recommend :
-                                'Выберите рекомендацию ...'
+                                old('care_recommend', $product->care_recommend) ?:'Выберите рекомендацию ...'                               
                             }}   
                         </div>
                     </button>
@@ -301,7 +293,7 @@
                         <!-- <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
                     </ul>
-                    <input type="hidden" name="care_recommend" id="care_recommend" value="{{ $product->care_recommend }}" class="dropdown__input-hidden" >
+                    <input type="hidden" name="care_recommend" id="care_recommend" value="{{ old('care_recommend', $product->care_recommend) }}" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Рекомендации по уходу товара--> 

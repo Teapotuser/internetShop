@@ -15,7 +15,7 @@
                             <p>Каждую неделю вы будете узнавать все о новинках NICI, выгодных предложениях и конкурсах!</p>
                         </div>
                         <div class="subscribe-form-container">
-                            <form class="subsribe-form" method="post" action="{{route('subscription.post')}}">
+                            <form class="subsribe-form" method="post" action="{{route('subscription.new-subscription')}}">
                                 @csrf
                                 <input class="subsribe-email" type="email" required name="subsribe-email" placeholder="Ваш e-mail">
                                 <button class="subsribe-submit" type="submit">подписаться</button>

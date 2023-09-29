@@ -56,17 +56,17 @@
                                     <ul class="ul-margin-bottom-zero">
                                         <li>
                                             <input type="radio" id="subscribe" name="subscription_choice" value="subscribe"
-                                                @checked(old('subscription_choice', true))>
+                                                @checked(old('subscription_choice', 'subscribe')=='subscribe')>
                                             <label for="subscribe">Подписаться на рассылку</label>
                                         </li>
                                         <li>
                                             <input type="radio" id="unsubscribe" name="subscription_choice"
-                                                    value="unsubscribe" @checked(old('subscription_choice', ))>
+                                                    value="unsubscribe" @checked(old('subscription_choice', )=='unsubscribe')>
                                             <label for="unsubscribe">Отписаться от рассылки</label>
                                         </li>
                                     </ul>  
                                     <br> 
-                                    <input type="email" name="subsribe-email" placeholder="Email *" minLength="1" maxLength="150" required autocomplete="off" @error('subsribe-email') class="invalid" @enderror value="{{old('subsribe-email', Auth::user()?->email)}}">
+                                    <input type="email" name="subsribe-email" placeholder="Email *" minLength="1" maxLength="150" required autocomplete="off" @error('subsribe-email') class="invalid" @enderror value="{{old('subsribe-email', $email?:Auth::user()?->email)}}">
                                     <br>                                 
                                     <!-- <p class="info-text">Вы можете создать аккаунт после оформления заказа</p> -->
                                     <div class="form-inner-checkbox">

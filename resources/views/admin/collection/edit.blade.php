@@ -46,24 +46,24 @@
         @method('put')
         <div class="form-inner">
             <label for="code">Код *</label>
-            <input type="text" name="code" id="code" minLength="1" maxLength="150" required autocomplete="off" value="{{ $collection->code }}">
+            <input type="text" name="code" id="code" minLength="1" maxLength="150" required autocomplete="off" value="{{old('code', $collection->code)}}">
             @error('code')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
             <label for="name">Название *</label>
-            <input type="text" name="name" id="name" minLength="1" maxLength="200" required autocomplete="off" value="{{  $collection->name }}">
+            <input type="text" name="name" id="name" minLength="1" maxLength="200" required autocomplete="off" value="{{old('name', $collection->name)}}">
             @error('name')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
             <label for="title_description">Заголовок описания</label>
             <br>
-            <textarea name="title_description" id="title_description" cols="40" rows="2" maxLength="1000" autocomplete="off">{{  $collection->title_description }}</textarea>
+            <textarea name="title_description" id="title_description" cols="40" rows="2" maxLength="1000" autocomplete="off">{{old('title_description', $collection->title_description)}}</textarea>
             @error('title_description')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
             <label for="description">Описание</label>
             <br>
-            <textarea name="description" id="description" cols="40" rows="3" maxLength="1000" autocomplete="off">{{  $collection->description }}</textarea>
+            <textarea name="description" id="description" cols="40" rows="3" maxLength="1000" autocomplete="off">{{old('description', $collection->description)}}</textarea>
             @error('description')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror

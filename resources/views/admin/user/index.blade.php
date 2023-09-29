@@ -16,10 +16,10 @@
             </div>
             <span class="text">Пользователи</span>
         </div>    
-        <a href="{{route('dashboard.user.create')}}" class="admin-add-button">
+        <!-- <a href="{{route('dashboard.user.create')}}" class="admin-add-button">
             <div class="title-add-icon"></div>
             <span>Добавить</span>
-        </a>    
+        </a>  -->   
     </div>
 <!-- Отображение сообщения что Коллекция новая или отредактированная добавлена -->
     <!-- <div class="alert-container"> -->

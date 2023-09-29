@@ -36,7 +36,7 @@ class Subscription extends Mailable
     {
         return new Envelope(
             // subject: 'Subscription',
-            $this->subject,
+            subject: $this->subject,
         );
     }
 

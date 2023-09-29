@@ -27,10 +27,11 @@ class SubscriptionRequest extends FormRequest
         return [
             'subsribe-email' => [
                 'required',
-                Rule::when($this->get('subscription_choice') == 'subscribe', 'unique:subscriptions,email')
+                'email',
+                // Rule::when($this->get('subscription_choice') == 'subscribe', 'unique:subscriptions,email')
             ],
             'subscription_choice' => ['sometimes'],
-            'agree' => ['sometimes', 'required']
+            'agree' => [Rule::when($this->get('subscription_choice') == 'subscribe', 'required')]
         ];
     }
 
@@ -38,8 +39,9 @@ class SubscriptionRequest extends FormRequest
     {
         return [
             'agree.required' => 'Вы не отметили поле о согласии на рассылку',
-            'subsribe-email.unique' => 'Запись с таким e-mail уже существует',
+            // 'subsribe-email.unique' => 'Запись с таким e-mail уже существует',
             'subsribe-email.required' => 'Заполните поле E-mail',
+            'subsribe-email.email' => 'Заполните поле E-mail корректным адресом эл. почты',
             
             'body.required' => 'A message is required',
         ];

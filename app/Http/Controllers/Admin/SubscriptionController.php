@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\Product\StoreRequest;
+// use App\Http\Requests\Admin\Product\StoreRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 
+
 use App\Http\Requests\Admin\Subscription\Send;
+use App\Http\Requests\BulkUpdateSubscriptionsRequest;
 use App\Mail\Feedback;
 // use App\Mail\Subscription;
 use App\Models\Subscription;
@@ -17,7 +19,6 @@ class SubscriptionController extends Controller
 {
     public function index()
     {
-        // $products = Product::paginate(6);
         $subscriptions = Subscription::query()->paginate(10);       
         return view('admin.subscription.index', compact(['subscriptions']));
     }
@@ -47,12 +48,12 @@ class SubscriptionController extends Controller
         }
 
         return to_route('dashboard.subscription.index')->with([
-            'success' => 'Подписки изменены',
+            'success' => 'Рассылка успешно отправлена',
         ]);
 //        return view('admin.subscription.index', compact(['subscriptions']));
     }
 
-    public function bulkUpdate(Request $request)
+    public function bulkUpdate(BulkUpdateSubscriptionsRequest $request)
     {
         $errors = 0;
         foreach ($request->get('is_subscribe') as $key => $is_active_recieved) {
@@ -68,7 +69,7 @@ class SubscriptionController extends Controller
             }
         }
         $with = [
-            'success' => 'Подписки изменены',
+            'success' => 'Подписки успешно изменены',
         ];
         $errors == 0 ?: $with['error'] = 'Возникли ошибки при обновлении списка';
 
@@ -78,7 +79,7 @@ class SubscriptionController extends Controller
     public function destroy(Subscription $subscription)
     {
         $subscription->delete();
-        return to_route('dashboard.subscription.index')->with(['success' => 'Подписка ' . $subscription->email . ' удалена']);
+        return to_route('dashboard.subscription.index')->with(['success' => 'Подписка ' . $subscription->email . ' успешно удалена']);
     }
 
 }

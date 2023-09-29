@@ -118,9 +118,17 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
+        $statuses = collect([
+            ['value' => 'New', 'name' => 'Новый'],
+            // ['value' => 'Waiting', 'name' => 'Ожидает подтверждения'],
+            ['value' => 'Paid', 'name' => 'Оплачен'],
+            ['value' => 'Sent', 'name' => 'Отправлен'],
+            ['value' => 'Cancelled', 'name' => 'Отменен'],
+            ['value' => 'Finished', 'name' => 'Завершен']
+        ]);
         $products = Product::query()->IsActive()->get();
         $users = User::where('role', 'user')->get();
-        return view('admin.order.edit', compact(['products', 'users', 'order']));
+        return view('admin.order.edit', compact(['products', 'users', 'order','statuses']));
     }
 
     /**

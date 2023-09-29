@@ -46,18 +46,18 @@
         @method('put')
         <div class="form-inner">
             <label for="code">Код *</label>
-            <input type="text" name="code" id="code" minLength="1" maxLength="150" required autocomplete="off" value="{{ $category->code }}">
+            <input type="text" name="code" id="code" minLength="1" maxLength="150" required autocomplete="off" value="{{old('code', $category->code)}}">
             @error('code')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
             <label for="name">Название *</label>
-            <input type="text" name="name" id="name" minLength="1" maxLength="200" required autocomplete="off" value="{{  $category->name }}">
+            <input type="text" name="name" id="name" minLength="1" maxLength="200" required autocomplete="off" value="{{old('name', $category->name)}}">
             @error('name')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror
             <label for="description">Описание</label>
             <br>
-            <textarea name="description" id="description" cols="40" rows="3" maxLength="1000" autocomplete="off">{{  $category->description }}</textarea>
+            <textarea name="description" id="description" cols="40" rows="3" maxLength="1000" autocomplete="off">{{old('description', $category->description)}}</textarea>
             @error('description')
                 <div class="form-field-validation-error">{{ $message }}</div>
             @enderror

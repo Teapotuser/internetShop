@@ -82,7 +82,8 @@ Route::get('/feedback-confirmation', function () {return view('feedbackconfirm')
 
 // Форма подписки на рассылку новостей (footer)
 Route::get('/subscription', [SubscriptionController::class, 'show'])->name('subscription.form');
-Route::post('/subscription', [SubscriptionController::class, 'save'])->name('subscription.post');
+Route::post('/subscription', [SubscriptionController::class, 'newSubsctiption'])->name('subscription.new-subscription');
+Route::post('/subscription/subscribe', [SubscriptionController::class, 'save'])->name('subscription.post');
 Route::get('/subscription-confirmation', function () {return view('subscriptionconfirm');})->name('subscription.confirmation');
 
 Route::get('/delivery', [StaticPageController::class, 'delivery'])->name('delivery');

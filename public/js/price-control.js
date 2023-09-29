@@ -67,7 +67,14 @@ document.addEventListener('submit', function (event) {
 //Даниил добавил: кнопка сброса фильтра
 document.addEventListener('click', function (event) {
     if (event.target.className !== 'reset-filter') return;
-    window.location.href = window.location.pathname;
+    // window.location.href = window.location.pathname;
+
+    const params = new URLSearchParams(window.location.search);
+    let searchString = '';
+    if (params.get('sSearch')) {
+        searchString = '?sSearch=' + params.get('sSearch');
+    }
+    window.location.href = window.location.pathname + searchString;
 }, false);
 
 priceInput.forEach(input =>{
@@ -79,7 +86,7 @@ priceInput.forEach(input =>{
             if(e.target.className === "input-min"){
                 rangeInput[0].value = minPrice;
                 range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
-                console.log('range.style.left');
+                // console.log('range.style.left');
             }else{
                 rangeInput[1].value = maxPrice;
                 range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
@@ -96,7 +103,7 @@ rangeInput.forEach(input =>{
         if((maxVal - minVal) < priceGap){
             if(e.target.className === "range-min"){
                 rangeInput[0].value = maxVal - priceGap;
-                console.log('range-min');
+                // console.log('range-min');
             }else{
                 rangeInput[1].value = minVal + priceGap;
             }
@@ -104,7 +111,7 @@ rangeInput.forEach(input =>{
             priceInput[0].value = minVal;
             priceInput[1].value = maxVal;
             range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
-            console.log('range.style.left');
+            // console.log('range.style.left');
             range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
         }
     });

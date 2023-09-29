@@ -84,19 +84,22 @@
                 <div class="form-group">
                     <div class="dropdown">
                         <button type="button" class="dropdown__button enabled">
-                            <div class="dropdown__button-text enabled">{{$order->getStatusTitle()}}</div>
+                            <div class="dropdown__button-text enabled">                                
+                                {{$statuses->where('value','=', old('status', $order->status))->first()['name']}}
+                            </div>
                         </button>
                         <ul class="dropdown__list">
-                            <li class="dropdown__list-item" data-value="New">Новый</li>
+                            @foreach($statuses as $status)
+                                <li class="dropdown__list-item" data-value="{{$status['value']}}">{{$status['name']}}</li>
+                            @endforeach
+                            <!-- <li class="dropdown__list-item" data-value="New">Новый</li>
                             <li class="dropdown__list-item" data-value="Paid">Оплачен</li>                            
                             <li class="dropdown__list-item" data-value="Sent" >Отправлен</li>
                             <li class="dropdown__list-item" data-value="Cancelled" >Отменен</li>
-                            <li class="dropdown__list-item" data-value="Finished" >Завершен</li>
-                            <!-- <li class="dropdown__list-item" data-value="lessons">Конспекты по учебе</li>
-                            <li class="dropdown__list-item" data-value="photo">Фотоальбом</li>
-                            <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
+                            <li class="dropdown__list-item" data-value="Finished" >Завершен</li> -->
+                            
                         </ul>
-                        <input type="hidden" name="status" id="status" value="{{ $order->status}}"
+                        <input type="hidden" name="status" id="status" value="{{ old('status', $order->status)}}"
                                class="dropdown__input-hidden">
                     </div>
                 </div>
@@ -168,19 +171,19 @@
                 <label for="address">Адрес</label>
                 <input type="text" name="address" id="address" minLength="1" maxLength="500" autocomplete="off"
                 value="{{ old('address', $order->address) }}"
-                       @if(old('delivery_method'=='post',$order->delivery_method=='post')) required @endif>
+                       @if(old('delivery_method'=='post', $order->delivery_method=='post')) required @endif>
 
                 <div class="two-fields-product-container">
                     <div>
                         <label for="city">Город</label>
                         <input type="text" name="city" id="city" minLength="1" maxLength="200" autocomplete="off"
                         value="{{ old('city', $order->city) }}"
-                               @if(old('delivery_method'=='post',$order->delivery_method=='post')) required @endif>
+                               @if(old('delivery_method'=='post', $order->delivery_method=='post')) required @endif>
                     </div>
                     <div>
                         <label for="zip_code">Индекс</label>
                         <input type="text" name="zip_code" id="zip_code" minLength="1" maxLength="20" autocomplete="off"
-                        value="{{ old('zip_code',$order->zip_code) }}"
+                        value="{{ old('zip_code', $order->zip_code) }}"
                                @if(old('delivery_method'=='post', $order->delivery_method=='post')) required @endif>
                     </div>
                 </div>
