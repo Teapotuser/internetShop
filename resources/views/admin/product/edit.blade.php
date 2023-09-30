@@ -63,11 +63,7 @@
                 <div class="dropdown">
                     <button type="button" class="dropdown__button enabled">
                         <div class="dropdown__button-text enabled">                            
-                            {{
-                                $product->category->name ?
-                                $product->category->name :
-                                'Выберите категорию ...'
-                            }}
+                            {{$categories->find( old('category_id', $product->category_id))->name}}
                         </div>
                     </button>
                     <ul class="dropdown__list">
@@ -78,7 +74,7 @@
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
                         @endforeach
                     </ul>
-                    <input type="hidden" name="category_id" id="category_id" value="{{ $product->category_id }}" class="dropdown__input-hidden" >
+                    <input type="hidden" name="category_id" id="category_id" value="{{ old('category_id', $product->category_id) }}" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Категории товара--> 
@@ -89,11 +85,7 @@
                 <div class="dropdown">
                     <button type="button" class="dropdown__button enabled">
                         <div class="dropdown__button-text enabled">                            
-                            {{
-                                $product->collection->name ?
-                                $product->collection->name :
-                                'Выберите коллекцию ...'
-                            }}
+                            {{$collections->find( old('collection_id', $product->collection_id))->name}}                          
                         </div>
                     </button>
                     <ul class="dropdown__list">
@@ -104,7 +96,7 @@
                         <li class="dropdown__list-item" data-value="sport">Дневник спортсмена</li> -->
                         @endforeach
                     </ul>
-                    <input type="hidden" name="collection_id" id="collection_id" value="{{ $product->collection_id }}" class="dropdown__input-hidden" >
+                    <input type="hidden" name="collection_id" id="collection_id" value="{{ old('collection_id', $product->collection_id) }}" class="dropdown__input-hidden" >
                 </div>
             </div>
             <!--End of Комбобокс Коллекции товара--> 

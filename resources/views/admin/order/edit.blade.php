@@ -126,7 +126,7 @@
 
                     @foreach($users as $user)
                         <option
-                            @selected($order->user_id==$user->id)
+                            @selected(old('user_id',$order->user_id)==$user->id)
                             data-name="{{$user->name}}"
                             data-last_name="{{$user->last_name}}"
                             data-email="{{$user->email}}"
@@ -230,7 +230,7 @@
 
                 <h3 class="file-upload-pairs-title">Состав заказа</h3>
 
-                <label for="select2-product">Товар *</label>
+                <label for="select2-product">Товар</label>
                 <select class="js-example-basic-single" id="select2-product">
                     <option></option>
                     @foreach($products->groupBy('collection_id') as $collection=>$items)

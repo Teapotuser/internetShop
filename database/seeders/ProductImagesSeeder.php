@@ -168,6 +168,54 @@ class ProductImagesSeeder extends Seeder
               ["product_id" => "27", "path" => "Products/3/27/carousel/47981_02_ZA_Frei_2048x1237_600x600.jpg", "preview_path" => "Products/3/27/carousel/preview/47981_02_ZA_Frei_2048x1237_200x200.jpg", "counter" => "2"],
               ["product_id" => "27", "path" => "Products/3/27/carousel/47982_15_47958_47960_47961_47981_Milieu_600x600.jpg", "preview_path" => "Products/3/27/carousel/preview/47982_15_47958_47960_47961_47981_Milieu_200x200.jpg", "counter" => "3"],
 
+              ["product_id" => "28", "path" => "Products/3/28/carousel/47965_01_HA_Frei_1983x2048_600x600.jpg", "preview_path" => "Products/3/28/carousel/preview/47965_01_HA_Frei_1983x2048_200x200.jpg", "counter" => "1"],
+              ["product_id" => "28", "path" => "Products/3/28/carousel/47965_02_ZA_Frei_1935x2048_600x600.jpg", "preview_path" => "Products/3/28/carousel/preview/47965_02_ZA_Frei_1935x2048_200x200.jpg", "counter" => "2"],
+              ["product_id" => "28", "path" => "Products/3/28/carousel/47965_03_ZA_Frei_1876x2048_600x600.jpg", "preview_path" => "Products/3/28/carousel/preview/47965_03_ZA_Frei_1876x2048_200x200.jpg", "counter" => "3"],
+              ["product_id" => "28", "path" => "Products/3/28/carousel/47965_04_ZA_Frei_1279x2048_600x600.jpg", "preview_path" => "Products/3/28/carousel/preview/47965_04_ZA_Frei_1279x2048_200x200.jpg", "counter" => "4"],
+              ["product_id" => "28", "path" => "Products/3/28/carousel/47961_47965_47969_Groessenvergleich_2048x1331_600x600.jpg", "preview_path" => "Products/3/28/carousel/preview/47961_47965_47969_Groessenvergleich_2048x1331_200x200.jpg", "counter" => "5"],
+
+              ["product_id" => "29", "path" => "Products/3/29/carousel/47953_01_HA_Frei_vorl_1428x2048_600x600.jpg", "preview_path" => "Products/3/29/carousel/preview/47953_01_HA_Frei_vorl_1428x2048_200x200.jpg", "counter" => "1"],
+              ["product_id" => "29", "path" => "Products/3/29/carousel/47953_02_ZA_Frei_vorl_1212x2048_600x600.jpg", "preview_path" => "Products/3/29/carousel/preview/47953_02_ZA_Frei_vorl_1212x2048_200x200.jpg", "counter" => "2"],
+              ["product_id" => "29", "path" => "Products/3/29/carousel/47953_03_ZA_Frei_vorl_1350x2048_600x600.jpg", "preview_path" => "Products/3/29/carousel/preview/47953_03_ZA_Frei_vorl_1350x2048_200x200.jpg", "counter" => "3"],
+
+              ["product_id" => "30", "path" => "Products/3/30/carousel/47957_01_HA_Frei_1894x20482ESzShHZ3LD2s_600x600.jpg", "preview_path" => "Products/3/30/carousel/preview/47957_01_HA_Frei_1894x20482ESzShHZ3LD2s_200x200.jpg", "counter" => "1"],
+              ["product_id" => "30", "path" => "Products/3/30/carousel/47957_02_ZA_Frei_1660x2048dXt8opV3kTcGS_600x600.jpg", "preview_path" => "Products/3/30/carousel/preview/47957_02_ZA_Frei_1660x2048dXt8opV3kTcGS_200x200.jpg", "counter" => "2"],
+              ["product_id" => "30", "path" => "Products/3/30/carousel/47957_03_ZA_Frei_1704x2048ejm2LtaHiJSaN_600x600.jpg", "preview_path" => "Products/3/30/carousel/preview/47957_03_ZA_Frei_1704x2048ejm2LtaHiJSaN_200x200.jpg", "counter" => "3"],
+
+
+              ["product_id" => "31", "path" => "Products/4/31/carousel/48814_01_HA_Frei_2048x1456_600x600.jpg", "preview_path" => "Products/4/31/carousel/preview/48814_01_HA_Frei_2048x1456_200x200.jpg", "counter" => "1"],
+              ["product_id" => "31", "path" => "Products/4/31/carousel/48814_02_ZA_Frei_2048x1025_600x600.jpg", "preview_path" => "Products/4/31/carousel/preview/48814_02_ZA_Frei_2048x1025_200x200.jpg", "counter" => "2"],
+              ["product_id" => "31", "path" => "Products/4/31/carousel/48814_03_ZA_Frei_1580x2048_600x600.jpg", "preview_path" => "Products/4/31/carousel/preview/48814_03_ZA_Frei_1580x2048_200x200.jpg", "counter" => "3"],
+              ["product_id" => "31", "path" => "Products/4/31/carousel/48814_04_ZA_Frei_2048x1287_600x600.jpg", "preview_path" => "Products/4/31/carousel/preview/48814_04_ZA_Frei_2048x1287_200x200.jpg", "counter" => "4"],
+              ["product_id" => "31", "path" => "Products/4/31/carousel/48814_05_ZA_Frei_1437x2048_600x600.jpg", "preview_path" => "Products/4/31/carousel/preview/48814_05_ZA_Frei_1437x2048_200x200.jpg", "counter" => "5"],
+
+              ["product_id" => "32", "path" => "Products/4/32/carousel/48802_01_HA_Frei_2048x1307_600x600.jpg", "preview_path" => "Products/4/32/carousel/preview/48802_01_HA_Frei_2048x1307_200x200.jpg", "counter" => "1"],
+              ["product_id" => "32", "path" => "Products/4/32/carousel/48802_02_ZA_weiss_2048x1364_600x600.jpg", "preview_path" => "Products/4/32/carousel/preview/48802_02_ZA_weiss_2048x1364_200x200.jpg", "counter" => "2"],
+              ["product_id" => "32", "path" => "Products/4/32/carousel/48802_03_ZA_weiss_2048x1360_600x600.jpg", "preview_path" => "Products/4/32/carousel/preview/48802_03_ZA_weiss_2048x1360_200x200.jpg", "counter" => "3"],
+
+              ["product_id" => "33", "path" => "Products/4/33/carousel/48820_01_HA_Frei_2048x1678_600x600.jpg", "preview_path" => "Products/4/33/carousel/preview/48820_01_HA_Frei_2048x1678_200x200.jpg", "counter" => "1"],
+              ["product_id" => "33", "path" => "Products/4/33/carousel/48820_02_ZA_Frei_2048x1502_600x600.jpg", "preview_path" => "Products/4/33/carousel/preview/48820_02_ZA_Frei_2048x1502_200x200.jpg", "counter" => "2"],
+              ["product_id" => "33", "path" => "Products/4/33/carousel/48820_03_ZA_Frei_2048x1874_600x600.jpg", "preview_path" => "Products/4/33/carousel/preview/48820_03_ZA_Frei_2048x1874_200x200.jpg", "counter" => "3"],
+              ["product_id" => "33", "path" => "Products/4/33/carousel/48820_04_ZA_Frei_2048x1611_600x600.jpg", "preview_path" => "Products/4/33/carousel/preview/48820_04_ZA_Frei_2048x1611_200x200.jpg", "counter" => "4"],
+              ["product_id" => "33", "path" => "Products/4/33/carousel/48820_14_Milieu_2048x1365_600x600.jpg", "preview_path" => "Products/4/33/carousel/preview/48820_14_Milieu_2048x1365_200x200.jpg", "counter" => "5"],
+
+              ["product_id" => "34", "path" => "Products/4/34/carousel/48815_01_HA_Frei_2048x1323_600x600.jpg", "preview_path" => "Products/4/34/carousel/preview/48815_01_HA_Frei_2048x1323_200x200.jpg", "counter" => "1"],
+              ["product_id" => "34", "path" => "Products/4/34/carousel/48815_02_ZA_Frei_1285x2048_600x600.jpg", "preview_path" => "Products/4/34/carousel/preview/48815_02_ZA_Frei_1285x2048_200x200.jpg", "counter" => "2"],
+              ["product_id" => "34", "path" => "Products/4/34/carousel/48815_03_ZA_Frei_2048x1482_600x600.jpg", "preview_path" => "Products/4/34/carousel/preview/48815_03_ZA_Frei_2048x1482_200x200.jpg", "counter" => "3"],
+              ["product_id" => "34", "path" => "Products/4/34/carousel/48815_04_ZA_Frei_2048x1301_600x600.jpg", "preview_path" => "Products/4/34/carousel/preview/48815_04_ZA_Frei_2048x1301_200x200.jpg", "counter" => "4"],
+              ["product_id" => "34", "path" => "Products/4/34/carousel/48815_05_ZA_Frei_2048x1309_600x600.jpg", "preview_path" => "Products/4/34/carousel/preview/48815_05_ZA_Frei_2048x1309_200x200.jpg", "counter" => "5"],
+              ["product_id" => "34", "path" => "Products/4/34/carousel/48815_06_ZA_Frei_2048x1518_600x600.jpg", "preview_path" => "Products/4/34/carousel/preview/48815_06_ZA_Frei_2048x1518_200x200.jpg", "counter" => "6"],
+              ["product_id" => "34", "path" => "Products/4/34/carousel/48815_10_48822_Milieu_2048x1311_600x600.jpg", "preview_path" => "Products/4/34/carousel/preview/48815_10_48822_Milieu_2048x1311_200x200.jpg", "counter" => "7"],
+              ["product_id" => "34", "path" => "Products/4/34/carousel/48815_11_Milieu_1537x2048_600x600.jpg", "preview_path" => "Products/4/34/carousel/preview/48815_11_Milieu_1537x2048_200x200.jpg", "counter" => "8"],
+
+              ["product_id" => "35", "path" => "Products/4/35/carousel/48801_01_HA_Frei_1774x2048_600x600.jpg", "preview_path" => "Products/4/35/carousel/preview/48801_01_HA_Frei_1774x2048_200x200.jpg", "counter" => "1"],
+              ["product_id" => "35", "path" => "Products/4/35/carousel/48801_02_ZA_Frei_1281x2048_600x600.jpg", "preview_path" => "Products/4/35/carousel/preview/48801_02_ZA_Frei_1281x2048_200x200.jpg", "counter" => "2"],
+              ["product_id" => "35", "path" => "Products/4/35/carousel/48801_03_ZA_Frei_1856x2048_600x600.jpg", "preview_path" => "Products/4/35/carousel/preview/48801_03_ZA_Frei_1856x2048_200x200.jpg", "counter" => "3"],
+
+              ["product_id" => "36", "path" => "Products/4/36/carousel/48821_01_HA_Frei_2048x1356_600x600.jpg", "preview_path" => "Products/4/36/carousel/preview/48821_01_HA_Frei_2048x1356_200x200.jpg", "counter" => "1"],
+              ["product_id" => "36", "path" => "Products/4/36/carousel/48821_02_ZA_Frei_2048x1356_600x600.jpg", "preview_path" => "Products/4/36/carousel/preview/48821_02_ZA_Frei_2048x1356_200x200.jpg", "counter" => "2"],
+              ["product_id" => "36", "path" => "Products/4/36/carousel/48800_15_48801_48807_48808_48813_48815_48817_48820_48821_48822_Milieu_2048x1358_600x600.jpg", "preview_path" => "Products/4/36/carousel/preview/48800_15_48801_48807_48808_48813_48815_48817_48820_48821_48822_Milieu_2048x1358_200x200.jpg", "counter" => "3"],
+
               ["product_id" => "", "path" => "", "preview_path" => "", "counter" => ""],
 
             ];

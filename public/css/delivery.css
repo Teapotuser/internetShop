@@ -20,7 +20,8 @@
 }
 
 .card .icon {
-    height: 35px;
+    height: 70px;
+    width: auto;
     margin-bottom: 10px;
 }
 
@@ -35,6 +36,16 @@
     color: #5e5e5e;
     margin-bottom: 30px;
     line-height: 1.5;
+}
+
+/* .icon {
+    height: 350px;
+    width: auto;
+} */
+
+.icon img {
+    height: 100%;
+    width: 100%;
 }
 
 @media screen and (max-width: 940px) {

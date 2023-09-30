@@ -113,10 +113,10 @@
                 <div class="dropdown">
                     <button type="button" class="dropdown__button enabled">
                         <div class="dropdown__button-text enabled"> 
-                            @if ( $user->role == 'admin') 
-                                Админ 
-                            @elseif($user->role == 'user') 
-                                Пользователь 
+                            @if ( old('role', $user->role) == 'admin')
+                                Админ
+                            @elseif(old('role', $user->role) == 'user')
+                                Пользователь
                             @endif
                         </div>
                     </button>
