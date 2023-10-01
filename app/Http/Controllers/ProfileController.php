@@ -42,7 +42,7 @@ class ProfileController extends Controller
         $subscription->is_active = intval($request->has('is_subscribe'));
         $subscription->save();
 
-        return to_route('profile.subscription.show')->with('message', 'Подписка изменена');
+        return to_route('profile.subscription.show')->with('message', 'Подписка успешно изменена');
     }
 
     /**
@@ -95,7 +95,7 @@ class ProfileController extends Controller
         }
         $request->user()->save();
 
-        return Redirect::back()->with('message', 'Профиль обновлен');
+        return Redirect::back()->with('message', 'Личные данные успешно изменены');
     }
 
     public function update_password_view()
@@ -109,7 +109,7 @@ class ProfileController extends Controller
             'password' => \Hash::make($request->validated('password'))
         ]);
 
-        return to_route('profile.userdata.show')->with('message', 'Пароль успешно обновлен');
+        return to_route('profile.userdata.show')->with('message', 'Пароль успешно изменен');
     }
 
     /**

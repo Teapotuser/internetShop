@@ -163,7 +163,12 @@
                             <a href="{{ route('collection.show', 'jolly_maeh') }}">                          
                                 <img class="slider-img" src="images/NICI/slider/slider3.jpg" alt="" />
                             </a> 
-                            </div>                              
+                            </div>    
+                            <div class="slider-wrap"> 
+                            <a href="{{ route('collection.show', 'wild_friends') }}">                          
+                                <img class="slider-img" src="images/NICI/slider/slider4.jpg" alt="" />
+                            </a> 
+                            </div>                          
                         </div>
                         <button class="slider-button-left"></button>
                         <button class="slider-button-right"></button>

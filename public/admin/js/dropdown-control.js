@@ -19,18 +19,36 @@ document.querySelectorAll('.dropdown').forEach(function (dropDownWrapper) {
 	// Клик по кнопке. Открыть/Закрыть select
 	dropDownBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-		dropDownList.classList.toggle('dropdown__list--visible');
-        this.classList.add('dropdown__button--active');
+		// Вадим добавил
+		/* dropDownList.classList.toggle('dropdown__list--visible');
+        this.classList.add('dropdown__button--active'); */
+		const current = e.currentTarget;
+		if(current.parentElement.classList.contains('dropdown--active')) {
+			// console.dir(current.parentElement)
+			dropDownBtn.classList.remove('dropdown__button--active');
+			dropDownList.classList.remove('dropdown__list--visible');
+			dropDownWrapper.classList.remove('dropdown--active');
+		} else {
+			document.querySelectorAll('.dropdown').forEach(element => {
+				if(element.classList.contains('dropdown--active')) {
+					element.querySelector('.dropdown__button.enabled').classList.remove('dropdown__button--active');
+					element.querySelector('.dropdown__list').classList.remove('dropdown__list--visible');
+					element.classList.remove('dropdown--active');
+				}
+			})
+			this.classList.toggle('dropdown__button--active');
+			dropDownList.classList.toggle('dropdown__list--visible');
+			dropDownWrapper.classList.toggle('dropdown--active');
+		}
+
 	});
 
     // Клик по тексту кнопки. Открыть/Закрыть select
-	dropDownBtnText.addEventListener('click', function (e) {
+	/* dropDownBtnText.addEventListener('click', function (e) {
         e.stopPropagation();
-        dropDownList.classList.toggle('dropdown__list--visible');
-        // console.log('Присвоен класс dropdown__list--visible');
-        dropDownBtn.classList.add('dropdown__button--active');
-        // console.log('Конец');
-	});
+        dropDownList.classList.toggle('dropdown__list--visible');       
+        dropDownBtn.classList.add('dropdown__button--active');        
+	}); */
 
 	// Выбор элемента списка. Запомнить выбранное значение. Закрыть дропдаун
 	dropDownListItems.forEach(function (listItem) {
@@ -49,6 +67,8 @@ document.querySelectorAll('.dropdown').forEach(function (dropDownWrapper) {
 		if (e.target !== dropDownBtn || e.target !== dropDownBtnText) {
 			dropDownBtn.classList.remove('dropdown__button--active');
 			dropDownList.classList.remove('dropdown__list--visible');
+			// Вадим добавил
+			dropDownWrapper.classList.remove('dropdown--active');
 		}
 	}); 
 
@@ -57,6 +77,8 @@ document.querySelectorAll('.dropdown').forEach(function (dropDownWrapper) {
 		if (e.key === 'Tab' || e.key === 'Escape') {
 			dropDownBtn.classList.remove('dropdown__button--active');
 			dropDownList.classList.remove('dropdown__list--visible');
+			// Вадим добавил
+			dropDownWrapper.classList.remove('dropdown--active');
 		}
 	});
 });

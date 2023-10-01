@@ -1,7 +1,8 @@
 @extends('layouts.master')
 @section('custom_css') 
     <!-- <link rel="stylesheet" href="{{ asset('css/order-form-new.css') }}" type="text/css">  -->
-    <link rel="stylesheet" href="{{ asset('css/subscription.css') }}" type="text/css">    
+    <link rel="stylesheet" href="{{ asset('css/subscription.css') }}" type="text/css"> 
+    <link rel="stylesheet" href="{{asset('css/admin-alert1.css')}}">   
 @endsection
 @section('content')
     <main>
@@ -30,16 +31,39 @@
             <div class="shop-wrapper">               
                 <!-- левая панель -->                
                 <section class="right-side"> <!-- Правая галерея товаров --> 
-                    @isset($message)
-                        {{$message}}
-                    @endisset  
+                    @isset($message)                       
+                        <div class="alert-container">
+                            <div class="alert alert-success show showAlert">
+                                <div class="alert-success-icon"></div>
+                                <div class="alert-msg-container">
+                                    <div class="msg">{{$message}}</div>
+                                </div>
+                                <div class="close-btn">
+                                    <button type="button" id="close-alert-button"></button>
+                                </div>
+                            </div>
+                        </div>
+                    @endisset                      
+                      <!-- отображение сообщения, что при Логине/Регистрации возникли ошибки -->
                     @if($errors->any())
-                        @foreach($errors->all() as $error)
-                            <!-- <li>{{ $error }}</li> -->
-                            <div class="msg">{{ $error }}</div>
-                        @endforeach
-                        <!-- </ul> -->
-                    @endif           
+                        <div class="alert-container">
+                            <div class="alert alert-danger showAlert show">
+                                <div class="alert-danger-icon"></div>
+                                <!-- <ul> -->
+                                <div class="alert-msg-container">
+                                    @foreach($errors->all() as $error)
+                                        <!-- <li>{{ $error }}</li> -->
+                                        <div class="msg">{{ $error }}</div>
+                                    @endforeach
+                                <!-- </ul> -->
+                                </div>
+                                <div class="close-btn">
+                                    <button type="button" id="close-alert-button"></button>
+                                </div>
+                            </div>        
+                        </div>
+                    @endif
+                    
                     <h2 class="section-header">Подписка на рассылку</h2>
                     <div class="right-side-description"> 
                         <p>Просто подпишитесь на нашу регулярную рассылку, и вы всегда будете первыми узнавать о новых статьях и предложениях.<br>
@@ -66,7 +90,12 @@
                                         </li>
                                     </ul>  
                                     <br> 
-                                    <input type="email" name="subsribe-email" placeholder="Email *" minLength="1" maxLength="150" required autocomplete="off" @error('subsribe-email') class="invalid" @enderror value="{{old('subsribe-email', $email?:Auth::user()?->email)}}">
+                                    <input type="email" name="subsribe-email" placeholder="Email *" minLength="1" maxLength="150" required autocomplete="off" @error('subsribe-email') class="is-invalid" @enderror value="{{old('subsribe-email', $email?:Auth::user()?->email)}}">
+                                    @error('subsribe-email')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                     <br>                                 
                                     <!-- <p class="info-text">Вы можете создать аккаунт после оформления заказа</p> -->
                                     <div class="form-inner-checkbox">
@@ -98,5 +127,5 @@
     </main>   
 @endsection        
 @section('custom_js')
-<!-- <script src="{{ asset('js/price-control.js') }}" type="text/javascript"></script> -->
+<script src="{{ asset('js/admin-alert-form.js') }}" type="text/javascript"></script>
 @endsection 

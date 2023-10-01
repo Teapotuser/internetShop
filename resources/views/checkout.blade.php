@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="{{asset('css/order-form-new.css')}}">
     <link rel="stylesheet" href="{{asset('css/password.css')}}">
     <link rel="stylesheet" href="{{asset('css/cart.css')}}">
+    <link rel="stylesheet" href="{{asset('css/admin-alert1.css')}}">   
 @endsection
 @section('content')
     <main>
@@ -34,6 +35,7 @@
                     <!-- Правая галерея товаров -->
                     <h2 class="section-header">Оформление заказа</h2>
                     <!--  Форма адреса -->
+                    <!-- отображение сообщения, что при оформлении заказа возникли ошибки -->
                     @if($errors->any())
                         <div class="alert-container">
                             <div class="alert alert-danger showAlert show">
@@ -52,6 +54,7 @@
                             </div>
                         </div>
                     @endif
+                  
                     @if(Session::get('cart')&& count(Session::get('cart')))
                     <form class="form-order" action="{{route('saveOrder')}}" method="POST">
                         @method('POST')
@@ -62,23 +65,25 @@
                                     <h3>Контактная информация</h3>
                                     <input type="text" placeholder="Имя *" minlength="1" maxlength="150" required=""
                                            value="{{old('name',Auth::user()?->name)}}"
-                                           name="name">
+                                           name="name" @error('name') class="is-invalid" @enderror >
                                     <input type="text" placeholder="Фамилия *" minlength="1" maxlength="150"
                                            value="{{old('last_name',Auth::user()?->last_name)}}"
                                            name="last_name"
-                                           required="">
+                                           required="" @error('last_name') class="is-invalid" @enderror >
                                     <input type="email" placeholder="E-mail *" minlength="1" maxlength="150" required=""
                                            value="{{old('email',Auth::user()?->email)}}"
-                                           name="email">
+                                           name="email"
+                                           @error('email') class="is-invalid" @enderror >
                                     <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone_number"
                                            value="{{old('phone_number',Auth::user()?->phone_number)}}"
-                                           placeholder="Номер телефона *" minlength="1" maxlength="20" required="">
+                                           placeholder="Номер телефона *" minlength="1" maxlength="20" required=""
+                                           @error('phone_number') class="is-invalid" @enderror >
                                     @guest()
                                         <a href="{{route('login')}}" class="is-registered-question">Вы уже
                                             зарегистрированы?</a>
                                         <p class="info-text">Вы можете создать аккаунт после оформления заказа</p>
+                                        
                                         <div class="form-inner-checkbox">
-
                                             <input type="checkbox" id="create-account" name="create-account" @checked(old('create-account', )) >
                                             <label for="create-account">
                                                 <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +98,7 @@
                                         <div class="">
                                             <div class="password-input-wrapper @if(old('create-account')!='on') hidden @endif">
                                                 <input id="password" type="password"
-                                                    class="form-control password-field input-margin-top password @if(old('create-account')!='on') hidden @endif"
+                                                    class="form-control password-field input-margin-top password @if(old('create-account')!='on') hidden @endif @error('password') is-invalid @enderror "
                                                     name="password" autocomplete="off" placeholder="Пароль *" @if(old('create-account')=='on') required @endif>
                                                 <button type="button" name="" value="" class="view-password-button">
                                                     <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
@@ -108,7 +113,7 @@
                                         <div class="">
                                             <div class="password-input-wrapper @if(old('create-account')!='on') hidden @endif">
                                                 <input id="password-confirm" type="password"
-                                                    class="form-control password-field password @if(old('create-account')!='on') hidden @endif" name="password_confirmation"
+                                                    class="form-control password-field password @if(old('create-account')!='on') hidden @endif @error('password_confirmation') is-invalid @enderror " name="password_confirmation"
                                                     autocomplete="off" placeholder="Подтвердите пароль *" @if(old('create-account')=='on') required @endif>
                                                 <button type="button" name="" value="" class="view-password-button">
                                                     <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
@@ -137,16 +142,16 @@
                                                 <label for="post">Адресная доставка</label>
                                             </li>
                                         </ul>                                        
-                                        <input type="text" placeholder="Адрес" class="delivery-address hidden input-margin-top"
+                                        <input type="text" placeholder="Адрес" class="delivery-address hidden input-margin-top @error('address') is-invalid @enderror "
                                                value="{{old('address')}}"
                                                name="address"
                                                maxlength="250">
                                         <input type="text" placeholder="Город" name="city"
                                         value="{{old('city')}}"
-                                        class="delivery-address hidden" maxlength="150">  
+                                        class="delivery-address hidden @error('city') is-invalid @enderror" maxlength="150">  
                                         <input type="text" placeholder="Индекс" name="zip_code"
                                         value="{{old('zip_code')}}"
-                                        class="delivery-address hidden" maxlength="20">     
+                                        class="delivery-address hidden @error('zip_code') is-invalid @enderror" maxlength="20">     
                                     </div>
                                 </div>
                                 <!--  Форма способа оплаты -->
@@ -242,4 +247,5 @@
 @section('custom_js')
     <script src="{{asset('js/orderform-control.js')}}" type="text/javascript"></script>
     <script src="{{ asset('js/view-hide-password.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/admin-alert-form.js') }}" type="text/javascript"></script>
 @endsection 

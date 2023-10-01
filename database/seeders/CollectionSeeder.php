@@ -15,7 +15,7 @@ class CollectionSeeder extends Seeder
      */
     public function run()
     {
-        Collection::truncate();
+        // Collection::truncate();
   
         $collections = [
               ["code" => "jolly_maeh", "name" => "Овечки Jolly Mäh", "title_description" => "NICI Jolly Mäh - овечки, которые должны вам понравиться!", "description" => "Самый безошибочно узнаваемый персонаж -- овечки Jolly Mäh на рынке в 2003 года. Красочный мир овечек доставляет удовольствие и занимает прочное место в сердцах детей и взрослых благодаря своему дерзкому и забавному дизайну.", "picture" => "collections/1/jolly_maeh_collection_image.jpg"],

@@ -15,7 +15,7 @@ class ProductImagesSeeder extends Seeder
      */
     public function run()
     {
-        ProductImages::truncate();
+        // ProductImages::truncate();
   
         $product_images = [
               ["product_id" => "1", "path" => "Products/1/1/carousel/48531_01_HA_600x600.jpg", "preview_path" => "Products/1/1/carousel/preview/48531_01_200_200.jpg", "counter" => "1"],
@@ -216,7 +216,21 @@ class ProductImagesSeeder extends Seeder
               ["product_id" => "36", "path" => "Products/4/36/carousel/48821_02_ZA_Frei_2048x1356_600x600.jpg", "preview_path" => "Products/4/36/carousel/preview/48821_02_ZA_Frei_2048x1356_200x200.jpg", "counter" => "2"],
               ["product_id" => "36", "path" => "Products/4/36/carousel/48800_15_48801_48807_48808_48813_48815_48817_48820_48821_48822_Milieu_2048x1358_600x600.jpg", "preview_path" => "Products/4/36/carousel/preview/48800_15_48801_48807_48808_48813_48815_48817_48820_48821_48822_Milieu_2048x1358_200x200.jpg", "counter" => "3"],
 
-              ["product_id" => "", "path" => "", "preview_path" => "", "counter" => ""],
+              ["product_id" => "37", "path" => "Products/4/37/carousel/48807_01_HA_Frei_1593x2048_600x600.jpg", "preview_path" => "Products/4/37/carousel/preview/48807_01_HA_Frei_1593x2048_200x200.jpg", "counter" => "1"],
+              ["product_id" => "37", "path" => "Products/4/37/carousel/48807_02_ZA_Frei_2048x2006_600x600.jpg", "preview_path" => "Products/4/37/carousel/preview/48807_02_ZA_Frei_2048x2006_200x200.jpg", "counter" => "2"],
+              ["product_id" => "37", "path" => "Products/4/37/carousel/48807_03_ZA_Frei_1304x2048_600x600.jpg", "preview_path" => "Products/4/37/carousel/preview/48807_03_ZA_Frei_1304x2048_200x200.jpg", "counter" => "3"],
+              ["product_id" => "37", "path" => "Products/4/37/carousel/48807_04_ZA_Frei_1352x2048_600x600.jpg", "preview_path" => "Products/4/37/carousel/preview/48807_04_ZA_Frei_1352x2048_200x200.jpg", "counter" => "4"],
+              ["product_id" => "37", "path" => "Products/4/37/carousel/48807_11_48810_48813_Milieu_1585x2048_600x600.jpg", "preview_path" => "Products/4/37/carousel/preview/48807_11_48810_48813_Milieu_1585x2048_200x200.jpg", "counter" => "5"],
+              ["product_id" => "37", "path" => "Products/4/37/carousel/48807_13_Milieu_2048x1373_600x600.jpg", "preview_path" => "Products/4/37/carousel/preview/48807_13_Milieu_2048x1373_200x200.jpg", "counter" => "6"],
+
+              ["product_id" => "38", "path" => "Products/4/38/carousel/48800_01_HA_Frei_1365x2048_600x600.jpg", "preview_path" => "Products/4/38/carousel/preview/48800_01_HA_Frei_1365x2048_200x200.jpg", "counter" => "1"],
+              ["product_id" => "38", "path" => "Products/4/38/carousel/48800_02_ZA_Frei_1467x2048_600x600.jpg", "preview_path" => "Products/4/38/carousel/preview/48800_02_ZA_Frei_1467x2048_200x200.jpg", "counter" => "2"],
+              ["product_id" => "38", "path" => "Products/4/38/carousel/48800_03_ZA_Frei_1060x2048_600x600.jpg", "preview_path" => "Products/4/38/carousel/preview/48800_03_ZA_Frei_1060x2048_200x200.jpg", "counter" => "3"],
+              ["product_id" => "38", "path" => "Products/4/38/carousel/48800_15_48801_48807_48808_48813_48815_48817_48820_48821_48822_Milieu_2048x1358_600x600.jpg", "preview_path" => "Products/4/38/carousel/preview/48800_15_48801_48807_48808_48813_48815_48817_48820_48821_48822_Milieu_2048x1358_200x200.jpg", "counter" => "4"],
+
+              ["product_id" => "39", "path" => "Products/4/39/carousel/48819_01_HA_Frei_2048x1288_600x600.jpg", "preview_path" => "Products/4/39/carousel/preview/48819_01_HA_Frei_2048x1288_200x200.jpg", "counter" => "1"],
+              ["product_id" => "39", "path" => "Products/4/39/carousel/48819_02_ZA_Frei_2048x1336_600x600.jpg", "preview_path" => "Products/4/39/carousel/preview/48819_02_ZA_Frei_2048x1336_200x200.jpg", "counter" => "2"],
+              ["product_id" => "39", "path" => "Products/4/39/carousel/48819_03_ZA_Frei_2048x1483_600x600.jpg", "preview_path" => "Products/4/39/carousel/preview/48819_03_ZA_Frei_2048x1483_200x200.jpg", "counter" => "3"],
 
             ];
   

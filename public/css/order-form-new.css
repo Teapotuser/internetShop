@@ -514,6 +514,17 @@ input[type=radio] + label {
    text-align: center;
   }
 
+/*Текст об ошибке ниже поля input*/
+.form-field-validation-error, .invalid-feedback {
+   color: #ff4658;
+   font-size: 14px;
+   padding-bottom: 8px;
+}
+
+.form-inner input[type="text"].is-invalid, .form-inner input[type="email"].is-invalid, .form-inner input[type="number"].is-invalid, .form-inner input[type="password"].is-invalid, .form-inner textarea.is-invalid, .is-invalid {
+	background-color: rgba(255, 70, 70, 0.1);
+}
+
   @media (min-width: 300px) and (max-width: 900px) {
    .form-order-wrapper {
        display: flex;

@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/order-form-new.css') }}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/password.css')}}">
+    <link rel="stylesheet" href="{{asset('css/admin-alert1.css')}}">   
 @endsection
 @section('content')
     <main>
@@ -44,4 +45,5 @@
 @section('custom_js')
     <script src="{{ asset('js/file-upload-pairs.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/view-hide-password.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/admin-alert-form.js') }}" type="text/javascript"></script>
 @endsection

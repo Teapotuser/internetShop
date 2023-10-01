@@ -689,8 +689,17 @@ body.dark .sidebar li a:hover .text{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
+/*Вадим добавил для sidebar в Firefox*/
+@-moz-document url-prefix() {
+	.sidebar .menu-bar{
+		overflow-x: hidden;
+		/* overflow-y: hidden; */
+		scrollbar-width: none;
+	}
+}
+
 .menu-bar::-webkit-scrollbar{
     display: none;
 }

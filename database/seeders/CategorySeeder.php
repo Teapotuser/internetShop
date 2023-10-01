@@ -15,7 +15,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::truncate();
+        // Category::truncate();
   
         $categories = [
               ["code" => "soft_toys", "name" => "Мягкие игрушки", "description" => "Наши мягкие игрушки NICI для радости, игр и веселья.  Выберите себе плюшевого друга из большого ассортимента мягких игрушек нашего магазина. Будь то единорог, лама или альпака - ваш новый друг будет сопровождать вас повсюду.", "picture" => "categories/1/soft_toys_category.png"],

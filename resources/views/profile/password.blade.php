@@ -1,6 +1,7 @@
 @extends('profile.profile_master')
 @section('profile_content')
     <div class="right-side-profile-title">Сменить пароль</div>
+
     <!--  Форма Сменить пароль -->
     <form class="form-order" action="{{ route('profile.update-password.update') }}" method="POST">
         @csrf
@@ -22,11 +23,11 @@
                                          alt="hide-pass">
                                 </button>
                             </div>
-                            <!-- @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror -->
+                            @error('current_password')
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                         <div class="">
                             <div class="password-input-wrapper">
@@ -40,11 +41,11 @@
                                          alt="hide-pass">
                                 </button>
                             </div>
-                            <!-- @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror -->
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                         <div class="">
                             <div class="password-input-wrapper">
@@ -58,6 +59,11 @@
                                          alt="hide-pass">
                                 </button>
                             </div>
+                            @error('password_confirmation'||'password')
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="feedbackform-center-button">

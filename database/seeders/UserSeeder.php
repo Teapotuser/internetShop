@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'email' => 'inessa_cherm@tut.by',
             'phone_number' => '375447265285',
             'role' => 'admin',
-            'picture' => 'users/1/admin_picture.png',
+            'picture' => '/storage/users/1/admin_picture.png',
             'password' => bcrypt('1')
         ]);
     }
