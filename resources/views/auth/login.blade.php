@@ -32,13 +32,17 @@
                 <section class="right-side"> <!-- Формы логина и регистрации -->
 
                     <!-- отображение сообщения, что при Логине/Регистрации возникли ошибки -->
-                    @if($errors->any())
+                    @if($errors->any() || $errors->register->any())
                         <div class="alert-container">
                             <div class="alert alert-danger showAlert show">
                                 <div class="alert-danger-icon"></div>
                                 <!-- <ul> -->
                                 <div class="alert-msg-container">
                                     @foreach($errors->all() as $error)
+                                        <!-- <li>{{ $error }}</li> -->
+                                        <div class="msg">{{ $error }}</div>
+                                    @endforeach
+                                    @foreach($errors->register->all() as $error)
                                         <!-- <li>{{ $error }}</li> -->
                                         <div class="msg">{{ $error }}</div>
                                     @endforeach
@@ -63,11 +67,11 @@
                                            required autocomplete="email" autofocus
                                            placeholder="Ваш e-mail *"> <!--value="{{ old('email') }}" -->
 
-                                   <!--  @error('email')
+                                    @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
                                         </span>
-                                    @enderror -->
+                                    @enderror
                                 </div>
                                 <div class="">
                                     <div class="password-input-wrapper">
@@ -78,11 +82,11 @@
                                             <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
                                         </button>  
                                     </div>
-                                   <!--  @error('password')
+                                    @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
                                         </span>
-                                    @enderror -->
+                                    @enderror
                                 </div>
                                 <!-- <div class="">
                                     <div class="">
@@ -119,82 +123,82 @@
                                 <h3>Регистрация нового пользователя</h3>
                                 <div class="">
                                     <input id="name" type="text"
-                                           class="form-control @error('name') is-invalid @enderror " name="name" required
+                                           class="form-control @error('name', 'register') is-invalid @enderror " name="name" required
                                            autocomplete="name" autofocus
                                            placeholder="Имя *"> <!--value="{{ old('name') }}" -->
 
-                                   <!--  @error('name')
+                                    @error('name', 'register')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
                                         </span>
-                                    @enderror -->
+                                    @enderror
                                 </div>
                                 <div class="">
                                     <input id="last_name" type="text"
-                                           class="form-control @error('last_name') is-invalid @enderror "
+                                           class="form-control @error('last_name', 'register') is-invalid @enderror "
                                            name="last_name" required autocomplete="last_name" autofocus
                                            placeholder="Фамилия *"><!--value="{{ old('last_name') }}" -->
 
-                                   <!--  @error('last_name')
+                                    @error('last_name', 'register')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
                                         </span>
-                                    @enderror -->
+                                    @enderror
                                 </div>
                                 <div class="">
                                     <input id="email" type="email"
-                                           class="form-control @error('email') is-invalid @enderror " name="email"
+                                           class="form-control @error('email', 'register') is-invalid @enderror " name="email"
                                            required autocomplete="email"
                                            placeholder="E-mail *"><!--value="{{ old('email') }}" -->
 
-                                   <!--  @error('email')
+                                    @error('email', 'register')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
                                         </span>
-                                    @enderror -->
+                                    @enderror
                                 </div>
                                 <div class="">
                                     <input id="phone_number" type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                                            placeholder="Номер телефона *"
-                                           class="form-control @error('phone_number') is-invalid @enderror "
+                                           class="form-control @error('phone_number', 'register') is-invalid @enderror "
                                            name="phone_number" required
                                            autocomplete="phone_number"><!--value="{{ old('phone_number') }}" -->
 
-                                   <!--  @error('phone_number')
+                                    @error('phone_number', 'register')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
                                         </span>
-                                    @enderror -->
+                                    @enderror
                                 </div>
                                 <div class="">
                                     <div class="password-input-wrapper">
                                         <input id="password" type="password"
-                                            class="form-control password-field @error('password') is-invalid @enderror " name="password"
+                                            class="form-control password-field @error('password', 'register') is-invalid @enderror " name="password"
                                             required autocomplete="off" placeholder="Пароль *">
                                         <button type="button" name="" value="" class="view-password-button">
                                             <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
                                         </button>  
                                     </div> 
-                                   <!--  @error('password')
+                                    @error('password', 'register')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
                                         </span>
-                                    @enderror -->
+                                    @enderror
                                 </div>
                                 <div class="">
                                     <div class="password-input-wrapper">
-                                        <input id="password-confirm" type="password" class="form-control password-field @error('password_confirmation') is-invalid @enderror "
+                                        <input id="password-confirm" type="password" class="form-control password-field @error('password_confirmation', 'register') is-invalid @enderror "
                                             name="password_confirmation" required autocomplete="off"
                                             placeholder="Подтвердите пароль *">
                                         <button type="button" name="" value="" class="view-password-button">
                                             <img class="view-password-icon" src="{{ asset('images/noun-hide-5783163-grey.svg') }}" alt="hide-pass">
                                         </button> 
                                     </div>
-                                   <!--  @error('password_confirmation')
+                                    @error('password_confirmation', 'register')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
                                         </span>
-                                    @enderror -->
+                                    @enderror
                                 </div>
                                 <div class="center-button">
                                     <div class="">

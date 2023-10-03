@@ -518,7 +518,7 @@ input[type=radio] + label {
 .form-field-validation-error, .invalid-feedback {
    color: #ff4658;
    font-size: 14px;
-   padding-bottom: 8px;
+   margin-bottom: 6px;
 }
 
 .form-inner input[type="text"].is-invalid, .form-inner input[type="email"].is-invalid, .form-inner input[type="number"].is-invalid, .form-inner input[type="password"].is-invalid, .form-inner textarea.is-invalid, .is-invalid {
