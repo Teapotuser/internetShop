@@ -160,15 +160,22 @@ class ProductController extends Controller
 
         //Если у товара меняется collection_id:
         if ($validated['collection_id'] != $product->collection_id) {
-            Storage::move('/public/Products/' . $product->collection_id . '/' . $product->id, '/public/Products/' . $validated['collection_id'] . '/' . $product->id);
+            Storage::move('/public/Products/' . $product->collection_id . '/' . $product->id,'/public/Products/' . $validated['collection_id'] . '/' . $product->id);
             $product->collection_id = $validated['collection_id'];
+            if ($product->picture) {
+                $new_product_picture_path = explode('/',$product->picture);
+                $new_product_picture_path[1]=$validated['collection_id'];
+
+                $product->picture = implode('/',$new_product_picture_path);
+            }
+
             $product->save();
             foreach ($product->images as $image) {
                 $preview_path_new = explode('/', $image->preview_path);
-                $preview_path_new[2] = $product->collection_id;
+                $preview_path_new[1] = $product->collection_id;
                 $preview_path_new = implode('/', $preview_path_new);
                 $path_new = explode('/', $image->path);
-                $path_new[2] = $product->collection_id;
+                $path_new[1] = $product->collection_id;
                 $path_new = implode('/', $path_new);
                 $image->update([
                     'preview_path' => $preview_path_new,

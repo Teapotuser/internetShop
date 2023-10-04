@@ -30,4 +30,11 @@ class ProfileUpdatePasswordRequest extends FormRequest
             'password' => ['required', 'confirmed'],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'current_password.current_password'=>' Пароль не совпадает с текущим паролем'
+        ];
+    }
 }

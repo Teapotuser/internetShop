@@ -21,17 +21,21 @@
     top: 0;
     right: -100%; /*-100%;*/
     width: 360px;
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    height: 100vh;
     padding: 20px;
     background-color: #fff;
     box-shadow: -2px 0 4px hsl(0 4% 15% / 10%);
     z-index: 100;
-    transition: 0.3s;    
+    transition: 0.3s;   
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .cart-right.active {
     right:0;
-    overflow: scroll; /*auto;*/
+   /*  overflow: scroll; */ /*auto;*/
+    /* overflow-y: scroll; */
 }
 
 .cart-right-title {

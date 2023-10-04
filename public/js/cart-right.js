@@ -25,16 +25,23 @@ async function getCartFromServer() {
 cartIcon.onclick = () => {
     cartOverlay.classList.add("transparentBcg");
     cart.classList.add("active");
+
+    // document.body.classList.toggle('_lock');
+    document.body.classList.add('_lock');
 };
 //Close Cart
 closeCart.onclick = () => {
     cartOverlay.classList.remove("transparentBcg");
     cart.classList.remove("active");
+
+    document.body.classList.remove('_lock');
 };
 cartOverlay.onclick = (event) => {
     if (event.target.className === 'cart-right-overlay transparentBcg') {
         cartOverlay.classList.remove("transparentBcg");
         cart.classList.remove("active");
+
+        document.body.classList.remove('_lock');
     }
 };
 

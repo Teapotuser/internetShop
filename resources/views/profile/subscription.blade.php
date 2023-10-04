@@ -3,12 +3,12 @@
     <div class="right-side-profile-title">Подписка</div>
 
         <!-- отображение сообщения -->
-         @isset($message)                       
+        @if(session('message'))                      
             <div class="alert-container">
                 <div class="alert alert-success show showAlert">
                     <div class="alert-success-icon"></div>
                     <div class="alert-msg-container">
-                        <div class="msg">{{$message}}</div>
+                        <div class="msg">{{session('message')}}</div>
                     </div>
                     <div class="close-btn">
                         <button type="button" id="close-alert-button"></button>
@@ -50,7 +50,7 @@
                     <label for="is_subscribe" class="checkbox">
                         <input type="checkbox" class="checkbox__inp" id="is_subscribe"
                                name="is_subscribe"
-                               @checked(\App\Models\Subscription::query()->where('email', Auth::user()->email)->firstOrCreate()->is_active))
+                               @checked(\App\Models\Subscription::query()->where('email',Auth::user()->email)->first() ? \App\Models\Subscription::query()->where('email',Auth::user()->email)->first()->is_active : false)
                         >
                         <span class="checkbox__inner">Подписаться на рассылку новостей</span>
                     </label>

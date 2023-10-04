@@ -38,9 +38,20 @@ class ProfileController extends Controller
     {
         /* $request->user()->is_subscribe = intval($request->has('is_subscribe'));
         $request->user()->save(); */
-        $subscription = Subscription::query()->where('email', $request->user()->email)->firstOrCreate();
+       /*  $subscription = Subscription::query()->where('email', $request->user()->email)->firstOrCreate();
         $subscription->is_active = intval($request->has('is_subscribe'));
-        $subscription->save();
+        $subscription->save(); */
+        if (intval($request->has('is_subscribe')) == true) {
+            $subscription = Subscription::query()->firstOrCreate(['email' => $request->user()->email]);
+            $subscription->is_active = intval($request->has('is_subscribe'));
+            $subscription->save();
+        } else {
+            $subscription = Subscription::query()->where('email', $request->user()->email)->first();
+            if ($subscription) {
+                $subscription->is_active = intval($request->has('is_subscribe'));
+                $subscription->save();
+            }
+        }
 
         return to_route('profile.subscription.show')->with('message', 'Подписка успешно изменена');
     }

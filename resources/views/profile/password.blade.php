@@ -3,19 +3,19 @@
     <div class="right-side-profile-title">Сменить пароль</div>
 
     <!-- отображение сообщения -->
-    @isset($message)                  
+    @if(session('message'))                  
         <div class="alert-container">
             <div class="alert alert-success show showAlert">
                 <div class="alert-success-icon"></div>
                 <div class="alert-msg-container">
-                    <div class="msg">{{$message}}</div>
+                    <div class="msg">{{session('message')}}</div>
                 </div>
                 <div class="close-btn">
                     <button type="button" id="close-alert-button"></button>
                 </div>
             </div>
         </div>
-   @endisset
+   @endif
  <!-- отображение сообщения, что при Логине/Регистрации возникли ошибки -->
     @if($errors->any())
         <div class="alert-container">

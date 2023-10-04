@@ -196,7 +196,21 @@
                                     @if(url()->current() == route('feedback.form') )
                                         active
                                     @endif"
+                                    href="#">Контакты</a>
+                            </li>
+                            <li>
+                                <a class="menu__sublink
+                                    @if(url()->current() == route('feedback.form') )
+                                        active
+                                    @endif"
                                     href="{{ route('feedback.form') }}">Обратная связь</a>
+                            </li>
+                            <li>
+                                <a class="menu__sublink
+                                    @if(url()->current() == route('feedback.form') )
+                                        active
+                                    @endif"
+                                    href="#">О нас</a>
                             </li>
                             <!-- <li><a href="#" class="menu__sublink">Овечки Jolly Mäh</a></li>
                             <li><a href="#" class="menu__sublink">Единорог Theodor и его друзья</a></li>

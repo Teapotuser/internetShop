@@ -39,6 +39,11 @@ body {
     }
 }
 
+/* При открытом бургер меню не дает скролить страницу под ним */
+body._lock{
+    overflow: hidden;
+}
+
 header{
     /* border-bottom: 1px solid red; */
     
