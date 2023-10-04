@@ -13,7 +13,8 @@ let itemsInCart = []; //cart
 
 async function getCartFromServer() {
     // let response = fetch(`/api/getCart/`).then(response=>response.json()).then(json=>);
-    let response = await fetch(`/getCart/`);
+    // let response = await fetch(`/getCart/`);
+    let response = await fetch(`/getCart`);
     let result = await response.json();
     itemsInCart = result.cart ? result.cart : [];
     rePrintCart();

@@ -17,7 +17,7 @@ class SubscriptionController extends Controller
         return view('subscription', compact('email'));
     }
 
-    public function newSubsctiption(Request $request){        
+    public function newSubscription(Request $request){        
         $request->validate(['subsribe-email' => [
             'required',
             'email',]]);

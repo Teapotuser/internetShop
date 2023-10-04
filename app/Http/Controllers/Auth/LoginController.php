@@ -44,6 +44,7 @@ class LoginController extends Controller
         return match ($user->role) {
             'admin' => to_route('dashboard.index'),
             'user' => to_route('profile.show'),
+            // 'user' => to_route('profile.userdata.show'),
             default => redirect(RouteServiceProvider::HOME)
         };
     }

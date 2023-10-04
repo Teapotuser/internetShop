@@ -157,6 +157,26 @@ class ProductController extends Controller
     public function update(StoreRequest $request, Product $product)
     {
         $validated = $request->validated();
+
+        //Если у товара меняется collection_id:
+        if ($validated['collection_id'] != $product->collection_id) {
+            Storage::move('/public/Products/' . $product->collection_id . '/' . $product->id, '/public/Products/' . $validated['collection_id'] . '/' . $product->id);
+            $product->collection_id = $validated['collection_id'];
+            $product->save();
+            foreach ($product->images as $image) {
+                $preview_path_new = explode('/', $image->preview_path);
+                $preview_path_new[2] = $product->collection_id;
+                $preview_path_new = implode('/', $preview_path_new);
+                $path_new = explode('/', $image->path);
+                $path_new[2] = $product->collection_id;
+                $path_new = implode('/', $path_new);
+                $image->update([
+                    'preview_path' => $preview_path_new,
+                    'path' => $path_new,
+                ]);
+            }
+        }
+
         if ($request->file('picture')||$request->validated('removeImage')) {
             if ($product->picture) {
                 // Storage::delete($category->picture);

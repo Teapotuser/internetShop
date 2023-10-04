@@ -109,7 +109,8 @@ class ProfileController extends Controller
             'password' => \Hash::make($request->validated('password'))
         ]);
 
-        return to_route('profile.userdata.show')->with('message', 'Пароль успешно изменен');
+        // return to_route('profile.userdata.show')->with('message', 'Пароль успешно изменен');
+        return Redirect::back()->with('message', 'Пароль успешно изменен');
     }
 
     /**
